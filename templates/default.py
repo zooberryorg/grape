@@ -2,7 +2,7 @@ from contextlib import contextmanager
 from nicegui import ui
 
 @contextmanager
-def default(navtitle: str):
+def frame(navtitle: str):
     """
     Context manager for GrAPE app
     """
@@ -37,3 +37,5 @@ def default(navtitle: str):
         # Footer
     with ui.footer().classes('bg-gray-800 text-white p-4 text-center'):
         ui.label('© 2024 GrAPE. All rights reserved.').classes('text-sm')
+
+    yield

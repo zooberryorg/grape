@@ -1,8 +1,8 @@
 from nicegui import ui
-from pages import home
+from pages.home import base
 
 def url() -> None:
-    ui.page('/')(home)
+    ui.page('/')(base.home)
 
 if __name__ == '__main__':
     url()
