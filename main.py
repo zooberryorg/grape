@@ -1,9 +1,10 @@
 from nicegui import ui
-from frame_core import frame
+from templates import default
+from urls import create
 
 @ui.page('/')
 def main_page():
-    with frame('GrAPE'):
+    with default('GrAPE'):
         pass
 
 
