@@ -2,7 +2,7 @@ from contextlib import contextmanager
 from nicegui import ui
 
 @contextmanager
-def frame(navtitle: str):
+def default(navtitle: str):
     """
     Context manager for GrAPE app
     """
