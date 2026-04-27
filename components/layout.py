@@ -15,6 +15,7 @@ def frame(navtitle: str):
         # Sidebar
         with ui.column().classes('p-4 w-20 bg-gray-100 shrink-0'):
             ui.button(icon='dashboard').classes('w-full')
+            ui.button(icon='puzzle').classes('w-full')
             ui.button(icon='settings').classes('w-full')
             ui.button(icon='info').classes('w-full')
 
@@ -36,6 +37,7 @@ def frame(navtitle: str):
 
         # Footer
     with ui.footer().classes('bg-gray-800 text-white p-4 text-center'):
-        ui.label('© 2024 GrAPE. All rights reserved.').classes('text-sm')
+        with ui.row().classes('items-center justify-center'):
+            ui.button(icon='help').classes('w-10 h-10 text-white')
 
     yield
