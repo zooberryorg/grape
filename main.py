@@ -1,10 +1,13 @@
 from nicegui import ui
-from components import layout
+from components import theme
 from pages import dashboard
 
+
+ui.add_css
   
 def entrypoint():
     # start with dashboard
+    theme.apply()
     dashboard()
 
 
