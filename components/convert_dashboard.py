@@ -18,8 +18,16 @@ def convert_dashboard():
                 ui.label("Load ZTA files from your computer").classes("text-lg")
                 zta_path = ui.input(placeholder="No file selected").props("readonly dense outlined dark clearable")
                 ui.button("Select Files", icon="folder_open").on_click(
-                    lambda: [pick_files(zta_path), dialog.close()]
+                    lambda: [pick_files(zta_path)]
                 ).classes("mt-4 bg-gray-600 hover:bg-gray-700")
+
+                with ui.row().classes("gap-4 mt-4"):
+                    ui.button("Cancel").props("flat").on_click(dialog.close).classes(
+                        "text-gray-400 hover:text-gray-300"
+                    )
+                    ui.button("Load").props("flat").on_click(
+                        lambda: [confirm(dialog, zta_path, zta_path), dialog.close()]
+                    ).classes("text-blue-400 hover:text-blue-300")
 
             dialog.open()
 
