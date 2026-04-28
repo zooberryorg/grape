@@ -37,9 +37,52 @@ def convert_dashboard():
         }
     """)
     with ui.row().classes("items-stretch w-full gap-1 h-screen"):
-        with ui.column().classes("flex-1"):
+        with ui.column().classes("flex-1 gap-0"):
             convert_actions.convert_actions()
             canvas.canvas()
+            ui.label("Imported files").classes("text-gray-400 mx-5 mt-[-2]").props("dense")
+            with ui.column().classes("p-4 mx-4 mt-4 w-full bg-gray-800 border-1 border-gray-600 min-h-[100px] shadow-none rounded-lg"):
+                with ui.list().props("dense separator").classes("w-full"):
+                    with ui.item().classes("text-gray-300 w-full"):
+                        with ui.item_section().props('avatar'):
+                            ui.icon("image").classes("text-gray-400")
+                        with ui.item_section():
+                            ui.label("file1.zta").classes("text-gray-300")
+                        with ui.item_section().props("side"):
+                            ui.button(icon="close").classes(
+                                "text-gray-400 hover:text-gray-300"
+                            ).props("flat dense")
+                with ui.list().props("dense separator").classes("w-full"):
+                    with ui.item().classes("text-gray-300 w-full"):
+                        with ui.item_section().props('avatar'):
+                            ui.icon("image").classes("text-gray-400")
+                        with ui.item_section():
+                            ui.label("file2.zta").classes("text-gray-300")
+                        with ui.item_section().props("side"):
+                            ui.button(icon="close").classes(
+                                "text-gray-400 hover:text-gray-300"
+                            ).props("flat dense")
+                with ui.list().props("dense separator").classes("w-full"):
+                    with ui.item().classes("text-gray-300 w-full"):
+                        with ui.item_section().props('avatar'):
+                            ui.icon("image").classes("text-gray-400")
+                        with ui.item_section():
+                            ui.label("file3.zta").classes("text-gray-300")
+                        with ui.item_section().props("side"):
+                            ui.button(icon="close").classes(
+                                "text-gray-400 hover:text-gray-300"
+                            ).props("flat dense")
+                with ui.list().props("dense separator").classes("w-full"):
+                    with ui.item().classes("text-gray-300 w-full"):
+                        with ui.item_section().props('avatar'):
+                            ui.icon("image").classes("text-gray-400")
+                        with ui.item_section():
+                            ui.label("file4.zta").classes("text-gray-300")
+                        with ui.item_section().props("side"):
+                            ui.button(icon="close").classes(
+                                "text-gray-400 hover:text-gray-300"
+                            ).props("flat dense")
+                
         with ui.column().classes(
             "shrink-0 p-4 ml-8 min-w-[300px] h-full bg-gray-800 border-l border-gray-600 gap-4"
         ):
