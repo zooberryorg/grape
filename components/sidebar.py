@@ -3,7 +3,7 @@ from nicegui import ui
 class Sidebar():
     menu_items = [
         {'icon': 'dashboard', 'label': 'Dashboard', 'url': '/'},
-        {'icon': 'puzzle', 'label': 'Projects', 'url': '/projects'},
+        {'icon': 'extension', 'label': 'Projects', 'url': '/projects'},
         {'icon': 'settings', 'label': 'Settings', 'url': '/settings'},
         {'icon': 'info', 'label': 'About', 'url': '/about'},
     ]
