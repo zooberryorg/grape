@@ -65,17 +65,24 @@ def convert_dashboard():
     def refresh_file_list():
         file_list.clear()
         with file_list:
-            for zta_file in converter_state.loaded_zta_files:
-                with ui.row().classes("items-center w-full"):
-                    with ui.row().classes("items-center gap-2"):
-                        ui.icon("image").classes("text-gray-400")
-                        with ui.label(truncate_filename(zta_file.location)).classes("text-gray-300"):
-                            ui.tooltip(zta_file.location).props('anchor="bottom left" self="top left"')
-                    ui.space()
-                    ui.button(icon="close").classes(
-                        "text-gray-400 hover:text-gray-300"
-                    ).props("flat dense")
+            if not converter_state.loaded_zta_files:
+                ui.label("No files loaded").classes("text-gray-500")
+            else:
+                for zta_file in converter_state.loaded_zta_files:
+                    with ui.row().classes("items-center w-full"):
+                        with ui.row().classes("items-center gap-2"):
+                            ui.icon("image").classes("text-gray-400")
+                            with ui.label(truncate_filename(zta_file.location)).classes("text-gray-300"):
+                                ui.tooltip(zta_file.location).props('anchor="bottom left" self="top left"')
+                        ui.space()
+                        ui.button(icon="close").classes(
+                            "text-gray-400 hover:text-gray-300"
+                        ).props("flat dense").on_click(lambda zta_file=zta_file: delete_file(zta_file))
         print("Refresh file list")
+
+    def delete_file(zta_file):
+        converter_state.loaded_zta_files.remove(zta_file)
+        refresh_file_list()
 
     async def export_image():
         ui.notify("Exporting image... (this may take a moment)", color="blue")
@@ -86,12 +93,15 @@ def convert_dashboard():
     with ui.row().classes("items-stretch w-full gap-1 h-screen"):
         with ui.column().classes("flex-1 gap-0"):
             convert_actions.convert_actions(load=load_files)
+            # ------------------ Canvas area ------------------
             canvas.canvas()
+
+            # ------------------ File list ------------------
             ui.label("Imported files").classes("text-gray-400 mx-5 mt-[-2]").props(
                 "dense"
             )
             with ui.column().classes(
-                "p-4 mx-4 mt-4 w-full bg-gray-800 border-1 border-gray-600 min-h-[100px] shadow-none rounded-lg"
+                "p-4 mx-4 mt-4 w-full bg-gray-800 border-1 border-gray-600 h-full shadow-none rounded-lg"
             ):
                 file_list = ui.list().classes("w-full")
 
