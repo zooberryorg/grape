@@ -14,7 +14,7 @@ from data.state import ZtaFile, converter_state
 def convert_dashboard():
     # ------------------- UI State -------------------
     file_list = None
-    canvas_image = canvas.canvas()
+    canvas_image = None
 
     # ------------------ Event handlers ------------------
     def signal_to_base64(pixels: list, width: int, height: int, channels: int) -> None:
@@ -202,7 +202,7 @@ def convert_dashboard():
         with ui.column().classes("flex-1 gap-0"):
             convert_actions.convert_actions(load=load_files)
             # ------------------ Canvas area ------------------
-            canvas.canvas()
+            canvas_image = canvas.canvas()
 
             # ------------------ File list ------------------
             ui.label("Imported files").classes("text-gray-400 mx-5 mt-[-2]").props(

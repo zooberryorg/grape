@@ -1,5 +1,5 @@
 from nicegui import ui
-
+from data.state import converter_state
 
 def canvas():
     with ui.card().classes(
@@ -12,5 +12,18 @@ def canvas():
                 .classes("max-h-full max-w-full")
                 .style("image-rendering: pixelated; display: none;")
             )
-            ui.label("No image loaded").classes("text-gray-400")
+            placeholder = ui.label("No image loaded").classes("text-gray-400")
+    def tick():
+        frames = converter_state.converted_signals
+        if not frames:
+            return
+        placeholder.set_visibility(False)
+        img.set_visibility(True)
+        img.style("display: block;")
+        img.set_source(frames[converter_state.current_frame_index])
+        converter_state.current_frame_index = (
+            converter_state.current_frame_index + 1
+        ) % len(frames)
+
+    ui.timer(0.1, tick)
     return img
