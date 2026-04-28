@@ -1,5 +1,6 @@
 from nicegui import ui
 
+
 def welcome_panel():
     with ui.column().classes("flex-1 p-4 items-stretch shadow-none overflow-y-auto"):
         with ui.row():
@@ -27,9 +28,7 @@ def welcome_panel():
                     ).classes("h-10")
                     ui.button("Convert ZTA files", icon="file_upload").props(
                         "flat no-caps"
-                    ).classes("h-10").on_click(
-                        lambda: ui.navigate.to("/convert")
-                    )
+                    ).classes("h-10").on_click(lambda: ui.navigate.to("/convert"))
                     ui.button("ZTA graphic quick edit", icon="image").props(
                         "flat no-caps"
                     ).classes("h-10")

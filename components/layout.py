@@ -13,12 +13,22 @@ def frame(navtitle: str, active_item: str = None, components: list = None):
         ui.label(navtitle).classes("text-md absolute-center")
 
     # Main content area
-    with ui.row().classes("flex-nowrap items-stretch w-full gap-0 bg-gray-800 max-h-screen p-0 m-0"):
+    with ui.row().classes(
+        "flex-nowrap items-stretch w-full gap-0 bg-gray-800 h-screen overflow-y-auto p-0 m-0"
+    ):
         # Sidebar
         Sidebar(active_item=active_item)()
 
         # Main content
-        with ui.column().classes("items-stretch bg-gray-700 w-full gap-1 h-screen border-l border-t border-gray-600 rounded-tl-lg rounded-bl-lg rounded-tr-none rounded-br-none").props('square'):
+        with (
+            ui.column()
+            .classes(
+                "items-stretch bg-gray-700 w-full gap-1 h-screen border-l "
+                "border-t border-gray-600 rounded-tl-lg rounded-bl-lg "
+                "rounded-tr-none rounded-br-none"
+            )
+            .props("square")
+        ):
             if components:
                 for component in components:
                     component()
@@ -31,7 +41,9 @@ def frame(navtitle: str, active_item: str = None, components: list = None):
                     )
 
         # Footer
-    with ui.footer().classes("bg-gray-800 text-white py-2 px-4 text-center"):
+    with ui.footer().classes(
+        "bg-gray-800 text-white py-2 px-4 text-center border-t border-gray-600"
+    ):
         with ui.row().classes("items-center justify-center"):
             ui.label("Problems").classes("text-sm text-gray-400")
             ui.label("Terminal").classes("text-sm text-gray-400")
