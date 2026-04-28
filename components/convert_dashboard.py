@@ -26,7 +26,7 @@ def convert_dashboard():
                         "text-gray-400 hover:text-gray-300"
                     )
                     ui.button("Load").props("flat").on_click(
-                        lambda: [confirm(dialog, zta_path, zta_path), dialog.close()]
+                        lambda: [confirm(dialog, zta_path, zta_path)]
                     ).classes("text-blue-400 hover:text-blue-300")
 
             dialog.open()
@@ -35,8 +35,9 @@ def convert_dashboard():
             if not zta or not palette:
                 ui.notify("Please select both a ZTA file and a palette file", color="red")
                 return
+            # convert tuple to string (get first item)
             converter_state.loaded_zta_files.append(
-                ZtaFile(location=zta.value, buffer=b"", palette_location=palette.value, palette_buffer=b"")
+                ZtaFile(location=zta.value[0], buffer=b"", palette_location=palette.value, palette_buffer=b"")
             )
             dialog.close()
             quick_validate_files()
@@ -78,6 +79,7 @@ def convert_dashboard():
 
         for zta_file in list(converter_state.loaded_zta_files):
             # if it has an extension, invalid file
+            print(f"Validating file: {zta_file.location}")
             if "." in zta_file.location.split("/")[-1]:
                 ui.notify(f"Invalid file skipped: {zta_file.location}", color="gray")
             elif zta_file.location in seen:
