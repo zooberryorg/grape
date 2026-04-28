@@ -4,7 +4,8 @@ from pages import dashboard
 
 
 ui.add_css
-  
+
+
 def entrypoint():
     # start with dashboard
     theme.apply()
