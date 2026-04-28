@@ -28,6 +28,9 @@ class WindowAPI:
     def start_resize(self, direction):
         webview.windows[0].start_drag_resize(direction)
 
+def closeApp():
+    gw.getWindowsWithTitle('GrAPE')[0].close()
+    #os._exit(0) # forcefully exits all threads and processes, disable during dev
 
 class WindowAPI:
     def minimize(self):
@@ -42,6 +45,7 @@ class WindowAPI:
 
     def close(self):
         webview.windows[0].destroy()
+
     def start_resize(self, direction):
         webview.windows[0].start_drag_resize(direction)
 
