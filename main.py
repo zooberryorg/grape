@@ -1,11 +1,11 @@
 from nicegui import ui
-from components import layout
-from pages import dashboard
+from templates import default
+from urls import create
 
-  
-def entrypoint():
-    # start with dashboard
-    dashboard()
+@ui.page('/')
+def main_page():
+    with default('GrAPE'):
+        pass
 
 
 ui.run(native=True)
