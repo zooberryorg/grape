@@ -48,12 +48,35 @@ def convert_dashboard():
                         lambda: [confirm(dialog, zta_path, pal_path)]
                     ).classes("text-blue-400 hover:text-blue-300")
 
-                with ui.row().classes("gap-4 mt-4"):
+                with ui.column().classes("gap-2 w-full"):
+                    ui.label("ZTA File").classes("text-gray-400")
+
+                    with ui.row().classes("gap-2 w-full items-stretch items-center"):
+                        zta_path = ui.input(placeholder="No file selected").props(
+                            "readonly dense outlined dark clearable hide-bottom-space"
+                        ).classes("flex-1")
+                        ui.button("Select Files", icon="folder_open").on_click(
+                            lambda: [pick_files(zta_path)]
+                        ).classes("bg-gray-600 hover:bg-gray-700")
+
+                with ui.column().classes("gap-2 w-full"):
+                    ui.label("Palette File").classes("text-gray-400")
+
+                    with ui.row().classes("gap-2 w-full items-stretch items-center"):
+                        pal_path = ui.input(placeholder="No file selected").props(
+                            "readonly dense outlined dark clearable hide-bottom-space"
+                        ).classes("flex-1")
+                        ui.button("Select Files", icon="folder_open").on_click(
+                            lambda: [pick_files(pal_path)]
+                        ).classes("bg-gray-600 hover:bg-gray-700")
+
+                with ui.row().classes("gap-4 mt-4 w-full"):
+                    ui.space()
                     ui.button("Cancel").props("flat").on_click(dialog.close).classes(
                         "text-gray-400 hover:text-gray-300"
                     )
                     ui.button("Load").props("flat").on_click(
-                        lambda: [confirm(dialog, zta_path, zta_path)]
+                        lambda: [confirm(dialog, zta_path, pal_path)]
                     ).classes("text-blue-400 hover:text-blue-300")
 
             dialog.open()
