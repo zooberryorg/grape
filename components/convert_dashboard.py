@@ -12,24 +12,26 @@ def convert_dashboard():
     file_list = None
 
     # ------------------ Event handlers ------------------
-    def load_files():
+    def pick_files(target_input):
         root = tk.Tk()
         root.withdraw()  # hides window
         root.attributes("-topmost", True)  # brings to front
         root.focus_force()  # focuses window
         filetypes = [("All files", "*.*")]
-        paths = filedialog.askopenfilenames(
-            title="Select ZTA files", filetypes=filetypes
-        )
-        for path in paths:
-            converter_state.loaded_zta_files.append(
-                ZtaFile(
-                    location=path, buffer=b"", palette_location="", palette_buffer=b""
-                )
-            )
-        print("Selected files:", paths)
-        quick_validate_files()
-        refresh_file_list()
+        path = filedialog.askopenfilenames(title="Select ZTA files", filetypes=filetypes)
+        root.destroy()
+        if path:
+            target_input.value = path
+
+    def load_files():
+        async def show_zta_dialog():
+            with ui.dialog() as dialog, ui.card().classes("bg-gray-800 text-white"):
+                ui.label("Load ZTA files from your computer").classes("text-lg")
+                ui.button("Select Files", icon="folder_open").on_click(
+                    lambda: [pick_files(), dialog.close()]
+                ).classes("mt-4 bg-gray-600 hover:bg-gray-700")
+
+            dialog.open()
 
     def refresh_canvas():
         file_list.clear()
