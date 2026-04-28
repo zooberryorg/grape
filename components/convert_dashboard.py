@@ -98,33 +98,33 @@ def convert_dashboard():
                     "Please select both a ZTA file and a palette file", color="red"
                 )
                 return
+            
+            zta_location = zta.value
+            pal_location = palette.value
+
             # convert tuple to string (get first item)
             converter_state.loaded_zta_files.append(
                 ZtaFile(
-                    location=zta.value,
+                    location=zta_location,
                     buffer=b"",
-                    palette_location=palette.value,
+                    palette_location=pal_location,
                     palette_buffer=b"",
                 )
             )
             dialog.close()
             quick_validate_files()
             ztaf = ZtaF()
-            zta_obj = ztaf.load(zta.value, 0, palette.value)
+            zta_obj = ztaf.load(zta_location, 0, pal_location)
             if zta_obj:
                 buffer = ztaf.get_frame_buffer()
                 converter_state.loaded_zta_files[-1].buffer = buffer
-                converted_signals = []
-                for signal in buffer:
-                    converted_signals.append(
-                        signal_to_base64(
-                            signal.pixels, signal.width, signal.height, signal.channels
-                        )
-                    )
+                converter_state.converted_signals = [
+                    signal_to_base64(signal.pixels, signal.width, signal.height, signal.channels)
+                    for signal in buffer
+                ]
+                converter_state.current_frame_index = 0
             else:
                 ui.notify("Error loading ZTA file", color="gray")
-            canvas_image.set_source(converted_signals[0])
-            canvas_image.style("display: block;")
             refresh_file_list()
 
         def pick_files(target_input, filetype, required_types=[]):
@@ -165,6 +165,8 @@ def convert_dashboard():
         converter_state.loaded_zta_files = valid
 
     def refresh_file_list():
+        if file_list is None:
+            return
         file_list.clear()
         with file_list:
             if not converter_state.loaded_zta_files:
