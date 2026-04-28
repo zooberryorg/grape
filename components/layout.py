@@ -1,6 +1,24 @@
 from contextlib import contextmanager
 from nicegui import ui
+import webview
 from components.sidebar import Sidebar
+
+
+class WindowAPI:
+    def minimize(self):
+        webview.windows[0].minimize()
+
+    def toggle_maximize(self):
+        w = webview.windows[0]
+        if w.maximized:
+            w.restore()
+        else:
+            w.maximize()
+
+    def close(self):
+        webview.windows[0].destroy()
+    def start_resize(self, direction):
+        webview.windows[0].start_drag_resize(direction)
 
 
 @contextmanager
@@ -10,7 +28,29 @@ def frame(navtitle: str, active_item: str = None, components: list = None):
     """
     ui.query(".nicegui-content").classes("p-0 m-0")
     with ui.header().classes("bg-gray-800 text-white p-4 pywebview-drag-region"):
-        ui.label(navtitle).classes("text-md absolute-center")
+        with ui.row():
+            ui.icon("photo_library").classes("text-gray-400")
+            ui.space()
+            ui.label(navtitle).classes("text-md")
+            ui.space()
+            with (
+                ui.row()
+                .classes("gap-2")
+                .style("margin-right: -8px;")
+                .props("no-wrap")
+                .classes("pywebview-drag-region")
+            ):
+                ui.button(icon="minimize").props("flat").classes(
+                    "text-gray-400 hover:text-gray-300"
+                ).on_click(lambda: ui.run_javascript("window.pywebview.api.minimize()"))
+                ui.button(icon="crop_square").props("flat").classes(
+                    "text-gray-400 hover:text-gray-300"
+                ).on_click(
+                    lambda: ui.run_javascript("window.pywebview.api.toggle_maximize()")
+                )
+                ui.button(icon="close").props("flat").classes(
+                    "text-gray-400 hover:text-gray-300"
+                ).on_click(lambda: ui.run_javascript("window.pywebview.api.close()"))
 
     # Main content area
     with ui.row().classes(
@@ -41,9 +81,7 @@ def frame(navtitle: str, active_item: str = None, components: list = None):
                     )
 
         # Footer
-    with ui.footer().classes(
-        "bg-gray-800 text-white py-2 px-4 text-center"
-    ):
+    with ui.footer().classes("bg-gray-800 text-white py-2 px-4 text-center"):
         with ui.row().classes("items-center justify-center"):
             ui.label("Problems").classes("text-sm text-gray-400")
             ui.label("Terminal").classes("text-sm text-gray-400")

@@ -44,8 +44,12 @@ def convert_dashboard():
         with ui.column().classes("flex-1 gap-0"):
             convert_actions.convert_actions()
             canvas.canvas()
-            ui.label("Imported files").classes("text-gray-400 mx-5 mt-[-2]").props("dense")
-            with ui.column().classes("p-4 mx-4 mt-4 w-full bg-gray-800 border-1 border-gray-600 min-h-[100px] shadow-none rounded-lg"):
+            ui.label("Imported files").classes("text-gray-400 mx-5 mt-[-2]").props(
+                "dense"
+            )
+            with ui.column().classes(
+                "p-4 mx-4 mt-4 w-full bg-gray-800 border-1 border-gray-600 min-h-[100px] shadow-none rounded-lg"
+            ):
                 for filename in ["file1.zta", "file2.zta", "file3.zta", "file4.zta"]:
                     with ui.row().classes("items-center w-full"):
                         with ui.row().classes("items-center gap-2"):
@@ -55,7 +59,7 @@ def convert_dashboard():
                         ui.button(icon="close").classes(
                             "text-gray-400 hover:text-gray-300"
                         ).props("flat dense")
-                
+
         with ui.column().classes(
             "shrink-0 p-4 ml-8 min-w-[300px] h-full bg-gray-800 border-l border-gray-600 gap-4"
         ):
@@ -81,15 +85,17 @@ def convert_dashboard():
                 ui.switch("Transparent Background", value=True).classes(
                     "text-gray-400"
                 ).props("dense")
-            
+
             # png export options
             # quality slider for png
             with ui.column().classes(
                 "p-2 bg-transparent border-1 w-full border-gray-600 rounded-sm gap-2 flex-nowrap "
             ):
                 ui.label("Quality").classes("text-gray-400")
-                slider = ui.slider(min=0, max=100, value=50).props("dense").classes("px-4")
-                ui.label().bind_text_from(slider, 'value').classes("text-gray-400")
+                slider = (
+                    ui.slider(min=0, max=100, value=50).props("dense").classes("px-4")
+                )
+                ui.label().bind_text_from(slider, "value").classes("text-gray-400")
             with ui.column().classes(
                 "p-2 bg-transparent border-1 w-full border-gray-600 rounded-sm gap-2 flex-nowrap "
             ):
