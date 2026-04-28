@@ -3,13 +3,5 @@ from components import theme
 from pages import dashboard, convert, project
 
 
-ui.add_css
-
-
-def entrypoint():
-    # start with dashboard
-    theme.apply()
-    dashboard()
-
-
+theme.apply()
 ui.run(native=True)

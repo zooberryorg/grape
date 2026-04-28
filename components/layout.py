@@ -25,7 +25,7 @@ def frame(navtitle: str, active_item: str = None, components: list = None):
             .classes(
                 "items-stretch bg-gray-700 w-full gap-1 h-screen border-l "
                 "border-t border-gray-600 rounded-tl-lg rounded-bl-lg "
-                "rounded-tr-none rounded-br-none"
+                "rounded-tr-none rounded-br-none overflow-y-auto"
             )
             .props("square")
         ):
