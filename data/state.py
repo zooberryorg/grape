@@ -1,16 +1,13 @@
 from dataclasses import dataclass, field
 
-
 @dataclass
 class AppState:
     """
     Holds app state
     """
-
     zta_file: str = ""
     converted_image: str = ""
     export_format: str = "PNG"
-
 
 class ZtaFile:
     """
@@ -25,13 +22,11 @@ class ZtaFile:
         self.palette_location = palette_location
         self.palette_buffer = palette_buffer
 
-
 @dataclass
 class ZtaToImageState(AppState):
     """
     State specific to ZTA to image conversion
     """
-
     quality: int = 50
     transparent_background: bool = True
     background_color: str = "#ffffff"
