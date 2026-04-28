@@ -3,6 +3,9 @@ from components import canvas, convert_actions
 import tkinter as tk
 from tkinter import filedialog
 import asyncio
+from PIL import Image
+import io
+import base64
 
 from data.state import ZtaFile, converter_state
 
@@ -12,6 +15,23 @@ def convert_dashboard():
     file_list = None
 
     # ------------------ Event handlers ------------------
+    def signal_to_base64(pixels: list, width: int, height: int, channels: int) -> None:
+        """
+        Takes ZTA pixel data and converts to base64 image
+        """
+        # maps channels to pillow mode (ZTA is RGBA, but just in case)
+        mode = {1: 'L', 3: 'RGB', 4: 'RGBA'}.get(channels, 'RGBA')
+        # convert pixel data to bytes and create image
+        img = Image.frombytes(mode, (width, height), bytes(pixels))
+        # io buffer
+        buffer = io.BytesIO()
+        # saving to buffer in BMP format because it's lossless
+        img.save(buffer, format="BMP")
+        encoded = base64.b64encode(buffer.getvalue()).decode()
+        # returns as URL in format: data:image/{format};base64,{data} so 
+        # browser can render
+        return f'data:image/bmp;base64,{encoded}'
+    
     def load_files():
         async def show_zta_dialog():
             with ui.dialog() as dialog, ui.card().classes("bg-gray-800 text-white min-w-[600px] p-4 gap-4 rounded-lg"):
@@ -102,7 +122,7 @@ def convert_dashboard():
             return filename[: max_length // 2] + "..." + filename[-max_length // 2 :]
 
     def quick_validate_files():
-        seen = set()
+        seen = set()+
         valid = []
 
         for zta_file in list(converter_state.loaded_zta_files):
