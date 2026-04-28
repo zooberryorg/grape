@@ -25,7 +25,7 @@ def convert_dashboard():
                             "readonly dense outlined dark clearable hide-bottom-space"
                         ).classes("flex-1")
                         ui.button("Select Files", icon="folder_open").on_click(
-                            lambda: [pick_files(zta_path)]
+                            lambda: [pick_files(zta_path, "ZTA")]
                         ).classes("bg-gray-600 hover:bg-gray-700")
 
                 with ui.column().classes("gap-2 w-full"):
@@ -36,7 +36,7 @@ def convert_dashboard():
                             "readonly dense outlined dark clearable hide-bottom-space"
                         ).classes("flex-1")
                         ui.button("Select Files", icon="folder_open").on_click(
-                            lambda: [pick_files(pal_path)]
+                            lambda: [pick_files(pal_path, "Palette", required_types=[("Palette files", "*.pal")])]
                         ).classes("bg-gray-600 hover:bg-gray-700")
 
                 with ui.row().classes("gap-4 mt-4 w-full"):
@@ -51,7 +51,8 @@ def convert_dashboard():
             dialog.open()
 
         def confirm(dialog, zta, palette):
-            if not zta or not palette:
+            print (f"Confirming files: {zta.value}, {palette.value}")
+            if not zta.value or not palette.value:
                 ui.notify(
                     "Please select both a ZTA file and a palette file", color="red"
                 )
@@ -59,7 +60,7 @@ def convert_dashboard():
             # convert tuple to string (get first item)
             converter_state.loaded_zta_files.append(
                 ZtaFile(
-                    location=zta.value[0],
+                    location=zta.value,
                     buffer=b"",
                     palette_location=palette.value,
                     palette_buffer=b"",
@@ -69,14 +70,14 @@ def convert_dashboard():
             quick_validate_files()
             refresh_file_list()
 
-        def pick_files(target_input):
+        def pick_files(target_input, filetype, required_types=[]):
             root = tk.Tk()
             root.withdraw()  # hides window
             root.attributes("-topmost", True)  # brings to front
             root.focus_force()  # focuses window
-            filetypes = [("All files", "*.*")]
-            path = filedialog.askopenfilenames(
-                title="Select ZTA files", filetypes=filetypes
+            filetypes = required_types if required_types else [("All files", "*.*")]
+            path = filedialog.askopenfilename(
+                title=f"Select {filetype} file", filetypes=filetypes
             )
             root.destroy()
             if path:
