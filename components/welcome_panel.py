@@ -13,6 +13,7 @@ def welcome_panel():
                     ui.button('Load project...', icon='folder_open').props('flat no-caps').classes('h-10')
                 ui.label('Quick actions').classes('text-center text-gray-500 mt-4 font-bold')
                 with ui.column().classes('gap-0'):
+                    ui.button('Resourcer scanner', icon='search').props('flat no-caps').classes('h-10')
                     ui.button('Convert ZTA files', icon='file_upload').props('flat no-caps').classes('h-10')
                     ui.button('ZTA graphic quick edit', icon='image').props('flat no-caps').classes('h-10')
                     ui.button('Open string table manager', icon='table_view').props('flat no-caps').classes('h-10')
