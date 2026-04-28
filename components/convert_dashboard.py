@@ -6,7 +6,7 @@ import asyncio
 from PIL import Image
 import io
 import base64
-import pyzta
+from pyzta import ZtaF
 
 from data.state import ZtaFile, converter_state
 
@@ -21,7 +21,7 @@ def convert_dashboard():
         Takes ZTA pixel data and converts to base64 image
         """
         # maps channels to pillow mode (ZTA is RGBA, but just in case)
-        mode = {1: 'L', 3: 'RGB', 4: 'RGBA'}.get(channels, 'RGBA')
+        mode = {1: "L", 3: "RGB", 4: "RGBA"}.get(channels, "RGBA")
         # convert pixel data to bytes and create image
         img = Image.frombytes(mode, (width, height), bytes(pixels))
         # io buffer
@@ -29,22 +29,31 @@ def convert_dashboard():
         # saving to buffer in BMP format because it's lossless
         img.save(buffer, format="BMP")
         encoded = base64.b64encode(buffer.getvalue()).decode()
-        # returns as URL in format: data:image/{format};base64,{data} so 
+        # returns as URL in format: data:image/{format};base64,{data} so
         # browser can render
-        return f'data:image/bmp;base64,{encoded}'
-    
+        return f"data:image/bmp;base64,{encoded}"
+
     def load_files():
         async def show_zta_dialog():
-            with ui.dialog() as dialog, ui.card().classes("bg-gray-800 text-white min-w-[600px] p-4 gap-4 rounded-lg"):
+            with (
+                ui.dialog() as dialog,
+                ui.card().classes(
+                    "bg-gray-800 text-white min-w-[600px] p-4 gap-4 rounded-lg"
+                ),
+            ):
                 ui.label("Load ZTA files from your computer").classes("text-lg")
 
                 with ui.column().classes("gap-2 w-full"):
                     ui.label("ZTA File").classes("text-gray-400")
 
                     with ui.row().classes("gap-2 w-full items-stretch items-center"):
-                        zta_path = ui.input(placeholder="No file selected").props(
-                            "readonly dense outlined dark clearable hide-bottom-space"
-                        ).classes("flex-1")
+                        zta_path = (
+                            ui.input(placeholder="No file selected")
+                            .props(
+                                "readonly dense outlined dark clearable hide-bottom-space"
+                            )
+                            .classes("flex-1")
+                        )
                         ui.button("Select Files", icon="folder_open").on_click(
                             lambda: [pick_files(zta_path, "ZTA")]
                         ).classes("bg-gray-600 hover:bg-gray-700")
@@ -53,11 +62,21 @@ def convert_dashboard():
                     ui.label("Palette File").classes("text-gray-400")
 
                     with ui.row().classes("gap-2 w-full items-stretch items-center"):
-                        pal_path = ui.input(placeholder="No file selected").props(
-                            "readonly dense outlined dark clearable hide-bottom-space"
-                        ).classes("flex-1")
+                        pal_path = (
+                            ui.input(placeholder="No file selected")
+                            .props(
+                                "readonly dense outlined dark clearable hide-bottom-space"
+                            )
+                            .classes("flex-1")
+                        )
                         ui.button("Select Files", icon="folder_open").on_click(
-                            lambda: [pick_files(pal_path, "Palette", required_types=[("Palette files", "*.pal")])]
+                            lambda: [
+                                pick_files(
+                                    pal_path,
+                                    "Palette",
+                                    required_types=[("Palette files", "*.pal")],
+                                )
+                            ]
                         ).classes("bg-gray-600 hover:bg-gray-700")
 
                 with ui.row().classes("gap-4 mt-4 w-full"):
@@ -72,7 +91,7 @@ def convert_dashboard():
             dialog.open()
 
         def confirm(dialog, zta, palette):
-            print (f"Confirming files: {zta.value}, {palette.value}")
+            print(f"Confirming files: {zta.value}, {palette.value}")
             if not zta.value or not palette.value:
                 ui.notify(
                     "Please select both a ZTA file and a palette file", color="red"
@@ -89,19 +108,18 @@ def convert_dashboard():
             )
             dialog.close()
             quick_validate_files()
-            ztaf = pyzta.ZtaF()
-            zta = ztaf.load(zta.value, 0, palette.value)
-            if zta:
-                buffer = zta.getImageBuffer()
+            ztaf = ZtaF()
+            zta_obj = ztaf.load(zta.value, 0, palette.value)
+            if zta_obj:
+                buffer = ztaf.get_frame_buffer()
                 converter_state.loaded_zta_files[-1].buffer = buffer
                 converted_signals = []
-                for signal in buffer.signals:
+                for signal in buffer:
                     converted_signals.append(
                         signal_to_base64(
                             signal.pixels, signal.width, signal.height, signal.channels
                         )
                     )
-                refresh_canvas()
             else:
                 ui.notify("Error loading ZTA file", color="gray")
             refresh_file_list()
@@ -120,16 +138,6 @@ def convert_dashboard():
                 target_input.value = path
 
         ui.timer(0, show_zta_dialog, once=True)
-
-    def refresh_canvas():
-        file_list.clear()
-        with file_list:
-            for zta_file in converter_state.loaded_zta_files:
-                with ui.item():
-                    with ui.item_section():
-                        ui.label(zta_file.location)
-
-        print("Refresh canvas")
 
     def truncate_filename(filename, max_length=30):
         if len(filename) <= max_length:
