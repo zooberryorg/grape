@@ -18,17 +18,13 @@ def frame(navtitle: str, active_item: str = None):
 
         # Main content
         with ui.column().classes('items-stretch w-full p-4'):
+            pass
 
-
-            with ui.card().classes('flex-1 p-4 items-stretch'):
-                with ui.card().classes('p-4 bg-gray-300 flex-1'):
-                    ui.label('No project loaded').classes('text-center text-gray-500')
-                    ui.button('Load Project').classes('mt-4 bg-blue-500 text-white w-full')
-                    ui.button('Create Project').classes('mt-2 bg-green-500 text-white w-full')
 
         # Footer
     with ui.footer().classes('bg-gray-800 text-white p-4 text-center'):
         with ui.row().classes('items-center justify-center'):
-            ui.button(icon='help').classes('w-10 h-10 text-white')
+            ui.label('Problems').classes('text-sm text-gray-400')
+            ui.label('Terminal').classes('text-sm text-gray-400')
 
     yield
