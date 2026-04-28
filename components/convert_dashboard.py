@@ -9,7 +9,7 @@ from data.state import ZtaFile, converter_state
 
 def convert_dashboard():
     # ------------------- UI State -------------------
-    file_list = ui.list()
+    file_list = None
 
     # ------------------ Event handlers ------------------
     def load_files():
@@ -22,6 +22,7 @@ def convert_dashboard():
         for path in paths:
             converter_state.loaded_zta_files.append(ZtaFile(location=path, buffer=b"", palette_location="", palette_buffer=b""))
         print("Selected files:", paths)
+        quick_validate_files()
         refresh_file_list()
 
     def refresh_canvas():
@@ -33,13 +34,29 @@ def convert_dashboard():
         
         print("Refresh canvas")
 
+    def quick_validate_files():
+        for zta_file in converter_state.loaded_zta_files:
+            # if it has an extension, invalid file
+            if "." in zta_file.location.split("/")[-1]:
+                converter_state.loaded_zta_files.remove(zta_file)
+                ui.notify(f"Invalid file skipped: {zta_file.location}", color="red")
+            # if it already exists in the list, skip
+            elif any(zta_file.location == existing.location for existing in converter_state.loaded_zta_files if existing != zta_file):
+                converter_state.loaded_zta_files.remove(zta_file)
+                ui.notify(f"Duplicate file skipped: {zta_file.location}", color="orange")
+
     def refresh_file_list():
         file_list.clear()
         with file_list:
             for zta_file in converter_state.loaded_zta_files:
-                with ui.item():
-                    with ui.item_section(): 
-                        ui.label(zta_file.location)
+                with ui.row().classes("items-center w-full"):
+                    with ui.row().classes("items-center gap-2"):
+                        ui.icon("image").classes("text-gray-400")
+                        ui.label(zta_file.location).classes("text-gray-300")
+                    ui.space()
+                    ui.button(icon="close").classes(
+                        "text-gray-400 hover:text-gray-300"
+                    ).props("flat dense")
         print("Refresh file list")
 
     async def export_image():
@@ -57,15 +74,7 @@ def convert_dashboard():
             with ui.column().classes(
                 "p-4 mx-4 mt-4 w-full bg-gray-800 border-1 border-gray-600 min-h-[100px] shadow-none rounded-lg"
             ):
-                for zta_file in converter_state.loaded_zta_files:
-                    with ui.row().classes("items-center w-full"):
-                        with ui.row().classes("items-center gap-2"):
-                            ui.icon("image").classes("text-gray-400")
-                            ui.label(zta_file.location).classes("text-gray-300")
-                        ui.space()
-                        ui.button(icon="close").classes(
-                            "text-gray-400 hover:text-gray-300"
-                        ).props("flat dense")
+                file_list = ui.list().classes("w-full")
 
         with ui.column().classes(
             "shrink-0 p-4 ml-8 min-w-[300px] h-full bg-gray-800 border-l border-gray-600 gap-4"
