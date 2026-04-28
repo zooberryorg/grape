@@ -9,7 +9,7 @@ def frame(navtitle: str, active_item: str = None, components: list = None):
     Context manager for GrAPE app
     """
     ui.query(".nicegui-content").classes("p-0 m-0")
-    with ui.header().classes("bg-gray-800 text-white p-4"):
+    with ui.header().classes("bg-gray-800 text-white p-4 pywebview-drag-region"):
         ui.label(navtitle).classes("text-md absolute-center")
 
     # Main content area
