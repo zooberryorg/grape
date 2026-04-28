@@ -14,6 +14,7 @@ from data.state import ZtaFile, converter_state
 def convert_dashboard():
     # ------------------- UI State -------------------
     file_list = None
+    canvas_image = canvas.canvas()
 
     # ------------------ Event handlers ------------------
     def signal_to_base64(pixels: list, width: int, height: int, channels: int) -> None:
@@ -122,6 +123,8 @@ def convert_dashboard():
                     )
             else:
                 ui.notify("Error loading ZTA file", color="gray")
+            canvas_image.set_source(converted_signals[0])
+            canvas_image.style("display: block;")
             refresh_file_list()
 
         def pick_files(target_input, filetype, required_types=[]):
