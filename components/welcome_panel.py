@@ -2,23 +2,27 @@ from nicegui import ui
 
 
 def welcome_panel():
-    with ui.card().classes('flex-1 p-4 items-stretch'):
-        with ui.card().classes('p-4 bg-gray-300 flex-1'):
-            ui.label('GrAPE').classes('text-2xl font-bold text-center text-gray-700')
-            ui.label('The great animal project editor for Zoo Tycoon').classes('text-center text-gray-500')
-            ui.label('Start').classes('text-center text-gray-500 mt-4 font-bold')
-            with ui.row():
-                ui.button('New project...', icon='add').props('flat no-caps').classes('h-10')
-                ui.button('Load project...', icon='folder_open').props('flat no-caps').classes('h-10')
-            ui.label('Quick actions').classes('text-center text-gray-500 mt-4 font-bold')
-            with ui.row():
-                ui.button('Convert ZTA files', icon='file_upload').props('flat no-caps').classes('h-10')
-                ui.button('ZTA graphic quick edit', icon='image').props('flat no-caps').classes('h-10')
-                ui.button('Open string table manager', icon='table_view').props('flat no-caps').classes('h-10')
-                ui.button('Zoo file explorer', icon='folder').props('flat no-caps').classes('h-10')
-                ui.button('ZTD combiner', icon='merge_type').props('flat no-caps').classes('h-10')
-            ui.label('GrAPE').classes('text-center text-gray-500 mt-4 font-bold')
-            with ui.row():
-                ui.button('Report a bug', icon='bug_report').props('flat no-caps').classes('h-10')
-                ui.button('GrAPE documentation', icon='help').props('flat no-caps').classes('h-10')
-                ui.button('About GrAPE', icon='info').props('flat no-caps').classes('h-10')
+    with ui.card().classes('flex-1 p-4 items-stretch shadow-none'):
+        with ui.row():
+            with ui.card().classes('p-4 flex-1 gap-0 shadow-none'):
+                ui.label('GrAPE').classes('text-2xl font-bold text-center text-gray-700')
+                ui.label('The great animal project editor for Zoo Tycoon').classes('text-center text-gray-500')
+                ui.label('Start').classes('text-center text-gray-500 mt-4 font-bold')
+                with ui.column().classes('gap-0'):
+                    ui.button('New project...', icon='add').props('flat no-caps').classes('h-10')
+                    ui.button('Load project...', icon='folder_open').props('flat no-caps').classes('h-10')
+                ui.label('Quick actions').classes('text-center text-gray-500 mt-4 font-bold')
+                with ui.column().classes('gap-0'):
+                    ui.button('Convert ZTA files', icon='file_upload').props('flat no-caps').classes('h-10')
+                    ui.button('ZTA graphic quick edit', icon='image').props('flat no-caps').classes('h-10')
+                    ui.button('Open string table manager', icon='table_view').props('flat no-caps').classes('h-10')
+                    ui.button('Zoo file explorer', icon='folder').props('flat no-caps').classes('h-10')
+                    ui.button('ZTD combiner', icon='merge_type').props('flat no-caps').classes('h-10')
+                ui.label('GrAPE').classes('text-center text-gray-500 mt-4 font-bold')
+                with ui.column().classes('gap-0'):
+                    ui.button('Report a bug', icon='bug_report').props('flat no-caps').classes('h-10')
+                    ui.button('GrAPE documentation', icon='help').props('flat no-caps').classes('h-10')
+                    ui.button('About GrAPE', icon='info').props('flat no-caps').classes('h-10')
+            with ui.card().classes('p-4 flex-1 gap-0 shadow-none bg-gray-100 rounded-lg'):
+                ui.label('Recent projects').classes('text-2xl font-bold text-center text-gray-700')
+                ui.label('No recent projects found').classes('text-center text-gray-500 mt-4')

@@ -4,7 +4,7 @@ class Sidebar():
     menu_items = [
         {'icon': 'dashboard', 'label': 'Dashboard', 'url': '/'},
         {'icon': 'extension', 'label': 'Projects', 'url': '/projects'},
-        {'icon': 'table', 'label': 'Datasets', 'url': '/datasets'},
+        {'icon': 'table_chart', 'label': 'Datasets', 'url': '/datasets'},
         {'icon': 'settings', 'label': 'Settings', 'url': '/settings'},
         {'icon': 'info', 'label': 'About', 'url': '/about'},
     ]
