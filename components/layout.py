@@ -1,8 +1,13 @@
 from contextlib import contextmanager
 from nicegui import ui
 import webview
+import os
 from components.sidebar import Sidebar
+import pygetwindow as gw
 
+def closeApp():
+    gw.getWindowsWithTitle('GrAPE')[0].close()
+    #os._exit(0) # forcefully exits all threads and processes, disable during dev
 
 class WindowAPI:
     def minimize(self):
@@ -17,6 +22,7 @@ class WindowAPI:
 
     def close(self):
         webview.windows[0].destroy()
+
     def start_resize(self, direction):
         webview.windows[0].start_drag_resize(direction)
 
@@ -35,10 +41,9 @@ def frame(navtitle: str, active_item: str = None, components: list = None):
             ui.space()
             with (
                 ui.row()
-                .classes("gap-2")
+                .classes("gap-2 pywebview-no-drag-region")
                 .style("margin-right: -8px;")
                 .props("no-wrap")
-                .classes("pywebview-drag-region")
             ):
                 ui.button(icon="minimize").props("flat").classes(
                     "text-gray-400 hover:text-gray-300"
@@ -50,7 +55,7 @@ def frame(navtitle: str, active_item: str = None, components: list = None):
                 )
                 ui.button(icon="close").props("flat").classes(
                     "text-gray-400 hover:text-gray-300"
-                ).on_click(lambda: ui.run_javascript("window.pywebview.api.close()"))
+                ).on_click(closeApp)
 
     # Main content area
     with ui.row().classes(
