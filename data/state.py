@@ -36,5 +36,4 @@ class ZtaToImageState(AppState):
     export_format_options: list[str] = field(default_factory=lambda: ["PNG", "GIF"])
     has_converted_image: bool = False
 
-
 converter_state = ZtaToImageState()
