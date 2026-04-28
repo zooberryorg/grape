@@ -6,6 +6,7 @@ import asyncio
 from PIL import Image
 import io
 import base64
+import pyzta
 
 from data.state import ZtaFile, converter_state
 
@@ -88,6 +89,21 @@ def convert_dashboard():
             )
             dialog.close()
             quick_validate_files()
+            ztaf = pyzta.ZtaF()
+            zta = ztaf.load(zta.value, 0, palette.value)
+            if zta:
+                buffer = zta.getImageBuffer()
+                converter_state.loaded_zta_files[-1].buffer = buffer
+                converted_signals = []
+                for signal in buffer.signals:
+                    converted_signals.append(
+                        signal_to_base64(
+                            signal.pixels, signal.width, signal.height, signal.channels
+                        )
+                    )
+                refresh_canvas()
+            else:
+                ui.notify("Error loading ZTA file", color="gray")
             refresh_file_list()
 
         def pick_files(target_input, filetype, required_types=[]):
@@ -122,7 +138,7 @@ def convert_dashboard():
             return filename[: max_length // 2] + "..." + filename[-max_length // 2 :]
 
     def quick_validate_files():
-        seen = set()+
+        seen = set()
         valid = []
 
         for zta_file in list(converter_state.loaded_zta_files):

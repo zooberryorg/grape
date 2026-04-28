@@ -23,7 +23,6 @@ class ZtaFile:
         self.location = location
         self.buffer = buffer
         self.palette_location = palette_location
-        self.palette_buffer = palette_buffer
 
 
 @dataclass
