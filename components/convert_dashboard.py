@@ -35,15 +35,19 @@ def convert_dashboard():
         print("Refresh canvas")
 
     def quick_validate_files():
+        seen = set()
+        valid = []
+
         for zta_file in list(converter_state.loaded_zta_files):
             # if it has an extension, invalid file
             if "." in zta_file.location.split("/")[-1]:
-                converter_state.loaded_zta_files.remove(zta_file)
-                ui.notify(f"Invalid file skipped: {zta_file.location}", color="red")
-            # if it already exists in the list, skip
-            elif any(zta_file.location == existing.location for existing in converter_state.loaded_zta_files if existing != zta_file):
-                converter_state.loaded_zta_files.remove(zta_file)
-                ui.notify(f"Duplicate file skipped: {zta_file.location}", color="orange")
+                ui.notify(f"Invalid file skipped: {zta_file.location}", color="gray")
+            elif zta_file.location in seen:
+                ui.notify(f"Duplicate file skipped: {zta_file.location}", color="gray")
+            else:
+                seen.add(zta_file.location)
+                valid.append(zta_file)
+        converter_state.loaded_zta_files = valid
 
     def refresh_file_list():
         file_list.clear()
