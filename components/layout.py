@@ -24,7 +24,7 @@ def frame(navtitle: str, active_item: str = None, components: list = None):
             ui.column()
             .classes(
                 "items-stretch bg-gray-700 w-full gap-1 h-screen border-l "
-                "border-t border-gray-600 rounded-tl-lg rounded-bl-lg "
+                "border-t border-b border-gray-600 rounded-tl-lg rounded-bl-lg "
                 "rounded-tr-none rounded-br-none overflow-y-auto"
             )
             .props("square")
@@ -42,7 +42,7 @@ def frame(navtitle: str, active_item: str = None, components: list = None):
 
         # Footer
     with ui.footer().classes(
-        "bg-gray-800 text-white py-2 px-4 text-center border-t border-gray-600"
+        "bg-gray-800 text-white py-2 px-4 text-center"
     ):
         with ui.row().classes("items-center justify-center"):
             ui.label("Problems").classes("text-sm text-gray-400")

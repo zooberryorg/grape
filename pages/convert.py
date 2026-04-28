@@ -9,7 +9,7 @@ def convert():
     """
 
     with layout.frame(
-        "Export ZTA graphic",
+        "Export ZTA graphic as new image format",
         active_item="Dashboard",
         components=[convert_dashboard.convert_dashboard],
     ):
