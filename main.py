@@ -1,6 +1,6 @@
 from nicegui import ui
 from components import theme
-from pages import dashboard
+from pages import dashboard, convert, project
 
 
 ui.add_css
