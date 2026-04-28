@@ -36,7 +36,7 @@ def convert_dashboard():
                             "readonly dense outlined dark clearable hide-bottom-space"
                         ).classes("flex-1")
                         ui.button("Select Files", icon="folder_open").on_click(
-                            lambda: [pick_files(pal_path, "Palette")]
+                            lambda: [pick_files(pal_path, "Palette", required_types=[("Palette files", "*.pal")])]
                         ).classes("bg-gray-600 hover:bg-gray-700")
 
                 with ui.row().classes("gap-4 mt-4 w-full"):
