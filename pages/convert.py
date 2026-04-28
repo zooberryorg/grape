@@ -8,5 +8,5 @@ def convert():
     Converts ZTA files to other image formats.
     """
 
-    with layout.frame("GrAPE", active_item="Dashboard", components=[canvas.canvas]):
+    with layout.frame("Export ZTA graphic", active_item="Dashboard", components=[canvas.canvas]):
         pass

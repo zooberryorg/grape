@@ -8,11 +8,12 @@ def frame(navtitle: str, active_item: str = None, components: list = None):
     """
     Context manager for GrAPE app
     """
+    ui.query(".nicegui-content").classes("p-0 m-0")
     with ui.header().classes("bg-gray-800 text-white p-8"):
         ui.label(navtitle).classes("text-2xl font-bold absolute-center")
 
     # Main content area
-    with ui.row().classes("flex-nowrap items-stretch w-full"):
+    with ui.row().classes("flex-nowrap items-stretch w-full gap-0"):
         # Sidebar
         Sidebar(active_item=active_item)()
 
