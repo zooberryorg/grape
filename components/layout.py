@@ -1,9 +1,9 @@
 from contextlib import contextmanager
 from nicegui import ui
-from components import sidebar
+from components.sidebar import Sidebar
 
 @contextmanager
-def frame(navtitle: str):
+def frame(navtitle: str, active_item: str = None):
     """
     Context manager for GrAPE app
     """
@@ -14,17 +14,11 @@ def frame(navtitle: str):
     with ui.row().classes('flex-nowrap items-stretch w-full'):
 
         # Sidebar
-        sidebar()
+        Sidebar(active_item=active_item)()
 
         # Main content
         with ui.column().classes('items-stretch w-full p-4'):
 
-            # 
-            with ui.card().classes('flex-1 p-4 bg-gray-200 min-h-[200px]'):
-                with ui.row().classes('items-center'):
-                    with ui.column().classes('flex-1'):
-                        ui.button(icon='add').classes('w-10 h-10 bg-blue-500 text-white')
-                        ui.button(icon='remove').classes('w-10 h-10 bg-red-500 text-white')
 
             with ui.card().classes('flex-1 p-4 items-stretch'):
                 with ui.card().classes('p-4 bg-gray-300 flex-1'):

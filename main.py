@@ -3,8 +3,8 @@ from components import layout
 
   
 @ui.page('/')
-def main_page():
-    with layout.frame('GrAPE'):
+def dashboard():
+    with layout.frame('GrAPE', active_item='Dashboard'):
         pass
 
 
