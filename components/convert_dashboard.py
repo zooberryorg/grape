@@ -7,6 +7,9 @@ from data.state import ZtaFile, converter_state
 
 
 def convert_dashboard():
+    # ------------------- UI State -------------------
+    file_list = ui.list()
+
     # ------------------ Event handlers ------------------
     def load_files():
         root = tk.Tk()
@@ -16,11 +19,24 @@ def convert_dashboard():
         for path in paths:
             converter_state.loaded_zta_files.append(ZtaFile(location=path, buffer=b"", palette_location="", palette_buffer=b""))
         print("Selected files:", paths)
+        refresh_file_list()
 
     def refresh_canvas():
+        file_list.clear()
+        with file_list:
+            for zta_file in converter_state.loaded_zta_files:
+                with ui.item():
+                    with ui.item_section(): ui.label(zta_file.location)
+        
         print("Refresh canvas")
 
     def refresh_file_list():
+        file_list.clear()
+        with file_list:
+            for zta_file in converter_state.loaded_zta_files:
+                with ui.item():
+                    with ui.item_section(): 
+                        ui.label(zta_file.location)
         print("Refresh file list")
 
     def export_image():
