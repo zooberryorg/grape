@@ -1,6 +1,6 @@
-# grape
+# GrAPE - the great animal project editor for Zoo Tycoon 1
 
-The **gr**eat **a**nimal **p**roject **e**ditor for Zoo Tycoon 1. A modern take on the classic [APE tool](https://zootycoon.fandom.com/wiki/APE) made by Blue Fang in 2001.
+A modern take on the classic [APE tool](https://zootycoon.fandom.com/wiki/APE) made by Blue Fang in 2001.
 
 ## Roadmap
 
