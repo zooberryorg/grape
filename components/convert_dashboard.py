@@ -15,6 +15,8 @@ def convert_dashboard():
     def load_files():
         root = tk.Tk()
         root.withdraw()  # hides window
+        root.attributes("-topmost", True)  # brings to front
+        root.focus_force()  # focuses window
         filetypes = [("All files", "*.*")]
         paths = filedialog.askopenfilenames(title="Select ZTA files", filetypes=filetypes)
         for path in paths:
