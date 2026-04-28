@@ -1,11 +1,34 @@
 from nicegui import ui
 from components import canvas, convert_actions
+import tkinter as tk
+from tkinter import filedialog
+
+from data.state import ZtaFile, converter_state
 
 
 def convert_dashboard():
+    # ------------------ Event handlers ------------------
+    def load_files():
+        root = tk.Tk()
+        root.withdraw()  # hides window
+        filetypes = [("All files", "*.*")]
+        paths = filedialog.askopenfilenames(title="Select ZTA files", filetypes=filetypes)
+        for path in paths:
+            converter_state.loaded_zta_files.append(ZtaFile(location=path, buffer=b"", palette_location="", palette_buffer=b""))
+        print("Selected files:", paths)
+
+    def refresh_canvas():
+        print("Refresh canvas")
+
+    def refresh_file_list():
+        print("Refresh file list")
+
+    def export_image():
+        print("Export image")
+    # ----------------- Convert Dashboard -----------------
     with ui.row().classes("items-stretch w-full gap-1 h-screen"):
         with ui.column().classes("flex-1 gap-0"):
-            convert_actions.convert_actions()
+            convert_actions.convert_actions(load=load_files)
             canvas.canvas()
             ui.label("Imported files").classes("text-gray-400 mx-5 mt-[-2]").props(
                 "dense"
@@ -13,11 +36,11 @@ def convert_dashboard():
             with ui.column().classes(
                 "p-4 mx-4 mt-4 w-full bg-gray-800 border-1 border-gray-600 min-h-[100px] shadow-none rounded-lg"
             ):
-                for filename in ["file1.zta", "file2.zta", "file3.zta", "file4.zta"]:
+                for zta_file in converter_state.loaded_zta_files:
                     with ui.row().classes("items-center w-full"):
                         with ui.row().classes("items-center gap-2"):
                             ui.icon("image").classes("text-gray-400")
-                            ui.label(filename).classes("text-gray-300")
+                            ui.label(zta_file.location).classes("text-gray-300")
                         ui.space()
                         ui.button(icon="close").classes(
                             "text-gray-400 hover:text-gray-300"
