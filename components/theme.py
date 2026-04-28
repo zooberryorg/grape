@@ -2,10 +2,7 @@ from nicegui import ui
 
 
 def apply():
-    ui.colors(
-        primary="#adadad",
-        shared=True
-    )
+    ui.colors(primary="#adadad", shared=True)
     ui.add_head_html(
         """
         <style>

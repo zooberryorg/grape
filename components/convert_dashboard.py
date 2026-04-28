@@ -18,9 +18,15 @@ def convert_dashboard():
         root.attributes("-topmost", True)  # brings to front
         root.focus_force()  # focuses window
         filetypes = [("All files", "*.*")]
-        paths = filedialog.askopenfilenames(title="Select ZTA files", filetypes=filetypes)
+        paths = filedialog.askopenfilenames(
+            title="Select ZTA files", filetypes=filetypes
+        )
         for path in paths:
-            converter_state.loaded_zta_files.append(ZtaFile(location=path, buffer=b"", palette_location="", palette_buffer=b""))
+            converter_state.loaded_zta_files.append(
+                ZtaFile(
+                    location=path, buffer=b"", palette_location="", palette_buffer=b""
+                )
+            )
         print("Selected files:", paths)
         quick_validate_files()
         refresh_file_list()
@@ -30,9 +36,16 @@ def convert_dashboard():
         with file_list:
             for zta_file in converter_state.loaded_zta_files:
                 with ui.item():
-                    with ui.item_section(): ui.label(zta_file.location)
-        
+                    with ui.item_section():
+                        ui.label(zta_file.location)
+
         print("Refresh canvas")
+
+    def truncate_filename(filename, max_length=30):
+        if len(filename) <= max_length:
+            return filename
+        else:
+            return filename[: max_length // 2] + "..." + filename[-max_length // 2 :]
 
     def quick_validate_files():
         seen = set()
@@ -56,7 +69,8 @@ def convert_dashboard():
                 with ui.row().classes("items-center w-full"):
                     with ui.row().classes("items-center gap-2"):
                         ui.icon("image").classes("text-gray-400")
-                        ui.label(zta_file.location).classes("text-gray-300")
+                        with ui.label(truncate_filename(zta_file.location)).classes("text-gray-300"):
+                            ui.tooltip(zta_file.location).props('anchor="bottom left" self="top left"')
                     ui.space()
                     ui.button(icon="close").classes(
                         "text-gray-400 hover:text-gray-300"
@@ -65,8 +79,9 @@ def convert_dashboard():
 
     async def export_image():
         ui.notify("Exporting image... (this may take a moment)", color="blue")
-        #await run.io_bound(export_files, converter_state.loaded_zta_files, converter_state.export_format)
+        # await run.io_bound(export_files, converter_state.loaded_zta_files, converter_state.export_format)
         ui.notify("Export complete!", color="green")
+
     # ----------------- Convert Dashboard -----------------
     with ui.row().classes("items-stretch w-full gap-1 h-screen"):
         with ui.column().classes("flex-1 gap-0"):
@@ -83,9 +98,7 @@ def convert_dashboard():
         with ui.column().classes(
             "shrink-0 p-4 ml-8 min-w-[300px] h-full bg-gray-800 border-l border-gray-600 gap-4"
         ):
-            ui.button("Export", icon="save").classes(
-                "w-full text-white"
-            ).props("flat")
+            ui.button("Export", icon="save").classes("w-full text-white").props("flat")
             ui.select(
                 options=["PNG", "GIF"], value="PNG", label="Export Format"
             ).classes("w-full bg-gray-700 text-gray-400 export-select").props(

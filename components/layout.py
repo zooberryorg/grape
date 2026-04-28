@@ -5,9 +5,11 @@ import os
 from components.sidebar import Sidebar
 import pygetwindow as gw
 
+
 def closeApp():
-    gw.getWindowsWithTitle('GrAPE')[0].close()
-    #os._exit(0) # forcefully exits all threads and processes, disable during dev
+    gw.getWindowsWithTitle("GrAPE")[0].close()
+    # os._exit(0) # forcefully exits all threads and processes, disable during dev
+
 
 class WindowAPI:
     def minimize(self):
