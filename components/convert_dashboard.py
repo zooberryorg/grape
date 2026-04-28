@@ -48,6 +48,14 @@ def convert_dashboard():
                         lambda: [confirm(dialog, zta_path, pal_path)]
                     ).classes("text-blue-400 hover:text-blue-300")
 
+                with ui.row().classes("gap-4 mt-4"):
+                    ui.button("Cancel").props("flat").on_click(dialog.close).classes(
+                        "text-gray-400 hover:text-gray-300"
+                    )
+                    ui.button("Load").props("flat").on_click(
+                        lambda: [confirm(dialog, zta_path, zta_path), dialog.close()]
+                    ).classes("text-blue-400 hover:text-blue-300")
+
             dialog.open()
 
         def confirm(dialog, zta, palette):
