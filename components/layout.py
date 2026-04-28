@@ -3,7 +3,7 @@ from nicegui import ui
 from components.sidebar import Sidebar
 
 @contextmanager
-def frame(navtitle: str, active_item: str = None):
+def frame(navtitle: str, active_item: str = None, components: list = None):
     """
     Context manager for GrAPE app
     """
@@ -18,7 +18,12 @@ def frame(navtitle: str, active_item: str = None):
 
         # Main content
         with ui.column().classes('items-stretch w-full p-4'):
-            pass
+            if components:
+                for component in components:
+                    component()
+            else:
+                with ui.card().classes('flex-1 p-4 items-stretch rounded-lg bg-gray-300'):
+                    ui.label('Error loading content').classes('text-center text-red-500')
 
 
         # Footer
