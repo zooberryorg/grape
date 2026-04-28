@@ -1,5 +1,6 @@
 from contextlib import contextmanager
 from nicegui import ui
+from components import sidebar
 
 @contextmanager
 def frame(navtitle: str):
@@ -13,11 +14,7 @@ def frame(navtitle: str):
     with ui.row().classes('flex-nowrap items-stretch w-full'):
 
         # Sidebar
-        with ui.column().classes('p-4 w-20 bg-gray-100 shrink-0'):
-            ui.button(icon='dashboard').classes('w-full')
-            ui.button(icon='puzzle').classes('w-full')
-            ui.button(icon='settings').classes('w-full')
-            ui.button(icon='info').classes('w-full')
+        sidebar()
 
         # Main content
         with ui.column().classes('items-stretch w-full p-4'):
