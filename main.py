@@ -1,14 +1,7 @@
-from nicegui import ui
+from nicegui import app, ui
 from components import theme
-from pages import dashboard
+from pages import dashboard, convert, project
 
 
-ui.add_css
-  
-def entrypoint():
-    # start with dashboard
-    theme.apply()
-    dashboard()
-
-
-ui.run(native=True)
+app.on_startup(theme.apply)
+ui.run(native=True, frameless=True)

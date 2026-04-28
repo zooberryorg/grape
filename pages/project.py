@@ -1,10 +1,7 @@
 from components import layout
 from nicegui import ui
 
-def home():
-    with layout.frame('GrAPE'):
-        pass
-
+@ui.page('/project-editor')
 def project_editor():
-    with layout.frame('Project Editor'):
+    with layout.frame("Project Editor"):
         pass
