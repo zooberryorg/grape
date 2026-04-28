@@ -9,16 +9,16 @@ def frame(navtitle: str, active_item: str = None, components: list = None):
     Context manager for GrAPE app
     """
     ui.query(".nicegui-content").classes("p-0 m-0")
-    with ui.header().classes("bg-gray-800 text-white p-8"):
-        ui.label(navtitle).classes("text-2xl font-bold absolute-center")
+    with ui.header().classes("bg-gray-800 text-white p-4"):
+        ui.label(navtitle).classes("text-md absolute-center")
 
     # Main content area
-    with ui.row().classes("flex-nowrap items-stretch w-full gap-0"):
+    with ui.row().classes("flex-nowrap items-stretch w-full gap-0 bg-gray-800 max-h-screen p-0 m-0"):
         # Sidebar
         Sidebar(active_item=active_item)()
 
         # Main content
-        with ui.column().classes("items-stretch w-full p-4"):
+        with ui.column().classes("items-stretch bg-gray-700 w-full gap-1 h-screen border-l border-t border-gray-600 rounded-tl-lg rounded-bl-lg rounded-tr-none rounded-br-none").props('square'):
             if components:
                 for component in components:
                     component()
@@ -31,7 +31,7 @@ def frame(navtitle: str, active_item: str = None, components: list = None):
                     )
 
         # Footer
-    with ui.footer().classes("bg-gray-800 text-white p-4 text-center"):
+    with ui.footer().classes("bg-gray-800 text-white py-2 px-4 text-center"):
         with ui.row().classes("items-center justify-center"):
             ui.label("Problems").classes("text-sm text-gray-400")
             ui.label("Terminal").classes("text-sm text-gray-400")

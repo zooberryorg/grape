@@ -18,7 +18,8 @@ class Sidebar:
             "p-4 w-20 bg-gray-800 shrink-0 h-screen", remove="nicegui-content"
         ):
             for item in self.menu_items:
-                btn = ui.button(icon=item["icon"]).classes("w-full")
+                btn = ui.button(icon=item["icon"]).props("flat")
+                btn.classes("w-full")
                 is_active = item["label"] == self.active_item
                 if is_active:
                     btn.classes("bg-blue-500 text-white")

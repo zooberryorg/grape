@@ -1,16 +1,16 @@
 from nicegui import ui
 
 def welcome_panel():
-    with ui.card().classes("flex-1 p-4 items-stretch shadow-none"):
+    with ui.column().classes("flex-1 p-4 items-stretch shadow-none overflow-y-auto"):
         with ui.row():
-            with ui.card().classes("p-4 flex-1 gap-0 shadow-none"):
+            with ui.card().classes("p-4 flex-1 gap-0 shadow-none bg-transparent"):
                 ui.label("GrAPE").classes(
-                    "text-2xl font-bold text-center text-gray-700"
+                    "text-2xl font-bold text-center text-gray-300"
                 )
                 ui.label("The great animal project editor for Zoo Tycoon").classes(
-                    "text-center text-gray-500"
+                    "text-center text-gray-400"
                 )
-                ui.label("Start").classes("text-center text-gray-500 mt-4 font-bold")
+                ui.label("Start").classes("text-center text-gray-400 mt-4 font-bold")
                 with ui.column().classes("gap-0"):
                     ui.button("New project...", icon="add").props(
                         "flat no-caps"
@@ -19,7 +19,7 @@ def welcome_panel():
                         "flat no-caps"
                     ).classes("h-10")
                 ui.label("Quick actions").classes(
-                    "text-center text-gray-500 mt-4 font-bold"
+                    "text-center text-gray-400 mt-4 font-bold"
                 )
                 with ui.column().classes("gap-0"):
                     ui.button("Resourcer scanner", icon="search").props(
@@ -42,7 +42,7 @@ def welcome_panel():
                     ui.button("ZTD combiner", icon="merge_type").props(
                         "flat no-caps"
                     ).classes("h-10")
-                ui.label("GrAPE").classes("text-center text-gray-500 mt-4 font-bold")
+                ui.label("GrAPE").classes("text-center text-gray-400 mt-4 font-bold")
                 with ui.column().classes("gap-0"):
                     ui.button("Report a bug", icon="bug_report").props(
                         "flat no-caps"
@@ -54,11 +54,11 @@ def welcome_panel():
                         "h-10"
                     )
             with ui.card().classes(
-                "p-4 flex-1 gap-0 shadow-none bg-gray-100 rounded-lg"
+                "p-4 flex-1 gap-0 shadow-none bg-gray-600 rounded-lg"
             ):
                 ui.label("Recent projects").classes(
-                    "text-2xl font-bold text-center text-gray-700"
+                    "text-2xl font-bold text-center text-gray-300"
                 )
                 ui.label("No recent projects found").classes(
-                    "text-center text-gray-500 mt-4"
+                    "text-center text-gray-400 mt-4"
                 )
