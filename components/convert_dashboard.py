@@ -35,7 +35,7 @@ def convert_dashboard():
         print("Refresh canvas")
 
     def quick_validate_files():
-        for zta_file in converter_state.loaded_zta_files:
+        for zta_file in list(converter_state.loaded_zta_files):
             # if it has an extension, invalid file
             if "." in zta_file.location.split("/")[-1]:
                 converter_state.loaded_zta_files.remove(zta_file)
