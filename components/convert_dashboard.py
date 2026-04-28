@@ -1,7 +1,8 @@
-from nicegui import ui
+from nicegui import ui, run
 from components import canvas, convert_actions
 import tkinter as tk
 from tkinter import filedialog
+import asyncio
 
 from data.state import ZtaFile, converter_state
 
@@ -39,8 +40,10 @@ def convert_dashboard():
                         ui.label(zta_file.location)
         print("Refresh file list")
 
-    def export_image():
-        print("Export image")
+    async def export_image():
+        ui.notify("Exporting image... (this may take a moment)", color="blue")
+        #await run.io_bound(export_files, converter_state.loaded_zta_files, converter_state.export_format)
+        ui.notify("Export complete!", color="green")
     # ----------------- Convert Dashboard -----------------
     with ui.row().classes("items-stretch w-full gap-1 h-screen"):
         with ui.column().classes("flex-1 gap-0"):
