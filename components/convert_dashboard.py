@@ -53,7 +53,7 @@ def convert_dashboard():
                         "text-gray-400 hover:text-gray-300"
                     )
                     ui.button("Load").props("flat").on_click(
-                        lambda: [confirm(dialog, zta_path, zta_path), dialog.close()]
+                        lambda: [confirm(dialog, zta_path, zta_path)]
                     ).classes("text-blue-400 hover:text-blue-300")
 
             dialog.open()
