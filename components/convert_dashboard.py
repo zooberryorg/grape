@@ -12,26 +12,41 @@ def convert_dashboard():
     file_list = None
 
     # ------------------ Event handlers ------------------
-    def pick_files(target_input):
-        root = tk.Tk()
-        root.withdraw()  # hides window
-        root.attributes("-topmost", True)  # brings to front
-        root.focus_force()  # focuses window
-        filetypes = [("All files", "*.*")]
-        path = filedialog.askopenfilenames(title="Select ZTA files", filetypes=filetypes)
-        root.destroy()
-        if path:
-            target_input.value = path
-
     def load_files():
         async def show_zta_dialog():
             with ui.dialog() as dialog, ui.card().classes("bg-gray-800 text-white"):
                 ui.label("Load ZTA files from your computer").classes("text-lg")
+                zta_path = ui.input(placeholder="No file selected").props("readonly dense outlined dark clearable")
                 ui.button("Select Files", icon="folder_open").on_click(
-                    lambda: [pick_files(), dialog.close()]
+                    lambda: [pick_files(zta_path), dialog.close()]
                 ).classes("mt-4 bg-gray-600 hover:bg-gray-700")
 
             dialog.open()
+
+        def confirm(dialog, zta, palette):
+            if not zta or not palette:
+                ui.notify("Please select both a ZTA file and a palette file", color="red")
+                return
+            converter_state.loaded_zta_files.append(
+                ZtaFile(location=zta.value, buffer=b"", palette_location=palette.value, palette_buffer=b"")
+            )
+            dialog.close()
+            quick_validate_files()
+            refresh_file_list()
+
+        def pick_files(target_input):
+            root = tk.Tk()
+            root.withdraw()  # hides window
+            root.attributes("-topmost", True)  # brings to front
+            root.focus_force()  # focuses window
+            filetypes = [("All files", "*.*")]
+            path = filedialog.askopenfilenames(title="Select ZTA files", filetypes=filetypes)
+            root.destroy()
+            if path:
+                target_input.value = path
+        
+        ui.timer(0, show_zta_dialog, once=True)
+
 
     def refresh_canvas():
         file_list.clear()
