@@ -1,29 +1,53 @@
 from nicegui import ui
 from data.state import converter_state
-
 def canvas():
-    with ui.card().classes(
-        "w-full flex-1 p-4 m-4 bg-gray-800 border-1 border-gray-600 "
-        "min-h-[300px] max-h-[300px] shadow-none rounded-lg"
-    ).style("display: block;"):
-        with ui.column().classes("flex-1 items-center justify-center h-full"):
-            img = (
-                ui.image()
-                .classes("max-h-full max-w-full")
-                .style("image-rendering: pixelated; display: block;")
-            )
-            placeholder = ui.label("No image loaded").classes("text-gray-400")
+    with ui.card().style("display: block;").classes(
+        "w-full p-4 m-4 bg-gray-800 shadow-none rounded-lg"
+    ):
+        placeholder = ui.label("No image loaded").classes("text-gray-400")
+        ui.html('<canvas id="zta-canvas" style="image-rendering: pixelated; display: block;"></canvas>')
+
+    last_frame_count = {'n': 0}
+
     def tick():
         frames = converter_state.converted_signals
-        print(f"tick: {len(frames)} frames, index {converter_state.current_frame_index}")
-        if not frames:
+        if not frames or len(frames) == last_frame_count['n']:
             return
-        if placeholder.visible:
-            placeholder.set_visibility(False)
-        img.set_source(frames[converter_state.current_frame_index])
-        converter_state.current_frame_index = (
-            converter_state.current_frame_index + 1
-        ) % len(frames)
 
-    ui.timer(0.1, tick)
-    return img
+        last_frame_count['n'] = len(frames)
+        placeholder.set_visibility(False)
+
+        width = frames[0]['width']
+        height = frames[0]['height']
+
+        # send all pixel arrays to JS once
+        import json
+        frames_json = json.dumps([f['pixels'] for f in frames])
+        interval_ms = 100
+
+        ui.run_javascript(f'''
+            if (window._ztaTimer) clearInterval(window._ztaTimer);
+
+            const canvas = document.getElementById("zta-canvas");
+            canvas.width = {width};
+            canvas.height = {height};
+            canvas.style.width = "100%";
+            canvas.style.height = "auto";
+            const ctx = canvas.getContext("2d");
+
+            const rawFrames = {frames_json};
+
+            // convert each frame to ImageData once, up front
+            const frames = rawFrames.map(pixels => {{
+                const data = new Uint8ClampedArray(pixels);
+                return new ImageData(data, {width}, {height});
+            }});
+
+            let idx = 0;
+            window._ztaTimer = setInterval(() => {{
+                ctx.putImageData(frames[idx], 0, 0);
+                idx = (idx + 1) % frames.length;
+            }}, {interval_ms});
+        ''')
+
+    ui.timer(0.5, tick)

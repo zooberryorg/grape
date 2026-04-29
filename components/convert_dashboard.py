@@ -17,22 +17,16 @@ def convert_dashboard():
     canvas_image = None
 
     # ------------------ Event handlers ------------------
-    def signal_to_base64(pixels: list, width: int, height: int, channels: int) -> None:
-        """
-        Takes ZTA pixel data and converts to base64 image
-        """
-        # maps channels to pillow mode (ZTA is RGBA, but just in case)
-        mode = {1: "L", 3: "RGB", 4: "RGBA"}.get(channels, "RGBA")
-        # convert pixel data to bytes and create image
+    def signal_to_raw(pixels, width, height, channels) -> dict:
+        """Convert to RGBA raw array for canvas rendering"""
+        mode = {1: 'L', 3: 'RGB', 4: 'RGBA'}.get(channels, 'RGBA')
         img = Image.frombytes(mode, (width, height), bytes(pixels))
-        # io buffer
-        buffer = io.BytesIO()
-        # saving to buffer in BMP format because it's lossless
-        img.save(buffer, format="BMP")
-        encoded = base64.b64encode(buffer.getvalue()).decode()
-        # returns as URL in format: data:image/{format};base64,{data} so
-        # browser can render
-        return f"data:image/bmp;base64,{encoded}"
+        img = img.convert('RGBA')  # canvas always needs RGBA
+        return {
+            'pixels': list(img.tobytes()),  # flat RGBA array
+            'width': width,
+            'height': height,
+        }
 
     def load_files():
         async def show_zta_dialog():
@@ -119,7 +113,7 @@ def convert_dashboard():
                 buffer = ztaf.get_frame_buffer()
                 converter_state.loaded_zta_files[-1].buffer = buffer
                 converter_state.converted_signals = [
-                    signal_to_base64(signal.pixels, signal.width, signal.height, signal.channels)
+                    signal_to_raw(signal.pixels, signal.width, signal.height, signal.channels)
                     for signal in buffer
                 ]
                 converter_state.current_frame_index = 0
