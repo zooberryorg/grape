@@ -58,6 +58,7 @@ def frame(navtitle: str, active_item: str = None, components: list = None):
     Context manager for GrAPE app
     """
     ui.query(".nicegui-content").classes("p-0 m-0")
+    ui.query("html, body").style("height: 100%; overflow: hidden; margin: 0; padding: 0;")
     with ui.header().classes("bg-gray-800 text-white p-4 pywebview-drag-region"):
         with ui.row():
             ui.icon("photo_library").classes("text-gray-400")
@@ -84,7 +85,7 @@ def frame(navtitle: str, active_item: str = None, components: list = None):
 
     # Main content area
     with ui.row().classes(
-        "flex-nowrap items-stretch w-full gap-0 bg-gray-800 h-screen overflow-y-auto p-0 m-0"
+        "flex-nowrap items-stretch w-full gap-0 bg-gray-800 h-screen overflow-hidden p-0 m-0"
     ):
         # Sidebar
         Sidebar(active_item=active_item)()
@@ -93,7 +94,7 @@ def frame(navtitle: str, active_item: str = None, components: list = None):
         with (
             ui.column()
             .classes(
-                "items-stretch bg-gray-700 w-full gap-1 h-screen border-l "
+                "items-stretch bg-gray-700 w-full gap-1 flex-1 min-h-0 border-l "
                 "border-t border-b border-gray-600 rounded-tl-lg rounded-bl-lg "
                 "rounded-tr-none rounded-br-none overflow-y-auto"
             )

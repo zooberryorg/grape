@@ -2,7 +2,7 @@ from nicegui import ui
 
 
 def welcome_panel():
-    with ui.column().classes("flex-1 p-4 items-stretch shadow-none overflow-y-auto"):
+    with ui.column().classes("flex-1 p-4 items-stretch shadow-none min-h-0 overflow-y-auto"):
         with ui.row():
             with ui.card().classes("p-4 flex-1 gap-0 shadow-none bg-transparent"):
                 ui.label("GrAPE").classes(
