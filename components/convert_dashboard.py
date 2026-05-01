@@ -198,8 +198,8 @@ def convert_dashboard():
         with ui.column().classes("flex-1 gap-0"):
             convert_actions.convert_actions(load=load_files)
             # ------------------ Canvas area ------------------
-            with ui.card().style("display: block;").classes(
-                "p-0 m-4 bg-gray-800 shadow-none rounded-lg h-[500px] w-full overflow-hidden object-none"
+            with ui.card().classes(
+                "flex p-0 m-4 bg-gray-800 shadow-none rounded-lg h-[500px] w-full overflow-hidden object-none items-center justify-center"
             ):
                 canvas_image = canvas.canvas()
 

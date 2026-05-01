@@ -4,7 +4,7 @@ import json
 
 def canvas():
     with ui.card().style("display: block;").classes(
-        "p-4 my-4 bg-gray-800 shadow-none rounded-lg mx-auto w-fit"
+        "p-4 bg-gray-800 shadow-none rounded-lg m-auto w-fit border-gray-800 border-2 hover:border-gray-600 hover:border-2 transition-colors"
     ):
         placeholder = ui.label("No image loaded").classes("text-gray-400")
         ui.html('<canvas id="zta-canvas" style="image-rendering: pixelated; display: block;"></canvas>')
