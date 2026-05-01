@@ -3,18 +3,15 @@ from data.state import converter_state
 import json
 
 def canvas():
-    width = 0
-    height = 0
-
     with ui.card().style("display: block;").classes(
-        "w-[{width}] h-[{height}] p-4 m-4 bg-gray-800 shadow-none rounded-lg"
+        "p-4 my-4 bg-gray-800 shadow-none rounded-lg mx-auto w-fit"
     ):
         placeholder = ui.label("No image loaded").classes("text-gray-400")
         ui.html('<canvas id="zta-canvas" style="image-rendering: pixelated; display: block;"></canvas>')
 
     last_frame_count = {'n': 0}
 
-    def tick(width=width, height=height):
+    def tick():
         frames = converter_state.converted_signals
         if not frames or len(frames) == last_frame_count['n']:
             return
@@ -35,8 +32,6 @@ def canvas():
             const canvas = document.getElementById("zta-canvas");
             canvas.width = {width};
             canvas.height = {height};
-            canvas.style.width = "100%";
-            canvas.style.height = "auto";
             const ctx = canvas.getContext("2d");
 
             const rawFrames = {frames_json};
