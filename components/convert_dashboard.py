@@ -266,9 +266,9 @@ def convert_dashboard():
                     ui.slider(min=0, max=9, value=0).props("dense").classes("px-4")
                 )
                 ui.label().bind_text_from(slider, "value").classes("text-gray-400")
-            with ui.column().classes(
-                "p-2 w-full bg-gray-700 rounded-lg gap-2 flex-nowrap "
-            ):
-                ui.label("Advanced").classes("text-gray-400")
+            with ui.expansion().classes("text-gray-400 rounded-lg bg-gray-700 w-full hover:rounded-lg").props('dense rounded') as expansion:
+                with expansion.add_slot('header'):
+                    with ui.row().classes("items-center w-full gap-0"):
+                        ui.label("Advanced").classes("text-gray-400")
                 ui.checkbox("Interlaced").classes("text-gray-400 text-sm").props('dense size=sm label-class="text-sm"')
                 ui.checkbox("Optimize").classes("text-gray-400 text-sm").props('dense size=sm label-class="text-sm"')
