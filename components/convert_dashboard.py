@@ -31,7 +31,7 @@ def convert_dashboard():
     def load_files():
         async def show_zta_dialog():
             with (
-                ui.dialog() as dialog,
+                ui.dialog().props("persistent") as dialog,
                 ui.card().classes(
                     "bg-gray-800 text-white min-w-[600px] p-4 gap-4 rounded-lg"
                 ),
@@ -206,33 +206,37 @@ def convert_dashboard():
 
         # ------------------ Right column: export options ------------------
         with ui.column().classes(
-            "shrink-0 p-4 min-w-[300px] min-h-0 overflow-y-auto bg-gray-800 border-l border-gray-600 gap-4"
+            "shrink-0 p-2 min-w-[300px] min-h-0 overflow-y-auto bg-gray-800 border-l border-gray-600 gap-2 text-sm"
         ):
-            ui.button("Export", icon="save").classes("w-full bg-gray-400 text-white").props("flat")
+            ui.button("Export", icon="save").classes("bg-gray-600 text-white border-1 border-gray-500 hover:bg-gray-600 text-sm w-full").props("flat size=sm")
+            
             ui.select(
                 options=["PNG", "GIF"], value="PNG", label="Export Format"
             ).classes("w-full bg-gray-700 text-gray-400 export-select").props(
-                "dense outlined"
+                'dense rounded input-class="text-sm" label-class="text-sm"'
             )
             # if transparency off, choose color
-            with ui.column().classes(
-                "p-2 bg-transparent border-1 w-full border-gray-600 rounded-sm gap-2 flex-nowrap "
-            ):
-                with ui.row().classes("items-center w-full"):
-                    ui.label("Pick background color").classes("text-gray-400")
-                    ui.space()
-                    with ui.button(icon="colorize") as button:
-                        ui.color_picker(
-                            on_pick=lambda e: button.classes(f"!bg-[{e.color}]")
-                        ).props("flat dense")
-                ui.switch("Transparent Background", value=True).classes(
-                    "text-gray-400"
-                ).props("dense")
+            with ui.expansion().classes("text-gray-400 rounded-lg bg-gray-700 w-full hover:rounded-lg").props('dense rounded') as expansion:
+                with expansion.add_slot('header'):
+                    with ui.row().classes("items-center w-full gap-0"):
+                        check = ui.checkbox(value=True).props('dense size=sm')
+                        ui.label('Transparent Background').classes('ml-2 mr-2')
+                
+                with ui.card().classes("bg-transparent shadow-none w-full p-0").props('dense'):
+                    with ui.column().classes(
+                    "bg-transparent w-full border-gray-600 rounded-sm gap-2 flex-nowrap text-sm"
+                ):
+                        with ui.row().classes("items-center w-full bg-transparent"):
+                            ui.label("Pick background color").classes("text-gray-400 text-sm").props("dense size=sm")
+                            with ui.button(icon="colorize").props("dense size=sm") as button:
+                                ui.color_picker(
+                                    on_pick=lambda e: button.classes(f"!bg-[{e.color}]")
+                                ).props("flat dense size=sm")
 
             # png export options
             # quality slider for png
             with ui.column().classes(
-                "p-2 bg-transparent border-1 w-full border-gray-600 rounded-sm gap-2 flex-nowrap "
+                "p-2 w-full bg-gray-700 rounded-lg gap-2 flex-nowrap "
             ):
                 ui.label("Quality").classes("text-gray-400")
                 slider = (
@@ -240,8 +244,8 @@ def convert_dashboard():
                 )
                 ui.label().bind_text_from(slider, "value").classes("text-gray-400")
             with ui.column().classes(
-                "p-2 bg-transparent border-1 w-full border-gray-600 rounded-sm gap-2 flex-nowrap "
+                "p-2 w-full bg-gray-700 rounded-lg gap-2 flex-nowrap "
             ):
                 ui.label("Advanced").classes("text-gray-400")
-                ui.checkbox("Interlaced").classes("text-gray-400").props("dense")
-                ui.checkbox("Optimize").classes("text-gray-400").props("dense")
+                ui.checkbox("Interlaced").classes("text-gray-400 text-sm").props('dense size=sm label-class="text-sm"')
+                ui.checkbox("Optimize").classes("text-gray-400 text-sm").props('dense size=sm label-class="text-sm"')
