@@ -9,10 +9,11 @@ def canvas():
         "flex flex-1 min-h-0 p-4 bg-transparent shadow-none rounded-lg w-full h-full "
         "hover:border-gray-600 transition-colors items-center justify-center"
     ):
-
         placeholder_visible = {"value": True}
 
-        with ui.column().classes("w-full h-full items-center justify-center gap-1") as placeholder:
+        with ui.column().classes(
+            "w-full h-full items-center justify-center gap-1"
+        ) as placeholder:
             if placeholder_visible["value"]:
                 ui.icon("image_not_supported").classes("text-gray-400 text-6xl")
                 ui.label("No image loaded").classes("text-gray-400")
