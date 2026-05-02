@@ -62,30 +62,6 @@ def frame(navtitle: str, active_item: str = None, components: list = None):
     ui.query('.q-page-container').classes('flex flex-col flex-1 overflow-hidden h-full')
     ui.query('.q-page').classes('flex flex-col flex-1 h-100 overflow-hidden')
     ui.query('.nicegui-content').classes('flex flex-col flex-1 p-0 min-h-0')
-    with ui.header().classes("bg-gray-800 text-white p-4 pywebview-drag-region"):
-        with ui.row():
-            ui.icon("photo_library").classes("text-gray-400")
-            ui.space()
-            ui.label(navtitle).classes("text-md")
-            ui.space()
-            with (
-                ui.row()
-                .classes("gap-2 pywebview-no-drag-region")
-                .style("margin-right: -8px;")
-                .props("no-wrap")
-            ):
-                ui.button(icon="minimize").props("flat").classes(
-                    "text-gray-400 hover:text-gray-300"
-                ).on_click(lambda: ui.run_javascript("window.pywebview.api.minimize()"))
-                ui.button(icon="crop_square").props("flat").classes(
-                    "text-gray-400 hover:text-gray-300"
-                ).on_click(
-                    lambda: ui.run_javascript("window.pywebview.api.toggle_maximize()")
-                )
-                ui.button(icon="close").props("flat").classes(
-                    "text-gray-400 hover:text-gray-300"
-                ).on_click(closeApp)
-
     # Sidebar and content area
     with ui.row().classes("flex-nowrap items-stretch w-full gap-0 bg-gray-800 flex-1 h-full overflow-hidden p-0 m-0"):
         Sidebar(active_item=active_item)()
@@ -93,6 +69,12 @@ def frame(navtitle: str, active_item: str = None, components: list = None):
         with ui.column().classes(
             "flex-nowrap items-stretch w-full gap-0 bg-gray-800 overflow-hidden p-0 m-0 flex-1 min-h-0"
         ):
+            with ui.row().classes("bg-gray-800 text-white p-2 pywebview-drag-region items-center"):
+                with ui.row():
+                    ui.icon("photo_library").classes("text-gray-400 mt-1")
+                    ui.label(navtitle).classes("text-md")
+                    ui.space()
+
 
             # Main content
             with (

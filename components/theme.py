@@ -52,4 +52,5 @@ def apply():
         .q-checkbox__bg {
             border: 1px solid #4B5563 !important;
         }
+               
     """)
