@@ -188,9 +188,30 @@ def convert_dashboard():
         converter_state.loaded_zta_files.remove(zta_file)
         refresh_file_list()
 
-    async def export_image():
-        ui.notify("Exporting image... (this may take a moment)", color="blue")
-        # await run.io_bound(export_files, converter_state.loaded_zta_files, converter_state.export_format)
+    def data_to_files(zta_files, export_format):
+        for zta_file in zta_files:
+            print(f"Converting {zta_file.location} to {export_format}")
+
+            bg = None
+            if not converter_state.transparent_background:
+                bg = converter_state.background_color
+            else:
+                bg = (0, 0, 0, 0)
+
+            if export_format == "PNG":
+                img = Image.new("RGBA", (zta_file.width, zta_file.height), bg)
+                img.save(zta_file.location.replace(".zta", ".png"))
+            elif export_format == "GIF":
+                # GIF conversion
+                pass
+        else:
+            print("Unsupported export format")
+
+    async def export_images():
+        ui.notify("Exporting images... (this may take a moment)", color="blue")
+        # grab the current state
+        state = converter_state.copy()
+        await run.io_bound(data_to_files, state.loaded_zta_files, state.export_format)
         ui.notify("Export complete!", color="green")
 
     # ----------------- Convert Dashboard -----------------
