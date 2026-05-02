@@ -62,4 +62,19 @@ def apply():
             transition: background-color 0.4s ease-in-out;
         }
                
+        .number-input input {
+            color: #9ca3af !important;
+        }
+        .number-input input[type=number]::-webkit-inner-spin-button,
+        .number-input input[type=number]::-webkit-outer-spin-button {
+            opacity: 1;
+            filter: invert(1);
+            cursor: pointer;
+        }
+        .number-input .q-field__control::before {
+            border-color: #4b5563 !important;
+        }
+        .number-input .q-field__control::after {
+            border-color: #9ca3af !important;
+        }               
     """)

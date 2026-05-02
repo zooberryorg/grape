@@ -224,7 +224,7 @@ def convert_dashboard():
     def background_options():
         is_disabled = converter_state.transparent_background
         disable_cls = (
-            "opacity-50 cursor-not-allowed pointer-events-none" if is_disabled else ""
+            "opacity-60 cursor-not-allowed pointer-events-none" if is_disabled else ""
         )
 
         with (
@@ -321,6 +321,10 @@ def convert_dashboard():
                 ).classes("w-full bg-gray-600 text-gray-400 export-select").props(
                     'dense rounded input-class="text-sm" label-class="text-sm"'
                 )
-                ui.number(value=8, label="DPI").classes(
-                    "w-full bg-gray-600 text-gray-400"
-                ).props("dense")
+                ui.number(value=72, label="DPI").classes(
+                    "number-input w-full bg-gray-600"
+                ).props("""
+                        dense
+                        label-color='grey-6'
+                        input-class='text-gray-400'
+                    """)
