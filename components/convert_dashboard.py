@@ -33,7 +33,7 @@ def convert_dashboard():
             with (
                 ui.dialog().props("persistent") as dialog,
                 ui.card().classes(
-                    "bg-gray-800 text-white min-w-[600px] p-4 gap-4 rounded-lg"
+                    "bg-gray-800 text-white min-w-[600px] p-4 gap-4 rounded-lg border border-gray-700"
                 ),
             ):
                 ui.label("Load ZTA files from your computer").classes("text-lg")
@@ -45,13 +45,17 @@ def convert_dashboard():
                         zta_path = (
                             ui.input(placeholder="No file selected")
                             .props(
-                                "readonly dense outlined dark clearable hide-bottom-space"
+                                "readonly dense outlined dark clearable hide-bottom-space size=sm"
                             )
-                            .classes("flex-1")
+                            .classes(
+                                "flex-1 bg-gray-700 text-white border-1 border-gray-500 text-sm input-field"
+                            )
                         )
                         ui.button("Select Files", icon="folder_open").on_click(
                             lambda: [pick_files(zta_path, "ZTA")]
-                        ).classes("bg-gray-600 hover:bg-gray-700")
+                        ).classes(
+                            "bg-gray-600 text-white border-1 border-gray-500 hover:bg-gray-600 text-sm px-2"
+                        ).props("flat dense size=sm")
 
                 with ui.column().classes("gap-2 w-full"):
                     ui.label("Palette File").classes("text-gray-400")
@@ -60,9 +64,11 @@ def convert_dashboard():
                         pal_path = (
                             ui.input(placeholder="No file selected")
                             .props(
-                                "readonly dense outlined dark clearable hide-bottom-space"
+                                "readonly dense outlined dark clearable hide-bottom-space size=sm"
                             )
-                            .classes("flex-1")
+                            .classes(
+                                "flex-1 bg-gray-700 text-white border-1 border-gray-500 text-sm input-field"
+                            )
                         )
                         ui.button("Select Files", icon="folder_open").on_click(
                             lambda: [
@@ -72,16 +78,20 @@ def convert_dashboard():
                                     required_types=[("Palette files", "*.pal")],
                                 )
                             ]
-                        ).classes("bg-gray-600 hover:bg-gray-700")
+                        ).classes(
+                            "bg-gray-600 text-white border-1 border-gray-500 hover:bg-gray-600 text-sm px-2"
+                        ).props("flat dense size=sm")
 
-                with ui.row().classes("gap-4 mt-4 w-full"):
+                with ui.row().classes("gap-2 mt-4 w-full"):
                     ui.space()
-                    ui.button("Cancel").props("flat").on_click(dialog.close).classes(
-                        "text-gray-400 hover:text-gray-300"
-                    )
-                    ui.button("Load").props("flat").on_click(
+                    ui.button("Cancel", icon="cancel").on_click(dialog.close).classes(
+                        "bg-gray-600 text-white border-1 border-gray-500 hover:bg-gray-600 text-sm"
+                    ).props("flat size=sm")
+                    ui.button("Load", icon="save").on_click(
                         lambda: [confirm(dialog, zta_path, pal_path)]
-                    ).classes("text-blue-400 hover:text-blue-300")
+                    ).classes(
+                        "bg-gray-600 text-white border-1 border-gray-500 hover:bg-gray-600 text-sm"
+                    ).props("flat size=sm")
 
             dialog.open()
 

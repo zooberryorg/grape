@@ -77,4 +77,19 @@ def apply():
         .number-input .q-field__control::after {
             border-color: #9ca3af !important;
         }               
-    """)
+               
+        .input-field .q-field__control {
+            min-height: 20px !important;
+            height: 20px !important;
+            padding: 0 4px !important;
+        }
+        .input-field .q-field__native {
+            padding: 0 !important;
+            min-height: 20px !important;
+            line-height: 20px !important;
+        }
+        .input-field .q-field__append {
+            height: 20px !important;
+            padding: 0 !important;
+        }    
+               """)
