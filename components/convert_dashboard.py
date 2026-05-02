@@ -213,13 +213,13 @@ def convert_dashboard():
             ui.select(
                 options=["PNG", "GIF"], value="PNG", label="Export Format"
             ).classes("w-full bg-gray-700 text-gray-400 export-select").props(
-                'dense outlined input-class="text-sm" label-class="text-sm"'
+                'dense rounded input-class="text-sm" label-class="text-sm"'
             )
             # if transparency off, choose color
             with ui.expansion().classes("text-gray-400 rounded-lg bg-gray-700 w-full hover:rounded-lg").props('dense rounded') as expansion:
                 with expansion.add_slot('header'):
                     with ui.row().classes("items-center w-full gap-0"):
-                        check = ui.checkbox(value=True).props('dense size=sm ')
+                        check = ui.checkbox(value=True).props('dense size=sm')
                         ui.label('Transparent Background').classes('ml-2 mr-2')
                 
                 with ui.card().classes("bg-transparent shadow-none w-full p-0").props('dense'):

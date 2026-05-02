@@ -17,22 +17,7 @@ def apply():
     )
 
     ui.add_css("""
-        .export-select .q-field__control:before {
-            border-color: #4B5563 !important;
-            transition: none !important;
-        }
 
-        .export-select:hover .q-field__control:before {
-            border-color: #6B7280 !important;
-        }
-
-        .export-select.q-field--focused .q-field__control:before {
-            border-color: #4F46E5 !important;
-        }
-
-        .export-select .q-field__control {
-            background-color: #374151 !important;
-        }
         .export-select .q-field__native,
         .export-select .q-field__label,
         .q-select__dropdown-icon {
@@ -49,8 +34,32 @@ def apply():
             background-color: #4B5563 !important;
         }
                
+        .q-checkbox {
+            margin: 0 !important;
+        }
+               
         .q-checkbox__bg {
-            border: 1px solid #4B5563 !important;
+            border: 0 !important;
+            background-color: #4B5563 !important;
+        }
+               
+        .q-field {
+            padding: 0.5rem !important;
+            border-radius: 0.50rem !important;
+            border: 0 !important;
+        }
+        
+        .q-field__control::before {
+            border: 0 !important;
+        }
+               
+        .q-field__control::after {
+            border: 0 !important;
+        }
+               
+        .q-field:hover {
+            background-color: #4B5563 !important;
+            transition: background-color 0.4s ease-in-out;
         }
                
     """)
