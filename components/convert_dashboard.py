@@ -272,3 +272,9 @@ def convert_dashboard():
                         ui.label("Advanced").classes("text-gray-400")
                 ui.checkbox("Interlaced").classes("text-gray-400 text-sm").props('dense size=sm label-class="text-sm"')
                 ui.checkbox("Optimize").classes("text-gray-400 text-sm").props('dense size=sm label-class="text-sm"')
+                ui.select(
+                    options=["8", "16", "24"], value="8", label="Bit Depth"
+                ).classes("w-full bg-gray-600 text-gray-400 export-select").props(
+                    'dense rounded input-class="text-sm" label-class="text-sm"'
+                )
+
