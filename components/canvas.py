@@ -10,12 +10,13 @@ def canvas():
         "hover:border-gray-600 transition-colors items-center justify-center"
     ):
 
-        def placeholder_msg():
-            with ui.column().classes("w-full h-full items-center justify-center gap-1"):
+        placeholder_visible = {"value": True}
+
+        with ui.column().classes("w-full h-full items-center justify-center gap-1") as placeholder:
+            if placeholder_visible["value"]:
                 ui.icon("image_not_supported").classes("text-gray-400 text-6xl")
                 ui.label("No image loaded").classes("text-gray-400")
 
-        placeholder = placeholder_msg()
         ui.html(
             '<canvas id="zta-canvas" style="image-rendering: pixelated; display: block;"></canvas>'
         )
@@ -28,6 +29,7 @@ def canvas():
             return
 
         last_frame_count["n"] = len(frames)
+        placeholder_visible["value"] = False
         placeholder.set_visibility(False)
 
         width = frames[0]["width"]
