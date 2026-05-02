@@ -142,6 +142,35 @@ def convert_dashboard():
         converter_state.transparent_background = checked
         background_options.refresh()
 
+    def update_background_color(color):
+        converter_state.background_color = color
+        print(f"Background color: {converter_state.background_color}")
+        background_options.refresh()
+
+    def update_export_format(format):
+        converter_state.export_format = format
+        print(f"Export format: {converter_state.export_format}")
+
+    def update_dpi(dpi):
+        converter_state.dpi = dpi
+        print(f"DPI: {converter_state.dpi}")
+
+    def update_bitdepth(bitdepth):
+        converter_state.bitdepth = bitdepth
+        print(f"Bit depth: {converter_state.bitdepth}")
+
+    def update_optimize(optimize):
+        converter_state.optimize = optimize
+        print(f"Optimized: {converter_state.optimize}")
+
+    def update_interlace(interlace):
+        converter_state.interlace = interlace
+        print(f"Interlaced: {converter_state.interlace}")
+
+    def update_compression(compression):
+        converter_state.compression_level = compression
+        print(f"Compression: {converter_state.compression_level}")
+
     def truncate_filename(filename, max_length=30):
         if len(filename) <= max_length:
             return filename
@@ -300,7 +329,16 @@ def convert_dashboard():
                     ui.icon("info").classes("text-gray-400").tooltip(
                         "Higher values mean better compression but slower encoding"
                     ).props("dense size=xs")
-                slider = ui.slider(min=0, max=9, value=0).props("dense").classes("px-4")
+                slider = (
+                    ui.slider(
+                        min=0,
+                        max=9,
+                        value=0,
+                        on_change=lambda e: update_compression(e.value),
+                    )
+                    .props("dense")
+                    .classes("px-4")
+                )
                 ui.label().bind_text_from(slider, "value").classes("text-gray-400")
             with (
                 ui.expansion()
@@ -310,20 +348,27 @@ def convert_dashboard():
                 with expansion.add_slot("header"):
                     with ui.row().classes("items-center w-full gap-0"):
                         ui.label("Advanced").classes("text-gray-400")
-                ui.checkbox("Interlaced").classes("text-gray-400 text-sm").props(
+                ui.checkbox(
+                    "Interlaced", on_change=lambda e: update_interlace(e.value)
+                ).classes("text-gray-400 text-sm").props(
                     'dense size=sm label-class="text-sm"'
                 )
-                ui.checkbox("Optimize").classes("text-gray-400 text-sm").props(
+                ui.checkbox(
+                    "Optimize", on_change=lambda e: update_optimize(e.value)
+                ).classes("text-gray-400 text-sm").props(
                     'dense size=sm label-class="text-sm"'
                 )
                 ui.select(
-                    options=["8", "16", "24"], value="8", label="Bit Depth"
+                    options=["8", "16", "24"],
+                    value="8",
+                    label="Bit Depth",
+                    on_change=lambda e: update_bitdepth(e.value),
                 ).classes("w-full bg-gray-600 text-gray-400 export-select").props(
                     'dense rounded input-class="text-sm" label-class="text-sm"'
                 )
-                ui.number(value=72, label="DPI").classes(
-                    "number-input w-full bg-gray-600"
-                ).props("""
+                ui.number(
+                    value=72, label="DPI", on_change=lambda e: update_dpi(e.value)
+                ).classes("number-input w-full bg-gray-600").props("""
                         dense
                         label-color='grey-6'
                         input-class='text-gray-400'
