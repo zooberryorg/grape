@@ -267,13 +267,13 @@ def convert_dashboard():
                     "bg-gray-800 text-white min-w-[600px] p-4 gap-4 rounded-lg border border-gray-700"
                 ),
             ):
-                ui.label("Load ZTA files from your computer").classes("text-lg")
+                ui.label("Export Frames").classes("text-lg")
 
                 with ui.column().classes("gap-2 w-full"):
-                    ui.label("ZTA File").classes("text-gray-400")
+                    ui.label("Destination").classes("text-gray-400")
 
                     with ui.row().classes("gap-2 w-full items-stretch items-center"):
-                        zta_path = (
+                        out_path = (
                             ui.input(placeholder="No file selected")
                             .props(
                                 "readonly dense outlined dark clearable hide-bottom-space size=sm"
@@ -282,19 +282,24 @@ def convert_dashboard():
                                 "flex-1 bg-gray-700 text-white border-1 border-gray-500 text-sm input-field"
                             )
                         )
-                        ui.button("Select Files", icon="folder_open").on_click(
-                            lambda: pick_path()
+                        ui.button("Select Path", icon="folder_open").on_click(
+                            lambda: out_path.set_value(pick_path())
                         ).classes(
                             "bg-gray-600 text-white border-1 border-gray-500 hover:bg-gray-600 text-sm px-2"
                         ).props("flat dense size=sm")
 
                 with ui.row().classes("gap-2 mt-4 w-full"):
                     ui.space()
+                    ui.button("Cancel", icon="cancel").on_click(
+                        lambda: [out_path.set_value(""), dialog.close()]
+                    ).classes(
+                        "bg-gray-600 text-white border-1 border-gray-500 hover:bg-gray-600 text-sm px-2"
+                    ).props("flat dense size=sm")
                     ui.button("Save", icon="save").on_click(
                         lambda: [handle_save(out_path)]
                     ).classes(
-                        "bg-gray-600 text-white border-1 border-gray-500 hover:bg-gray-600 text-sm"
-                    ).props("flat size=sm")
+                        "bg-gray-600 text-white border-1 border-gray-500 hover:bg-gray-600 text-sm px-2"
+                    ).props("flat dense size=sm")
 
             dialog.open()
 
@@ -306,6 +311,13 @@ def convert_dashboard():
                 filetypes=[(f"{converter_state.export_format.capitalize()} files", f"*.{converter_state.export_format.lower()}")]
             )
             return file_path
+        
+        def handle_save(out_path):
+            file_path = pick_path()
+            if file_path:
+                out_path.set_value(file_path)
+
+        ui.timer(0, show_export_dialog, once=True)
 
     @ui.refreshable
     def background_options():
