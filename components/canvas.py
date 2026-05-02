@@ -9,7 +9,13 @@ def canvas():
         "flex flex-1 min-h-0 p-4 bg-transparent shadow-none rounded-lg w-full h-full "
         "hover:border-gray-600 transition-colors items-center justify-center"
     ):
-        placeholder = ui.label("No image loaded").classes("text-gray-400")
+
+        def placeholder_msg():
+            with ui.column().classes("w-full h-full items-center justify-center gap-1"):
+                ui.icon("image_not_supported").classes("text-gray-400 text-6xl")
+                ui.label("No image loaded").classes("text-gray-400")
+
+        placeholder = placeholder_msg()
         ui.html(
             '<canvas id="zta-canvas" style="image-rendering: pixelated; display: block;"></canvas>'
         )
