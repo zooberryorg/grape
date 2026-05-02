@@ -3,9 +3,11 @@ from data.state import converter_state
 import json
 
 def canvas():
-    with ui.card().style("display: block;").classes(
-        "p-4 bg-gray-800 shadow-none rounded-lg m-auto w-fit border-gray-800 border-2 hover:border-gray-600 hover:border-2 transition-colors"
-    ):
+    # CANVAS
+    with ui.card().classes(
+        "flex flex-1 min-h-0 p-4 bg-transparent shadow-none rounded-lg w-full h-full "
+        "hover:border-gray-600 transition-colors items-center justify-center"
+    ):        
         placeholder = ui.label("No image loaded").classes("text-gray-400")
         ui.html('<canvas id="zta-canvas" style="image-rendering: pixelated; display: block;"></canvas>')
 

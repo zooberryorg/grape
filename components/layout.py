@@ -59,6 +59,7 @@ def frame(navtitle: str, active_item: str = None, components: list = None):
     """
     ui.query(".nicegui-content").classes("p-0 m-0")
     ui.query("html, body").style("height: 100%; overflow: hidden; margin: 0; padding: 0;")
+    ui.query('.q-page').classes('h-full')
     with ui.header().classes("bg-gray-800 text-white p-4 pywebview-drag-region"):
         with ui.row():
             ui.icon("photo_library").classes("text-gray-400")
@@ -85,7 +86,7 @@ def frame(navtitle: str, active_item: str = None, components: list = None):
 
     # Main content area
     with ui.row().classes(
-        "flex-nowrap items-stretch w-full gap-0 bg-gray-800 h-screen overflow-hidden p-0 m-0"
+        "flex-nowrap items-stretch w-full gap-0 bg-gray-800 h-full overflow-hidden p-0 m-0"
     ):
         # Sidebar
         Sidebar(active_item=active_item)()
