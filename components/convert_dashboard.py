@@ -194,19 +194,19 @@ def convert_dashboard():
         ui.notify("Export complete!", color="green")
 
     # ----------------- Convert Dashboard -----------------
-    with ui.row().classes("items-stretch w-full gap-1 h-full overflow-hidden"):
+    with ui.row().classes("items-stretch w-full gap-0 h-full overflow-hidden"):
         # ------------------ Left column: file list and canvas ------------------
         with ui.column().classes("flex-1 gap-0 min-h-0 overflow-hidden"):
             convert_actions.convert_actions(load=load_files)
             # ------------------ CANVAS CONTAINER ------------------
             with ui.card().classes(
-                "flex flex-1 flex-col min-h-0 p-0 m-4 bg-transparent shadow-none rounded-lg w-full overflow-hidden object-none items-center justify-center"
+                "flex flex-1 flex-col min-h-0 p-0 bg-transparent shadow-none rounded-lg w-full overflow-hidden object-none items-center justify-center"
             ):
                 canvas_image = canvas.canvas()
 
         # ------------------ Right column: export options ------------------
         with ui.column().classes(
-            "shrink-0 p-4 ml-8 min-w-[300px] min-h-0 overflow-y-auto bg-gray-800 border-l border-gray-600 gap-4"
+            "shrink-0 p-4 min-w-[300px] min-h-0 overflow-y-auto bg-gray-800 border-l border-gray-600 gap-4"
         ):
             ui.button("Export", icon="save").classes("w-full bg-gray-400 text-white").props("flat")
             ui.select(
