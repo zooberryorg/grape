@@ -259,9 +259,11 @@ def convert_dashboard():
             with ui.column().classes(
                 "p-2 w-full bg-gray-700 rounded-lg gap-2 flex-nowrap "
             ):
-                ui.label("Quality").classes("text-gray-400")
+                with ui.row().classes("items-center w-full gap-0"):
+                    ui.label("Compression").classes("text-gray-400 mr-2")
+                    ui.icon("info").classes("text-gray-400").tooltip("Higher values mean better compression but slower encoding").props("dense size=xs")
                 slider = (
-                    ui.slider(min=0, max=100, value=50).props("dense").classes("px-4")
+                    ui.slider(min=0, max=9, value=0).props("dense").classes("px-4")
                 )
                 ui.label().bind_text_from(slider, "value").classes("text-gray-400")
             with ui.column().classes(
