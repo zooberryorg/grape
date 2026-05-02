@@ -259,6 +259,54 @@ def convert_dashboard():
         await run.io_bound(data_to_files, state.loaded_zta_files, state.export_format)
         ui.notify("Export complete!", color="green")
 
+    def export_dialog():
+        async def show_export_dialog():
+            with (
+                ui.dialog().props("persistent") as dialog,
+                ui.card().classes(
+                    "bg-gray-800 text-white min-w-[600px] p-4 gap-4 rounded-lg border border-gray-700"
+                ),
+            ):
+                ui.label("Load ZTA files from your computer").classes("text-lg")
+
+                with ui.column().classes("gap-2 w-full"):
+                    ui.label("ZTA File").classes("text-gray-400")
+
+                    with ui.row().classes("gap-2 w-full items-stretch items-center"):
+                        zta_path = (
+                            ui.input(placeholder="No file selected")
+                            .props(
+                                "readonly dense outlined dark clearable hide-bottom-space size=sm"
+                            )
+                            .classes(
+                                "flex-1 bg-gray-700 text-white border-1 border-gray-500 text-sm input-field"
+                            )
+                        )
+                        ui.button("Select Files", icon="folder_open").on_click(
+                            lambda: pick_path()
+                        ).classes(
+                            "bg-gray-600 text-white border-1 border-gray-500 hover:bg-gray-600 text-sm px-2"
+                        ).props("flat dense size=sm")
+
+                with ui.row().classes("gap-2 mt-4 w-full"):
+                    ui.space()
+                    ui.button("Save", icon="save").on_click(
+                        lambda: [handle_save(out_path)]
+                    ).classes(
+                        "bg-gray-600 text-white border-1 border-gray-500 hover:bg-gray-600 text-sm"
+                    ).props("flat size=sm")
+
+            dialog.open()
+
+        def pick_path():
+            root = tk.Tk()
+            root.withdraw()  # Hide the main window
+            file_path = filedialog.asksaveasfile(
+                title="Save file",
+                filetypes=[(f"{converter_state.export_format.capitalize()} files", f"*.{converter_state.export_format.lower()}")]
+            )
+            return file_path
+
     @ui.refreshable
     def background_options():
         is_disabled = converter_state.transparent_background
@@ -304,7 +352,7 @@ def convert_dashboard():
         with ui.column().classes(
             "shrink-0 p-2 min-w-[300px] min-h-0 overflow-y-auto bg-gray-800 border-l border-gray-600 gap-2 text-sm"
         ):
-            ui.button("Export", icon="save").classes(
+            ui.button("Export", icon="save", on_click=lambda: export_dialog()).classes(
                 "bg-gray-600 text-white border-1 border-gray-500 hover:bg-gray-600 text-sm w-full"
             ).props("flat size=sm")
 
