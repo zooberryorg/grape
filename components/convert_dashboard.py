@@ -134,7 +134,12 @@ def convert_dashboard():
             if path:
                 target_input.value = path
 
+
         ui.timer(0, show_zta_dialog, once=True)
+
+    def update_transparent_background(checked):
+        converter_state.transparent_background = checked
+        background_options.refresh()
 
     def truncate_filename(filename, max_length=30):
         if len(filename) <= max_length:
@@ -214,6 +219,20 @@ def convert_dashboard():
         await run.io_bound(data_to_files, state.loaded_zta_files, state.export_format)
         ui.notify("Export complete!", color="green")
 
+    @ui.refreshable
+    def background_options():
+        if not converter_state.transparent_background:
+            with ui.card().classes("bg-transparent shadow-none w-full p-0").props('dense'):
+                with ui.column().classes(
+                "bg-transparent w-full border-gray-600 rounded-sm gap-2 flex-nowrap text-sm"
+            ):
+                    with ui.row().classes("items-center w-full bg-transparent"):
+                        ui.label("Pick background color").classes("text-gray-400 text-sm").props("dense size=sm")
+                        with ui.button(icon="colorize").props("dense size=sm") as button:
+                            ui.color_picker(
+                                on_pick=lambda e: button.classes(f"!bg-[{e.color}]")
+                            ).props("flat dense size=sm")
+
     # ----------------- Convert Dashboard -----------------
     with ui.row().classes("items-stretch w-full gap-0 h-full overflow-hidden"):
         # ------------------ Left column: file list and canvas ------------------
@@ -240,19 +259,13 @@ def convert_dashboard():
             with ui.expansion().classes("text-gray-400 rounded-lg bg-gray-700 w-full hover:rounded-lg").props('dense rounded') as expansion:
                 with expansion.add_slot('header'):
                     with ui.row().classes("items-center w-full gap-0"):
-                        check = ui.checkbox(value=True).props('dense size=sm')
+                        check = ui.checkbox(
+                            value=True, on_change=lambda e: update_transparent_background(e.value)
+                            ).props('dense size=sm')
                         ui.label('Transparent Background').classes('ml-2 mr-2')
+                    
+                background_options()
                 
-                with ui.card().classes("bg-transparent shadow-none w-full p-0").props('dense'):
-                    with ui.column().classes(
-                    "bg-transparent w-full border-gray-600 rounded-sm gap-2 flex-nowrap text-sm"
-                ):
-                        with ui.row().classes("items-center w-full bg-transparent"):
-                            ui.label("Pick background color").classes("text-gray-400 text-sm").props("dense size=sm")
-                            with ui.button(icon="colorize").props("dense size=sm") as button:
-                                ui.color_picker(
-                                    on_pick=lambda e: button.classes(f"!bg-[{e.color}]")
-                                ).props("flat dense size=sm")
 
             # png export options
             # quality slider for png
