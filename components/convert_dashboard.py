@@ -31,7 +31,7 @@ def convert_dashboard():
     def load_files():
         async def show_zta_dialog():
             with (
-                ui.dialog() as dialog,
+                ui.dialog().props("persistent") as dialog,
                 ui.card().classes(
                     "bg-gray-800 text-white min-w-[600px] p-4 gap-4 rounded-lg"
                 ),
