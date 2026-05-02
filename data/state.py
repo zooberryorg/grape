@@ -41,6 +41,7 @@ class ZtaToImageState(AppState):
     has_converted_image: bool = False
     converted_signals: list[str] = field(default_factory=list)
     current_frame_index: int = 0
+    bit_depth: str = "8"
 
 
 converter_state = ZtaToImageState()

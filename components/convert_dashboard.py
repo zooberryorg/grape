@@ -277,4 +277,7 @@ def convert_dashboard():
                 ).classes("w-full bg-gray-600 text-gray-400 export-select").props(
                     'dense rounded input-class="text-sm" label-class="text-sm"'
                 )
+                ui.number(
+                    value=8, label="DPI"
+                    ).classes("w-full bg-gray-600 text-gray-400").props('dense')
 
