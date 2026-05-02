@@ -3,6 +3,10 @@ from components import canvas, convert_actions
 import tkinter as tk
 from tkinter import filedialog
 import asyncio
+from PIL import Image
+import io
+import base64
+from pyzta import ZtaF
 
 from data.state import ZtaFile, converter_state
 
@@ -10,20 +14,41 @@ from data.state import ZtaFile, converter_state
 def convert_dashboard():
     # ------------------- UI State -------------------
     file_list = None
+    canvas_image = None
 
     # ------------------ Event handlers ------------------
+    def signal_to_raw(pixels, width, height, channels) -> dict:
+        """Convert to RGBA raw array for canvas rendering"""
+        mode = {1: 'L', 3: 'RGB', 4: 'RGBA'}.get(channels, 'RGBA')
+        img = Image.frombytes(mode, (width, height), bytes(pixels))
+        img = img.convert('RGBA')  # canvas always needs RGBA
+        return {
+            'pixels': list(img.tobytes()),  # flat RGBA array
+            'width': width,
+            'height': height,
+        }
+
     def load_files():
         async def show_zta_dialog():
-            with ui.dialog() as dialog, ui.card().classes("bg-gray-800 text-white min-w-[600px] p-4 gap-4 rounded-lg"):
+            with (
+                ui.dialog() as dialog,
+                ui.card().classes(
+                    "bg-gray-800 text-white min-w-[600px] p-4 gap-4 rounded-lg"
+                ),
+            ):
                 ui.label("Load ZTA files from your computer").classes("text-lg")
 
                 with ui.column().classes("gap-2 w-full"):
                     ui.label("ZTA File").classes("text-gray-400")
 
                     with ui.row().classes("gap-2 w-full items-stretch items-center"):
-                        zta_path = ui.input(placeholder="No file selected").props(
-                            "readonly dense outlined dark clearable hide-bottom-space"
-                        ).classes("flex-1")
+                        zta_path = (
+                            ui.input(placeholder="No file selected")
+                            .props(
+                                "readonly dense outlined dark clearable hide-bottom-space"
+                            )
+                            .classes("flex-1")
+                        )
                         ui.button("Select Files", icon="folder_open").on_click(
                             lambda: [pick_files(zta_path, "ZTA")]
                         ).classes("bg-gray-600 hover:bg-gray-700")
@@ -32,11 +57,21 @@ def convert_dashboard():
                     ui.label("Palette File").classes("text-gray-400")
 
                     with ui.row().classes("gap-2 w-full items-stretch items-center"):
-                        pal_path = ui.input(placeholder="No file selected").props(
-                            "readonly dense outlined dark clearable hide-bottom-space"
-                        ).classes("flex-1")
+                        pal_path = (
+                            ui.input(placeholder="No file selected")
+                            .props(
+                                "readonly dense outlined dark clearable hide-bottom-space"
+                            )
+                            .classes("flex-1")
+                        )
                         ui.button("Select Files", icon="folder_open").on_click(
-                            lambda: [pick_files(pal_path, "Palette", required_types=[("Palette files", "*.pal")])]
+                            lambda: [
+                                pick_files(
+                                    pal_path,
+                                    "Palette",
+                                    required_types=[("Palette files", "*.pal")],
+                                )
+                            ]
                         ).classes("bg-gray-600 hover:bg-gray-700")
 
                 with ui.row().classes("gap-4 mt-4 w-full"):
@@ -51,23 +86,39 @@ def convert_dashboard():
             dialog.open()
 
         def confirm(dialog, zta, palette):
-            print (f"Confirming files: {zta.value}, {palette.value}")
+            print(f"Confirming files: {zta.value}, {palette.value}")
             if not zta.value or not palette.value:
                 ui.notify(
                     "Please select both a ZTA file and a palette file", color="red"
                 )
                 return
+            
+            zta_location = zta.value
+            pal_location = palette.value
+
             # convert tuple to string (get first item)
             converter_state.loaded_zta_files.append(
                 ZtaFile(
-                    location=zta.value,
+                    location=zta_location,
                     buffer=b"",
-                    palette_location=palette.value,
+                    palette_location=pal_location,
                     palette_buffer=b"",
                 )
             )
             dialog.close()
             quick_validate_files()
+            ztaf = ZtaF()
+            zta_obj = ztaf.load(zta_location, 0, pal_location)
+            if zta_obj:
+                buffer = ztaf.get_frame_buffer()
+                converter_state.loaded_zta_files[-1].buffer = buffer
+                converter_state.converted_signals = [
+                    signal_to_raw(signal.pixels, signal.width, signal.height, signal.channels)
+                    for signal in buffer
+                ]
+                converter_state.current_frame_index = 0
+            else:
+                ui.notify("Error loading ZTA file", color="gray")
             refresh_file_list()
 
         def pick_files(target_input, filetype, required_types=[]):
@@ -84,16 +135,6 @@ def convert_dashboard():
                 target_input.value = path
 
         ui.timer(0, show_zta_dialog, once=True)
-
-    def refresh_canvas():
-        file_list.clear()
-        with file_list:
-            for zta_file in converter_state.loaded_zta_files:
-                with ui.item():
-                    with ui.item_section():
-                        ui.label(zta_file.location)
-
-        print("Refresh canvas")
 
     def truncate_filename(filename, max_length=30):
         if len(filename) <= max_length:
@@ -118,6 +159,8 @@ def convert_dashboard():
         converter_state.loaded_zta_files = valid
 
     def refresh_file_list():
+        if file_list is None:
+            return
         file_list.clear()
         with file_list:
             if not converter_state.loaded_zta_files:
@@ -151,25 +194,21 @@ def convert_dashboard():
         ui.notify("Export complete!", color="green")
 
     # ----------------- Convert Dashboard -----------------
-    with ui.row().classes("items-stretch w-full gap-1 h-screen"):
-        with ui.column().classes("flex-1 gap-0"):
+    with ui.row().classes("items-stretch w-full gap-0 h-full overflow-hidden"):
+        # ------------------ Left column: file list and canvas ------------------
+        with ui.column().classes("flex-1 gap-0 min-h-0 overflow-hidden"):
             convert_actions.convert_actions(load=load_files)
-            # ------------------ Canvas area ------------------
-            canvas.canvas()
-
-            # ------------------ File list ------------------
-            ui.label("Imported files").classes("text-gray-400 mx-5 mt-[-2]").props(
-                "dense"
-            )
-            with ui.column().classes(
-                "p-4 mx-4 mt-4 w-full bg-gray-800 border-1 border-gray-600 h-full shadow-none rounded-lg"
+            # ------------------ CANVAS CONTAINER ------------------
+            with ui.card().classes(
+                "flex flex-1 flex-col min-h-0 p-0 bg-transparent shadow-none rounded-lg w-full overflow-hidden object-none items-center justify-center"
             ):
-                file_list = ui.list().classes("w-full")
+                canvas_image = canvas.canvas()
 
+        # ------------------ Right column: export options ------------------
         with ui.column().classes(
-            "shrink-0 p-4 ml-8 min-w-[300px] h-full bg-gray-800 border-l border-gray-600 gap-4"
+            "shrink-0 p-4 min-w-[300px] min-h-0 overflow-y-auto bg-gray-800 border-l border-gray-600 gap-4"
         ):
-            ui.button("Export", icon="save").classes("w-full text-white").props("flat")
+            ui.button("Export", icon="save").classes("w-full bg-gray-400 text-white").props("flat")
             ui.select(
                 options=["PNG", "GIF"], value="PNG", label="Export Format"
             ).classes("w-full bg-gray-700 text-gray-400 export-select").props(

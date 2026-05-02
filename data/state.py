@@ -23,7 +23,6 @@ class ZtaFile:
         self.location = location
         self.buffer = buffer
         self.palette_location = palette_location
-        self.palette_buffer = palette_buffer
 
 
 @dataclass
@@ -40,6 +39,8 @@ class ZtaToImageState(AppState):
     loaded_zta_files: list[ZtaFile] = field(default_factory=list)
     export_format_options: list[str] = field(default_factory=lambda: ["PNG", "GIF"])
     has_converted_image: bool = False
+    converted_signals: list[str] = field(default_factory=list)
+    current_frame_index: int = 0
 
 
 converter_state = ZtaToImageState()
