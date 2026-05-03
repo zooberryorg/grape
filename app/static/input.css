@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@theme {
+  /* Breakpoint overrides */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+  
+  /* Pine color scale */
+  --color-pine-50: #f1f5ef;
+  --color-pine-100: #d9e3d3;
+  --color-pine-200: #3a5231;
+  --color-pine-300: #2e4226;
+  --color-pine-400: #263721;
+  --color-pine-500: #22311c;
+  --color-pine-600: #1e2b1a;
+  --color-pine-700: #263621;
+  --color-pine-800: #171f14;
+  --color-pine-900: #0b0e09;
+  --color-pine-soft: #5a6a5b;
+
+  /* Special BG Colors */
+  --color-pine-info-200: #364b2d;
+  --color-pine-info-100: #5b844f;
+  --color-pine-special-300: #527643;
+  --color-pine-special-200: #5b844f;
+  --color-pine-special-100: #7ea56a;
+  --color-pine-draggable-200: #304429;
+  --color-pine-draggable-100: #3c4d37;
+  --color-pine-drop: #686b3c;
+  --color-pine-deep: #202d1c;
+
+  /* Gray color scale */
+  --color-granite-200: #c8ccc6;
+
+  /* Gold color scale */
+  --color-gold-50: #fef9ed;
+  --color-gold-100: #fdf0d1;
+  --color-gold-200: #f9e2a3;
+  --color-gold-300: #e5cd7b;
+  --color-gold-400: #d6b15d;
+  --color-gold-500: #d4a435;
+  --color-gold-600: #b68a2a;
+  --color-gold-700: #8f6b1f;
+  --color-gold-800: #6b4f16;
+  --color-gold-900: #4a360f;
+
+  /* Borders */
+  --color-pine-b: #2e4226;
+}

@@ -32,7 +32,7 @@ def background_options():
     """
     with (
         ui.expansion()
-        .classes("text-gray-400 rounded-lg bg-gray-700 w-full hover:rounded-lg")
+        .classes("text-gray-400 rounded-lg bg-pine-600 w-full hover:rounded-lg")
         .props("dense rounded") as expansion
     ):
         with expansion.add_slot("header"):
@@ -57,18 +57,19 @@ def background_options():
 
 def export_button():
     ui.button("Export", icon="save", on_click=lambda: export_dialog()).classes(
-        "bg-gray-600 text-white border-1 border-gray-500 hover:bg-gray-600 text-sm w-full"
-    ).props("flat size=sm")
+            "bg-gold-400 text-pine-800 border-1 border-pine-b gap-1 focus-button" \
+            "grape-button text-sm items-center justify-center hover:bg-pine-800/70 px-3 w-full"
+    ).props("flat size=sm color=None")
 
 
 def select_export_format():
     ui.select(options=["PNG", "GIF"], value="PNG", label="Export Format").classes(
-        "w-full bg-gray-700 text-gray-400 export-select"
+        "w-full bg-pine-600 text-gray-400 export-select"
     ).props('dense rounded input-class="text-sm" label-class="text-sm"')
 
 
 def compression_slider():
-    with ui.column().classes("p-2 w-full bg-gray-700 rounded-lg gap-2 flex-nowrap "):
+    with ui.column().classes("p-2 w-full bg-pine-600 rounded-lg gap-2 flex-nowrap "):
         with ui.row().classes("items-center w-full gap-0"):
             ui.label("Compression").classes("text-gray-400 mr-2")
             ui.icon("info").classes("text-gray-400").tooltip(
@@ -90,7 +91,7 @@ def compression_slider():
 def advanced_options():
     with (
         ui.expansion()
-        .classes("text-gray-400 rounded-lg bg-gray-700 w-full hover:rounded-lg")
+        .classes("text-gray-400 rounded-lg bg-pine-600 w-full hover:rounded-lg")
         .props("dense rounded") as expansion
     ):
         with expansion.add_slot("header"):
@@ -107,12 +108,12 @@ def advanced_options():
             value="8",
             label="Bit Depth",
             on_change=lambda e: update_bitdepth(e.value),
-        ).classes("w-full bg-gray-600 text-gray-400 export-select").props(
+        ).classes("w-full bg-pine-400 text-gray-400 export-select").props(
             'dense rounded input-class="text-sm" label-class="text-sm"'
         )
         ui.number(
             value=72, label="DPI", on_change=lambda e: update_dpi(e.value)
-        ).classes("number-input w-full bg-gray-600").props("""
+        ).classes("number-input w-full bg-pine-400").props("""
                 dense
                 label-color='grey-6'
                 input-class='text-gray-400'

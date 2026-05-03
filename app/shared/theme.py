@@ -2,9 +2,20 @@ from nicegui import ui
 
 
 def apply():
-    ui.colors(primary="#adadad", shared=True)
+    ui.query("html, body").classes("h-screen m-0 p-0 flex flex-col overflow-hidden")
+    ui.query("html, body, .app").classes("bg-pine-800")
+    ui.query(".q-layout").classes("h-screen")
+    ui.query(".q-page-container").classes("flex flex-col flex-1 overflow-hidden h-full")
+    ui.query(".q-page").classes("flex flex-col flex-1 h-100 overflow-hidden")
+    ui.query(".nicegui-content").classes("flex flex-col flex-1 p-0 min-h-0")
+    ui.colors(
+        primary="#adadad", 
+        shared=True,
+        accent_secondary="#d6b15d"
+    )
     ui.add_head_html(
         """
+        <link rel="stylesheet" href="/app/static/grape.css">
         <style>
             ::-webkit-scrollbar { display: none; }
             * {
@@ -12,6 +23,21 @@ def apply():
                 scrollbar-width: none;
             }
         </style>
+        <style type="text/tailwindcss">
+            @layer overrides {
+                .grape-button.q-btn--flat::before {
+                    background: transparent !important;
+                    opacity: 0 !important;
+                }                
+                .grape-button {
+                    @apply hover:!bg-red-700 hover:!border-gold-400;
+                }
+
+                .grape-button:hover {
+                    @apply !bg-pine-800/70 !border-gold-400;
+                }
+            }
+        </style>        
         """,
         shared=True,
     )
@@ -92,4 +118,12 @@ def apply():
             height: 20px !important;
             padding: 0 !important;
         }    
+               
+        .q-focus-helper {
+            transition: all 0.4s ease-in-out !important;
+        }
+               
+        .focus-button .q-focus-helper {
+            background-color: var(--color-gold-400) !important;
+        }
                """)
