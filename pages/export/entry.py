@@ -9,7 +9,7 @@ from pages.export.components.settings import (
     advanced_options,
 )
 from pages.export.components.dialogs import load_files
-
+from components import layout, theme
 
 def dashboard():
     # ----------------- Convert Dashboard -----------------
@@ -30,3 +30,17 @@ def dashboard():
             # quality slider for png
             compression_slider()
             advanced_options()
+
+@ui.page("/convert")
+def convert():
+    """
+    Converts ZTA files to other image formats.
+    """
+    theme.apply()
+
+    with layout.frame(
+        "Export ZTA graphic as new image format",
+        active_item="Home",
+        components=[dashboard],
+    ):
+        pass
