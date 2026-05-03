@@ -36,7 +36,7 @@ def frame(navtitle: str, active_item: str = None, components: list = None):
                 ui.column()
                 .classes(
                     "items-stretch bg-pine-600 w-full gap-1 flex-1 min-h-0 border-l "
-                    "border-t border-b border-gray-600 rounded-tl-lg rounded-bl-lg "
+                    "border-t border-b border-pine-b rounded-tl-lg rounded-bl-lg "
                     "rounded-tr-none rounded-br-none overflow-y-auto w-full"
                 )
                 .props("square")

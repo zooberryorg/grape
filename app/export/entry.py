@@ -21,7 +21,7 @@ def dashboard():
 
         # ------------------ Right column: export options ------------------
         with ui.column().classes(
-            "shrink-0 p-2 min-w-[300px] min-h-0 overflow-y-auto bg-pine-800 border-l border-gray-600 gap-2 text-sm"
+            "shrink-0 p-2 min-w-[300px] min-h-0 overflow-y-auto bg-pine-800 border-l border-pine-b gap-2 text-sm"
         ):
             export_button()
             select_export_format()

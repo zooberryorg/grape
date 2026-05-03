@@ -8,7 +8,7 @@ def canvas():
     # CANVAS
     with ui.card().classes(
         "flex flex-1 min-h-0 p-4 bg-transparent shadow-none rounded-lg w-full h-full "
-        "hover:border-gray-600 transition-colors items-center justify-center"
+        "hover:border-pine-b transition-colors items-center justify-center"
     ):
         placeholder_visible = {"value": True}
 
