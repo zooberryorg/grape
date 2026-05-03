@@ -1,10 +1,10 @@
 from nicegui import ui
 from components import layout, theme
-from components.welcome_panel import welcome_panel
+from pages.home.entry import dashboard
 
 
 @ui.page("/")
-def dashboard():
+def home():
     theme.apply()
-    with layout.frame("GrAPE", active_item="Dashboard", components=[welcome_panel]):
+    with layout.frame("GrAPE", active_item="Home", components=[dashboard]):
         pass

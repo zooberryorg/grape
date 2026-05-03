@@ -12,7 +12,7 @@ def convert():
 
     with layout.frame(
         "Export ZTA graphic as new image format",
-        active_item="Dashboard",
+        active_item="Home",
         components=[dashboard],
     ):
         pass
