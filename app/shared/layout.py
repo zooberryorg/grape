@@ -1,6 +1,6 @@
 from contextlib import contextmanager
 from nicegui import ui
-from components.sidebar import Sidebar
+from app.shared.sidebar import Sidebar
 
 
 @contextmanager

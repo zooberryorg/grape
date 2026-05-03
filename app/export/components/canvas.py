@@ -1,7 +1,7 @@
 from nicegui import ui
 from data.state import converter_state
 import json
-from pages.export.components.actionbar import actions
+from app.export.components.actionbar import actions
 
 
 def canvas():

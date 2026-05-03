@@ -1,15 +1,16 @@
 from nicegui import ui
 
-from pages.export.components.canvas import canvas_display
-from pages.export.components.settings import (
+from app.export.components.canvas import canvas_display
+from app.export.components.settings import (
     background_options,
     export_button,
     select_export_format,
     compression_slider,
     advanced_options,
 )
-from pages.export.components.dialogs import load_files
-from components import layout, theme
+from app.export.components.dialogs import load_files
+from app.shared import theme
+from app.shared import layout
 
 
 def dashboard():

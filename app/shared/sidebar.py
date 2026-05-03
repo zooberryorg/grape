@@ -1,6 +1,6 @@
 from nicegui import ui
-from pages.export import entry
-from pages.home import entry
+from app.export import entry
+from app.home import entry
 
 
 class Sidebar:
