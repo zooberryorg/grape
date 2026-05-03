@@ -10,6 +10,7 @@ from pages.export.events import (
     update_interlace,
 )
 
+
 def color_picker(is_disabled, disable_cls):
     ui.label("Pick background color").classes(
         f"text-gray-400 text-sm {disable_cls}"
@@ -19,9 +20,9 @@ def color_picker(is_disabled, disable_cls):
         .props(f"dense size=sm {'disable' if is_disabled else ''}")
         .classes(disable_cls) as button
     ):
-        ui.color_picker(
-            on_pick=lambda e: button.classes(f"!bg-[{e.color}]")
-        ).props("flat dense size=sm")
+        ui.color_picker(on_pick=lambda e: button.classes(f"!bg-[{e.color}]")).props(
+            "flat dense size=sm"
+        )
 
 
 @ui.refreshable
@@ -38,21 +39,21 @@ def background_options():
             with ui.row().classes("items-center w-full gap-0"):
                 ui.checkbox(
                     value=True,
-                    on_change=lambda e: [update_transparent_background(e.value), background_options.refresh()],
+                    on_change=lambda e: [
+                        update_transparent_background(e.value),
+                        background_options.refresh(),
+                    ],
                 ).props("dense size=sm")
                 ui.label("Transparent Background").classes("ml-2 mr-2")
 
         is_disabled = converter_state.transparent_background
         disable_cls = (
-            "opacity-60 cursor-not-allowed pointer-events-none"
-            if is_disabled
-            else ""
+            "opacity-60 cursor-not-allowed pointer-events-none" if is_disabled else ""
         )
 
-        with ui.row().classes(
-            f"items-center w-full bg-transparent {disable_cls}"
-        ):
+        with ui.row().classes(f"items-center w-full bg-transparent {disable_cls}"):
             color_picker(is_disabled, disable_cls)
+
 
 def export_button():
     ui.button("Export", icon="save", on_click=lambda: export_dialog()).classes(

@@ -4,6 +4,7 @@ from data.state import converter_state
 def update_transparent_background(checked):
     converter_state.transparent_background = checked
 
+
 def update_background_color(color):
     converter_state.background_color = color
     print(f"Background color: {converter_state.background_color}")

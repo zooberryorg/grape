@@ -2,6 +2,7 @@ from contextlib import contextmanager
 from nicegui import ui
 from components.sidebar import Sidebar
 
+
 @contextmanager
 def frame(navtitle: str, active_item: str = None, components: list = None):
     """
