@@ -1,7 +1,7 @@
 from data.state import converter_state
 from nicegui import ui
-from export.components.dialogs import export_dialog
-from export.events import (
+from pages.export.components.dialogs import export_dialog
+from pages.export.events import (
     update_compression,
     update_transparent_background,
     update_bitdepth,
@@ -25,7 +25,7 @@ def background_options():
             with ui.row().classes("items-center w-full gap-0"):
                 check = ui.checkbox(
                     value=True,
-                    on_change=lambda e: update_transparent_background(e.value),
+                    on_change=lambda e: [update_transparent_background(e.value), background_options.refresh()],
                 ).props("dense size=sm")
                 ui.label("Transparent Background").classes("ml-2 mr-2")
             is_disabled = converter_state.transparent_background

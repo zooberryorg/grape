@@ -3,21 +3,22 @@ import asyncio
 import base64
 from pyzta import ZtaF
 
-from export.components.canvas import canvas_display
-from export.components.settings import (
+from pages.export.components.canvas import canvas_display
+from pages.export.components.settings import (
     background_options,
     export_button,
     select_export_format,
     compression_slider,
     advanced_options,
 )
+from pages.export.components.dialogs import load_files
 
 
-def convert_dashboard():
+def dashboard():
     # ----------------- Convert Dashboard -----------------
     with ui.row().classes("items-stretch w-full gap-0 h-full overflow-hidden"):
         # ------------------ Left column: file list and canvas ------------------
-        canvas_display()
+        canvas_display(load_files)
 
         # ------------------ Right column: export options ------------------
         with ui.column().classes(

@@ -1,8 +1,9 @@
 from nicegui import ui, run
 from data.state import converter_state, ZtaFile
 from pyzta import ZtaF
-from export.files import quick_validate_files, signal_to_raw
+from pages.export.files import quick_validate_files, signal_to_raw
 import tkinter as tk
+from tkinter import filedialog
 from PIL import Image
 
 
@@ -114,7 +115,7 @@ def load_files():
         root.attributes("-topmost", True)  # brings to front
         root.focus_force()  # focuses window
         filetypes = required_types if required_types else [("All files", "*.*")]
-        path = tk.filedialog.askopenfilename(
+        path = filedialog.askopenfilename(
             title=f"Select {filetype} file", filetypes=filetypes
         )
         root.destroy()
@@ -180,7 +181,7 @@ def export_dialog():
         root = tk.Tk()
         root.withdraw()
         root.attributes("-topmost", True)
-        directory = tk.filedialog.askdirectory(title="Select directory")
+        directory = filedialog.askdirectory(title="Select directory")
         root.destroy()
         if directory:
             target_path.set_value(directory)

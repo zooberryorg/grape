@@ -1,16 +1,12 @@
 from data.state import converter_state
-from export.components.settings import background_options
 
 
 def update_transparent_background(checked):
     converter_state.transparent_background = checked
-    background_options.refresh()
-
 
 def update_background_color(color):
     converter_state.background_color = color
     print(f"Background color: {converter_state.background_color}")
-    background_options.refresh()
 
 
 def update_export_format(format):

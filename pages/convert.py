@@ -1,5 +1,6 @@
 from nicegui import ui
-from components import layout, convert_dashboard, theme
+from components import layout, theme
+from pages.export.entry import dashboard
 
 
 @ui.page("/convert")
@@ -12,6 +13,6 @@ def convert():
     with layout.frame(
         "Export ZTA graphic as new image format",
         active_item="Dashboard",
-        components=[convert_dashboard.convert_dashboard],
+        components=[dashboard],
     ):
         pass
