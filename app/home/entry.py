@@ -19,11 +19,11 @@ def dashboard():
                 ui.label("The great animal project editor for Zoo Tycoon").classes(
                     "text-center text-gray-400"
                 )
-                start_navigation()
+                # start_navigation()
                 quick_action_navigation()
-                about_navigation()
+                # about_navigation()
 
-            projects()
+            # projects()
 
 
 @ui.page("/")
