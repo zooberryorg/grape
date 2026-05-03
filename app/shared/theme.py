@@ -5,6 +5,7 @@ def apply():
     ui.colors(primary="#adadad", shared=True)
     ui.add_head_html(
         """
+        <link rel="stylesheet" href="/app/static/grape.css">
         <style>
             ::-webkit-scrollbar { display: none; }
             * {
