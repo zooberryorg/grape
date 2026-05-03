@@ -2,6 +2,7 @@ from nicegui import ui
 from pages.export import entry
 from pages.home import entry
 
+
 class Sidebar:
     menu_items = [
         {"icon": "dashboard", "label": "Home", "url": "/"},

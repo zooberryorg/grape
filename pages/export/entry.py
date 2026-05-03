@@ -11,6 +11,7 @@ from pages.export.components.settings import (
 from pages.export.components.dialogs import load_files
 from components import layout, theme
 
+
 def dashboard():
     # ----------------- Convert Dashboard -----------------
     with ui.row().classes("items-stretch w-full gap-0 h-full overflow-hidden"):
@@ -30,6 +31,7 @@ def dashboard():
             # quality slider for png
             compression_slider()
             advanced_options()
+
 
 @ui.page("/convert")
 def convert():
