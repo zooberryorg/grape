@@ -288,7 +288,7 @@ def convert_dashboard():
         def pick_path(target_path):
             root = tk.Tk()
             root.withdraw()
-            root.attributes('-topmost', True)
+            root.attributes("-topmost", True)
             directory = filedialog.askdirectory(title="Select directory")
             root.destroy()
             if directory:
@@ -299,29 +299,39 @@ def convert_dashboard():
             pass
 
         def data_to_files(zta_files, export_format, out_path):
-            for index, zta_file in enumerate(zta_files):
-                print(f"Converting {out_path} to {export_format}")
+            buffers = []
+            for zta_file in zta_files:
+                buffers.append(zta_file.buffer)
+            for buffer in buffers:
+                for index, frame in enumerate(buffer):
+                    print(f"Converting {out_path} to {export_format}")
 
-                bg = None
-                if not converter_state.transparent_background:
-                    bg = converter_state.background_color
-                else:
-                    bg = (0, 0, 0, 0)
+                    bg = None
+                    if not converter_state.transparent_background:
+                        bg = converter_state.background_color
+                    else:
+                        bg = (0, 0, 0, 0)
 
-                if export_format == "PNG":
-                    img = Image.new("RGBA", (zta_file.width, zta_file.height), bg)
-                    img.save(f"{out_path}/frame_{index}.png")
-                elif export_format == "GIF":
-                    # GIF conversion
-                    pass
-                else:
-                    print("Unsupported export format")
+                    if export_format == "PNG":
+                        img = Image.frombytes(
+                            "RGBA", (frame.width, frame.height), frame.pixels
+                        )
+                        img.save(f"{out_path}/frame_{index}.png")
+                    elif export_format == "GIF":
+                        # GIF conversion
+                        pass
+                    else:
+                        print("Unsupported export format")
 
         async def export_images(out_path):
             ui.notify("Exporting images... (this may take a moment)", color="blue")
             # grab the current state
-            state = converter_state.copy()
-            await run.io_bound(data_to_files, state.loaded_zta_files, state.export_format, out_path.value)
+            await run.io_bound(
+                data_to_files,
+                converter_state.loaded_zta_files,
+                converter_state.export_format,
+                out_path.value,
+            )
             ui.notify("Export complete!", color="green")
 
         ui.timer(0, show_export_dialog, once=True)
