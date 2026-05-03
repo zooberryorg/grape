@@ -36,3 +36,19 @@ A modern take on the classic [APE tool](https://zootycoon.fandom.com/wiki/APE) m
    ```bash
     python main.py
     ```
+
+## Developers
+
+Additional steps for developers.
+
+Install Tailwind CLI for theme development:
+
+```bash
+npm install tailwindcss @tailwindcss/cli
+```
+
+Point the Tailwind CLI to the input.css file in the repo:
+
+```bash
+npx tailwindcss -i ./app/static/input.css -o ./app/static/grape.css --watch
+```

@@ -219,3 +219,8 @@ __marimo__/
 
 # files
 *.zip
+
+# node
+node_modules/
+package-lock.json
+package.json
