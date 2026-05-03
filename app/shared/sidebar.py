@@ -6,10 +6,10 @@ from app.home import entry
 class Sidebar:
     menu_items = [
         {"icon": "dashboard", "label": "Home", "url": "/"},
-        {"icon": "extension", "label": "Projects", "url": "/projects"},
-        {"icon": "table_chart", "label": "Datasets", "url": "/datasets"},
-        {"icon": "settings", "label": "Settings", "url": "/settings"},
-        {"icon": "info", "label": "About", "url": "/about"},
+        # {"icon": "extension", "label": "Projects", "url": "/projects"},
+        # {"icon": "table_chart", "label": "Datasets", "url": "/datasets"},
+        # {"icon": "settings", "label": "Settings", "url": "/settings"},
+        # {"icon": "info", "label": "About", "url": "/about"},
     ]
 
     def __init__(self, active_item: str = "Home"):

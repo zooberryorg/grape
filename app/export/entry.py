@@ -24,14 +24,14 @@ def dashboard():
             "shrink-0 p-2 min-w-[300px] min-h-0 overflow-y-auto bg-pine-800 border-l border-pine-b gap-2 text-sm"
         ):
             export_button()
-            select_export_format()
-            # if transparency off, choose color
-            background_options()
+            # select_export_format()
+            # # if transparency off, choose color
+            # background_options()
 
-            # png export options
-            # quality slider for png
-            compression_slider()
-            advanced_options()
+            # # png export options
+            # # quality slider for png
+            # compression_slider()
+            # advanced_options()
 
 
 @ui.page("/convert")

@@ -51,7 +51,8 @@ def frame(navtitle: str, active_item: str = None, components: list = None):
                 "bg-pine-800 text-white py-2 px-4 text-center w-full"
             ):
                 with ui.row().classes("items-center justify-center"):
-                    ui.label("Problems").classes("text-sm text-gray-400")
-                    ui.label("Terminal").classes("text-sm text-gray-400")
+                    # ui.label("Problems").classes("text-sm text-gray-400")
+                    # ui.label("Terminal").classes("text-sm text-gray-400")
+                    pass
 
         yield
