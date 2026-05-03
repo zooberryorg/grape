@@ -5,6 +5,7 @@ from pages.home.components.navigation import (
     about_navigation
 )
 from pages.home.components.recent import projects
+from components import layout, theme
 
 def dashboard():
     with ui.column().classes(
@@ -23,3 +24,9 @@ def dashboard():
 
         with ui.row():
             projects()
+
+@ui.page("/")
+def home():
+    theme.apply()
+    with layout.frame("GrAPE", active_item="Home", components=[dashboard]):
+        pass

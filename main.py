@@ -1,5 +1,5 @@
 from nicegui import app, ui
-from pages import dashboard, convert, project
+from pages.home import entry
 
 app.native.window_args["resizable"] = True
 app.native.window_args["easy_drag"] = False
