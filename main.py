@@ -4,4 +4,5 @@ from pages import dashboard, convert, project
 app.native.window_args["resizable"] = True
 app.native.window_args["easy_drag"] = False
 app.native.window_args["draggable"] = False
-ui.run(native=True, frameless=True, window_size=(1000, 800))
+if __name__ in {"__main__", "__mp_main__"}:
+    ui.run(native=True, window_size=(1000, 800))
