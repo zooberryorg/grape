@@ -283,7 +283,7 @@ def convert_dashboard():
                             )
                         )
                         ui.button("Select Path", icon="folder_open").on_click(
-                            lambda: out_path.set_value(pick_path())
+                            lambda: pick_path(out_path)
                         ).classes(
                             "bg-gray-600 text-white border-1 border-gray-500 hover:bg-gray-600 text-sm px-2"
                         ).props("flat dense size=sm")
@@ -303,20 +303,18 @@ def convert_dashboard():
 
             dialog.open()
 
-        def pick_path():
+        def pick_path(target_path):
             root = tk.Tk()
-            root.withdraw()  # Hide the main window
-            file_path = filedialog.asksaveasfile(
-                title="Save file",
-                filetypes=[(f"{converter_state.export_format.capitalize()} files", f"*.{converter_state.export_format.lower()}")]
-            )
-            return file_path
-        
-        def handle_save(out_path):
-            file_path = pick_path()
-            if file_path:
-                out_path.set_value(file_path)
+            root.withdraw()
+            root.attributes('-topmost', True)
+            directory = filedialog.askdirectory(title="Select directory")
+            root.destroy()
+            if directory:
+                target_path.set_value(directory)
+            return None
 
+        def handle_save(out_path):
+            pass
         ui.timer(0, show_export_dialog, once=True)
 
     @ui.refreshable
