@@ -2,6 +2,7 @@ from nicegui import ui
 from PIL import Image
 from data.state import converter_state
 
+
 def signal_to_raw(pixels, width, height, channels) -> dict:
     """Convert to RGBA raw array for canvas rendering"""
     mode = {1: "L", 3: "RGB", 4: "RGBA"}.get(channels, "RGBA")

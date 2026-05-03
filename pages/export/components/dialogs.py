@@ -5,6 +5,7 @@ from export.files import quick_validate_files, signal_to_raw
 import tkinter as tk
 from PIL import Image
 
+
 def load_files():
     async def show_zta_dialog():
         with (

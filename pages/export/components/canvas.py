@@ -74,4 +74,4 @@ def canvas_display(action=None):
         with ui.card().classes(
             "flex flex-1 flex-col min-h-0 p-0 bg-transparent shadow-none rounded-lg w-full overflow-hidden object-none items-center justify-center"
         ):
-            canvas_image = canvas()
+            canvas()

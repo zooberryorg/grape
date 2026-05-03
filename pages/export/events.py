@@ -1,4 +1,5 @@
 from data.state import converter_state
+from export.components.settings import background_options
 
 
 def update_transparent_background(checked):
