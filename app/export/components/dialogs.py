@@ -12,7 +12,7 @@ def load_files():
         with (
             ui.dialog().props("persistent") as dialog,
             ui.card().classes(
-                "bg-pine-800 text-white min-w-[600px] p-4 gap-4 rounded-lg border border-gray-700"
+                "bg-pine-800 text-white min-w-[600px] p-4 gap-4 rounded-lg border border-pine-b"
             ),
         ):
             ui.label("Load ZTA files from your computer").classes("text-lg")
@@ -134,7 +134,7 @@ def export_dialog():
         with (
             ui.dialog().props("persistent") as dialog,
             ui.card().classes(
-                "bg-pine-800 text-white min-w-[600px] p-4 gap-4 rounded-lg border border-gray-700"
+                "bg-pine-800 text-white min-w-[600px] p-4 gap-4 rounded-lg border border-pine-b"
             ),
         ):
             ui.label("Export Frames").classes("text-lg")
@@ -149,7 +149,7 @@ def export_dialog():
                             "readonly dense outlined dark clearable hide-bottom-space size=sm"
                         )
                         .classes(
-                            "flex-1 bg-pine-600 text-white border-1 border-gray-500 text-sm input-field"
+                            "flex-1 bg-pine-600 text-white border-1 border-gray-500 hover:bg-pine-500 text-sm input-field"
                         )
                     )
                     ui.button("Select Path", icon="folder_open").on_click(

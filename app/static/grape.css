@@ -568,6 +568,13 @@
       }
     }
   }
+  .hover\:bg-pine-500 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-pine-500);
+      }
+    }
+  }
   .hover\:bg-pine-600 {
     &:hover {
       @media (hover: hover) {
