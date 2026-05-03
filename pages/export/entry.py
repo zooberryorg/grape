@@ -1,7 +1,4 @@
 from nicegui import ui
-import asyncio
-import base64
-from pyzta import ZtaF
 
 from pages.export.components.canvas import canvas_display
 from pages.export.components.settings import (
