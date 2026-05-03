@@ -1,9 +1,8 @@
-
-
 from nicegui import ui
 from data.state import converter_state
 import json
 from export.components.actionbar import actions
+
 
 def canvas():
     # CANVAS
@@ -67,6 +66,7 @@ def canvas():
 
     ui.timer(0.5, tick)
 
+
 def canvas_display(action=None):
     with ui.column().classes("flex-1 gap-0 min-h-0 overflow-hidden"):
         actions(load=action)
@@ -75,4 +75,3 @@ def canvas_display(action=None):
             "flex flex-1 flex-col min-h-0 p-0 bg-transparent shadow-none rounded-lg w-full overflow-hidden object-none items-center justify-center"
         ):
             canvas_image = canvas()
-    

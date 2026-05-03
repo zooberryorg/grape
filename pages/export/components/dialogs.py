@@ -1,5 +1,9 @@
-from nicegui import ui 
-
+from nicegui import ui, run
+from data.state import converter_state, ZtaFile
+from pyzta import ZtaF
+from export.files import quick_validate_files, signal_to_raw, refresh_file_list
+import tkinter as tk
+from PIL import Image
 
 def load_files():
     async def show_zta_dialog():
@@ -71,9 +75,7 @@ def load_files():
     def confirm(dialog, zta, palette):
         print(f"Confirming files: {zta.value}, {palette.value}")
         if not zta.value or not palette.value:
-            ui.notify(
-                "Please select both a ZTA file and a palette file", color="red"
-            )
+            ui.notify("Please select both a ZTA file and a palette file", color="red")
             return
 
         zta_location = zta.value
@@ -112,7 +114,7 @@ def load_files():
         root.attributes("-topmost", True)  # brings to front
         root.focus_force()  # focuses window
         filetypes = required_types if required_types else [("All files", "*.*")]
-        path = filedialog.askopenfilename(
+        path = tk.filedialog.askopenfilename(
             title=f"Select {filetype} file", filetypes=filetypes
         )
         root.destroy()
@@ -120,3 +122,107 @@ def load_files():
             target_input.value = path
 
     ui.timer(0, show_zta_dialog, once=True)
+
+
+def export_dialog():
+    async def show_export_dialog():
+        with (
+            ui.dialog().props("persistent") as dialog,
+            ui.card().classes(
+                "bg-gray-800 text-white min-w-[600px] p-4 gap-4 rounded-lg border border-gray-700"
+            ),
+        ):
+            ui.label("Export Frames").classes("text-lg")
+
+            with ui.column().classes("gap-2 w-full"):
+                ui.label("Destination").classes("text-gray-400")
+
+                with ui.row().classes("gap-2 w-full items-stretch items-center"):
+                    out_path = (
+                        ui.input(placeholder="No file selected")
+                        .props(
+                            "readonly dense outlined dark clearable hide-bottom-space size=sm"
+                        )
+                        .classes(
+                            "flex-1 bg-gray-700 text-white border-1 border-gray-500 text-sm input-field"
+                        )
+                    )
+                    ui.button("Select Path", icon="folder_open").on_click(
+                        lambda: pick_path(out_path)
+                    ).classes(
+                        "bg-gray-600 text-white border-1 border-gray-500 hover:bg-gray-600 text-sm px-2"
+                    ).props("flat dense size=sm")
+
+            with ui.row().classes("gap-2 mt-4 w-full"):
+                ui.space()
+                ui.button("Cancel", icon="cancel").on_click(
+                    lambda: [out_path.set_value(""), dialog.close()]
+                ).classes(
+                    "bg-gray-600 text-white border-1 border-gray-500 hover:bg-gray-600 text-sm px-2"
+                ).props("flat dense size=sm")
+
+                async def on_save():
+                    path = out_path.value
+                    if not path:
+                        ui.notify("Please select a destination path", color="red")
+                        return
+                    dialog.close()
+                    await export_images(out_path)
+                    ui.notify("Export complete!", color="green")
+
+                ui.button("Save", icon="save").on_click(on_save).classes(
+                    "bg-gray-600 text-white border-1 border-gray-500 hover:bg-gray-600 text-sm px-2"
+                ).props("flat dense size=sm")
+
+        dialog.open()
+
+    def pick_path(target_path):
+        root = tk.Tk()
+        root.withdraw()
+        root.attributes("-topmost", True)
+        directory = tk.filedialog.askdirectory(title="Select directory")
+        root.destroy()
+        if directory:
+            target_path.set_value(directory)
+        return None
+
+    def handle_save(out_path):
+        pass
+
+    def data_to_files(zta_files, export_format, out_path):
+        buffers = []
+        for zta_file in zta_files:
+            buffers.append(zta_file.buffer)
+        for buffer in buffers:
+            for index, frame in enumerate(buffer):
+                print(f"Converting {out_path} to {export_format}")
+
+                bg = None
+                if not converter_state.transparent_background:
+                    bg = converter_state.background_color
+                else:
+                    bg = (0, 0, 0, 0)
+
+                if export_format == "PNG":
+                    img = Image.frombytes(
+                        "RGBA", (frame.width, frame.height), frame.pixels
+                    )
+                    img.save(f"{out_path}/frame_{index}.png")
+                elif export_format == "GIF":
+                    # GIF conversion
+                    pass
+                else:
+                    print("Unsupported export format")
+
+    async def export_images(out_path):
+        ui.notify("Exporting images... (this may take a moment)", color="blue")
+        # grab the current state
+        await run.io_bound(
+            data_to_files,
+            converter_state.loaded_zta_files,
+            converter_state.export_format,
+            out_path.value,
+        )
+        ui.notify("Export complete!", color="green")
+
+    ui.timer(0, show_export_dialog, once=True)

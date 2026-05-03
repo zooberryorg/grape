@@ -1,6 +1,7 @@
 from data.state import converter_state
 from nicegui import ui
 
+
 @ui.refreshable
 def background_options():
     """
@@ -19,9 +20,7 @@ def background_options():
         with ui.column().classes(
             "bg-transparent w-full border-gray-600 rounded-sm gap-2 flex-nowrap text-sm"
         ):
-            with ui.row().classes(
-                f"items-center w-full bg-transparent {disable_cls}"
-            ):
+            with ui.row().classes(f"items-center w-full bg-transparent {disable_cls}"):
                 ui.label("Pick background color").classes(
                     f"text-gray-400 text-sm {disable_cls}"
                 ).props("dense size=sm")
