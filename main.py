@@ -2,6 +2,7 @@ import os
 
 from nicegui import app, ui
 from app.home import entry
+from app.shared import theme
 
 app.add_static_files('/app/static', os.path.join(os.path.dirname(__file__), 'app/static'))
 app.native.window_args["resizable"] = True

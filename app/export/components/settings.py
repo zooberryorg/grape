@@ -57,7 +57,8 @@ def background_options():
 
 def export_button():
     ui.button("Export", icon="save", on_click=lambda: export_dialog()).classes(
-        "bg-pine-400 text-white border-1 border-gray-500 hover:bg-pine-400 text-sm w-full"
+            "bg-pine-800 text-white/50 border-1 border-pine-b gap-1 " \
+            "grape-button text-sm items-center justify-center hover:bg-pine-800/70 px-3 w-full"
     ).props("flat size=sm")
 
 

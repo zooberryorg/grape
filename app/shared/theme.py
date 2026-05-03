@@ -17,6 +17,21 @@ def apply():
                 scrollbar-width: none;
             }
         </style>
+        <style type="text/tailwindcss">
+            @layer overrides {
+                .grape-button.q-btn--flat::before {
+                    background: transparent !important;
+                    opacity: 0 !important;
+                }                
+                .grape-button {
+                    @apply hover:!bg-red-700 hover:!border-gold-400;
+                }
+
+                .grape-button:hover {
+                    @apply !bg-pine-800/70 !border-gold-400;
+                }
+            }
+        </style>        
         """,
         shared=True,
     )
@@ -97,4 +112,10 @@ def apply():
             height: 20px !important;
             padding: 0 !important;
         }    
+               
+               /* Kill Quasar's ::before hover overlay on flat buttons */
+.grape-button.q-btn--flat::before {
+    background: transparent !important;
+    opacity: 0 !important;
+}
                """)

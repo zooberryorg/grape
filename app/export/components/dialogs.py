@@ -33,7 +33,8 @@ def load_files():
                     ui.button("Select Files", icon="folder_open").on_click(
                         lambda: [pick_files(zta_path, "ZTA")]
                     ).classes(
-                        "bg-pine-400 text-white border-1 border-gray-500 hover:bg-pine-400 text-sm px-2"
+            "bg-pine-800 text-white/50 border-1 border-pine-b gap-1 " \
+            "grape-button text-sm items-center justify-center hover:bg-pine-800/70 px-3"
                     ).props("flat dense size=sm")
 
             with ui.column().classes("gap-2 w-full"):
@@ -58,18 +59,21 @@ def load_files():
                             )
                         ]
                     ).classes(
-                        "bg-pine-400 text-white border-1 border-gray-500 hover:bg-pine-400 text-sm px-2"
+            "bg-pine-800 text-white/50 border-1 border-pine-b gap-1 " \
+            "grape-button text-sm items-center justify-center hover:bg-pine-800/70 px-3"
                     ).props("flat dense size=sm")
 
             with ui.row().classes("gap-2 mt-4 w-full"):
                 ui.space()
                 ui.button("Cancel", icon="cancel").on_click(dialog.close).classes(
-                    "bg-pine-400 text-white border-1 border-gray-500 hover:bg-pine-400 text-sm"
+            "bg-pine-800 text-white/50 border-1 border-pine-b gap-1 " \
+            "grape-button text-sm items-center justify-center hover:bg-pine-800/70 px-3"
                 ).props("flat size=sm")
                 ui.button("Load", icon="save").on_click(
                     lambda: [confirm(dialog, zta_path, pal_path)]
                 ).classes(
-                    "bg-pine-400 text-white border-1 border-gray-500 hover:bg-pine-400 text-sm"
+            "bg-pine-800 text-white/50 border-1 border-pine-b gap-1 " \
+            "grape-button text-sm items-center justify-center hover:bg-pine-800/70 px-3"
                 ).props("flat size=sm")
 
         dialog.open()
@@ -151,7 +155,8 @@ def export_dialog():
                     ui.button("Select Path", icon="folder_open").on_click(
                         lambda: pick_path(out_path)
                     ).classes(
-                        "bg-pine-400 text-white border-1 border-gray-500 hover:bg-pine-400 text-sm px-2"
+            "bg-pine-800 text-white/50 border-1 border-pine-b gap-1 " \
+            "grape-button text-sm items-center justify-center hover:bg-pine-800/70 px-3"
                     ).props("flat dense size=sm")
 
             with ui.row().classes("gap-2 mt-4 w-full"):
@@ -159,7 +164,8 @@ def export_dialog():
                 ui.button("Cancel", icon="cancel").on_click(
                     lambda: [out_path.set_value(""), dialog.close()]
                 ).classes(
-                    "bg-pine-400 text-white border-1 border-gray-500 hover:bg-pine-400 text-sm px-2"
+            "bg-pine-800 text-white/50 border-1 border-pine-b gap-1 " \
+            "grape-button text-sm items-center justify-center hover:bg-pine-800/70 px-3"
                 ).props("flat dense size=sm")
 
                 async def on_save():
@@ -172,7 +178,8 @@ def export_dialog():
                     ui.notify("Export complete!", color="green")
 
                 ui.button("Save", icon="save").on_click(on_save).classes(
-                    "bg-pine-400 text-white border-1 border-gray-500 hover:bg-pine-400 text-sm px-2"
+            "bg-pine-800 text-white/50 border-1 border-pine-b gap-1 " \
+            "grape-button text-sm items-center justify-center hover:bg-pine-800/70 px-3"
                 ).props("flat dense size=sm")
 
         dialog.open()
