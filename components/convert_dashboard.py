@@ -233,32 +233,6 @@ def convert_dashboard():
         converter_state.loaded_zta_files.remove(zta_file)
         refresh_file_list()
 
-    def data_to_files(zta_files, export_format):
-        for zta_file in zta_files:
-            print(f"Converting {zta_file.location} to {export_format}")
-
-            bg = None
-            if not converter_state.transparent_background:
-                bg = converter_state.background_color
-            else:
-                bg = (0, 0, 0, 0)
-
-            if export_format == "PNG":
-                img = Image.new("RGBA", (zta_file.width, zta_file.height), bg)
-                img.save(zta_file.location.replace(".zta", ".png"))
-            elif export_format == "GIF":
-                # GIF conversion
-                pass
-        else:
-            print("Unsupported export format")
-
-    async def export_images():
-        ui.notify("Exporting images... (this may take a moment)", color="blue")
-        # grab the current state
-        state = converter_state.copy()
-        await run.io_bound(data_to_files, state.loaded_zta_files, state.export_format)
-        ui.notify("Export complete!", color="green")
-
     def export_dialog():
         async def show_export_dialog():
             with (
@@ -295,9 +269,17 @@ def convert_dashboard():
                     ).classes(
                         "bg-gray-600 text-white border-1 border-gray-500 hover:bg-gray-600 text-sm px-2"
                     ).props("flat dense size=sm")
-                    ui.button("Save", icon="save").on_click(
-                        lambda: [handle_save(out_path)]
-                    ).classes(
+
+                    async def on_save():
+                        path = out_path.value
+                        if not path:
+                            ui.notify("Please select a destination path", color="red")
+                            return
+                        dialog.close()
+                        await export_images(out_path)
+                        ui.notify("Export complete!", color="green")
+
+                    ui.button("Save", icon="save").on_click(on_save).classes(
                         "bg-gray-600 text-white border-1 border-gray-500 hover:bg-gray-600 text-sm px-2"
                     ).props("flat dense size=sm")
 
@@ -315,6 +297,33 @@ def convert_dashboard():
 
         def handle_save(out_path):
             pass
+
+        def data_to_files(zta_files, export_format, out_path):
+            for index, zta_file in enumerate(zta_files):
+                print(f"Converting {out_path} to {export_format}")
+
+                bg = None
+                if not converter_state.transparent_background:
+                    bg = converter_state.background_color
+                else:
+                    bg = (0, 0, 0, 0)
+
+                if export_format == "PNG":
+                    img = Image.new("RGBA", (zta_file.width, zta_file.height), bg)
+                    img.save(f"{out_path}/frame_{index}.png")
+                elif export_format == "GIF":
+                    # GIF conversion
+                    pass
+                else:
+                    print("Unsupported export format")
+
+        async def export_images(out_path):
+            ui.notify("Exporting images... (this may take a moment)", color="blue")
+            # grab the current state
+            state = converter_state.copy()
+            await run.io_bound(data_to_files, state.loaded_zta_files, state.export_format, out_path.value)
+            ui.notify("Export complete!", color="green")
+
         ui.timer(0, show_export_dialog, once=True)
 
     @ui.refreshable
