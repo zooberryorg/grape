@@ -1,7 +1,7 @@
 from nicegui import ui, run
 from data.state import converter_state, ZtaFile
 from pyzta import ZtaF
-from export.files import quick_validate_files, signal_to_raw, refresh_file_list
+from export.files import quick_validate_files, signal_to_raw
 import tkinter as tk
 from PIL import Image
 
@@ -106,7 +106,6 @@ def load_files():
             converter_state.current_frame_index = 0
         else:
             ui.notify("Error loading ZTA file", color="gray")
-        refresh_file_list()
 
     def pick_files(target_input, filetype, required_types=[]):
         root = tk.Tk()

@@ -2,12 +2,13 @@ from nicegui import ui
 import asyncio
 import base64
 from pyzta import ZtaF
-from export.components.canvas import canvas_display
 
+from export.components.canvas import canvas_display
+from export.components.settings import background_options
+from export.components.dialogs import export_dialog
 
 def convert_dashboard():
     # ------------------- UI State -------------------
-    file_list = None
     canvas_image = None
 
     # ------------------ Event handlers ------------------
