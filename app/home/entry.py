@@ -15,7 +15,9 @@ def dashboard():
     ):
         with ui.row():
             with ui.card().classes("p-4 flex-1 gap-0 shadow-none bg-transparent"):
-                ui.label("GrAPE").classes("text-2xl font-bold text-center text-gray-300")
+                ui.label("GrAPE").classes(
+                    "text-2xl font-bold text-center text-gray-300"
+                )
                 ui.label("The great animal project editor for Zoo Tycoon").classes(
                     "text-center text-gray-400"
                 )

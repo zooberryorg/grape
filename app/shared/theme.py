@@ -8,11 +8,7 @@ def apply():
     ui.query(".q-page-container").classes("flex flex-col flex-1 overflow-hidden h-full")
     ui.query(".q-page").classes("flex flex-col flex-1 h-100 overflow-hidden")
     ui.query(".nicegui-content").classes("flex flex-col flex-1 p-0 min-h-0")
-    ui.colors(
-        primary="#adadad", 
-        shared=True,
-        accent_secondary="#d6b15d"
-    )
+    ui.colors(primary="#adadad", shared=True, accent_secondary="#d6b15d")
     ui.add_head_html(
         """
         <link rel="stylesheet" href="/app/static/grape.css">
