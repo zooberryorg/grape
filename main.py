@@ -1,6 +1,6 @@
 import os
 
-from nicegui import app, ui
+from nicegui import app, ui, native
 from app.home import entry
 from app.shared import theme
 
@@ -9,4 +9,4 @@ app.native.window_args["resizable"] = True
 app.native.window_args["easy_drag"] = False
 app.native.window_args["draggable"] = False
 if __name__ in {"__main__", "__mp_main__"}:
-    ui.run(native=True, window_size=(1000, 800))
+    ui.run(native=True, window_size=(900, 600), reload=False, port=native.find_open_port())
