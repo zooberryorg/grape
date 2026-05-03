@@ -16,15 +16,15 @@ def frame(navtitle: str, active_item: str = None, components: list = None):
     ui.query(".nicegui-content").classes("flex flex-col flex-1 p-0 min-h-0")
     # Sidebar and content area
     with ui.row().classes(
-        "flex-nowrap items-stretch w-full gap-0 bg-gray-800 flex-1 h-full overflow-hidden p-0 m-0"
+        "flex-nowrap items-stretch w-full gap-0 bg-pine-800 flex-1 h-full overflow-hidden p-0 m-0"
     ):
         Sidebar(active_item=active_item)()
         # Main content area
         with ui.column().classes(
-            "flex-nowrap items-stretch w-full gap-0 bg-gray-800 overflow-hidden p-0 m-0 flex-1 min-h-0"
+            "flex-nowrap items-stretch w-full gap-0 bg-pine-800 overflow-hidden p-0 m-0 flex-1 min-h-0"
         ):
             with ui.row().classes(
-                "bg-gray-800 text-white p-2 pywebview-drag-region items-center"
+                "bg-pine-800 text-white p-2 pywebview-drag-region items-center"
             ):
                 with ui.row():
                     ui.icon("photo_library").classes("text-gray-400 mt-1")
@@ -35,7 +35,7 @@ def frame(navtitle: str, active_item: str = None, components: list = None):
             with (
                 ui.column()
                 .classes(
-                    "items-stretch bg-gray-700 w-full gap-1 flex-1 min-h-0 border-l "
+                    "items-stretch bg-pine-600 w-full gap-1 flex-1 min-h-0 border-l "
                     "border-t border-b border-gray-600 rounded-tl-lg rounded-bl-lg "
                     "rounded-tr-none rounded-br-none overflow-y-auto w-full"
                 )
@@ -54,7 +54,7 @@ def frame(navtitle: str, active_item: str = None, components: list = None):
 
             # Footer
             with ui.row().classes(
-                "bg-gray-800 text-white py-2 px-4 text-center w-full"
+                "bg-pine-800 text-white py-2 px-4 text-center w-full"
             ):
                 with ui.row().classes("items-center justify-center"):
                     ui.label("Problems").classes("text-sm text-gray-400")

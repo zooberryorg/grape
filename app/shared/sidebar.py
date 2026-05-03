@@ -17,7 +17,7 @@ class Sidebar:
 
     def __call__(self):
         with ui.column().classes(
-            "p-4 w-20 bg-gray-800 shrink-0 h-screen overflow-y-auto",
+            "p-4 w-20 bg-pine-800 shrink-0 h-screen overflow-y-auto",
             remove="nicegui-content",
         ):
             for item in self.menu_items:

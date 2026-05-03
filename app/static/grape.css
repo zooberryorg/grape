@@ -15,7 +15,6 @@
     --color-gray-500: oklch(55.1% 0.027 264.364);
     --color-gray-600: oklch(44.6% 0.03 256.802);
     --color-gray-700: oklch(37.3% 0.034 259.733);
-    --color-gray-800: oklch(27.8% 0.033 256.848);
     --color-gray-900: oklch(21% 0.034 264.665);
     --color-white: #fff;
     --spacing: 0.25rem;
@@ -33,6 +32,11 @@
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
+    --color-pine-400: #263721;
+    --color-pine-500: #22311c;
+    --color-pine-600: #1e2b1a;
+    --color-pine-700: #263621;
+    --color-pine-800: #171f14;
   }
 }
 @layer base {
@@ -186,9 +190,6 @@
 @layer utilities {
   .pointer-events-none {
     pointer-events: none;
-  }
-  .static {
-    position: static;
   }
   .m-0 {
     margin: calc(var(--spacing) * 0);
@@ -351,11 +352,23 @@
   .bg-gray-700 {
     background-color: var(--color-gray-700);
   }
-  .bg-gray-800 {
-    background-color: var(--color-gray-800);
-  }
   .bg-gray-900 {
     background-color: var(--color-gray-900);
+  }
+  .bg-pine-400 {
+    background-color: var(--color-pine-400);
+  }
+  .bg-pine-500 {
+    background-color: var(--color-pine-500);
+  }
+  .bg-pine-600 {
+    background-color: var(--color-pine-600);
+  }
+  .bg-pine-700 {
+    background-color: var(--color-pine-700);
+  }
+  .bg-pine-800 {
+    background-color: var(--color-pine-800);
   }
   .bg-slate-700 {
     background-color: var(--color-slate-700);
@@ -464,6 +477,20 @@
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-gray-600);
+      }
+    }
+  }
+  .hover\:bg-pine-400 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-pine-400);
+      }
+    }
+  }
+  .hover\:bg-pine-500 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-pine-500);
       }
     }
   }

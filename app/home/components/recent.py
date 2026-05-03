@@ -2,7 +2,7 @@ from nicegui import ui
 
 
 def projects():
-    with ui.card().classes("p-4 flex-1 gap-0 shadow-none bg-gray-600 rounded-lg"):
+    with ui.card().classes("p-4 flex-1 gap-0 shadow-none bg-pine-400 rounded-lg"):
         ui.label("Recent projects").classes(
             "text-2xl font-bold text-center text-gray-300"
         )
