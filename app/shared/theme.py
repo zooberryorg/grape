@@ -113,9 +113,11 @@ def apply():
             padding: 0 !important;
         }    
                
-               /* Kill Quasar's ::before hover overlay on flat buttons */
-.grape-button.q-btn--flat::before {
-    background: transparent !important;
-    opacity: 0 !important;
-}
+        .q-focus-helper {
+            transition: all 0.4s ease-in-out !important;
+        }
+               
+        .focus-button .q-focus-helper {
+            background-color: var(--color-gold-400) !important;
+        }
                """)
