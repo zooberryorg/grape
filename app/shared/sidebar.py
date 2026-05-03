@@ -25,5 +25,6 @@ class Sidebar:
                 btn.classes("w-full")
                 is_active = item["label"] == self.active_item
                 if is_active:
-                    btn.classes("bg-blue-500 text-white")
+                    btn.classes("bg-gold-400 text-gold-700")
+                    btn.props("color='accent_secondary'")
                 btn.on_click(lambda url=item["url"]: ui.navigate.to(url))

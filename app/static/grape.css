@@ -37,6 +37,11 @@
     --color-pine-600: #1e2b1a;
     --color-pine-700: #263621;
     --color-pine-800: #171f14;
+    --color-gold-400: #d6b15d;
+    --color-gold-500: #d4a435;
+    --color-gold-600: #b68a2a;
+    --color-gold-700: #8f6b1f;
+    --color-gold-800: #6b4f16;
   }
 }
 @layer base {
@@ -340,17 +345,11 @@
   .border-gray-700 {
     border-color: var(--color-gray-700);
   }
-  .bg-blue-500 {
-    background-color: var(--color-blue-500);
+  .bg-gold-400 {
+    background-color: var(--color-gold-400);
   }
   .bg-gray-300 {
     background-color: var(--color-gray-300);
-  }
-  .bg-gray-600 {
-    background-color: var(--color-gray-600);
-  }
-  .bg-gray-700 {
-    background-color: var(--color-gray-700);
   }
   .bg-gray-900 {
     background-color: var(--color-gray-900);
@@ -358,14 +357,8 @@
   .bg-pine-400 {
     background-color: var(--color-pine-400);
   }
-  .bg-pine-500 {
-    background-color: var(--color-pine-500);
-  }
   .bg-pine-600 {
     background-color: var(--color-pine-600);
-  }
-  .bg-pine-700 {
-    background-color: var(--color-pine-700);
   }
   .bg-pine-800 {
     background-color: var(--color-pine-800);
@@ -420,6 +413,15 @@
     --tw-font-weight: var(--font-weight-bold);
     font-weight: var(--font-weight-bold);
   }
+  .text-gold-600 {
+    color: var(--color-gold-600);
+  }
+  .text-gold-700 {
+    color: var(--color-gold-700);
+  }
+  .text-gold-800 {
+    color: var(--color-gold-800);
+  }
   .text-gray-300 {
     color: var(--color-gray-300);
   }
@@ -473,24 +475,10 @@
       }
     }
   }
-  .hover\:bg-gray-600 {
-    &:hover {
-      @media (hover: hover) {
-        background-color: var(--color-gray-600);
-      }
-    }
-  }
   .hover\:bg-pine-400 {
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-pine-400);
-      }
-    }
-  }
-  .hover\:bg-pine-500 {
-    &:hover {
-      @media (hover: hover) {
-        background-color: var(--color-pine-500);
       }
     }
   }
