@@ -26,7 +26,7 @@ def canvas():
     last_frame_count = {"n": 0}
 
     def tick():
-        frames = converter_state.converted_signals
+        frames = converter_state.loaded_zta_files[-1].signals
         if not frames or len(frames) == last_frame_count["n"]:
             return
 

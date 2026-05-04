@@ -47,7 +47,6 @@ class ZtaToImageState(AppState):
     loaded_zta_files: list[ZtaFile] = field(default_factory=list)
     export_format_options: list[str] = field(default_factory=lambda: ["PNG", "GIF"])
     has_converted_image: bool = False
-    converted_signals: list[str] = field(default_factory=list)
     current_frame_index: int = 0
     bit_depth: str = "8"
     compression_level: int = 0
