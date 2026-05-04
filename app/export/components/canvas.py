@@ -20,11 +20,12 @@ def canvas():
                 ui.label("No image loaded").classes("text-gray-400")
 
         ui.html(
-            '<canvas id="zta-canvas" style="image-rendering: pixelated; display: block;"></canvas>'
-        )
-
-        ui.html(
-            '<canvas id="zta-canvas-background" style="image-rendering: pixelated; display: none;"></canvas>'
+            '''
+            <div style="position: relative; display: inline-block;">
+                <canvas id="zta-canvas-background" style="image-rendering: pixelated; display: none;"></canvas>
+                <canvas id="zta-canvas" style="image-rendering: pixelated; display: block; position: absolute; top: 0; left: 0;"></canvas>
+            </div>
+            '''
         )
 
     last_frame_count = {"n": 0}
