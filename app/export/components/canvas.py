@@ -23,10 +23,9 @@ def canvas():
             '<canvas id="zta-canvas" style="image-rendering: pixelated; display: block;"></canvas>'
         )
 
-        with ui.html(
+        ui.html(
             '<canvas id="zta-canvas-background" style="image-rendering: pixelated; display: none;"></canvas>'
-        ) as background_canvas:
-            pass
+        )
 
     last_frame_count = {"n": 0}
 
@@ -45,32 +44,41 @@ def canvas():
 
         bg_json = None
         if has_background:
-            # Show the background frame
-            background_canvas.set_style("display", "block")
             bg_json = json.dumps(
-                {"pixels": frames[0]["pixels"], "width": frames[0]["width"], "height": frames[0]["height"]}
+                {"pixels": frames[-1]["pixels"], "width": frames[-1]["width"], "height": frames[-1]["height"]}
             )
 
-        # frames object
-        frames_json = json.dumps(
-            [
-                {"pixels": f["pixels"], "width": f["width"], "height": f["height"]}
-                for f in (frames[-1:] if has_background else frames)
-            ]
-        )
+        frames_json = json.dumps([
+            {"pixels": f["pixels"], "width": f["width"], "height": f["height"]}
+            for f in (frames[:-1] if has_background else frames)
+        ])
 
         ui.run_javascript(f"""
             if (window._ztaTimer) clearInterval(window._ztaTimer);
+
+            // bg frame
+            const bgData = {bg_json if bg_json else 'null'};
+            if (bgData) {{
+                const bgCanvas = document.getElementById("zta-canvas-background");
+                bgCanvas.style.display = "block";
+                bgCanvas.width = bgData.width;
+                bgCanvas.height = bgData.height;
+                const bgCtx = bgCanvas.getContext("2d");
+                bgCtx.putImageData(
+                    new ImageData(new Uint8ClampedArray(bgData.pixels), bgData.width, bgData.height),
+                    0, 0
+                );
+            }}
+
+            // ani frames
             const canvas = document.getElementById("zta-canvas");
             const ctx = canvas.getContext("2d");
-
             const rawFrames = {frames_json};
             const frames = rawFrames.map(f => ({{
                 imageData: new ImageData(new Uint8ClampedArray(f.pixels), f.width, f.height),
                 width: f.width,
                 height: f.height,
             }}));
-
             let idx = 0;
             window._ztaTimer = setInterval(() => {{
                 const frame = frames[idx];
