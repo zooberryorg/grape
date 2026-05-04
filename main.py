@@ -27,7 +27,8 @@ if __name__ in {"__main__", "__mp_main__"}:
     ui.run(
         native=True,
         window_size=(900, 600),
-        reload=False,
+        reload=True,
         port=native.find_open_port(),
         title="GrAPE",
+        reconnect_timeout=600
     )
