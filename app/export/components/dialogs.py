@@ -112,7 +112,7 @@ def load_files():
             ]
             converter_state.loaded_zta_files[
                 -1
-            ].has_background_frame = zta_obj.data().has_background
+            ].has_background_frame = zta_obj.has_background
             print(
                 f"ZTA file has background frame: {converter_state.loaded_zta_files[-1].has_background_frame}"
             )

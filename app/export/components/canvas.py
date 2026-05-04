@@ -23,10 +23,19 @@ def canvas():
             '<canvas id="zta-canvas" style="image-rendering: pixelated; display: block;"></canvas>'
         )
 
+        with ui.html(
+            '<canvas id="zta-canvas-background" style="image-rendering: pixelated; display: none;"></canvas>'
+        ) as background_canvas:
+            pass
+
     last_frame_count = {"n": 0}
 
     def tick():
+        if not converter_state.loaded_zta_files:
+            return
+
         frames = converter_state.loaded_zta_files[-1].signals
+        has_background = converter_state.loaded_zta_files[-1].has_background_frame
         if not frames or len(frames) == last_frame_count["n"]:
             return
 
@@ -34,11 +43,19 @@ def canvas():
         placeholder_visible["value"] = False
         placeholder.set_visibility(False)
 
+        bg_json = None
+        if has_background:
+            # Show the background frame
+            background_canvas.set_style("display", "block")
+            bg_json = json.dumps(
+                {"pixels": frames[0]["pixels"], "width": frames[0]["width"], "height": frames[0]["height"]}
+            )
+
         # frames object
         frames_json = json.dumps(
             [
                 {"pixels": f["pixels"], "width": f["width"], "height": f["height"]}
-                for f in frames
+                for f in (frames[-1:] if has_background else frames)
             ]
         )
 
