@@ -35,10 +35,12 @@ def canvas():
         placeholder.set_visibility(False)
 
         # frames object
-        frames_json = json.dumps([
-            {"pixels": f["pixels"], "width": f["width"], "height": f["height"]}
-            for f in frames
-        ])
+        frames_json = json.dumps(
+            [
+                {"pixels": f["pixels"], "width": f["width"], "height": f["height"]}
+                for f in frames
+            ]
+        )
 
         ui.run_javascript(f"""
             if (window._ztaTimer) clearInterval(window._ztaTimer);
