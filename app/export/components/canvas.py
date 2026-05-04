@@ -34,34 +34,32 @@ def canvas():
         placeholder_visible["value"] = False
         placeholder.set_visibility(False)
 
-        width = frames[0]["width"]
-        height = frames[0]["height"]
-
-        # send all pixel arrays to JS once
-        frames_json = json.dumps([f["pixels"] for f in frames])
-        interval_ms = 100
+        # frames object
+        frames_json = json.dumps([
+            {"pixels": f["pixels"], "width": f["width"], "height": f["height"]}
+            for f in frames
+        ])
 
         ui.run_javascript(f"""
             if (window._ztaTimer) clearInterval(window._ztaTimer);
-
             const canvas = document.getElementById("zta-canvas");
-            canvas.width = {width};
-            canvas.height = {height};
             const ctx = canvas.getContext("2d");
 
             const rawFrames = {frames_json};
-
-            // convert each frame to ImageData once, up front
-            const frames = rawFrames.map(pixels => {{
-                const data = new Uint8ClampedArray(pixels);
-                return new ImageData(data, {width}, {height});
-            }});
+            const frames = rawFrames.map(f => ({{
+                imageData: new ImageData(new Uint8ClampedArray(f.pixels), f.width, f.height),
+                width: f.width,
+                height: f.height,
+            }}));
 
             let idx = 0;
             window._ztaTimer = setInterval(() => {{
-                ctx.putImageData(frames[idx], 0, 0);
+                const frame = frames[idx];
+                canvas.width = frame.width;
+                canvas.height = frame.height;
+                ctx.putImageData(frame.imageData, 0, 0);
                 idx = (idx + 1) % frames.length;
-            }}, {interval_ms});
+            }}, 100);
         """)
 
     ui.timer(0.5, tick)
