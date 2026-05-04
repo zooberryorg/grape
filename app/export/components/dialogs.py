@@ -94,6 +94,7 @@ def load_files():
                 buffer=b"",
                 palette_location=pal_location,
                 palette_buffer=b"",
+                has_background_frame=False,
             )
         )
         dialog.close()
@@ -103,12 +104,18 @@ def load_files():
         if zta_obj:
             buffer = ztaf.get_frame_buffer()
             converter_state.loaded_zta_files[-1].buffer = buffer
-            converter_state.converted_signals = [
+            converter_state.loaded_zta_files[-1].signals = [
                 signal_to_raw(
                     signal.pixels, signal.width, signal.height, signal.channels
                 )
                 for signal in buffer
             ]
+            converter_state.loaded_zta_files[
+                -1
+            ].has_background_frame = zta_obj.has_background
+            print(
+                f"ZTA file has background frame: {converter_state.loaded_zta_files[-1].has_background_frame}"
+            )
             converter_state.current_frame_index = 0
         else:
             ui.notify("Error loading ZTA file", color="gray")
