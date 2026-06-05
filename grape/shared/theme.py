@@ -12,11 +12,6 @@ def apply():
     add_style("/grape/static/grape.css")
     add_style("/grape/static/scrollbar.css")
     add_style("/grape/static/overrides.css", "text/tailwindcss")
-    ui.add_head_html(
-        """,
-        shared=True,
-    )
-
     ui.add_css("""
 
         .export-select .q-field__native,
