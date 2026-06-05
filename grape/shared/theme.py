@@ -11,7 +11,7 @@ def apply():
     ui.colors(primary="#adadad", shared=True, accent_secondary="#d6b15d")
     ui.add_head_html(
         """
-        <link rel="stylesheet" href="/app/static/grape.css">
+        <link rel="stylesheet" href="/grape/static/grape.css">
         <style>
             ::-webkit-scrollbar { display: none; }
             * {

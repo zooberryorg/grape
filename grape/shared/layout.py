@@ -1,6 +1,6 @@
 from contextlib import contextmanager
 from nicegui import ui
-from app.shared.sidebar import Sidebar
+from grape.shared.sidebar import Sidebar
 
 
 @contextmanager

@@ -1,12 +1,12 @@
 from nicegui import ui
-from app.home.components.navigation import (
+from grape.home.components.navigation import (
     start_navigation,
     quick_action_navigation,
     about_navigation,
 )
-from app.home.components.recent import projects
-from app.shared import theme
-from app.shared import layout
+from grape.home.components.recent import projects
+from grape.shared import theme
+from grape.shared import layout
 
 
 def dashboard():

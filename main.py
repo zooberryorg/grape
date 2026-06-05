@@ -2,8 +2,8 @@ import os
 import sys
 
 from nicegui import app, ui, native
-from app.home import entry
-from app.shared import theme
+from grape.home import entry
+from grape.shared import theme
 
 
 def get_static_path(relative: str) -> str:
@@ -19,10 +19,13 @@ def get_static_path(relative: str) -> str:
     return os.path.join(base, relative)
 
 
-app.add_static_files("/app/static", get_static_path("app/static"))
+# window config 
+app.add_static_files("/grape/static", get_static_path("grape/static"))
 app.native.window_args["resizable"] = True
 app.native.window_args["easy_drag"] = False
 app.native.window_args["draggable"] = False
+
+# run the app
 if __name__ in {"__main__", "__mp_main__"}:
     ui.run(
         native=True,

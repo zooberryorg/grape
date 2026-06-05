@@ -1,16 +1,16 @@
 from nicegui import ui
 
-from app.export.components.canvas import canvas_display
-from app.export.components.settings import (
+from grape.export.components.canvas import canvas_display
+from grape.export.components.settings import (
     background_options,
     export_button,
     select_export_format,
     compression_slider,
     advanced_options,
 )
-from app.export.components.dialogs import load_files
-from app.shared import theme
-from app.shared import layout
+from grape.export.components.dialogs import load_files
+from grape.shared import theme
+from grape.shared import layout
 
 
 def dashboard():
