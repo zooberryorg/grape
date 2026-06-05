@@ -1,0 +1,13 @@
+@layer overrides {
+    .grape-button.q-btn--flat::before {
+        background: transparent !important;
+        opacity: 0 !important;
+    }                
+    .grape-button {
+        @apply hover:!bg-red-700 hover:!border-gold-400;
+    }
+
+    .grape-button:hover {
+        @apply !bg-pine-800/70 !border-gold-400;
+    }
+}

@@ -1,5 +1,5 @@
 from nicegui import ui
-
+from grape.shared.utils import add_style, add_script
 
 def apply():
     ui.query("html, body").classes("h-screen m-0 p-0 flex flex-col overflow-hidden")
@@ -9,31 +9,10 @@ def apply():
     ui.query(".q-page").classes("flex flex-col flex-1 h-100 overflow-hidden")
     ui.query(".nicegui-content").classes("flex flex-col flex-1 p-0 min-h-0")
     ui.colors(primary="#adadad", shared=True, accent_secondary="#d6b15d")
+    add_style("/grape/static/grape.css")
+    add_style("/grape/static/scrollbar.css")
+    add_style("/grape/static/overrides.css", "text/tailwindcss")
     ui.add_head_html(
-        """
-        <link rel="stylesheet" href="/grape/static/grape.css">
-        <style>
-            ::-webkit-scrollbar { display: none; }
-            * {
-                -ms-overflow-style: none;
-                scrollbar-width: none;
-            }
-        </style>
-        <style type="text/tailwindcss">
-            @layer overrides {
-                .grape-button.q-btn--flat::before {
-                    background: transparent !important;
-                    opacity: 0 !important;
-                }                
-                .grape-button {
-                    @apply hover:!bg-red-700 hover:!border-gold-400;
-                }
-
-                .grape-button:hover {
-                    @apply !bg-pine-800/70 !border-gold-400;
-                }
-            }
-        </style>        
         """,
         shared=True,
     )
