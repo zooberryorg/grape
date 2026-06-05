@@ -1,12 +1,12 @@
 from nicegui import ui
-from grape.home.components.navigation import (
+from grape.pages.home.components.navigation import (
     start_navigation,
     quick_action_navigation,
     about_navigation,
 )
-from grape.home.components.recent import projects
+from grape.pages.home.components.recent import projects
 from grape.shared import theme
-from grape.shared import layout
+from grape.shared.layout import base
 
 
 def dashboard():
@@ -28,8 +28,7 @@ def dashboard():
             # projects()
 
 
-@ui.page("/")
 def home():
     theme.apply()
-    with layout.frame("GrAPE", active_item="Home", components=[dashboard]):
+    with base.frame("GrAPE", active_item="Home", components=[dashboard]):
         pass

@@ -1,16 +1,16 @@
 from nicegui import ui
 
-from grape.export.components.canvas import canvas_display
-from grape.export.components.settings import (
+from grape.pages.export.components.canvas import canvas_display
+from grape.pages.export.components.settings import (
     background_options,
     export_button,
     select_export_format,
     compression_slider,
     advanced_options,
 )
-from grape.export.components.dialogs import load_files
+from grape.pages.export.components.dialogs import load_files
 from grape.shared import theme
-from grape.shared import layout
+from grape.shared.layout import base
 
 
 def dashboard():
@@ -41,7 +41,7 @@ def convert():
     """
     theme.apply()
 
-    with layout.frame(
+    with base.frame(
         "Export ZTA graphic as new image format",
         active_item="Home",
         components=[dashboard],

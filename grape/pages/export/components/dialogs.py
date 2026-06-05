@@ -1,7 +1,7 @@
 from nicegui import ui, run
 from data.state import converter_state, ZtaFile
 from pyzta import ZtaF
-from grape.export.files import quick_validate_files, signal_to_raw
+from grape.pages.export.files import quick_validate_files, signal_to_raw
 import tkinter as tk
 from tkinter import filedialog
 from PIL import Image

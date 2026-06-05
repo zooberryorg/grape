@@ -2,7 +2,7 @@ import os
 import sys
 
 from nicegui import app, ui, native
-from grape.home import entry
+from grape.pages.home import entry
 from grape.shared import theme
 from grape.shared.theme import grape_theme_apply
 
