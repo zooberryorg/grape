@@ -50,5 +50,5 @@ npm install tailwindcss @tailwindcss/cli
 Point the Tailwind CLI to the input.css file in the repo:
 
 ```bash
-npx tailwindcss -i ./app/static/input.css -o ./app/static/grape.css --watch
+npx tailwindcss -i ./grape/static/input.css -o ./grape/static/grape.css --watch
 ```
