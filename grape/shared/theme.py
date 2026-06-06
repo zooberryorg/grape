@@ -13,5 +13,5 @@ def grape_theme_apply():
     ui.colors(primary="#adadad", shared=True, accent_secondary="#d6b15d")
     # ----------- External stylesheets -----------
     add_inline_style_from_file(f"{STATIC_DIR}\\grape.css")
-    add_style(f"{STATIC_DIR}\\scrollbar.css")
-    add_style(f"{STATIC_DIR}\\overrides.css")
+    add_inline_style_from_file(f"{STATIC_DIR}\\scrollbar.css")
+    add_inline_style_from_file(f"{STATIC_DIR}\\overrides.css")
