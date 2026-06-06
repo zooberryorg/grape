@@ -1,7 +1,7 @@
-from data.state import converter_state
+from grape.shared.state import converter_state
 from nicegui import ui
-from app.export.components.dialogs import export_dialog
-from app.export.events import (
+from grape.pages.export.components.dialogs import export_dialog
+from grape.pages.export.events import (
     update_compression,
     update_transparent_background,
     update_bitdepth,

@@ -1,6 +1,6 @@
 from nicegui import ui
-from app.export import entry
-from app.home import entry
+from grape.pages.export import entry
+from grape.pages.home import entry
 
 
 class Sidebar:
