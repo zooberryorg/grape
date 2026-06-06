@@ -94,3 +94,7 @@
     .focus-button .q-focus-helper {
         background-color: var(--color-gold-400) !important;
     }
+
+    .nicegui-sub-pages {
+        width: 100% !important;
+    }
