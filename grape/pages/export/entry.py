@@ -9,7 +9,7 @@ from grape.pages.export.components.settings import (
     advanced_options,
 )
 from grape.pages.export.components.dialogs import load_files
-from grape.shared import theme
+from grape.shared.theme import grape_theme_apply
 from grape.shared.layout import base
 
 
@@ -37,7 +37,7 @@ def run():
     """
     Converts ZTA files to other image formats.
     """
-    theme.apply()
+    grape_theme_apply()
 
     with base.frame(
         "Export ZTA graphic as new image format",

@@ -5,7 +5,7 @@ from grape.pages.home.components.navigation import (
     about_navigation,
 )
 from grape.pages.home.components.recent import projects
-from grape.shared import theme
+from grape.shared.theme import grape_theme_apply
 from grape.shared.layout import base
 
 
@@ -29,6 +29,6 @@ def dashboard():
 
 
 def run():
-    theme.apply()
+    grape_theme_apply()
     with base.frame("GrAPE", active_item="Home", components=[dashboard]):
         pass
