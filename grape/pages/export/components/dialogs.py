@@ -1,5 +1,5 @@
 from nicegui import ui, run
-from data.state import converter_state, ZtaFile
+from grape.shared.state import converter_state, ZtaFile
 from pyzta import ZtaF
 from grape.pages.export.files import quick_validate_files, signal_to_raw
 import tkinter as tk

@@ -1,4 +1,4 @@
-from data.state import converter_state
+from grape.shared.state import converter_state
 from nicegui import ui
 from grape.pages.export.components.dialogs import export_dialog
 from grape.pages.export.events import (

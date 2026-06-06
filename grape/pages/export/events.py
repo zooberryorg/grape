@@ -1,4 +1,4 @@
-from data.state import converter_state
+from grape.shared.state import converter_state
 
 
 def update_transparent_background(checked):

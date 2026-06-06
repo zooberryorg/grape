@@ -1,6 +1,6 @@
 from nicegui import ui
 from PIL import Image
-from data.state import converter_state
+from grape.shared.state import converter_state
 
 
 def signal_to_raw(pixels, width, height, channels) -> dict:

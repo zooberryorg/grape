@@ -33,8 +33,6 @@ def dashboard():
             # compression_slider()
             # advanced_options()
 
-
-@ui.page("/convert")
 def convert():
     """
     Converts ZTA files to other image formats.
