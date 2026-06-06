@@ -28,7 +28,7 @@ def dashboard():
             # projects()
 
 
-def home():
+def run():
     theme.apply()
     with base.frame("GrAPE", active_item="Home", components=[dashboard]):
         pass

@@ -1,6 +1,7 @@
 from nicegui import ui
-import grape.pages
+from grape.pages import home, export
 
-with ui.sub_pages as sp:
-    sp.add("/", grape.pages.home.entry)
-    sp.add("/convert", grape.pages.export.entry.convert)
+def init_pages():
+    with ui.sub_pages() as sp:
+        sp.add("/", home.entry.run())
+        sp.add("/convert", export.entry.run())
