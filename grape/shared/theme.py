@@ -12,6 +12,7 @@ def grape_theme_apply():
     ui.query(".nicegui-content").classes("flex flex-col flex-1 p-0 min-h-0")
     ui.colors(primary="#adadad", shared=True, accent_secondary="#d6b15d")
     # ----------- External stylesheets -----------
+    add_script("https://cdn.jsdelivr.net/npm/fabric@latest/dist/index.min.js")
     add_inline_style_from_file(f"{STATIC_DIR}\\grape.css")
     add_inline_style_from_file(f"{STATIC_DIR}\\scrollbar.css")
     add_inline_style_from_file(f"{STATIC_DIR}\\overrides.css")
