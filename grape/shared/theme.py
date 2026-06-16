@@ -2,6 +2,7 @@ from nicegui import ui
 from grape.shared.utils import add_style, add_script, add_inline_style_from_file
 from grape.shared.settings import STATIC_DIR
 
+
 def grape_theme_apply():
     # ----------- NiceGui theme overrides -----------
     ui.query("html, body").classes("h-screen m-0 p-0 flex flex-col overflow-hidden")

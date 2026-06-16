@@ -20,12 +20,12 @@ def canvas():
                 ui.label("No image loaded").classes("text-gray-400")
 
         ui.html(
-            '''
+            """
             <div style="position: relative; display: inline-block;">
                 <canvas id="zta-canvas-background" style="image-rendering: pixelated; display: none;"></canvas>
                 <canvas id="zta-canvas" style="image-rendering: pixelated; display: block; position: absolute; top: 0; left: 0;"></canvas>
             </div>
-            '''
+            """
         )
 
     last_frame_count = {"n": 0}
@@ -46,19 +46,25 @@ def canvas():
         bg_json = None
         if has_background:
             bg_json = json.dumps(
-                {"pixels": frames[-1]["pixels"], "width": frames[-1]["width"], "height": frames[-1]["height"]}
+                {
+                    "pixels": frames[-1]["pixels"],
+                    "width": frames[-1]["width"],
+                    "height": frames[-1]["height"],
+                }
             )
 
-        frames_json = json.dumps([
-            {"pixels": f["pixels"], "width": f["width"], "height": f["height"]}
-            for f in (frames[:-1] if has_background else frames)
-        ])
+        frames_json = json.dumps(
+            [
+                {"pixels": f["pixels"], "width": f["width"], "height": f["height"]}
+                for f in (frames[:-1] if has_background else frames)
+            ]
+        )
 
         ui.run_javascript(f"""
             if (window._ztaTimer) clearInterval(window._ztaTimer);
 
             // bg frame
-            const bgData = {bg_json if bg_json else 'null'};
+            const bgData = {bg_json if bg_json else "null"};
             if (bgData) {{
                 const bgCanvas = document.getElementById("zta-canvas-background");
                 bgCanvas.style.display = "block";
