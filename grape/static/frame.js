@@ -52,6 +52,14 @@ function makeCel({ id, pixels, width, height, offsetX = 0, offsetY = 0 }) {
   return { id, source, width, height, offsetX, offsetY };
 }
 
+class LayerStack {
+    constructor() {
+        this.background = []; // 0 or 1 background frame
+        this.shadow = []; // ordered frames (animated)
+        this.regular = []; // ordered frames (animated)
+    }
+}
+
 window.editor = {
   canvas: null,
   running: false,
