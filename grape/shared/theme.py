@@ -1,5 +1,10 @@
 from nicegui import ui
-from grape.shared.utils import add_style, add_script, add_inline_style_from_file
+from grape.shared.utils import (
+    add_style,
+    add_script,
+    add_inline_style_from_file,
+    add_inline_script_from_file,
+)
 from grape.shared.settings import STATIC_DIR
 
 
@@ -14,6 +19,7 @@ def grape_theme_apply():
     ui.colors(primary="#adadad", shared=True, accent_secondary="#d6b15d")
     # ----------- External stylesheets -----------
     add_script("https://cdn.jsdelivr.net/npm/fabric@latest/dist/index.min.js")
+    add_inline_script_from_file(f"{STATIC_DIR}\\frame.js")
     add_inline_style_from_file(f"{STATIC_DIR}\\grape.css")
     add_inline_style_from_file(f"{STATIC_DIR}\\scrollbar.css")
     add_inline_style_from_file(f"{STATIC_DIR}\\overrides.css")

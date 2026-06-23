@@ -110,9 +110,7 @@ def load_files():
                 )
                 for signal in buffer
             ]
-            converter_state.zta_files[
-                -1
-            ].has_background_frame = zta_obj.has_background
+            converter_state.zta_files[-1].has_background_frame = zta_obj.has_background
             print(
                 f"ZTA file has background frame: {converter_state.zta_files[-1].has_background_frame}"
             )

@@ -20,83 +20,36 @@ def canvas():
                 ui.label("No image loaded").classes("text-gray-400")
 
         ui.html(
-            """
-            <div style="position: relative; display: inline-block;">
-                <canvas id="zta-canvas-background" style="image-rendering: pixelated; display: none;"></canvas>
-                <canvas id="zta-canvas" style="image-rendering: pixelated; display: block; position: absolute; top: 0; left: 0;"></canvas>
-            </div>
-            """
-        )
+            '<canvas id="zta-canvas" style="image-rendering: pixelated;"></canvas>'
+        ).classes("w-full h-full")
 
     last_frame_count = {"n": 0}
 
     def tick():
         if not state.zta_files:
             return
-
-        # recontextualize variables for loop
-        frames = state.zta_files[-1].signals
-        has_background = state.zta_files[-1].has_background_frame
-
+        zta = state.zta_files[-1]
+        frames = zta.signals
         if not frames or len(frames) == last_frame_count["n"]:
             return
-
         last_frame_count["n"] = len(frames)
-        placeholder_visible["value"] = False
         placeholder.set_visibility(False)
 
-        bg_json = None
-        if has_background:
-            bg_json = json.dumps(
-                {
-                    "pixels": frames[-1]["pixels"],
-                    "width": frames[-1]["width"],
-                    "height": frames[-1]["height"],
-                }
-            )
+        has_bg = zta.has_background_frame
+        body = frames[:-1] if has_bg else frames
+        bg = frames[-1] if has_bg else None
+        pick = lambda f: {
+            "pixels": f["pixels"],
+            "width": f["width"],
+            "height": f["height"],
+        }
 
-        frames_json = json.dumps(
-            [
-                {"pixels": f["pixels"], "width": f["width"], "height": f["height"]}
-                for f in (frames[:-1] if has_background else frames)
-            ]
-        )
-
-        ui.run_javascript(f"""
-            if (window._ztaTimer) clearInterval(window._ztaTimer);
-
-            // bg frame
-            const bgData = {bg_json if bg_json else "null"};
-            if (bgData) {{
-                const bgCanvas = document.getElementById("zta-canvas-background");
-                bgCanvas.style.display = "block";
-                bgCanvas.width = bgData.width;
-                bgCanvas.height = bgData.height;
-                const bgCtx = bgCanvas.getContext("2d");
-                bgCtx.putImageData(
-                    new ImageData(new Uint8ClampedArray(bgData.pixels), bgData.width, bgData.height),
-                    0, 0
-                );
-            }}
-
-            // ani frames
-            const canvas = document.getElementById("zta-canvas");
-            const ctx = canvas.getContext("2d");
-            const rawFrames = {frames_json};
-            const frames = rawFrames.map(f => ({{
-                imageData: new ImageData(new Uint8ClampedArray(f.pixels), f.width, f.height),
-                width: f.width,
-                height: f.height,
-            }}));
-            let idx = 0;
-            window._ztaTimer = setInterval(() => {{
-                const frame = frames[idx];
-                canvas.width = frame.width;
-                canvas.height = frame.height;
-                ctx.putImageData(frame.imageData, 0, 0);
-                idx = (idx + 1) % frames.length;
-            }}, 100);
-        """)
+        payload = {
+            "regular": [pick(f) for f in body],
+            "shadow": [],
+            "background": pick(bg) if bg else None,
+        }
+        ui.run_javascript(f"window.editor.loadStack({json.dumps(payload)})")
 
     ui.timer(0.5, tick)
 
