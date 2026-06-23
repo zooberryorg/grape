@@ -11,9 +11,9 @@ A modern take on the classic [APE tool](https://zootycoon.fandom.com/wiki/APE) m
 - [ ] Searchable database of all game assets, their IDs, and location
 - [ ] Bulk export of ZTA files
 - [ ] Image processing features for quick edits to graphics such as:
-    - [ ] Sharpening
-    - [ ] Color correction
-    - [ ] Resizing
+  - [ ] Sharpening
+  - [ ] Color correction
+  - [ ] Resizing
 
 ## Tech Stack
 
@@ -23,11 +23,13 @@ A modern take on the classic [APE tool](https://zootycoon.fandom.com/wiki/APE) m
 ## Building and Running
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/zooberryorg/grape.git
    ```
 
 2. Install dependencies:
+
    ```bash
    pip install -r requirements.txt
    ```
@@ -35,7 +37,7 @@ A modern take on the classic [APE tool](https://zootycoon.fandom.com/wiki/APE) m
 3. Run the application:
    ```bash
     python main.py
-    ```
+   ```
 
 ## Developers
 
