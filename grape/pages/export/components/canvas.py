@@ -1,5 +1,5 @@
 from nicegui import ui
-from grape.shared.state import converter_state
+from grape.shared.state import converter_state as state
 import json
 from grape.pages.export.components.actionbar import actions
 
@@ -31,11 +31,11 @@ def canvas():
     last_frame_count = {"n": 0}
 
     def tick():
-        if not converter_state.loaded_zta_files:
+        if not state.loaded_zta_files:
             return
 
-        frames = converter_state.loaded_zta_files[-1].signals
-        has_background = converter_state.loaded_zta_files[-1].has_background_frame
+        frames = state.loaded_zta_files[-1].signals
+        has_background = state.loaded_zta_files[-1].has_background_frame
         if not frames or len(frames) == last_frame_count["n"]:
             return
 
