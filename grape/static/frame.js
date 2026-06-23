@@ -103,7 +103,7 @@ class LayerStack {
   }
 }
 
-/** 
+/**
  *   CanvasView class manages the Fabric.js canvas and its frames. Aka renders
  *   the frames to the canvas and handles user interactions.
  *
@@ -136,10 +136,16 @@ class CanvasView {
     this.canvas.add(
       this.slots.background,
       this.slots.shadow,
-      this.slots.regular
+      this.slots.regular,
     );
   }
 
+  /**
+   *   Renders the stack of frames on the canvas
+   *
+   *   @param stack - The stack of frames to render
+   *   @param counter - The counter for animated frames to determine which frame to show
+   */
   renderStack(stack, counter) {
     this._paint(this.slots.background, stack.background, 0); // static bg
     this._paint(this.slots.shadow, stack.shadow, counter); // animated shadow
