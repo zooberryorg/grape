@@ -24,6 +24,18 @@ class Frame extends FabricImage {
   }
 }
 
+function makeCel({id, pixels, width, height, offsetX = 0, offsetY = 0}) {
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+
+    canvas.getContext("2d").putImageData(
+        new ImageData(new Uint8ClampedArray(pixels), width, height), 0, 0
+    );
+    
+    return { id, source, width, height, offsetX, offsetY };
+}
+
 window.editor = {
   canvas: null,
   running: false,
