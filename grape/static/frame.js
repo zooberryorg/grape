@@ -199,6 +199,8 @@ window.editor = {
       return false;
     }
 
+    this.init(canvasId);
+
     return true;
   },
 
@@ -284,6 +286,8 @@ window.editor = {
 
     // if no frames, return a default bounds
     if (maxX === -Infinity) {
+      return null;
+    } else {
       return { x: minX, y: minY, w: maxX - minX, h: maxY - minY };
     }
   },
@@ -332,10 +336,10 @@ window.editor = {
       0,
       zoom,
       (W - bounds.w * zoom) / 2 - bounds.x * zoom, // center horiz
-      (H - bounds.h * zoom) / 2 - bounds.y * zoom // center vert
+      (H - bounds.h * zoom) / 2 - bounds.y * zoom, // center vert
     ];
 
     this.canvas.setViewportTransform(vpt);
     this.canvas.requestRenderAll();
-  }
+  },
 };
