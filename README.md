@@ -54,3 +54,15 @@ Point the Tailwind CLI to the input.css file in the repo:
 ```bash
 npx tailwindcss -i ./grape/static/input.css -o ./grape/static/grape.css --watch
 ```
+
+Install Prettier for code formatting:
+
+```bash
+npm install --save-dev --save-exact prettier
+```
+
+Run Prettier to format code:
+
+```bash
+npx prettier . --write
+```
