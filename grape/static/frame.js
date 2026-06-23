@@ -152,4 +152,19 @@ class CanvasView {
     this._paint(this.slots.regular, stack.regular, counter); // animated regular
     this.canvas.requestRenderAll();
   }
+
+  _paint(slot, frames, counter) {
+    if (!frames.length) {
+      slot.visible = false;
+      return;
+    }
+    const frame = frames[counter % frames.length];
+    if (slot._frameId !== frame.id) {
+      slot.setElement(frame.source);
+      // make sure slot visible and correct size
+      slot.set({ width: frame.width, height: frame.height });
+      slot._frameId = frame.id;
+    }
+    slot.set({ left: frame.offsetX, top: frame.offsetY, visible: true });
+  }
 }
