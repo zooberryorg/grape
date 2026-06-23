@@ -168,3 +168,31 @@ class CanvasView {
     slot.set({ left: frame.offsetX, top: frame.offsetY, visible: true });
   }
 }
+
+window.editor = {
+  canvas: null,
+  view: null,
+  stack: new LayerStack(),
+  counter: 0,
+  _timer: null,
+  fps: 10,
+
+  ensure(canvasId) {
+    if (this.canvas) {
+      return true;
+    }
+
+    if (typeof fabric === "undefined") {
+      console.error("Fabric.js is not loaded.");
+      return false;
+    }
+
+    const el = document.getElementById(canvasId);
+    if (!el) {
+      console.error(`Canvas element with id "${canvasId}" not found.`);
+      return false;
+    }
+
+    return true;
+  }
+}
