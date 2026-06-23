@@ -31,11 +31,12 @@ def canvas():
     last_frame_count = {"n": 0}
 
     def tick():
-        if not state.loaded_zta_files:
+        if not state.zta_files:
             return
 
-        frames = state.loaded_zta_files[-1].signals
-        has_background = state.loaded_zta_files[-1].has_background_frame
+        frames = state.zta_files[-1].signals
+        has_background = state.zta_files[-1].has_background_frame
+        
         if not frames or len(frames) == last_frame_count["n"]:
             return
 
