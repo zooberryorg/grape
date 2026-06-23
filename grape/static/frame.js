@@ -94,7 +94,7 @@ class LayerStack {
    */
   move(fromKind, index, toKind) {
     const frame = this.layer(fromKind).splice(index, 1)[0];
-    
+
     if (toKind === "background") {
       this.regular.push(...this.background); // move existing bg to regular
       this.background = [frame];
@@ -261,5 +261,30 @@ window.editor = {
     this.stack = stack;
     this.counter = 0;
     this.fit();
+  },
+
+  contentBounds() {
+    let minX = Infinity;
+    let minY = Infinity;
+    let maxX = -Infinity;
+    let maxY = -Infinity;
+
+    const scan = (frames) => {
+      frames.forEach((f) => {
+        minX = Math.min(minX, f.offsetX);
+        minY = Math.min(minY, f.offsetY);
+        maxX = Math.max(maxX, f.offsetX + f.width);
+        maxY = Math.max(maxY, f.offsetY + f.height);
+      });
+    };
+
+    scan(this.stack.background);
+    scan(this.stack.shadow);
+    scan(this.stack.regular);
+
+    // if no frames, return a default bounds
+    if (maxX === -Infinity) {
+      return { x: minX, y: minY, w: maxX - minX, h: maxY - minY };
+    }
   },
 };
