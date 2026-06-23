@@ -139,4 +139,11 @@ class CanvasView {
       this.slots.regular
     );
   }
+
+  renderStack(stack, counter) {
+    this._paint(this.slots.background, stack.background, 0); // static bg
+    this._paint(this.slots.shadow, stack.shadow, counter); // animated shadow
+    this._paint(this.slots.regular, stack.regular, counter); // animated regular
+    this.canvas.requestRenderAll();
+  }
 }
