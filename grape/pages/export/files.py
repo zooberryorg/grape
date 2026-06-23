@@ -26,7 +26,7 @@ def quick_validate_files():
     seen = set()
     valid = []
 
-    for zta_file in list(converter_state.loaded_zta_files):
+    for zta_file in list(converter_state.zta_files):
         # if it has an extension, invalid file
         print(f"Validating file: {zta_file.location}")
         if "." in zta_file.location.split("/")[-1]:
@@ -36,8 +36,8 @@ def quick_validate_files():
         else:
             seen.add(zta_file.location)
             valid.append(zta_file)
-    converter_state.loaded_zta_files = valid
+    converter_state.zta_files = valid
 
 
 def delete_file(zta_file):
-    converter_state.loaded_zta_files.remove(zta_file)
+    converter_state.zta_files.remove(zta_file)

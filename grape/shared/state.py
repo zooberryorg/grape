@@ -44,7 +44,7 @@ class ZtaToImageState(AppState):
     background_color: str = "#ffffff"
     interlaced: bool = False
     optimize: bool = False
-    loaded_zta_files: list[ZtaFile] = field(default_factory=list)
+    zta_files: list[ZtaFile] = field(default_factory=list)
     export_format_options: list[str] = field(default_factory=lambda: ["PNG", "GIF"])
     has_converted_image: bool = False
     current_frame_index: int = 0

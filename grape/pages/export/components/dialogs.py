@@ -88,7 +88,7 @@ def load_files():
         pal_location = palette.value
 
         # convert tuple to string (get first item)
-        converter_state.loaded_zta_files.append(
+        converter_state.zta_files.append(
             ZtaFile(
                 location=zta_location,
                 buffer=b"",
@@ -103,18 +103,16 @@ def load_files():
         zta_obj = ztaf.load(zta_location, 0, pal_location)
         if zta_obj:
             buffer = ztaf.get_frame_buffer()
-            converter_state.loaded_zta_files[-1].buffer = buffer
-            converter_state.loaded_zta_files[-1].signals = [
+            converter_state.zta_files[-1].buffer = buffer
+            converter_state.zta_files[-1].signals = [
                 signal_to_raw(
                     signal.pixels, signal.width, signal.height, signal.channels
                 )
                 for signal in buffer
             ]
-            converter_state.loaded_zta_files[
-                -1
-            ].has_background_frame = zta_obj.has_background
+            converter_state.zta_files[-1].has_background_frame = zta_obj.has_background
             print(
-                f"ZTA file has background frame: {converter_state.loaded_zta_files[-1].has_background_frame}"
+                f"ZTA file has background frame: {converter_state.zta_files[-1].has_background_frame}"
             )
             converter_state.current_frame_index = 0
         else:
@@ -234,7 +232,7 @@ def export_dialog():
         # grab the current state
         await run.io_bound(
             data_to_files,
-            converter_state.loaded_zta_files,
+            converter_state.zta_files,
             converter_state.export_format,
             out_path.value,
         )

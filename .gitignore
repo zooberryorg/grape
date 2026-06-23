@@ -224,3 +224,6 @@ __marimo__/
 node_modules/
 package-lock.json
 package.json
+
+# grape
+**/grape.css
