@@ -308,7 +308,7 @@ window.editor = {
       return;
     }
 
-    this.canvas.setDimentions({ width: W, height: H });
+    this.canvas.setDimensions({ width: W, height: H });
 
     const bounds = this.contentBounds();
 
