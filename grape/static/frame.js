@@ -94,6 +94,7 @@ class LayerStack {
    */
   move(fromKind, index, toKind) {
     const frame = this.layer(fromKind).splice(index, 1)[0];
+    
     if (toKind === "background") {
       this.regular.push(...this.background); // move existing bg to regular
       this.background = [frame];
@@ -116,12 +117,14 @@ class CanvasView {
     const slot = (kind) => {
       const blank = document.createElement("canvas");
       blank.width = blank.height = 1;
+
       const f = new Frame(blank, {
         kind,
         imageSmoothing: false,
         selectable: true,
         objectCaching: false,
       });
+
       f.visible = false;
       return f;
     };
@@ -158,13 +161,16 @@ class CanvasView {
       slot.visible = false;
       return;
     }
+
     const frame = frames[counter % frames.length];
+
     if (slot._frameId !== frame.id) {
       slot.setElement(frame.source);
       // make sure slot visible and correct size
       slot.set({ width: frame.width, height: frame.height });
       slot._frameId = frame.id;
     }
+
     slot.set({ left: frame.offsetX, top: frame.offsetY, visible: true });
   }
 }
@@ -215,7 +221,6 @@ window.editor = {
   },
 
   start() {
-    // 
     if (this._timer) {
       return;
     }
@@ -226,5 +231,35 @@ window.editor = {
     };
     step(); // initial render
     this._timer = setInterval(step, 1000 / this.fps);
-  }
+  },
+
+  stop() {
+    clearInterval(this._timer);
+    this._timer = null;
+  },
+
+  loadStack(payload) {
+    if (!this.ensure("zta-canvas")) {
+      // canvas not ready try again
+      setTimeout(() => this.loadStack(payload), 50);
+      return;
+    }
+
+    const stack = new LayerStack();
+    let id = 0;
+
+    for (const f of payload.regular ?? []) {
+      stack.regular.push(makeFrame({ id: id++, ...f }));
+    }
+    for (const f of payload.shadow ?? []) {
+      stack.shadow.push(makeFrame({ id: id++, ...f }));
+    }
+    if (payload.background) {
+      stack.background.push(makeFrame({ id: id++, ...payload.background }));
+    }
+
+    this.stack = stack;
+    this.counter = 0;
+    this.fit();
+  },
 };
