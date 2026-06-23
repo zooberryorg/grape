@@ -194,5 +194,37 @@ window.editor = {
     }
 
     return true;
+  },
+
+  init(canvasId) {
+    this.canvas = new fabric.Canvas(canvasId, {
+      selection: false,
+    });
+    this.canvas.imageSmoothingEnabled = false;
+    this.view = new CanvasView(this.canvas);
+
+    // the w-full and h-full div
+    const parentEl = this.canvas.wrapperEl?.parentElement;
+    if (parentEl && window.ResizeObserver) {
+      this._ro = new ResizeObserver(() => this.fit());
+      this._ro.observe(parentEl);
+    }
+
+    // start the animation loop
+    this.start();
+  },
+
+  start() {
+    // 
+    if (this._timer) {
+      return;
+    }
+
+    const step = () => {
+      this.view.renderStack(this.stack, this.counter);
+      this.counter++;
+    };
+    step(); // initial render
+    this._timer = setInterval(step, 1000 / this.fps);
   }
-}
+};
