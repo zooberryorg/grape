@@ -1,29 +1,23 @@
-import { FabricImage, classRegistry } from "fabric";
-
 /**
  *    Frame class extends FabricImage to represent a frame in the canvas
  *
  *    @param kind - The kind of frame: 'regular', 'shadow', or 'background'
- *    @param order - The order of the frame indexed from 0
- *    @param layerId - The layer ID associated with the frame
+ *    @param selectable - Whether the frame is selectable (default: false)
+ *    @param evented - Whether the frame is evented (default: false)
  *    @returns {Object} - An object representation of the frame
  */
-class Frame extends FabricImage {
+class Frame extends fabric.FabricImage {
   static type = "frame";
 
   constructor(element, options = {}) {
     super(element, options);
     this.kind = options.kind ?? "regular"; // or 'shadow' or 'background'
-    this.order = options.order ?? 0;
-    this.layerId = options.layerId ?? null;
-  }
-
-  toObject(props = []) {
-    return {
-      ...super.toObject([...props, "kind", "order", "layerId"]),
-    };
+    this.selectable = false;
+    this.evented = false;
   }
 }
+
+fabric.classRegistry.setClass(Frame);
 
 /**
  *    Creates a new cel with the given properties
