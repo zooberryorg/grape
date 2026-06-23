@@ -16,6 +16,17 @@ class Frame extends FabricImage {
         this.order = options.order ?? 0;
         this.layerId = options.layerId ?? null;
     }
+
+    toObject(props = []) {
+        return {
+            ...super.toObject([
+                ...props,
+                'kind',
+                'order',
+                'layerId'
+            ])
+        };
+    }
 }
 
 window.editor = {
