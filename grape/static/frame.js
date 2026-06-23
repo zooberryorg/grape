@@ -52,7 +52,13 @@ function makeCel({ id, pixels, width, height, offsetX = 0, offsetY = 0 }) {
   return { id, source, width, height, offsetX, offsetY };
 }
 
-
+/** 
+ *   LayerStack class manages the layers of frames in the canvas
+ * 
+ *   @property {Array} background - Array of background frames (0 or 1)
+ *   @property {Array} shadow - Array of shadow frames (ordered, animated)
+ *   @property {Array} regular - Array of regular frames (ordered, animated)
+ */
 class LayerStack {
     constructor() {
         this.background = []; // 0 or 1 background frame
