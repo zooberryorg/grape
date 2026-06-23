@@ -287,4 +287,55 @@ window.editor = {
       return { x: minX, y: minY, w: maxX - minX, h: maxY - minY };
     }
   },
+
+  fit() {
+    if (!this.canvas) {
+      return;
+    }
+
+    if (!parentEl) {
+      return;
+    }
+
+    const W = parentEl.clientWidth,
+      H = parentEl.clientHeight;
+
+    if (!W || !H) {
+      return;
+    }
+
+    this.canvas.setDimentions({ width: W, height: H });
+
+    const bounds = this.contentBounds();
+
+    if (!bounds || !bounds.w || !bounds.h) {
+      this.canvas.requestRenderAll();
+      return;
+    }
+
+    // zoom to fit the content bounds into the canvas
+    // by default no zoom
+    let zoom = 1;
+
+    if (bounds.w > W || bounds.h > H) {
+      zoom = Math.min(W / bounds.w, H / bounds.h);
+    }
+
+    // keep sprites crispy
+    if (zoom > 1) {
+      zoom = Math.floor(zoom);
+    }
+
+    const vpt = [
+      zoom,
+      0,
+      0,
+      zoom,
+      (W - bounds.w * zoom) / 2 - bounds.x * zoom, // center horiz
+      (H - bounds.h * zoom) / 2 - bounds.y * zoom // center vert
+    ];
+
+    this.canvas.setViewportTransform(vpt);
+    this.canvas.requestRenderAll();
+  }
 };
