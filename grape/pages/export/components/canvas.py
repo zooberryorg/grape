@@ -34,9 +34,10 @@ def canvas():
         if not state.zta_files:
             return
 
+        # recontextualize variables for loop
         frames = state.zta_files[-1].signals
         has_background = state.zta_files[-1].has_background_frame
-        
+
         if not frames or len(frames) == last_frame_count["n"]:
             return
 
