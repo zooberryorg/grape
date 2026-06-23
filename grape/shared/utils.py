@@ -29,3 +29,14 @@ def add_script(path, shared=True):
         """,
         shared=shared,
     )
+
+
+def add_inline_script_from_file(path, shared=True):
+    ui.add_head_html(
+        f"""
+        <script>
+        {Path(path).read_text()}
+        </script>
+        """,
+        shared=shared,
+    )
