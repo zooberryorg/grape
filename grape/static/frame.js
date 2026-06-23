@@ -103,9 +103,16 @@ class LayerStack {
   }
 }
 
+/** 
+ *   CanvasView class manages the Fabric.js canvas and its frames. Aka renders
+ *   the frames to the canvas and handles user interactions.
+ *
+ *   @param fabricCanvas - The Fabric.js canvas instance
+ */
 class CanvasView {
   constructor(fabricCanvas) {
     this.canvas = fabricCanvas;
+
     const slot = (kind) => {
       const blank = document.createElement("canvas");
       blank.width = blank.height = 1;
@@ -118,5 +125,18 @@ class CanvasView {
       f.visible = false;
       return f;
     };
+
+    this.slots = {
+      background: slot("background"),
+      shadow: slot("shadow"),
+      regular: slot("regular"),
+    };
+
+    // insert order: z-order then bottom to top
+    this.canvas.add(
+      this.slots.background,
+      this.slots.shadow,
+      this.slots.regular
+    );
   }
 }
