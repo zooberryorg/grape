@@ -1,13 +1,14 @@
 import { FabricImage, classRegistry } from "fabric";
 
+/**
+ *    Frame class extends FabricImage to represent a frame in the canvas
+ *
+ *    @param kind - The kind of frame: 'regular', 'shadow', or 'background'
+ *    @param order - The order of the frame indexed from 0
+ *    @param layerId - The layer ID associated with the frame
+ *    @returns {Object} - An object representation of the frame
+ */
 class Frame extends FabricImage {
-  /*
-        Frame class extends FabricImage to represent a frame in the canvas
-
-        @kind - The kind of frame: 'regular', 'shadow', or 'background'
-        @order - The order of the frame indexed from 0
-        @layerId - The layer ID associated with the frame
-    */
   static type = "frame";
 
   constructor(element, options = {}) {
@@ -24,16 +25,31 @@ class Frame extends FabricImage {
   }
 }
 
-function makeCel({id, pixels, width, height, offsetX = 0, offsetY = 0}) {
-    const canvas = document.createElement("canvas");
-    canvas.width = width;
-    canvas.height = height;
+/**
+ *    Creates a new cel with the given properties
+ *
+ *    @param id - The ID of the cel
+ *    @param pixels - The pixel data for the cel
+ *    @param width - The width of the cel
+ *    @param height - The height of the cel
+ *    @param offsetX - The x offset of the cel
+ *    @param offsetY - The y offset of the cel
+ *    @returns {Object} - An object representation of the cel
+ */
+function makeCel({ id, pixels, width, height, offsetX = 0, offsetY = 0 }) {
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
 
-    canvas.getContext("2d").putImageData(
-        new ImageData(new Uint8ClampedArray(pixels), width, height), 0, 0
+  canvas
+    .getContext("2d")
+    .putImageData(
+      new ImageData(new Uint8ClampedArray(pixels), width, height),
+      0,
+      0,
     );
-    
-    return { id, source, width, height, offsetX, offsetY };
+
+  return { id, source, width, height, offsetX, offsetY };
 }
 
 window.editor = {
