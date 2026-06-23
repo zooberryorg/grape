@@ -212,10 +212,10 @@ window.editor = {
     this.view = new CanvasView(this.canvas);
 
     // the w-full and h-full div
-    const parentEl = this.canvas.wrapperEl?.parentElement;
-    if (parentEl && window.ResizeObserver) {
+    this.parentEl = this.canvas.wrapperEl?.parentElement;
+    if (this.parentEl && window.ResizeObserver) {
       this._ro = new ResizeObserver(() => this.fit());
-      this._ro.observe(parentEl);
+      this._ro.observe(this.parentEl);
     }
 
     // start the animation loop
@@ -297,12 +297,12 @@ window.editor = {
       return;
     }
 
-    if (!parentEl) {
+    if (!this.parentEl) {
       return;
     }
 
-    const W = parentEl.clientWidth,
-      H = parentEl.clientHeight;
+    const W = this.parentEl.clientWidth,
+      H = this.parentEl.clientHeight;
 
     if (!W || !H) {
       return;
