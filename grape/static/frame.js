@@ -2,8 +2,8 @@
  *    Frame class extends FabricImage to represent a frame in the canvas
  *
  *    @param kind - The kind of frame: 'regular', 'shadow', or 'background'
- *    @param selectable - Whether the frame is selectable (default: false)
- *    @param evented - Whether the frame is evented (default: false)
+ *    @param element - The HTML element to use as the source of the frame (usually a canvas)
+ *    @param options - Additional options for the frame. See FabricImage for available options.
  *    @returns {Object} - An object representation of the frame
  */
 class Frame extends fabric.FabricImage {
@@ -12,15 +12,14 @@ class Frame extends fabric.FabricImage {
   constructor(element, options = {}) {
     super(element, options);
     this.kind = options.kind ?? "regular"; // or 'shadow' or 'background'
-    this.selectable = false;
-    this.evented = false;
   }
 }
 
 fabric.classRegistry.setClass(Frame);
 
 /**
- *    Creates a new frame with the given properties
+ *    Creates a new frame with the given properties. The stream is a
+ *    Uint8ClampedArray of pixel data split between RGBA channels.
  *
  *    @param id - The ID of the frame
  *    @param pixels - The pixel data for the frame
@@ -104,3 +103,20 @@ class LayerStack {
   }
 }
 
+class CanvasView {
+  constructor(fabricCanvas) {
+    this.canvas = fabricCanvas;
+    const slot = (kind) => {
+      const blank = document.createElement("canvas");
+      blank.width = blank.height = 1;
+      const f = new Frame(blank, {
+        kind,
+        imageSmoothing: false,
+        selectable: true,
+        objectCaching: false,
+      });
+      f.visible = false;
+      return f;
+    };
+  }
+}
