@@ -3,7 +3,7 @@
 
 GrapeW::GrapeW(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::grape)
+    , ui(new Ui::GrapeW)
 {
     ui->setupUi(this);
 }

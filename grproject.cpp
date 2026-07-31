@@ -1,3 +1,3 @@
 #include "grproject.h"
 
-grproject::grproject() {}
+GrProject::GrProject() {}

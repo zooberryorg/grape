@@ -1,3 +1,3 @@
 #include "gricon.h"
 
-gricon::gricon() {}
+GrIcon::GrIcon() {}
