@@ -17,10 +17,12 @@ A modern take on the classic [APE tool](https://zootycoon.fandom.com/wiki/APE) m
 
 ## Tech Stack
 
-- **Python** for the backend logic and file processing
-- **NiceGUI** for the frontend interface
+- **C++17** for the backend logic and file processing
+- **Qt Widgets (Qt 6.8.1)** for the frontend interface
 
 ## Building and Running
+
+*This section is incomplete.*
 
 1. Clone the repository:
 
@@ -28,41 +30,6 @@ A modern take on the classic [APE tool](https://zootycoon.fandom.com/wiki/APE) m
    git clone https://github.com/zooberryorg/grape.git
    ```
 
-2. Install dependencies:
+## License
 
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. Run the application:
-   ```bash
-    python main.py
-   ```
-
-## Developers
-
-Additional steps for developers.
-
-Install Tailwind CLI for theme development:
-
-```bash
-npm install tailwindcss @tailwindcss/cli
-```
-
-Point the Tailwind CLI to the input.css file in the repo:
-
-```bash
-npx tailwindcss -i ./grape/static/input.css -o ./grape/static/grape.css --watch
-```
-
-Install Prettier for code formatting:
-
-```bash
-npm install --save-dev --save-exact prettier
-```
-
-Run Prettier to format code:
-
-```bash
-npx prettier . --write
-```
+The source code for this project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details. Because this project is built using Qt, please note that the distributed binaries of this project are subject to the LGPLv3 license. A copy of the LGPLv3 will be included in the distributed binaries of this project.
