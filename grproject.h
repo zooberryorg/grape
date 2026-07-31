@@ -4,11 +4,12 @@
 #include <QVector>
 #include <QHash>
 #include "grtexture.h"
+#include "gricon.h"
 
-class grproject
+class GrProject
 {
 public:
-    grproject();
+    GrProject();
     void loadLayers();
 
 private:
@@ -23,6 +24,7 @@ private:
     // files
     QHash<QString, QStringList> m_properties; // uca, ucb, ucs, ai files
     // for every key in allKeys, return its value (<key, value>, <key, value>, ..., n>)
+    QHash<QString, GrIcon> m_icons;
 
     // ids
     qint16 m_nameId;

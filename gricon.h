@@ -1,10 +1,15 @@
 #ifndef GRICON_H
 #define GRICON_H
 
-class gricon
+#include "grtexture.h"
+
+class GrIcon
 {
 public:
-    gricon();
+    GrIcon();
+
+private:
+    GrTexture texture;
 };
 
 #endif // GRICON_H

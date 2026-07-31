@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
             break;
         }
     }
-    grape w;
+    GrapeW w;
     w.resize(320, 240);
     w.show();
     w.setWindowTitle(

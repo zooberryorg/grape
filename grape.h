@@ -5,19 +5,19 @@
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
-class grape;
+class GrapeW;
 }
 QT_END_NAMESPACE
 
-class grape : public QMainWindow
+class GrapeW : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    grape(QWidget *parent = nullptr);
-    ~grape();
+    GrapeW(QWidget *parent = nullptr);
+    ~GrapeW();
 
 private:
-    Ui::grape *ui;
+    Ui::GrapeW *ui;
 };
 #endif // GRAPE_H
