@@ -16,9 +16,9 @@ set(TS_FILES grape_en_US.ts)
 
 set(PROJECT_SOURCES
         main.cpp
-        grape.cpp
-        grape.h
-        grape.ui
+        grapew.cpp
+        grapew.h
+        grapew.ui
         ${TS_FILES}
 )
 
