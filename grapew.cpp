@@ -11,6 +11,7 @@ GrapeW::GrapeW(QWidget *parent)
     workspaceVLayout->addLayout(workspaceHLayout);
 
     // file tree setup
+    explorerLabel = new QLabel("Explorer");
     fileTree = new QTreeView(this);
     fileModel = new QFileSystemModel(this);
     fileModel->setRootPath("C:/");
@@ -25,6 +26,7 @@ GrapeW::GrapeW(QWidget *parent)
     fileTree->hideColumn(3);
     fileTree->setHeaderHidden(true);
 
+    workspaceVLayout->addWidget(explorerLabel);
     workspaceVLayout->addWidget(fileTree);
 }
 

@@ -5,6 +5,7 @@
 #include <QHBoxLayout>
 #include <QTreeView>
 #include <QFileSystemModel>
+#include <QLabel>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -35,5 +36,7 @@ private:
     // main three widgets
     QTreeView* fileTree;
     QFileSystemModel* fileModel;
+
+    QLabel* explorerLabel;
 };
 #endif // GRAPEW_H
