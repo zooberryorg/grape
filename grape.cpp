@@ -12,3 +12,8 @@ GrapeW::~GrapeW()
 {
     delete ui;
 }
+
+void GrapeW::createSubmenu()
+{
+
+}

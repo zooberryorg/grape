@@ -17,7 +17,12 @@ public:
     GrapeW(QWidget *parent = nullptr);
     ~GrapeW();
 
+private slots:
+    void handleOpenProject();
+
 private:
     Ui::GrapeW *ui;
+    void createSubmenus();
+    QAction openFromFiles;
 };
 #endif // GRAPE_H
