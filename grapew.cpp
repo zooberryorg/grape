@@ -4,6 +4,8 @@ GrapeW::GrapeW(QWidget *parent)
     : QMainWindow(parent)
 {
     QMenu* fileMenu = menuBar()->addMenu("&File");
+    fileMenu->addAction("&Open");
+
     central = new QWidget(this);
     setCentralWidget(central);
     workspaceHLayout = new QHBoxLayout(central);
