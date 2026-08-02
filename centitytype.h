@@ -8,7 +8,7 @@ class CEntityType
 public:
     CEntityType();
 
-private:
+protected:
     QHash<QString, QHash<QString, QString>> mConfig;
 };
 
