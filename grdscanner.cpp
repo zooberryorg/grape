@@ -13,4 +13,8 @@ void GrDScanner::validate() {
 }
 
 void GrDScanner::load() {
+    QDirIterator it(dir.path(), QDirIterator::Subdirectories);
+    while (it.hasNext()) {
+
+    }
 }

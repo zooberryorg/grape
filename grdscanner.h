@@ -4,6 +4,7 @@
 #include <QString>
 #include <QDir>
 #include <QtLogging>
+#include <QDirIterator>
 
 #include "grshared.h"
 
