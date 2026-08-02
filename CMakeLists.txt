@@ -30,6 +30,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         gricon.h gricon.cpp
         grtexture.h grtexture.cpp
         centitytype.h centitytype.cpp
+        grdscanner.h grdscanner.cpp
+        grshared.h
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET grape APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
