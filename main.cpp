@@ -1,4 +1,4 @@
-#include "grape.h"
+#include "grapew.h"
 
 #include <QApplication>
 #include <QLocale>
@@ -19,15 +19,6 @@ int main(int argc, char *argv[])
         }
     }
     GrapeW w;
-    w.resize(320, 240);
     w.show();
-    w.setWindowTitle(
-        QApplication::translate("main_w_title", "GrAPE")
-        );
-
-    QPushButton *button = new QPushButton(
-        QApplication::translate("main_w_button", "Press Me"), &w
-        );
-    button->show();
     return a.exec();
 }
