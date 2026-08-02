@@ -23,6 +23,13 @@ inline const QVector<QString> types = {
     "staff"
 };
 
+inline const  QVector<QString> cTypes = {
+    "uca",
+    "ucb",
+    "ucs",
+    "ai"
+};
+
 }
 
 #endif // GRSHARED_H
