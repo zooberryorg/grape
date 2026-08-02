@@ -15,6 +15,14 @@ void GrDScanner::validate() {
 void GrDScanner::load() {
     QDirIterator it(dir.path(), QDirIterator::Subdirectories);
     while (it.hasNext()) {
-
+        QString fileName = it.fileName();
+        if (GrShared::types.contains(it.fileName())) {
+            QDirIterator typeIt(dir.path() + fileName, QDirIterator::Subdirectories);
+            while (typeIt.hasNext()) {
+                if (GrShared::cTypes.contains(typeIt.fileName())){
+                    cPaths.insert(fileName, typeIt.fileName());
+                }
+            }
+        }
     }
 }

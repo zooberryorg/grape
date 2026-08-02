@@ -5,6 +5,7 @@
 #include <QDir>
 #include <QtLogging>
 #include <QDirIterator>
+#include <QHash>
 
 #include "grshared.h"
 
@@ -17,6 +18,7 @@ public:
 
 private:
     QDir dir;
+    QHash<QString, QString> cPaths;
 };
 
 #endif // GRDSCANNER_H
