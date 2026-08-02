@@ -1,12 +1,15 @@
 #ifndef GRAPEW_H
 #define GRAPEW_H
 
+#include <QMenuBar>
+#include <QMenu>
 #include <QMainWindow>
 #include <QHBoxLayout>
 #include <QTreeView>
 #include <QFileSystemModel>
 #include <QLabel>
 #include <QFrame>
+#include <QSplitter>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -29,14 +32,19 @@ private:
     void createSubmenus();
     QAction openFromFiles;
 
-    // general layout
-    QWidget* central;
-    QVBoxLayout* workspaceVLayout;
-    QHBoxLayout* workspaceHLayout;
 
-    // main three widgets
+    // main containers
+    QWidget* central; // bg container
+    QHBoxLayout* workspaceHLayout; // horizontal layout (central parent)
+    QSplitter* hSplitter; // workspace splitter (workspaceHLayout parent)
+
+    // workspace (left)
+    QWidget* leftBarPanel;
+    QVBoxLayout* workspaceVLayout;
     QTreeView* fileTree;
     QFileSystemModel* fileModel;
+
+    // workspace (center)
     QFrame* canvasArea;
 
     QLabel* explorerLabel;

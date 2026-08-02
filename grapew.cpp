@@ -3,14 +3,16 @@
 GrapeW::GrapeW(QWidget *parent)
     : QMainWindow(parent)
 {
+    QMenu* fileMenu = menuBar()->addMenu("&File");
     central = new QWidget(this);
     setCentralWidget(central);
-
     workspaceHLayout = new QHBoxLayout(central);
-    workspaceVLayout = new QVBoxLayout;
-    workspaceHLayout->addLayout(workspaceVLayout);
+    hSplitter = new QSplitter;
+    workspaceHLayout->addWidget(hSplitter);
 
     // file tree setup
+    leftBarPanel = new QWidget;
+    workspaceVLayout = new QVBoxLayout(leftBarPanel);
     explorerLabel = new QLabel("Explorer");
     fileTree = new QTreeView(this);
     fileModel = new QFileSystemModel(this);
@@ -32,9 +34,13 @@ GrapeW::GrapeW(QWidget *parent)
     // Canvas area
     canvasArea = new QFrame;
     canvasArea->setFrameShape(QFrame::Box);
-    canvasArea->setMinimumSize(400,400);
 
-    workspaceHLayout->addWidget(canvasArea, 1);
+    hSplitter->addWidget(leftBarPanel);
+    hSplitter->addWidget(canvasArea);
+    hSplitter->setSizes({250, 750});
+
+    // initial window size
+    setMinimumSize(640, 320);
 }
 
 GrapeW::~GrapeW()
