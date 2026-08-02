@@ -6,9 +6,9 @@ GrapeW::GrapeW(QWidget *parent)
     central = new QWidget(this);
     setCentralWidget(central);
 
-    workspaceVLayout = new QVBoxLayout(central);
-    workspaceHLayout = new QHBoxLayout;
-    workspaceVLayout->addLayout(workspaceHLayout);
+    workspaceHLayout = new QHBoxLayout(central);
+    workspaceVLayout = new QVBoxLayout;
+    workspaceHLayout->addLayout(workspaceVLayout);
 
     // file tree setup
     explorerLabel = new QLabel("Explorer");
@@ -28,6 +28,13 @@ GrapeW::GrapeW(QWidget *parent)
 
     workspaceVLayout->addWidget(explorerLabel);
     workspaceVLayout->addWidget(fileTree);
+
+    // Canvas area
+    canvasArea = new QFrame;
+    canvasArea->setFrameShape(QFrame::Box);
+    canvasArea->setMinimumSize(400,400);
+
+    workspaceHLayout->addWidget(canvasArea, 1);
 }
 
 GrapeW::~GrapeW()

@@ -6,6 +6,7 @@
 #include <QTreeView>
 #include <QFileSystemModel>
 #include <QLabel>
+#include <QFrame>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -36,6 +37,7 @@ private:
     // main three widgets
     QTreeView* fileTree;
     QFileSystemModel* fileModel;
+    QFrame* canvasArea;
 
     QLabel* explorerLabel;
 };
