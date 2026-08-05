@@ -44,10 +44,12 @@ QVariant GrTreeNode::data() const
 
 int GrTreeNode::row() const
 {
-
+    if (m_parentNode)
+        return m_parentNode->m_childNodes.indexOf(this);
+    return 0;
 }
 
 GrTreeNode *GrTreeNode::parentNode() const
 {
-
+    return m_parentNode;
 }
