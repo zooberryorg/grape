@@ -21,12 +21,12 @@ void GrTreeNode::appendChild(GrTreeNode *child)
 
 GrTreeNode *GrTreeNode::child(int row) const
 {
-
+    return m_childNodes.at(row);
 }
 
 int GrTreeNode::childCount() const
 {
-
+    return m_childNodes.count();
 }
 
 int GrTreeNode::columnCount() const
