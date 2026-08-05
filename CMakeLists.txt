@@ -16,8 +16,8 @@ set(TS_FILES grape_en_US.ts)
 
 set(PROJECT_SOURCES
         main.cpp
-        grapew.cpp
-        grapew.h
+        ui/grapew.cpp
+        ui/grapew.h
         grapew.ui
         ${TS_FILES}
 )
@@ -27,11 +27,11 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         grproject.h grproject.cpp
-        gricon.h gricon.cpp
-        grtexture.h grtexture.cpp
-        centitytype.h centitytype.cpp
-        grdscanner.h grdscanner.cpp
-        grshared.h
+        graphics/gricon.h graphics/gricon.cpp
+        graphics/grtexture.h graphics/grtexture.cpp
+        scanner/centitytype.h scanner/centitytype.cpp
+        scanner/grdscanner.h scanner/grdscanner.cpp
+        common/grshared.h
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET grape APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
