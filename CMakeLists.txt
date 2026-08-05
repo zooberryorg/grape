@@ -12,13 +12,20 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools)
 
-set(TS_FILES grape_en_US.ts)
+set(TS_FILES lang/grape_en_US.ts)
 
 set(PROJECT_SOURCES
         main.cpp
-        grapew.cpp
-        grapew.h
-        grapew.ui
+        ui/grapew.cpp
+        ui/grapew.h
+        ui/grapew.ui
+        models/grproject.h models/grproject.cpp
+        graphics/gricon.h graphics/gricon.cpp
+        graphics/grtexture.h graphics/grtexture.cpp
+        scanner/centitytype.h scanner/centitytype.cpp
+        scanner/grdscanner.h scanner/grdscanner.cpp
+        common/grshared.h
+        common/grtreenode.h common/grtreenode.cpp
         ${TS_FILES}
 )
 
@@ -26,11 +33,16 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(grape
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        grproject.h grproject.cpp
-        gricon.h gricon.cpp
-        grtexture.h grtexture.cpp
-        centitytype.h centitytype.cpp
     )
+
+target_include_directories(
+    grape PRIVATE
+    common
+    ui
+    models
+    graphics
+    scanner
+)
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET grape APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
 #                 ${CMAKE_CURRENT_SOURCE_DIR}/android)

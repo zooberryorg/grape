@@ -33,3 +33,5 @@ A modern take on the classic [APE tool](https://zootycoon.fandom.com/wiki/APE) m
 ## License
 
 The source code for this project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details. Because this project is built using Qt, please note that the distributed binaries of this project are subject to the LGPLv3 license. A copy of the LGPLv3 will be included in the distributed binaries of this project.
+
+Additionally, this project uses a modified version of the TreeNode class from the KDABLabs repository found here: https://github.com/KDABLabs/kdabtv. The original license for this class is the BSD License, which is preserved in the relevant source files.
