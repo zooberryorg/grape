@@ -1,4 +1,5 @@
 #include "grtreenode.h"
+#include <qvariant.h>
 
 // GrTreeNode::GrTreeNode() {}
 
@@ -31,12 +32,14 @@ int GrTreeNode::childCount() const
 
 int GrTreeNode::columnCount() const
 {
-
+    return 1; // note: no plan for additional columns but change QString to QStringList if more needed
 }
 
-QVariant GrTreeNode::data(int column) const
+QVariant GrTreeNode::data() const
 {
-
+    QVariant v = QVariant();
+    v.setValue(m_columnData);
+    return v;
 }
 
 int GrTreeNode::row() const
