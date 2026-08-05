@@ -6,7 +6,7 @@
 class GrTreeNode
 {
 public:
-    explicit GrTreeNode(GrTreeNode* parentNode);
+    explicit GrTreeNode(QString data, GrTreeNode* parentNode);
     ~GrTreeNode();
 
     void appendChild(GrTreeNode* child);
@@ -20,7 +20,7 @@ public:
 
 private:
     QList<GrTreeNode*> m_childNodes;
-    QStringList m_columnData;
+    QString m_columnData;
     GrTreeNode* m_parentNode;
 };
 

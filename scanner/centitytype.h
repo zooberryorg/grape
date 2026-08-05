@@ -7,6 +7,7 @@ class CEntityType
 {
 public:
     CEntityType();
+    virtual ~CEntityType() {};
 
 protected:
     QHash<QString, QHash<QString, QString>> mConfig;

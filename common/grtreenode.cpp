@@ -2,19 +2,21 @@
 
 // GrTreeNode::GrTreeNode() {}
 
-GrTreeNode::GrTreeNode(GrTreeNode *parentNode)
+GrTreeNode::GrTreeNode(QString data, GrTreeNode *parentNode)
+    : m_columnData(data)
+    , m_parentNode(parentNode)
 {
 
 }
 
 GrTreeNode::~GrTreeNode()
 {
-
+    qDeleteAll(m_childNodes);
 }
 
 void GrTreeNode::appendChild(GrTreeNode *child)
 {
-
+    m_childNodes.append(child);
 }
 
 GrTreeNode *GrTreeNode::child(int row) const
