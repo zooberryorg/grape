@@ -12,13 +12,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools)
 
-set(TS_FILES grape_en_US.ts)
+set(TS_FILES lang/grape_en_US.ts)
 
 set(PROJECT_SOURCES
         main.cpp
         ui/grapew.cpp
         ui/grapew.h
-        grapew.ui
+        ui/grapew.ui
         ${TS_FILES}
 )
 
@@ -26,7 +26,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(grape
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        grproject.h grproject.cpp
+        models/grproject.h models/grproject.cpp
         graphics/gricon.h graphics/gricon.cpp
         graphics/grtexture.h graphics/grtexture.cpp
         scanner/centitytype.h scanner/centitytype.cpp
