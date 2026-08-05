@@ -33,7 +33,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         scanner/grdscanner.h scanner/grdscanner.cpp
         common/grshared.h
         common/grtreenode.h common/grtreenode.cpp
-        common/grforest.h common/grforest.cpp
+
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET grape APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
