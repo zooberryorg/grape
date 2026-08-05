@@ -19,12 +19,17 @@ void GrDScanner::load() {
     QDirIterator it(dir.path(), QDirIterator::Subdirectories);
 
     // update with user I/O to name project
-    TreeNode* root("Project", nullptr);
+    auto root = new TreeNode(workspaceName, nullptr);
 
     while (it.hasNext()) {
+
         QString fileName = it.fileName();
-        if (GrShared::types.contains(it.fileName())) {
+
+        if (GrShared::types.contains(it.fileName()) && it.depth() == 0) {
+
             QDirIterator typeIt(dir.path() + fileName, QDirIterator::Subdirectories);
+            root->appendChild(new TreeNode(fileName, root));
+
             while (typeIt.hasNext()) {
                 if (GrShared::cTypes.contains(typeIt.fileName())){
                     cPaths.insert(fileName, typeIt.fileName());
@@ -32,4 +37,16 @@ void GrDScanner::load() {
             }
         }
     }
+}
+
+int GrDScanner::depth(QString rootPath, QString curPath) {
+    int _depth = 0;
+
+    QStringView r(curPath);
+    QStringView c(curPath);
+
+    QChar separator = QDir::separator();
+    _depth = c.count(separator) - r.count(separator);
+
+    return _depth;
 }
