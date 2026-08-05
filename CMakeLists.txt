@@ -19,13 +19,6 @@ set(PROJECT_SOURCES
         ui/grapew.cpp
         ui/grapew.h
         ui/grapew.ui
-        ${TS_FILES}
-)
-
-if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(grape
-        MANUAL_FINALIZATION
-        ${PROJECT_SOURCES}
         models/grproject.h models/grproject.cpp
         graphics/gricon.h graphics/gricon.cpp
         graphics/grtexture.h graphics/grtexture.cpp
@@ -33,8 +26,23 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         scanner/grdscanner.h scanner/grdscanner.cpp
         common/grshared.h
         common/grtreenode.h common/grtreenode.cpp
+        ${TS_FILES}
+)
 
+if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+    qt_add_executable(grape
+        MANUAL_FINALIZATION
+        ${PROJECT_SOURCES}
     )
+
+target_include_directories(
+    grape PRIVATE
+    common
+    ui
+    models
+    graphics
+    scanner
+)
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET grape APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
 #                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
