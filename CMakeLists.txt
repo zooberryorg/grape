@@ -27,6 +27,7 @@ set(PROJECT_SOURCES
         scanner/grasset.h scanner/grasset.cpp
         scanner/centity.h scanner/centity.cpp
         scanner/cbfunit.h scanner/cbfunit.cpp
+        scanner/cztunit.h scanner/cztunit.cpp
         scanner/grdscanner.h scanner/grdscanner.cpp
         # shared sources
         common/grshared.h

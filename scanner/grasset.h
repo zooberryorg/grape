@@ -27,7 +27,7 @@ protected:
     qint16 m_framems;
 
     // files
-    QHash<QString, QStringList> m_properties; // uca, ucb, ucs, ai files
+    QHash<QString, QHash<QString, QString>> m_config; // uca, ucb, ucs, ai files
     QHash<QString, QStringList> m_unlock;
     // for every key in allKeys, return its value (<key, value>, <key, value>, ..., n>)
     QHash<QString, GrIcon> m_icons;

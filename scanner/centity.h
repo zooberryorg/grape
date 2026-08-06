@@ -8,10 +8,10 @@ class CEntity : public GrAsset
 {
 public:
     CEntity();
+    virtual void load() = 0;
+    virtual void save() = 0;
+    virtual GrShared::AssetTypes type() const = 0;
     virtual ~CEntity() {};
-
-protected:
-    QHash<QString, QHash<QString, QString>> mConfig;
 };
 
 #endif // CENTITY_H
