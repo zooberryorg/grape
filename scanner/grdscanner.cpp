@@ -16,28 +16,20 @@ void GrDScanner::validate() {
 }
 
 void GrDScanner::load() {
-    QDirListing it(dir.path(), QDirIterator::Subdirectories);
     QString rootPath = dir.path();
 
     // update with user I/O to name project
     auto root = new TreeNode(workspaceName, nullptr);
 
-    for ( const auto& curDir : QDirListing(rootPath, QDirListing::IteratorFlag::Recursive) ) {
+    for ( const auto& curPath : QDirListing(rootPath, QDirListing::IteratorFlag::Recursive) ) {
+        QString fileName = curPath.fileName();
+        int level = depth(rootPath, curPath.filePath());
 
-        QString fileName = curDir.fileName();
-        int level = depth(rootPath, curDir.filePath());
-        int isTypeFolder = GrShared::types.contains(curDir.fileName());
+        if ( level == 0 && curPath.isDir() ) {
+            int isTypeFolder = GrShared::baseTypes.contains(curPath.fileName());
 
-        if ( isTypeFolder && level == 0 ) {
-
-            QDirIterator typeIt(dir.path() + fileName, QDirIterator::Subdirectories);
-            root->appendChild(new TreeNode(fileName, root));
-
-            while (typeIt.hasNext()) {
-                if (GrShared::cTypes.contains(typeIt.fileName())){
-                    cPaths.insert(fileName, typeIt.fileName());
-                }
-            }
+            if ( isTypeFolder )
+                root->appendChild(new TreeNode(fileName, root));
         }
     }
 }

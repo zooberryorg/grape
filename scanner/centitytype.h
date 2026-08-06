@@ -2,8 +2,9 @@
 #define CENTITYTYPE_H
 
 #include <QHash>
+#include "grproject.h"
 
-class CEntityType
+class CEntityType : public GrProject
 {
 public:
     CEntityType();

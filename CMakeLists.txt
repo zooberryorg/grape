@@ -23,6 +23,7 @@ set(PROJECT_SOURCES
         graphics/gricon.h graphics/gricon.cpp
         graphics/grtexture.h graphics/grtexture.cpp
         scanner/centitytype.h scanner/centitytype.cpp
+        scanner/cbfunittype.h scanner/cbfunittype.cpp
         scanner/grdscanner.h scanner/grdscanner.cpp
         common/grshared.h
         common/grtreenode.h common/grtreenode.cpp
