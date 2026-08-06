@@ -1,6 +1,6 @@
-#include "centitytype.h"
+#include "centity.h"
 
-CEntityType::CEntityType() {
+CEntity::CEntity() {
     mConfig["cr_part1"]["ncolors"] = "";
 
     QString charInts = "Characteristics/Integers";

@@ -24,9 +24,9 @@ set(PROJECT_SOURCES
         graphics/gricon.h graphics/gricon.cpp
         graphics/grtexture.h graphics/grtexture.cpp
         # scanner files (data)
-        scanner/grproject.h scanner/grproject.cpp
-        scanner/centitytype.h scanner/centitytype.cpp
-        scanner/cbfunittype.h scanner/cbfunittype.cpp
+        scanner/grasset.h scanner/grasset.cpp
+        scanner/centity.h scanner/centity.cpp
+        scanner/cbfunit.h scanner/cbfunit.cpp
         scanner/grdscanner.h scanner/grdscanner.cpp
         # shared sources
         common/grshared.h

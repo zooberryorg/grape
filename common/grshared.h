@@ -5,7 +5,7 @@
 
 namespace GrShared {
 
-enum Types {
+enum AssetTypes {
     Scenery,
     Fence,
     Building,

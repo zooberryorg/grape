@@ -1,5 +1,5 @@
-#ifndef GRPROJECT_H
-#define GRPROJECT_H
+#ifndef GRASSET_H
+#define GRASSET_H
 
 #include <QVector>
 #include <QHash>
@@ -7,13 +7,14 @@
 #include "gricon.h"
 #include "grshared.h"
 
-class GrProject
+class GrAsset
 {
 public:
-    GrProject();
+    GrAsset();
+    virtual ~GrAsset() = default;
     virtual void load() = 0;
-    virtual void generateDirectory() = 0;
-    GrShared::Types isType;
+    virtual void save() = 0;
+    virtual GrShared::AssetTypes type() const = 0;
     void loadLayers();
 
 protected:
@@ -32,10 +33,9 @@ protected:
     QHash<QString, GrIcon> m_icons;
 
     // ids
-    qint16 m_nameId;
-    qint16 m_helpId;
     QString m_codename;
+    GrShared::AssetTypes m_type;
 
 };
 
-#endif // GRPROJECT_H
+#endif // GRASSET_H
