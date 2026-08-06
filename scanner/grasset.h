@@ -18,6 +18,8 @@ public:
     void loadLayers();
 
 protected:
+    // constants
+    QString charInts = "Characteristics/Integers";
     // graphics
     QVector<GrTexture> m_mFrames; // main sprite frames
     QVector<GrTexture> m_sFrames; // shadow frames

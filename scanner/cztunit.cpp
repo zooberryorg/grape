@@ -1,7 +1,6 @@
 #include "cztunit.h"
 
 CZTUnit::CZTUnit() {
-    QString charInts = "Characteristics/Integers";
     m_config[charInts]["cPurchaseCost"] = "";
     m_config[charInts]["cNameId"] = "";
     m_config[charInts]["cHelpId"] = "";
