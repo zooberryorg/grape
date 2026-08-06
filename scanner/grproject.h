@@ -5,14 +5,18 @@
 #include <QHash>
 #include "grtexture.h"
 #include "gricon.h"
+#include "grshared.h"
 
 class GrProject
 {
 public:
     GrProject();
+    virtual void load() = 0;
+    virtual void generateDirectory() = 0;
+    GrShared::Types isType;
     void loadLayers();
 
-private:
+protected:
     // graphics
     QVector<GrTexture> m_mFrames; // main sprite frames
     QVector<GrTexture> m_sFrames; // shadow frames

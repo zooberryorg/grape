@@ -5,7 +5,27 @@
 
 namespace GrShared {
 
-inline const QVector<QString> baseTypes = {
+enum Types {
+    Scenery,
+    Fence,
+    Building,
+    Food,
+    Rubble,
+    TankFilter,
+    Path,
+    TankWall,
+    Animal,
+    Staff,
+    Guest,
+    Helicopter,
+    Guide,
+    MaintenanceWorker,
+    Keeper,
+    Ambient,
+    None
+};
+
+inline const QVector<QString> dFolders = { // default folders
     "animals",
     "fences",
     "items",
@@ -14,11 +34,12 @@ inline const QVector<QString> baseTypes = {
     "scenery",
 };
 
-inline const  QVector<QString> cTypes = {
+inline const  QVector<QString> cTypes = { // config file types
     "uca",
     "ucb",
     "ucs",
-    "ai"
+    "ai",
+    "cfg"
 };
 
 }
