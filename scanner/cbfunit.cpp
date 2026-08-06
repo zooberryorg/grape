@@ -1,8 +1,6 @@
 #include "cbfunit.h"
 
 CBFUnit::CBFUnit() {
-    m_config["cr_part1"]["ncolors"] = "";
-
     QString charInts = "Characteristics/Integers";
     m_config[charInts]["cSlowRate"] = "";
     m_config[charInts]["cMediumRate"] = "";
