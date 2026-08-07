@@ -11,20 +11,21 @@
 #include "grtreenode.h"
 
 using TreeNode = GrTreeNode;
+using DirEntry = QDirListing::DirEntry;
 
 class GrDScanner
 {
 public:
-    GrDScanner(QDir rootDir, QString workspaceName);
+    GrDScanner(DirEntry rootDir, QString workspaceName);
     void validate();
-    int depth(QString rootPath, QString curPath);
-    QVector<QDir> getConfigPaths();
+    QVector<DirEntry> getConfigPaths();
 
 private:
     void loadTopLevels();
     void findConfigFiles();
-    QVector<QDir> saveConfigPathsInDir(QDir);
-    QDir rootDir;
+    int depth(DirEntry rootPath, DirEntry curPath);
+    QVector<DirEntry> saveConfigPathsInDir(DirEntry);
+    DirEntry rootDir;
     QHash<QString, QString> cPaths;
     QString workspaceName;
     QStringList foundGameFolders;
