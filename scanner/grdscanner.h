@@ -17,7 +17,7 @@ class GrDScanner
 public:
     GrDScanner(QDir dir, QString workspaceName);
     void validate();
-    void load();
+    void loadTopLevels();
     int depth(QString rootPath, QString curPath);
 
 private:

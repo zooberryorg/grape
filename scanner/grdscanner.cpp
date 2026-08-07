@@ -5,7 +5,7 @@ GrDScanner::GrDScanner(QDir dir, QString workspaceName)
     , workspaceName(workspaceName)
 {
     validate();
-    load();
+    loadTopLevels();
 }
 
 void GrDScanner::validate() {
@@ -15,20 +15,20 @@ void GrDScanner::validate() {
     }
 }
 
-void GrDScanner::load() {
+void GrDScanner::loadTopLevels() {
     QString rootPath = dir.path();
 
     // update with user I/O to name project
     auto root = new TreeNode(workspaceName, nullptr);
 
-    for ( const auto& curPath : QDirListing(rootPath, QDirListing::IteratorFlag::Recursive) ) {
+    for ( const auto& curPath : QDirListing(rootPath, QDirListing::IteratorFlag::DirsOnly) ) {
         QString fileName = curPath.fileName();
         int level = depth(rootPath, curPath.filePath());
 
         if ( level == 0 && curPath.isDir() ) {
-            int isTypeFolder = GrShared::baseTypes.contains(curPath.fileName());
+            int isGameDirFolder = GrShared::dFolders.contains(curPath.fileName());
 
-            if ( isTypeFolder )
+            if ( isGameDirFolder )
                 root->appendChild(new TreeNode(fileName, root));
         }
     }
