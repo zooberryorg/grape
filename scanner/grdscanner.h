@@ -15,15 +15,19 @@ using TreeNode = GrTreeNode;
 class GrDScanner
 {
 public:
-    GrDScanner(QDir dir, QString workspaceName);
+    GrDScanner(QDir rootDir, QString workspaceName);
     void validate();
-    void loadTopLevels();
     int depth(QString rootPath, QString curPath);
+    QVector<QDir> getConfigPaths();
 
 private:
-    QDir dir;
+    void loadTopLevels();
+    void findConfigFiles();
+    QVector<QDir> saveConfigPathsInDir(QDir);
+    QDir rootDir;
     QHash<QString, QString> cPaths;
     QString workspaceName;
+    QStringList foundGameFolders;
 };
 
 #endif // GRDSCANNER_H

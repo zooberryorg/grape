@@ -1,7 +1,7 @@
 #include "grdscanner.h"
 
-GrDScanner::GrDScanner(QDir dir, QString workspaceName)
-    : dir(dir)
+GrDScanner::GrDScanner(QDir rootDir, QString workspaceName)
+    : rootDir(rootDir)
     , workspaceName(workspaceName)
 {
     validate();
@@ -9,27 +9,30 @@ GrDScanner::GrDScanner(QDir dir, QString workspaceName)
 }
 
 void GrDScanner::validate() {
-    if (!dir.exists()) {
+    if (!rootDir.exists()) {
         // later send signal for popup error
-        QString e = "Error: directory not found: " + dir.path();
+        QString e = "Error: directory not found: " + rootDir.path();
     }
 }
 
 void GrDScanner::loadTopLevels() {
-    QString rootPath = dir.path();
-
-    // update with user I/O to name project
-    auto root = new TreeNode(workspaceName, nullptr);
-
-    for ( const auto& curPath : QDirListing(rootPath, QDirListing::IteratorFlag::DirsOnly) ) {
+    for ( const auto& curPath : QDirListing(rootDir.path(), QDirListing::IteratorFlag::DirsOnly) ) {
         QString fileName = curPath.fileName();
-        int level = depth(rootPath, curPath.filePath());
+        int level = depth(rootDir.path(), curPath.filePath());
 
         if ( level == 0 && curPath.isDir() ) {
             int isGameDirFolder = GrShared::dFolders.contains(curPath.fileName());
 
             if ( isGameDirFolder )
-                root->appendChild(new TreeNode(fileName, root));
+                foundGameFolders.append(curPath.fileName());
+        }
+    }
+}
+
+void GrDScanner::findConfigFiles() {
+    for ( const auto& folder : foundGameFolders ) {
+        if ( folder == "animals" ) {
+
         }
     }
 }
