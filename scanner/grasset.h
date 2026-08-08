@@ -46,7 +46,6 @@ protected:
     QString m_codename;
     GrShared::AssetTypes m_type;
 
-    GrShared::AssetTypes determineTypeFromFile();
 
 };
 

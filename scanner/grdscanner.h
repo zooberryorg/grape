@@ -9,15 +9,21 @@
 
 #include "grshared.h"
 #include "grtreenode.h"
+#include "SimpleIni.h"
 
 using TreeNode = GrTreeNode;
 using DirEntry = QDirListing::DirEntry;
+using AssetType = GrShared::AssetTypes;
+
+class GrAsset;
+class CAnimal;
 
 class GrDScanner
 {
 public:
     GrDScanner(DirEntry rootDir);
     QVector<DirEntry> configPaths();
+    std::unique_ptr<GrAsset> assets();
 
 private:
     // methods
@@ -27,6 +33,7 @@ private:
     void validate();
     QVector<DirEntry> findConfigPathsInDir(QString, QStringList);
     QVector<DirEntry> getConfigPaths();
+    GrShared::AssetTypes determineTypeFromFile(QString);
 
     // fields
     DirEntry rootDir;

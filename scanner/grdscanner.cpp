@@ -1,4 +1,5 @@
 #include "grdscanner.h"
+#include "canimal.h"
 
 GrDScanner::GrDScanner(DirEntry rootDir)
     : rootDir(rootDir)
@@ -80,6 +81,51 @@ QVector<DirEntry> GrDScanner::findConfigPathsInDir(QString path, QStringList val
     return paths;
 }
 
+// determined asset type
+GrShared::AssetTypes GrDScanner::determineTypeFromFile(QString path) {
+    CSimpleIniA ini;
+    ini.SetUnicode();
+
+    int rc = ini.LoadFile(path.toStdString().c_str());
+    if ( rc < 0 ) {
+        // error handling later
+        // Error loading ini file at path:
+    }
+
+    CSimpleIniA::TNamesDepend memberKeys;
+    ini.GetAllKeys("Member", memberKeys);
+    QStringList members;
+
+    for ( const auto& member : memberKeys ) {
+        members.append(QString(member.pItem));
+    }
+
+    if ( members.contains("animals") ) { // animals
+
+        return AssetType::Animal;
+
+    } else if ( members.contains("paths") ) { // paths
+
+        return AssetType::Path;
+
+    } else if ( members.contains("structures") || members.contains("shelters") ) {
+
+        return AssetType::Building;
+
+    } else if ( members.contains("fence") || members.contains("lowfence") || members.contains("zoofences") ) {
+
+        return AssetType::Fence;
+
+    } else if ( members.contains("scenery") || members.contains("light") || members.contains("rocks")
+               || members.contains("foliage") || members.contains("habitatfoliage") || members.contains("zoofoliage") ) {
+
+        return AssetType::Scenery;
+
+    }
+
+    return AssetType::None;
+}
+
 // Returns current directory depth relative to root path
 int GrDScanner::depth(DirEntry rootPath, DirEntry curPath) {
     int _depth = 0;
@@ -97,4 +143,16 @@ int GrDScanner::depth(DirEntry rootPath, DirEntry curPath) {
 // returns all config paths
 QVector<DirEntry> GrDScanner::configPaths() {
     return cPaths;
+}
+
+// returns all assets
+std::unique_ptr<GrAsset> GrDScanner::assets() {
+    AssetType type = determineTypeFromFile(rootDir.filePath());
+
+    switch (type) {
+    case AssetType::Animal:
+        return std::make_unique<CAnimal>();
+    default:
+        break;
+    }
 }
