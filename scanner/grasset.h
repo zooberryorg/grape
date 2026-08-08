@@ -6,20 +6,25 @@
 #include "grtexture.h"
 #include "gricon.h"
 #include "grshared.h"
+#include "SimpleIni.h"
 
 class GrAsset
 {
 public:
     GrAsset();
+    GrAsset(QString);
     virtual ~GrAsset() = default;
     virtual void load() = 0;
     virtual void save() = 0;
     virtual GrShared::AssetTypes type() const = 0;
     void loadLayers();
+    GrShared::AssetTypes getType() { return m_type; };
 
 protected:
     // constants
     QString charInts = "Characteristics/Integers";
+    QString charFloats = "Characteristics/Floats";
+
     // graphics
     QVector<GrTexture> m_mFrames; // main sprite frames
     QVector<GrTexture> m_sFrames; // shadow frames
@@ -29,6 +34,7 @@ protected:
     qint16 m_framems;
 
     // files
+    QString m_cpath; // path to main config file
     QHash<QString, QHash<QString, QString>> m_config; // uca, ucb, ucs, ai files
     QHash<QString, QStringList> m_unlock;
     // for every key in allKeys, return its value (<key, value>, <key, value>, ..., n>)
@@ -37,6 +43,8 @@ protected:
     // ids
     QString m_codename;
     GrShared::AssetTypes m_type;
+
+    GrShared::AssetTypes determineTypeFromFile();
 
 };
 

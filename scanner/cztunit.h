@@ -1,9 +1,9 @@
 #ifndef CZTUNIT_H
 #define CZTUNIT_H
 
-#include "grasset.h"
+#include "cbfunit.h"
 
-class CZTUnit : public GrAsset
+class CZTUnit : public CBFUnit
 {
 public:
     CZTUnit();
