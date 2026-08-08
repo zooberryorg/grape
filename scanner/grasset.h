@@ -16,10 +16,13 @@ public:
     virtual void save() = 0;
     virtual GrShared::AssetTypes type() const = 0;
     void loadLayers();
+    GrShared::AssetTypes getType() { return m_type; };
 
 protected:
     // constants
     QString charInts = "Characteristics/Integers";
+    QString charFloats = "Characteristics/Floats";
+
     // graphics
     QVector<GrTexture> m_mFrames; // main sprite frames
     QVector<GrTexture> m_sFrames; // shadow frames
@@ -37,6 +40,8 @@ protected:
     // ids
     QString m_codename;
     GrShared::AssetTypes m_type;
+
+    void determineTypeFromFile();
 
 };
 
