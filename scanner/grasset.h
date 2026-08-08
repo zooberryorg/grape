@@ -30,6 +30,7 @@ protected:
     QString cSuitableObjects = "cSuitableObjects";
     QString cCompatibleAnimals = "cCompatibleAnimals";
     QString cCompatibleTerrain = "cCompatibleTerrain";
+    QString animPaths = "AnimPath";
     QString animations = "Animations";
     QString sounds = "Sounds";
     QString behaviorSet = "BehaviorSet";
@@ -37,7 +38,7 @@ protected:
     QString defaultLcid = "defaultLCID";
     QString _1033 = "1033";
 
-    // graphics
+    // texture rgba data
     QVector<GrTexture> m_mFrames; // main sprite frames
     QVector<GrTexture> m_sFrames; // shadow frames
     GrTexture m_bgFrame; // bg frame
@@ -58,10 +59,12 @@ protected:
     QHash<QString, QHash<QString, QString>> m_defaultlcid;
     QHash<QString, QHash<QString, QString>> m_1033;
 
-
     QHash<QString, QStringList> m_unlock;
     // for every key in allKeys, return its value (<key, value>, <key, value>, ..., n>)
-    QHash<QString, GrIcon> m_icons;
+
+    // Graphics paths
+    QHash<QString, QHash<QString, QString>> m_iconpaths;
+    QHash<QString, QHash<QString, QString>> m_animpaths; // uca, ucb, ucs, ai files
 
     // ids
     QString m_codename;
