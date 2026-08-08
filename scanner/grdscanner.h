@@ -16,7 +16,7 @@ using DirEntry = QDirListing::DirEntry;
 class GrDScanner
 {
 public:
-    GrDScanner(DirEntry rootDir, QString workspaceName);
+    GrDScanner(DirEntry rootDir);
     QVector<DirEntry> configPaths();
 
 private:
@@ -31,7 +31,6 @@ private:
     // fields
     DirEntry rootDir;
     QVector<DirEntry> cPaths;
-    QString workspaceName;
     QStringList foundGameFolders;
 };
 

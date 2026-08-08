@@ -1,8 +1,7 @@
 #include "grdscanner.h"
 
-GrDScanner::GrDScanner(DirEntry rootDir, QString workspaceName)
+GrDScanner::GrDScanner(DirEntry rootDir)
     : rootDir(rootDir)
-    , workspaceName(workspaceName)
 {
     validate();
     loadTopLevels();
