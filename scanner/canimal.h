@@ -1,9 +1,9 @@
 #ifndef CANIMAL_H
 #define CANIMAL_H
 
-#include "grasset.h"
+#include "cztunit.h"
 
-class CAnimal : public GrAsset
+class CAnimal : public CZTUnit
 {
 public:
     CAnimal();

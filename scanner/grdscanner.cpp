@@ -38,21 +38,21 @@ void GrDScanner::loadTopLevels() {
 // Finds all base config files for main game asset types given a root folder
 void GrDScanner::findConfigFiles() {
     for ( auto& folder : foundGameFolders ) {
-        if ( folder == "animals" ) {
+        if ( folder == "animals" ) { // animals
             cPaths.append(
                 findConfigPathsInDir(
                     rootDir.filePath() + folder,
                     {".ai", ".uca"}
                 )
             );
-        } else if ( folder == "scenery" ) {
+        } else if ( folder == "scenery" ) { // buildings, scenery, foliage
             cPaths.append(
                 findConfigPathsInDir(
                     rootDir.filePath() + folder + "/other",
                     {".ai", ".ucs", ".ucb"}
                 )
             );
-        } else if ( folder == "paths" || folder == "fences" ) {
+        } else if ( folder == "paths" || folder == "fences" ) { // paths, fences
             cPaths.append(
                 findConfigPathsInDir(
                     rootDir.filePath() + folder,

@@ -11,6 +11,7 @@ class GrAsset
 {
 public:
     GrAsset();
+    GrAsset(QString);
     virtual ~GrAsset() = default;
     virtual void load() = 0;
     virtual void save() = 0;
@@ -32,6 +33,7 @@ protected:
     qint16 m_framems;
 
     // files
+    QString m_cpath; // path to main config file
     QHash<QString, QHash<QString, QString>> m_config; // uca, ucb, ucs, ai files
     QHash<QString, QStringList> m_unlock;
     // for every key in allKeys, return its value (<key, value>, <key, value>, ..., n>)
@@ -41,7 +43,7 @@ protected:
     QString m_codename;
     GrShared::AssetTypes m_type;
 
-    void determineTypeFromFile();
+    GrShared::AssetTypes determineTypeFromFile();
 
 };
 
