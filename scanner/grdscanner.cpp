@@ -62,6 +62,11 @@ void GrDScanner::findConfigFiles() {
             );
         }
     }
+
+    if ( cPaths.empty() ) {
+        // later send signal for popup error
+        QString e = "Error: no configuration files found at " + rootDir.filePath();
+    }
 }
 
 // Helper function that scans a directory at root level for files with given exts
@@ -88,4 +93,9 @@ int GrDScanner::depth(DirEntry rootPath, DirEntry curPath) {
     _depth = c.count(separator) - r.count(separator);
 
     return _depth;
+}
+
+// returns all config paths
+QVector<DirEntry> GrDScanner::configPaths() {
+    return cPaths;
 }

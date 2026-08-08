@@ -17,14 +17,18 @@ class GrDScanner
 {
 public:
     GrDScanner(DirEntry rootDir, QString workspaceName);
-    void validate();
-    QVector<DirEntry> getConfigPaths();
+    QVector<DirEntry> configPaths();
 
 private:
+    // methods
     void loadTopLevels();
     void findConfigFiles();
     int depth(DirEntry rootPath, DirEntry curPath);
+    void validate();
     QVector<DirEntry> findConfigPathsInDir(QString, QStringList);
+    QVector<DirEntry> getConfigPaths();
+
+    // fields
     DirEntry rootDir;
     QVector<DirEntry> cPaths;
     QString workspaceName;
