@@ -1,6 +1,8 @@
 #include "cbfunit.h"
 
-CBFUnit::CBFUnit() {
+CBFUnit::CBFUnit(QString path)
+    : CEntity(path)
+{
     QString charInts = "Characteristics/Integers";
     m_config[charInts]["cSlowRate"] = "";
     m_config[charInts]["cMediumRate"] = "";

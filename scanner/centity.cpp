@@ -1,6 +1,8 @@
 #include "centity.h"
 
-CEntity::CEntity() {
+CEntity::CEntity(QString path)
+    : GrAsset(path)
+{
     m_config["cr_part1"]["ncolors"] = "";
 
     QString charInts = "Characteristics/Integers";

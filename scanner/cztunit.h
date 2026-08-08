@@ -6,7 +6,7 @@
 class CZTUnit : public CBFUnit
 {
 public:
-    CZTUnit();
+    CZTUnit(QString);
 };
 
 #endif // CZTUNIT_H

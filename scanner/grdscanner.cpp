@@ -145,7 +145,7 @@ QVector<DirEntry> GrDScanner::configPaths() {
     return cPaths;
 }
 
-// returns all assets
+// gathers all asset data from a directory and saves to memory
 QVector<std::unique_ptr<GrAsset>> GrDScanner::assets() {
     QVector<std::unique_ptr<GrAsset>> _assets;
 
@@ -154,7 +154,7 @@ QVector<std::unique_ptr<GrAsset>> GrDScanner::assets() {
 
         switch (type) {
         case AssetType::Animal:
-            _assets.append(std::make_unique<CAnimal>());
+            _assets.append(std::make_unique<CAnimal>(rootDir));
             break;
         default:
             break;

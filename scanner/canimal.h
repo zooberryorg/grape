@@ -6,7 +6,8 @@
 class CAnimal : public CZTUnit
 {
 public:
-    CAnimal();
+    CAnimal(QString);
+    void load() override;
 };
 
 #endif // CANIMAL_H

@@ -1,6 +1,8 @@
 #include "cztunit.h"
 
-CZTUnit::CZTUnit() {
+CZTUnit::CZTUnit(QString path)
+    : CBFUnit(path)
+{
     m_config[charInts]["cPurchaseCost"] = "";
     m_config[charInts]["cNameId"] = "";
     m_config[charInts]["cHelpId"] = "";

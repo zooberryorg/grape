@@ -1,6 +1,8 @@
 #include "canimal.h"
 
-CAnimal::CAnimal() {
+CAnimal::CAnimal(QString path)
+    : CZTUnit(path)
+{
     m_config[charInts]["cBoxFootprintX"] = "";
     m_config[charInts]["cBoxFootprintY"] = "";
     m_config[charInts]["cBoxFootprintZ"] = "";
