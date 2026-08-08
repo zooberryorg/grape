@@ -23,7 +23,7 @@ class GrDScanner
 public:
     GrDScanner(DirEntry rootDir);
     QVector<DirEntry> configPaths();
-    std::unique_ptr<GrAsset> assets();
+    QVector<std::unique_ptr<GrAsset>> assets();
 
 private:
     // methods

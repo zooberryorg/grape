@@ -146,13 +146,18 @@ QVector<DirEntry> GrDScanner::configPaths() {
 }
 
 // returns all assets
-std::unique_ptr<GrAsset> GrDScanner::assets() {
-    AssetType type = determineTypeFromFile(rootDir.filePath());
+QVector<std::unique_ptr<GrAsset>> GrDScanner::assets() {
+    QVector<std::unique_ptr<GrAsset>> _assets;
 
-    switch (type) {
-    case AssetType::Animal:
-        return std::make_unique<CAnimal>();
-    default:
-        break;
+    for ( const auto& path : cPaths ) {
+        AssetType type = determineTypeFromFile(path.filePath());
+
+        switch (type) {
+        case AssetType::Animal:
+            _assets.append(std::make_unique<CAnimal>());
+            break;
+        default:
+            break;
+        }
     }
 }
