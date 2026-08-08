@@ -8,6 +8,8 @@
 #include "grshared.h"
 #include "SimpleIni.h"
 
+using AssetType = GrShared::AssetTypes;
+
 class GrAsset
 {
 public:

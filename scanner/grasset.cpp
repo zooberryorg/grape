@@ -23,25 +23,27 @@ GrShared::AssetTypes GrAsset::determineTypeFromFile() {
     }
 
     if ( members.contains("animals") ) { // animals
-        // do stuff
+
+        return AssetType::Animal;
+
     } else if ( members.contains("paths") ) { // paths
-        // do stuff
-    } else if ( members.contains("structures") // buildings
-               || members.contains("shelters")
-        ) {
-        // do stuff
-    } else if ( members.contains("fence") // fences
-               || members.contains("lowfence")
-               || members.contains("zoofences")
-        ) {
-        // do stuff
-    } else if ( members.contains("scenery") // scenery
-               || members.contains("light")
-               || members.contains("rocks")
-               || members.contains("foliage")
-               || members.contains("habitatfoliage")
-               || members.contains("zoofoliage")
-        ) {
-        // do stuff
+
+        return AssetType::Path;
+
+    } else if ( members.contains("structures") || members.contains("shelters") ) {
+
+        return AssetType::Building;
+
+    } else if ( members.contains("fence") || members.contains("lowfence") || members.contains("zoofences") ) {
+
+        return AssetType::Fence;
+
+    } else if ( members.contains("scenery") || members.contains("light") || members.contains("rocks")
+               || members.contains("foliage") || members.contains("habitatfoliage") || members.contains("zoofoliage") ) {
+
+        return AssetType::Scenery;
+
     }
+
+    return AssetType::None;
 }
