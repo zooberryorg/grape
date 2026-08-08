@@ -4,12 +4,12 @@ CBFUnit::CBFUnit(QString path)
     : CEntity(path)
 {
     QString charInts = "Characteristics/Integers";
-    m_config[charInts]["cSlowRate"] = "";
-    m_config[charInts]["cMediumRate"] = "";
-    m_config[charInts]["cFastRate"] = "";
-    m_config[charInts]["cSlowAnimSpeed"] = "";
-    m_config[charInts]["cMediumAnimSpeed"] = "";
-    m_config[charInts]["cFastAnimSpeed"] = "";
-    m_config[charInts]["cMinHeight"] = "";
-    m_config[charInts]["cMaxHeight"] = "";
+    m_intchars[charInts]["cSlowRate"] = "";
+    m_intchars[charInts]["cMediumRate"] = "";
+    m_intchars[charInts]["cFastRate"] = "";
+    m_intchars[charInts]["cSlowAnimSpeed"] = "";
+    m_intchars[charInts]["cMediumAnimSpeed"] = "";
+    m_intchars[charInts]["cFastAnimSpeed"] = "";
+    m_intchars[charInts]["cMinHeight"] = "";
+    m_intchars[charInts]["cMaxHeight"] = "";
 }
