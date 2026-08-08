@@ -16,16 +16,24 @@ set(TS_FILES lang/grape_en_US.ts)
 
 set(PROJECT_SOURCES
         main.cpp
+        # views
         ui/grapew.cpp
         ui/grapew.h
         ui/grapew.ui
-        models/grproject.h models/grproject.cpp
+        # graphics
         graphics/gricon.h graphics/gricon.cpp
         graphics/grtexture.h graphics/grtexture.cpp
-        scanner/centitytype.h scanner/centitytype.cpp
+        # scanner files (data)
+        scanner/grasset.h scanner/grasset.cpp
+        scanner/centity.h scanner/centity.cpp
+        scanner/cbfunit.h scanner/cbfunit.cpp
+        scanner/cztunit.h scanner/cztunit.cpp
+        scanner/canimal.h scanner/canimal.cpp
         scanner/grdscanner.h scanner/grdscanner.cpp
+        # shared sources
         common/grshared.h
         common/grtreenode.h common/grtreenode.cpp
+        # models
         ${TS_FILES}
 )
 

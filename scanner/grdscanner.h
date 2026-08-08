@@ -8,17 +8,30 @@
 #include <QHash>
 
 #include "grshared.h"
+#include "grtreenode.h"
+
+using TreeNode = GrTreeNode;
+using DirEntry = QDirListing::DirEntry;
 
 class GrDScanner
 {
 public:
-    GrDScanner(QDir dir);
-    void validate();
-    void load();
+    GrDScanner(DirEntry rootDir);
+    QVector<DirEntry> configPaths();
 
 private:
-    QDir dir;
-    QHash<QString, QString> cPaths;
+    // methods
+    void loadTopLevels();
+    void findConfigFiles();
+    int depth(DirEntry rootPath, DirEntry curPath);
+    void validate();
+    QVector<DirEntry> findConfigPathsInDir(QString, QStringList);
+    QVector<DirEntry> getConfigPaths();
+
+    // fields
+    DirEntry rootDir;
+    QVector<DirEntry> cPaths;
+    QStringList foundGameFolders;
 };
 
 #endif // GRDSCANNER_H
