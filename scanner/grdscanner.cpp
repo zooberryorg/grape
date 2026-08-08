@@ -29,6 +29,11 @@ void GrDScanner::loadTopLevels() {
                 foundGameFolders.append( folderName );
         }
     }
+
+    if ( foundGameFolders.empty() ) {
+        // later send signal for popup error
+        QString e = "Error: incorrect directory structure or no config files found at " + rootDir.filePath();
+    }
 }
 
 // Finds all base config files for main game asset types given a root folder
@@ -48,7 +53,7 @@ void GrDScanner::findConfigFiles() {
                     {".ai", ".ucs", ".ucb"}
                 )
             );
-        } else if ( folder == "paths" ) {
+        } else if ( folder == "paths" || folder == "fences" ) {
             cPaths.append(
                 findConfigPathsInDir(
                     rootDir.filePath() + folder,
