@@ -24,15 +24,25 @@ void GrDScanner::loadTopLevels() {
             int isGameDirFolder = GrShared::dFolders.contains(curPath.fileName());
 
             if ( isGameDirFolder )
-                foundGameFolders.append(curPath.fileName());
+                foundGameFolders.append(curPath);
         }
     }
 }
 
 void GrDScanner::findConfigFiles() {
     for ( const auto& folder : foundGameFolders ) {
-        if ( folder == "animals" ) {
+        if ( folder.fileName() == "animals" ) {
 
+        }
+    }
+}
+
+QVector<DirEntry> GrDScanner::findConfigPathsInDir(DirEntry path, QStringList validExts) {
+    QVector<DirEntry> paths;
+    for ( const auto& curPath : QDirListing(path.filePath(), QDirListing::IteratorFlag::FilesOnly) ) {
+        QString ext = curPath.fileInfo().suffix().toLower();
+        if ( validExts.contains( ext, Qt::CaseInsensitive ) ) {
+            paths.append( curPath );
         }
     }
 }

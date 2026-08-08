@@ -24,11 +24,11 @@ private:
     void loadTopLevels();
     void findConfigFiles();
     int depth(DirEntry rootPath, DirEntry curPath);
-    QVector<DirEntry> saveConfigPathsInDir(DirEntry);
+    QVector<DirEntry> findConfigPathsInDir(DirEntry, QStringList);
     DirEntry rootDir;
     QHash<QString, QString> cPaths;
     QString workspaceName;
-    QStringList foundGameFolders;
+    QVector<DirEntry> foundGameFolders;
 };
 
 #endif // GRDSCANNER_H
