@@ -6,6 +6,7 @@
 #include "grtexture.h"
 #include "gricon.h"
 #include "grshared.h"
+#include "SimpleIni.h"
 
 class GrAsset
 {
