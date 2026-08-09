@@ -3,6 +3,14 @@
 CAnimal::CAnimal(QString path)
     : CZTUnit(path)
 {
+    m_type = AssetType::Animal;
+    initCharInts();
+    initAnimPaths();
+    initIcon();
+    initMembers();
+}
+
+void CAnimal::initCharInts() {
     m_intchars[charInts]["cBoxFootprintX"] = "";
     m_intchars[charInts]["cBoxFootprintY"] = "";
     m_intchars[charInts]["cBoxFootprintZ"] = "";
@@ -90,4 +98,32 @@ CAnimal::CAnimal(QString path)
     m_intchars[charInts]["cNeedShelter"] = "";
     m_intchars[charInts]["cNeedToys"] = "";
     m_intchars[charInts]["cBabiesAttack"] = "";
+
+    // cPrey support elsewhere
 }
+
+void CAnimal::initAnimPaths() {
+    m_animpaths[animPaths]["f"] = "";
+    m_animpaths[animPaths]["m"] = "";
+    m_animpaths[animPaths]["y"] = "";
+}
+
+void CAnimal::initIcon() {
+    m_icon["Icon"]["Icon"] = "";
+}
+
+void CAnimal::initMembers() {
+    m_members.append("animals");
+}
+
+void CAnimal::initDefaultLcid() {
+    m_defaultlcid[defaultLcid]["LCID"] = "";
+}
+
+void CAnimal::init1033() {
+    m_1033[_1033]["cGeneralInfoFileName"] = "";
+    m_1033[_1033]["cLongHelp"] = "";
+    m_1033[_1033]["cName"] = "";
+    m_1033[_1033]["cTheString"] = "";
+}
+
