@@ -10,6 +10,15 @@ CAnimal::CAnimal(QString path)
     initMembers();
 }
 
+void CAnimal::load() {
+    CSimpleIniA ini;
+    int rc = ini.LoadFile(m_cpath.toStdString().c_str());
+    if ( rc < 0 ) {
+        // error handling here
+    }
+
+}
+
 void CAnimal::initCharInts() {
     m_intchars[charInts]["cBoxFootprintX"] = "";
     m_intchars[charInts]["cBoxFootprintY"] = "";
