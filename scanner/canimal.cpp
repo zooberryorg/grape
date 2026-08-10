@@ -17,7 +17,7 @@ void CAnimal::load() {
         // error handling here
     }
 
-    if (m_intchars[charInts].contains())
+    m_intchars = GrINI::getKeyValuesInSection(ini, charInts);
 
 }
 

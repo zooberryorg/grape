@@ -2,6 +2,7 @@
 #define CANIMAL_H
 
 #include "cztunit.h"
+#include "grini.h"
 
 class CAnimal : public CZTUnit
 {
