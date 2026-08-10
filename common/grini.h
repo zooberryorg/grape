@@ -4,12 +4,13 @@
 // layer over simple ini that returns Qt friendly objects
 
 #include <QStringList>
+#include <QHash>
 #include "SimpleIni.h"
 
 class GrINI
 {
 public:
-    static QStringList getKeyValuesInSection(QString section);
+    static QHash<QString, QString> getKeyValuesInSection(const CSimpleIniA& ini, QString section);
 };
 
 #endif // GRINI_H

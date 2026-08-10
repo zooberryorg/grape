@@ -1,12 +1,15 @@
 #include "grini.h"
 
-QStringList GrINI::getKeyValuesInSection(QString section)
+QHash<QString, QString> GrINI::getKeyValuesInSection(const CSimpleIniA& ini, QString section)
 {
     CSimpleIniA::TNamesDepend memberKeys;
     ini.GetAllKeys("Member", memberKeys);
-    QStringList members;
+    QHash<QString, QString> pairs;
 
-    for ( const auto& member : memberKeys ) {
-        members.append(QString(member.pItem));
+    for ( const auto& key : memberKeys ) {
+        QString value = QString(ini.GetValue(section.toStdString().c_str(), key.pItem));
+        pairs.insert(QString(key.pItem), value);
     }
+
+    return pairs;
 }
