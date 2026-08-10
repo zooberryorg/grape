@@ -19,7 +19,6 @@ public:
     virtual ~GrAsset() = default;
     virtual void load() = 0;
     virtual void save() = 0;
-    virtual GrShared::AssetTypes type() const = 0;
     void loadLayers();
     GrShared::AssetTypes getType() { return m_type; };
 

@@ -33,6 +33,10 @@ void CAnimal::load() {
     GrINI::assignNewValuesToKeys(m_1033, found1033);
 }
 
+void CAnimal::save() {
+
+}
+
 void CAnimal::initCharInts() {
     m_intchars[charInts]["cBoxFootprintX"] = "";
     m_intchars[charInts]["cBoxFootprintY"] = "";

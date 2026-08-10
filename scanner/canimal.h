@@ -9,6 +9,7 @@ class CAnimal : public CZTUnit
 public:
     CAnimal(QString);
     void load() override;
+    void save() override;
 
     void initGlobals();
     void initAnimPaths();

@@ -154,10 +154,12 @@ QVector<std::unique_ptr<GrAsset>> GrDScanner::assets() {
 
         switch (type) {
         case AssetType::Animal:
-            _assets.append(std::make_unique<CAnimal>(rootDir));
+            _assets.append(std::make_unique<CAnimal>(rootDir.filePath()));
             break;
         default:
             break;
         }
     }
+
+    return _assets;
 }
