@@ -1,91 +1,156 @@
 #include "canimal.h"
 
-CAnimal::CAnimal() {
-    m_config[charInts]["cBoxFootprintX"] = "";
-    m_config[charInts]["cBoxFootprintY"] = "";
-    m_config[charInts]["cBoxFootprintZ"] = "";
-    m_config[charInts]["cFamily"] = "";
-    m_config[charInts]["cGenus"] = "";
-    m_config[charInts]["cHabitat"] = "";
-    m_config[charInts]["cLocation"] = "";
-    m_config[charInts]["cEra"] = "";
-    m_config[charInts]["cBreathThreshold"] = "";
-    m_config[charInts]["cBreathIncrement"] = "";
-    m_config[charInts]["cHungerThreshold"] = "";
-    m_config[charInts]["cHungryHealthChange"] = "";
-    m_config[charInts]["cHungerIncrement"] = "";
-    m_config[charInts]["cFoodUnitValue"] = ""; // not in game files
-    m_config[charInts]["cKeeperFoodUnitsEaten"] = "";
-    m_config[charInts]["cNeededFood"] = "";
-    m_config[charInts]["cNoFoodChange"] = "";
-    m_config[charInts]["cInitialHappiness"] = "";
-    m_config[charInts]["cMaxHits"] = "";
-    m_config[charInts]["cPctHits"] = "";
-    m_config[charInts]["cMaxEnergy"] = "";
-    m_config[charInts]["cMaxDirty"] = ""; // not in game files
-    m_config[charInts]["cMinDirty"] = ""; // not in game files
-    m_config[charInts]["cSickChange"] = "";
-    m_config[charInts]["cOtherAnimalSickChange"] = "";
-    m_config[charInts]["cSickChance"] = "";
-    m_config[charInts]["cSickRandomChance"] = ""; // not in game files
-    m_config[charInts]["cCrowd"] = "";
-    m_config[charInts]["cCrowdHappinessChange"] = "";
-    m_config[charInts]["cZapHappinessChange"] = "";
-    m_config[charInts]["cCaptivity"] = ""; // also cCaptivityCheck?
-    m_config[charInts]["cReproductionChance"] = "";
-    m_config[charInts]["cReproductionInterval"] = "";
-    m_config[charInts]["cMatingType"] = "";
-    m_config[charInts]["cOffspring"] = "";
-    m_config[charInts]["cKeeperFrequency"] = "";
-    m_config[charInts]["cNotEnoughKeepersChange"] = "";
-    m_config[charInts]["cSocial"] = "";
-    m_config[charInts]["cHabitatSize"] = ""; // also cSocialCheck?
-    m_config[charInts]["cNumberAnimalsMin"] = "";
-    m_config[charInts]["cNumberAnimalsMax"] = "";
-    m_config[charInts]["cNumberMinChange"] = "";
-    m_config[charInts]["cNumberMaxChange"] = "";
-    m_config[charInts]["cHabitatPreference"] = "";
-    m_config[charInts]["cBabyBornChange"] = "";
-    m_config[charInts]["cEnergyIncrement"] = "";
-    m_config[charInts]["cEnergyThreshold"] = "";
-    m_config[charInts]["cDirtyIncrement"] = "";
-    m_config[charInts]["cDirtyThreshold"] = "";
-    m_config[charInts]["cSickTime"] = "";
-    m_config[charInts]["cBabyToAdult"] = "";
-    m_config[charInts]["cOtherFood"] = "";
-    m_config[charInts]["cTreePref"] = "";
-    m_config[charInts]["cRockPref"] = "";
-    m_config[charInts]["cSpacePref"] = "";
-    m_config[charInts]["cElevationPref"] = "";
-    m_config[charInts]["cDepthMin"] = "";
-    m_config[charInts]["cDepthMax"] = "";
-    m_config[charInts]["cDepthChange"] = "";
-    m_config[charInts]["cSalinityChange"] = "";
-    m_config[charInts]["cSalinityHealthChange"] = "";
-    m_config[charInts]["cHappyReproduceThreshold"] = "";
-    m_config[charInts]["cBuildingUseChance"] = "";
-    m_config[charInts]["cNoMateChange"] = "";
-    m_config[charInts]["cTimeDeath"] = "";
-    m_config[charInts]["cDeathChance"] = "";
-    m_config[charInts]["cWaterNeeded"] = "";
-    m_config[charInts]["cUnderwater"] = "";
-    m_config[charInts]["cLandNeeded"] = "";
-    m_config[charInts]["cEnterWaterChance"] = "";
-    m_config[charInts]["cEnterTankChance"] = "";
-    m_config[charInts]["cEnterLandChance"] = "";
-    m_config[charInts]["cDrinkWaterChance"] = "";
-    m_config[charInts]["cChaseAnimalChance"] = "";
-    m_config[charInts]["cClimbsCliffs"] = "";
-    m_config[charInts]["cBashStrength"] = "";
-    m_config[charInts]["cAttractiveness"] = "";
-    m_config[charInts]["cKeeperFoodType"] = "";
-    m_config[charInts]["cIsClimber"] = "";
-    m_config[charInts]["cIsJumper"] = "";
-    m_config[charInts]["cSmallZoodoo"] = "";
-    m_config[charInts]["cDinoZoodoo"] = "";
-    m_config[charInts]["cGiantZoodoo"] = "";
-    m_config[charInts]["cIsSpecialAnimal"] = "";
-    m_config[charInts]["cNeedShelter"] = "";
-    m_config[charInts]["cNeedToys"] = "";
-    m_config[charInts]["cBabiesAttack"] = "";
+CAnimal::CAnimal(QString path)
+    : CZTUnit(path)
+{
+    m_type = AssetType::Animal;
+    initCharInts();
+    initAnimPaths();
+    initIcon();
+    initMembers();
 }
+
+void CAnimal::load() {
+    CSimpleIniA ini;
+    int rc = ini.LoadFile(m_cpath.toStdString().c_str());
+    if ( rc < 0 ) {
+        // error handling here
+    }
+
+    QHash<QString, QString> foundCharInts = GrINI::getKeyValuesInSection(ini, charInts);
+    GrINI::assignNewValuesToKeys(m_intchars, foundCharInts);
+
+    QHash<QString, QString> foundAnimPaths = GrINI::getKeyValuesInSection(ini, animPaths);
+    GrINI::assignNewValuesToKeys(m_animpaths, foundAnimPaths);
+
+    QHash<QString, QString> foundIcons = GrINI::getKeyValuesInSection(ini, "Icon");
+    GrINI::assignNewValuesToKeys(m_icon, foundIcons);
+
+    QHash<QString, QString> foundDefaultLcid = GrINI::getKeyValuesInSection(ini, defaultLcid);
+    GrINI::assignNewValuesToKeys(m_defaultlcid, foundDefaultLcid);
+
+    QHash<QString, QString> found1033 = GrINI::getKeyValuesInSection(ini, _1033);
+    GrINI::assignNewValuesToKeys(m_1033, found1033);
+}
+
+void CAnimal::save() {
+
+}
+
+void CAnimal::initCharInts() {
+    m_intchars[charInts]["cBoxFootprintX"] = "";
+    m_intchars[charInts]["cBoxFootprintY"] = "";
+    m_intchars[charInts]["cBoxFootprintZ"] = "";
+    m_intchars[charInts]["cFamily"] = "";
+    m_intchars[charInts]["cGenus"] = "";
+    m_intchars[charInts]["cHabitat"] = "";
+    m_intchars[charInts]["cLocation"] = "";
+    m_intchars[charInts]["cEra"] = "";
+    m_intchars[charInts]["cBreathThreshold"] = "";
+    m_intchars[charInts]["cBreathIncrement"] = "";
+    m_intchars[charInts]["cHungerThreshold"] = "";
+    m_intchars[charInts]["cHungryHealthChange"] = "";
+    m_intchars[charInts]["cHungerIncrement"] = "";
+    m_intchars[charInts]["cFoodUnitValue"] = ""; // not in game files
+    m_intchars[charInts]["cKeeperFoodUnitsEaten"] = "";
+    m_intchars[charInts]["cNeededFood"] = "";
+    m_intchars[charInts]["cNoFoodChange"] = "";
+    m_intchars[charInts]["cInitialHappiness"] = "";
+    m_intchars[charInts]["cMaxHits"] = "";
+    m_intchars[charInts]["cPctHits"] = "";
+    m_intchars[charInts]["cMaxEnergy"] = "";
+    m_intchars[charInts]["cMaxDirty"] = ""; // not in game files
+    m_intchars[charInts]["cMinDirty"] = ""; // not in game files
+    m_intchars[charInts]["cSickChange"] = "";
+    m_intchars[charInts]["cOtherAnimalSickChange"] = "";
+    m_intchars[charInts]["cSickChance"] = "";
+    m_intchars[charInts]["cSickRandomChance"] = ""; // not in game files
+    m_intchars[charInts]["cCrowd"] = "";
+    m_intchars[charInts]["cCrowdHappinessChange"] = "";
+    m_intchars[charInts]["cZapHappinessChange"] = "";
+    m_intchars[charInts]["cCaptivity"] = ""; // also cCaptivityCheck?
+    m_intchars[charInts]["cReproductionChance"] = "";
+    m_intchars[charInts]["cReproductionInterval"] = "";
+    m_intchars[charInts]["cMatingType"] = "";
+    m_intchars[charInts]["cOffspring"] = "";
+    m_intchars[charInts]["cKeeperFrequency"] = "";
+    m_intchars[charInts]["cNotEnoughKeepersChange"] = "";
+    m_intchars[charInts]["cSocial"] = "";
+    m_intchars[charInts]["cHabitatSize"] = ""; // also cSocialCheck?
+    m_intchars[charInts]["cNumberAnimalsMin"] = "";
+    m_intchars[charInts]["cNumberAnimalsMax"] = "";
+    m_intchars[charInts]["cNumberMinChange"] = "";
+    m_intchars[charInts]["cNumberMaxChange"] = "";
+    m_intchars[charInts]["cHabitatPreference"] = "";
+    m_intchars[charInts]["cBabyBornChange"] = "";
+    m_intchars[charInts]["cEnergyIncrement"] = "";
+    m_intchars[charInts]["cEnergyThreshold"] = "";
+    m_intchars[charInts]["cDirtyIncrement"] = "";
+    m_intchars[charInts]["cDirtyThreshold"] = "";
+    m_intchars[charInts]["cSickTime"] = "";
+    m_intchars[charInts]["cBabyToAdult"] = "";
+    m_intchars[charInts]["cOtherFood"] = "";
+    m_intchars[charInts]["cTreePref"] = "";
+    m_intchars[charInts]["cRockPref"] = "";
+    m_intchars[charInts]["cSpacePref"] = "";
+    m_intchars[charInts]["cElevationPref"] = "";
+    m_intchars[charInts]["cDepthMin"] = "";
+    m_intchars[charInts]["cDepthMax"] = "";
+    m_intchars[charInts]["cDepthChange"] = "";
+    m_intchars[charInts]["cSalinityChange"] = "";
+    m_intchars[charInts]["cSalinityHealthChange"] = "";
+    m_intchars[charInts]["cHappyReproduceThreshold"] = "";
+    m_intchars[charInts]["cBuildingUseChance"] = "";
+    m_intchars[charInts]["cNoMateChange"] = "";
+    m_intchars[charInts]["cTimeDeath"] = "";
+    m_intchars[charInts]["cDeathChance"] = "";
+    m_intchars[charInts]["cWaterNeeded"] = "";
+    m_intchars[charInts]["cUnderwater"] = "";
+    m_intchars[charInts]["cLandNeeded"] = "";
+    m_intchars[charInts]["cEnterWaterChance"] = "";
+    m_intchars[charInts]["cEnterTankChance"] = "";
+    m_intchars[charInts]["cEnterLandChance"] = "";
+    m_intchars[charInts]["cDrinkWaterChance"] = "";
+    m_intchars[charInts]["cChaseAnimalChance"] = "";
+    m_intchars[charInts]["cClimbsCliffs"] = "";
+    m_intchars[charInts]["cBashStrength"] = "";
+    m_intchars[charInts]["cAttractiveness"] = "";
+    m_intchars[charInts]["cKeeperFoodType"] = "";
+    m_intchars[charInts]["cIsClimber"] = "";
+    m_intchars[charInts]["cIsJumper"] = "";
+    m_intchars[charInts]["cSmallZoodoo"] = "";
+    m_intchars[charInts]["cDinoZoodoo"] = "";
+    m_intchars[charInts]["cGiantZoodoo"] = "";
+    m_intchars[charInts]["cIsSpecialAnimal"] = "";
+    m_intchars[charInts]["cNeedShelter"] = "";
+    m_intchars[charInts]["cNeedToys"] = "";
+    m_intchars[charInts]["cBabiesAttack"] = "";
+
+    // cPrey support elsewhere
+}
+
+void CAnimal::initAnimPaths() {
+    m_animpaths[animPaths]["f"] = "";
+    m_animpaths[animPaths]["m"] = "";
+    m_animpaths[animPaths]["y"] = "";
+}
+
+void CAnimal::initIcon() {
+    m_icon["Icon"]["Icon"] = "";
+}
+
+void CAnimal::initMembers() {
+    m_members.append("animals");
+}
+
+void CAnimal::initDefaultLcid() {
+    m_defaultlcid[defaultLcid]["LCID"] = "";
+}
+
+void CAnimal::init1033() {
+    m_1033[_1033]["cGeneralInfoFileName"] = "";
+    m_1033[_1033]["cLongHelp"] = "";
+    m_1033[_1033]["cName"] = "";
+    m_1033[_1033]["cTheString"] = "";
+}
+

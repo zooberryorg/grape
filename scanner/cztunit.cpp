@@ -1,15 +1,17 @@
 #include "cztunit.h"
 
-CZTUnit::CZTUnit() {
-    m_config[charInts]["cPurchaseCost"] = "";
-    m_config[charInts]["cNameId"] = "";
-    m_config[charInts]["cHelpId"] = "";
-    m_config[charInts]["cMapFootprint"] = "";
-    m_config[charInts]["cSlowAnimSpeedWater"] = "";
-    m_config[charInts]["cFastAnimSpeedWater"] = "";
-    m_config[charInts]["cSwims"] = "";
-    m_config[charInts]["cOnlyUnderwater"] = "";
-    m_config[charInts]["cSkipTrickHappiness"] = "";
-    m_config[charInts]["cSkipTrickChance"] = "";
+CZTUnit::CZTUnit(QString path)
+    : CBFUnit(path)
+{
+    m_intchars[charInts]["cPurchaseCost"] = "";
+    m_intchars[charInts]["cNameId"] = "";
+    m_intchars[charInts]["cHelpId"] = "";
+    m_intchars[charInts]["cMapFootprint"] = "";
+    m_intchars[charInts]["cSlowAnimSpeedWater"] = "";
+    m_intchars[charInts]["cFastAnimSpeedWater"] = "";
+    m_intchars[charInts]["cSwims"] = "";
+    m_intchars[charInts]["cOnlyUnderwater"] = "";
+    m_intchars[charInts]["cSkipTrickHappiness"] = "";
+    m_intchars[charInts]["cSkipTrickChance"] = "";
 
 }

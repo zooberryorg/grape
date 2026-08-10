@@ -6,10 +6,7 @@
 class CBFUnit : public CEntity
 {
 public:
-    CBFUnit();
-    virtual void load() = 0;
-    virtual void save() = 0;
-    virtual GrShared::AssetTypes type() const = 0;
+    CBFUnit(QString);
 };
 
 #endif // CBFUNIT_H

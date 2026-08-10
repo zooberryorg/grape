@@ -7,11 +7,7 @@
 class CEntity : public GrAsset
 {
 public:
-    CEntity();
-    virtual void load() = 0;
-    virtual void save() = 0;
-    virtual GrShared::AssetTypes type() const = 0;
-    virtual ~CEntity() {};
+    CEntity(QString);
 };
 
 #endif // CENTITY_H

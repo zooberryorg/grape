@@ -34,6 +34,7 @@ set(PROJECT_SOURCES
         # shared sources
         common/grshared.h
         common/grtreenode.h common/grtreenode.cpp
+        common/grini.h common/grini.cpp
         # models
         ${TS_FILES}
 )
