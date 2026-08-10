@@ -24,7 +24,7 @@
 #ifndef GRPROJECTTREEMODEL_H
 #define GRPROJECTTREEMODEL_H
 
-class TreeNode;
+class GrTreeNode;
 #include <QAbstractItemModel>
 
 class GrProjectTreeModel : public QAbstractItemModel
@@ -32,7 +32,7 @@ class GrProjectTreeModel : public QAbstractItemModel
     Q_OBJECT
 
 public:
-    explicit GrProjectTreeModel(TreeNode *root, QObject *parent = nullptr);
+    explicit GrProjectTreeModel(GrTreeNode *root, QObject *parent = nullptr);
 
     // Header:
     QVariant headerData(int section, Qt::Orientation orientation,
@@ -49,8 +49,8 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
 private:
-    TreeNode *treeNodeFromIndex(const QModelIndex &index) const;
-    TreeNode *m_root = nullptr;
+    GrTreeNode *treeNodeFromIndex(const QModelIndex &index) const;
+    GrTreeNode *m_root = nullptr;
 };
 
 #endif // GRPROJECTTREEMODEL_H
