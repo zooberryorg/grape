@@ -54,13 +54,13 @@ public:
     GrTreeNode* child(int row) const;
     int childCount() const;
     int columnCount() const;
-    QVariant data() const;
+    QVariant data(int column) const;
     int row() const;
     GrTreeNode* parentNode() const;
 
 private:
     QList<GrTreeNode*> m_childNodes;
-    QString m_columnData; // only one column for this data
+    QStringList m_columnData;
     GrTreeNode* m_parentNode;
 };
 
