@@ -7,6 +7,7 @@ GrDScanner::GrDScanner(DirEntry rootDir)
     validate();
     loadTopLevels();
     findConfigFiles();
+    loadAssets();
 }
 
 void GrDScanner::validate() {
@@ -141,25 +142,26 @@ int GrDScanner::depth(DirEntry rootPath, DirEntry curPath) {
 }
 
 // returns all config paths
-QVector<DirEntry> GrDScanner::configPaths() {
+QVector<DirEntry> GrDScanner::getConfigPaths() {
     return cPaths;
 }
 
 // gathers all asset data from a directory and saves to memory
-QVector<std::unique_ptr<GrAsset>> GrDScanner::assets() {
-    QVector<std::unique_ptr<GrAsset>> _assets;
+void GrDScanner::loadAssets() {
 
     for ( const auto& path : cPaths ) {
         AssetType type = determineTypeFromFile(path.filePath());
 
         switch (type) {
         case AssetType::Animal:
-            _assets.append(std::make_unique<CAnimal>(rootDir.filePath()));
+            m_assets.push_back(std::make_unique<CAnimal>(rootDir.filePath()));
             break;
         default:
             break;
         }
     }
+}
 
-    return _assets;
+void GrDScanner::deleteAsset(qint32 index) {
+    m_assets.erase(m_assets.begin() + index);
 }

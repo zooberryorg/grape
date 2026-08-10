@@ -22,8 +22,10 @@ class GrDScanner
 {
 public:
     GrDScanner(DirEntry rootDir);
-    QVector<DirEntry> configPaths();
-    QVector<std::unique_ptr<GrAsset>> assets();
+    Q_DISABLE_COPY(GrDScanner);
+    QVector<DirEntry> loadConfigPaths();
+    void loadAssets();
+    void deleteAsset(qint32);
 
 private:
     // methods
@@ -39,6 +41,7 @@ private:
     DirEntry rootDir;
     QVector<DirEntry> cPaths;
     QStringList foundGameFolders;
+    std::vector<std::unique_ptr<GrAsset>> m_assets;
 };
 
 #endif // GRDSCANNER_H
