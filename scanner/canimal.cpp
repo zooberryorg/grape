@@ -17,6 +17,8 @@ void CAnimal::load() {
         // error handling here
     }
 
+    if (m_intchars[charInts].contains())
+
 }
 
 void CAnimal::initCharInts() {
