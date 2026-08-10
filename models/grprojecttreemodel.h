@@ -26,17 +26,19 @@
 
 class GrTreeNode;
 #include <QAbstractItemModel>
+#include <QMap>
+
+#include <grshared.h>
+#include <grasset.h>
+
+using AssetType = GrShared::AssetTypes;
 
 class GrProjectTreeModel : public QAbstractItemModel
 {
     Q_OBJECT
 
 public:
-    explicit GrProjectTreeModel(GrTreeNode *root, QObject *parent = nullptr);
-
-    // Header:
-    QVariant headerData(int section, Qt::Orientation orientation,
-                        int role = Qt::DisplayRole) const override;
+    explicit GrProjectTreeModel(QMap<AssetType, QVector<GrAsset*>> groupTypes, QObject *parent = nullptr);
 
     // Basic functionality:
     QModelIndex index(int row, int column,
@@ -49,7 +51,9 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
 private:
-    GrTreeNode *treeNodeFromIndex(const QModelIndex &index) const;
+    QMap<AssetType, QVector<GrAsset*>> m_grouptypes;
+    QList<AssetType> m_keys;
+
     GrTreeNode *m_root = nullptr;
 };
 

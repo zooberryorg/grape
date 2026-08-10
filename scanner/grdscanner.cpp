@@ -8,6 +8,7 @@ GrDScanner::GrDScanner(DirEntry rootDir)
     loadTopLevels();
     findConfigFiles();
     loadAssets();
+    generateProjectTree();
 }
 
 void GrDScanner::validate() {

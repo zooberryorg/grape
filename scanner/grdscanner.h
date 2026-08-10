@@ -36,6 +36,7 @@ private:
     QVector<DirEntry> findConfigPathsInDir(QString, QStringList);
     QVector<DirEntry> getConfigPaths();
     GrShared::AssetTypes determineTypeFromFile(QString);
+    void generateProjectTree();
 
     // fields
     DirEntry rootDir;
