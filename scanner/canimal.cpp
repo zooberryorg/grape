@@ -4,6 +4,7 @@ CAnimal::CAnimal(QString path)
     : CZTUnit(path)
 {
     m_type = AssetType::Animal;
+    initProjectName();
     initCharInts();
     initAnimPaths();
     initIcon();
