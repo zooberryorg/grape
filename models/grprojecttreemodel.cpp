@@ -93,10 +93,4 @@ QVariant GrProjectTreeModel::data(const QModelIndex &index, int role) const
     GrTreeNode *node = treeNodeFromIndex(index);
     return node->data(index.column());
 }
-GrTreeNode *GrProjectTreeModel::treeNodeFromIndex(const QModelIndex &index) const
-{
-    if (!index.isValid())
-        return m_root;
-    else
-        return static_cast<GrTreeNode *>(index.internalPointer());
-}
+
