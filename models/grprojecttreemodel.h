@@ -53,8 +53,6 @@ public:
 private:
     QMap<AssetType, QVector<GrAsset*>> m_grouptypes;
     QList<AssetType> m_keys;
-
-    GrTreeNode *m_root = nullptr;
 };
 
 #endif // GRPROJECTTREEMODEL_H

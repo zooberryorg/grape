@@ -25,6 +25,45 @@ enum AssetTypes {
     None
 };
 
+inline const QString TypeToString(AssetTypes type) {
+    switch(type) {
+        case ( Scenery ):
+            return "Scenery";
+        case ( Fence ):
+            return "Fences";
+        case ( Building ):
+            return "Buildings";
+        case ( Food ):
+            return "Food";
+        case ( Rubble ):
+            return "Rubble";
+        case ( TankFilter ):
+            return "Tank Filters";
+        case ( Path ):
+            return "Paths";
+        case ( TankWall ):
+            return "Tank Walls";
+        case ( Animal ):
+            return "Animals";
+        case ( Staff ):
+            return "Staff";
+        case ( Guest ):
+            return "Guests";
+        case ( Helicopter ):
+            return "Helicopters";
+        case ( Guide ):
+            return "Guides";
+        case ( MaintenanceWorker ):
+            return "Maintenance Workers";
+        case ( Keeper ):
+            return "Zookeepers";
+        case ( Ambient ):
+            return "Ambients";
+        case ( None ):
+            return "Misc";
+    }
+}
+
 inline const QVector<QString> dFolders = { // default folders
     "animals",
     "fences",

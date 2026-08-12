@@ -25,45 +25,59 @@
 #include "grtreenode.h"
 #include <QDebug>
 
-GrProjectTreeModel::GrProjectTreeModel(GrTreeNode *root, QObject *parent)
+GrProjectTreeModel::GrProjectTreeModel(QMap<AssetType, QVector<GrAsset*>> groupTypes, QObject *parent)
     : QAbstractItemModel(parent)
-    , m_root(root)
+    , m_grouptypes(groupTypes)
+    , m_keys(groupTypes.keys())
 {
-}
-
-QVariant GrProjectTreeModel::headerData(int section, Qt::Orientation orientation, int role) const
-{
-    if (orientation == Qt::Horizontal && role == Qt::DisplayRole) {
-        return m_root->data(section);
-    }
-    return {};
 }
 
 QModelIndex GrProjectTreeModel::index(int row, int column, const QModelIndex &parent) const
 {
-    GrTreeNode *parentNode = treeNodeFromIndex(parent);
-    GrTreeNode *ptr = parentNode->child(row);
-    return createIndex(row, column, ptr);
+    if ( !parent.isValid() ) {
+        // found a group
+        if ( row < 0 || row >= m_keys.size() ) {
+            return QModelIndex();
+        }
+
+        return createIndex(row, column, quintptr(-1));
+
+    }
+
+    // child
+    const AssetType type = m_keys.at(parent.row());
+    const auto& assets = m_grouptypes.value(type);
+
+    if ( row < 0 || row >= assets.size() ) {
+        return QModelIndex();
+    }
+
+    return createIndex(row, column, quintptr(parent.row()));
 }
 
 QModelIndex GrProjectTreeModel::parent(const QModelIndex &index) const
 {
-    if (!index.isValid())
-        return {};
-
-    GrTreeNode *myNode = treeNodeFromIndex(index);
-    GrTreeNode *parentNode = myNode->parentNode();
-    if (parentNode == m_root)
-        return {};
-
-    int row = parentNode->row();
-    return createIndex(row, 0, parentNode);
+    if ( !index.isValid() || index.internalId() == quintptr(-1) ) {
+        return QModelIndex();
+    }
+    return createIndex(int(index.internalId()), 0, quintptr(-1));
 }
 
 int GrProjectTreeModel::rowCount(const QModelIndex &parent) const
 {
-    GrTreeNode *data = treeNodeFromIndex(parent);
-    return data->childCount();
+    if ( !parent.isValid() ) {
+        // num of groups
+        return m_keys.size();
+    }
+
+    if ( parent.internalId() == quintptr(-1)) {
+        // parent is a group + ret num of assets inside
+        const AssetType type = m_keys.at(parent.row());
+        return m_grouptypes.value(type).size();
+    }
+
+    // parent is a leaf (asset)
+    return 0;
 }
 
 int GrProjectTreeModel::columnCount(const QModelIndex & /*parent*/) const
