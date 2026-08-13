@@ -18,9 +18,8 @@ set(TS_FILES lang/grape_en_US.ts)
 set(PROJECT_SOURCES
         main.cpp
         # views
-        ui/grapew.cpp
-        ui/grapew.h
-        ui/grapew.ui
+        ui/grapew.h ui/grapew.cpp ui/grapew.ui
+        ui/grprojecttree.h ui/grprojecttree.cpp
         # graphics
         graphics/gricon.h graphics/gricon.cpp
         graphics/grtexture.h graphics/grtexture.cpp
