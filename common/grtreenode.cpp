@@ -72,14 +72,12 @@ int GrTreeNode::childCount() const
 
 int GrTreeNode::columnCount() const
 {
-    return 1; // note: no plan for additional columns but change QString to QStringList if more needed
+    return m_columnData.count();
 }
 
-QVariant GrTreeNode::data() const
+QVariant GrTreeNode::data(int column) const
 {
-    QVariant v = QVariant();
-    v.setValue(m_columnData);
-    return v;
+    return m_columnData.at(column);
 }
 
 int GrTreeNode::row() const

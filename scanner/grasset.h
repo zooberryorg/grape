@@ -19,7 +19,9 @@ public:
     virtual ~GrAsset() = default;
     virtual void load() = 0;
     virtual void save() = 0;
+    QString name() { return m_projectname; };
     void loadLayers();
+    void initProjectName();
     GrShared::AssetTypes getType() { return m_type; };
 
 protected:
@@ -63,7 +65,8 @@ protected:
     // for every key in allKeys, return its value (<key, value>, <key, value>, ..., n>)
 
     // ids
-    QString m_codename;
+    QString m_projectname;
+    QString m_projectid;
     GrShared::AssetTypes m_type;
 
 

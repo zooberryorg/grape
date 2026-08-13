@@ -36,11 +36,13 @@ set(PROJECT_SOURCES
         common/grtreenode.h common/grtreenode.cpp
         common/grini.h common/grini.cpp
         # models
+        models/grprojecttreemodel.h models/grprojecttreemodel.cpp
         ${TS_FILES}
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(grape
+
+qt_add_executable(grape
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
     )
