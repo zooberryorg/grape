@@ -1,4 +1,5 @@
 #include "grapew.h"
+#include "grprojecttreemodel.h"
 
 GrapeW::GrapeW(QWidget *parent)
     : QMainWindow(parent)
@@ -17,7 +18,7 @@ GrapeW::GrapeW(QWidget *parent)
     workspaceVLayout = new QVBoxLayout(leftBarPanel);
     explorerLabel = new QLabel("Explorer");
     fileTree = new QTreeView(this);
-    fileModel = new QFileSystemModel(this);
+    fileModel = new GrProjectTreeModel(this);
     fileModel->setRootPath("C:/");
     fileTree->setModel(fileModel);
 

@@ -60,6 +60,7 @@ inline const QString TypeToString(AssetTypes type) {
         case ( Ambient ):
             return "Ambients";
         case ( None ):
+        default:
             return "Misc";
     }
 }
