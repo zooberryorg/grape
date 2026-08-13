@@ -1,5 +1,6 @@
 #include "grapew.h"
 #include "grprojecttreemodel.h"
+#include "grprojecttree.h"
 
 GrapeW::GrapeW(QWidget *parent)
     : QMainWindow(parent)
@@ -14,31 +15,13 @@ GrapeW::GrapeW(QWidget *parent)
     workspaceHLayout->addWidget(hSplitter);
 
     // file tree setup
-    leftBarPanel = new QWidget;
-    workspaceVLayout = new QVBoxLayout(leftBarPanel);
-    explorerLabel = new QLabel("Explorer");
-    fileTree = new QTreeView(this);
-    fileModel = new GrProjectTreeModel(this);
-    fileModel->setRootPath("C:/");
-    fileTree->setModel(fileModel);
-
-    fileTree->setRootIndex(
-        fileModel->index("C:/")
-        );
-
-    fileTree->hideColumn(1);
-    fileTree->hideColumn(2);
-    fileTree->hideColumn(3);
-    fileTree->setHeaderHidden(true);
-
-    workspaceVLayout->addWidget(explorerLabel);
-    workspaceVLayout->addWidget(fileTree);
+    projectTree = new GrProjectTree;
 
     // Canvas area
     canvasArea = new QFrame;
     canvasArea->setFrameShape(QFrame::Box);
 
-    hSplitter->addWidget(leftBarPanel);
+    hSplitter->addWidget(projectTree);
     hSplitter->addWidget(canvasArea);
     hSplitter->setSizes({250, 750});
 

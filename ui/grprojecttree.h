@@ -3,10 +3,23 @@
 
 #include <QWidget>
 
-class GrProjectTree
+class QVBoxLayout;
+class QTreeView;
+class QFileSystemModel;
+class QLabel;
+
+class GrProjectTree : public QWidget
 {
+    Q_OBJECT
 public:
-    GrProjectTree();
+    explicit GrProjectTree(QWidget *parent = nullptr);
+
+private:
+    QVBoxLayout* workspaceVLayout;
+    QTreeView* fileTree;
+    QFileSystemModel* fileModel;
+    QLabel* explorerLabel;
+
 };
 
 #endif // GRPROJECTTREE_H

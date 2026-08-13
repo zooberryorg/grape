@@ -40,14 +40,9 @@ private:
     QSplitter* hSplitter; // workspace splitter (workspaceHLayout parent)
 
     // workspace (left)
-    QWidget* leftBarPanel;
-    QVBoxLayout* workspaceVLayout;
-    QTreeView* fileTree;
-    QFileSystemModel* fileModel;
+    QWidget* projectTree;
 
     // workspace (center)
     QFrame* canvasArea;
-
-    QLabel* explorerLabel;
 };
 #endif // GRAPEW_H
