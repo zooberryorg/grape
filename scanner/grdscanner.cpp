@@ -4,17 +4,9 @@
 GrDScanner::GrDScanner(DirEntry rootDir)
     : rootDir(rootDir)
 {
-    validate();
     loadTopLevels();
     findConfigFiles();
     loadAssets();
-}
-
-void GrDScanner::validate() {
-    if (!rootDir.exists()) {
-        // later send signal for popup error
-        QString e = "Error: directory not found: " + rootDir.filePath();
-    }
 }
 
 // Finds all valid folders for main game asset types

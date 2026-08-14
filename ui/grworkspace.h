@@ -19,7 +19,7 @@ public:
 
 private:
     // projects
-    QVector<GrAsset*> projects;
+    std::vector<std::unique_ptr<GrAsset>> projects;
 
     // UI stuff
     QHBoxLayout* workspaceHLayout; // horizontal layout (central parent)

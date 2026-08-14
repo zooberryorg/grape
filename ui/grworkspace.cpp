@@ -3,6 +3,8 @@
 
 #include "grworkspace.h"
 #include "grprojecttree.h"
+#include "grasset.h"
+#include "grdscanner.h"
 
 GrWorkspace::GrWorkspace(QWidget *parent)
     : QWidget{parent}
@@ -21,4 +23,10 @@ GrWorkspace::GrWorkspace(QWidget *parent)
     hSplitter->addWidget(projectTree);
     hSplitter->addWidget(canvasArea);
     hSplitter->setSizes({250, 750});
+}
+
+void GrWorkspace::addProject(QString dir)
+{
+    GrDScanner scanner(dir);
+    projects.append(new GrAsset(dir));
 }
