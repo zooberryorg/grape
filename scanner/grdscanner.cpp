@@ -155,6 +155,11 @@ void GrDScanner::loadAssets() {
     }
 }
 
+std::vector<std::unique_ptr<GrAsset> > GrDScanner::assets()
+{
+    return std::move(m_assets);
+}
+
 void GrDScanner::deleteAsset(qint32 index) {
     m_assets.erase(m_assets.begin() + index);
 }

@@ -24,6 +24,7 @@ public:
     Q_DISABLE_COPY(GrDScanner);
     QVector<DirEntry> loadConfigPaths();
     void loadAssets();
+    std::vector<std::unique_ptr<GrAsset>> assets();
     void deleteAsset(qint32);
 
 private:
