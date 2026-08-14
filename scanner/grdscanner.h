@@ -30,7 +30,7 @@ private:
     // methods
     void loadTopLevels();
     void findConfigFiles();
-    int depth(DirEntry rootPath, DirEntry curPath);
+    int depth(QString rootPath, QString curPath);
     QVector<DirEntry> findConfigPathsInDir(QString, QStringList);
     QVector<DirEntry> getConfigPaths();
     GrShared::AssetTypes determineTypeFromFile(QString);

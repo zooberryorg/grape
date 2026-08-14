@@ -13,7 +13,7 @@ GrDScanner::GrDScanner(QString rootDir)
 void GrDScanner::loadTopLevels() {
     for ( const auto& curPath : QDirListing(rootDir) ) {
         QString folderName = curPath.fileName().toLower();
-        int level = depth(rootDir, curPath);
+        int level = depth(rootDir, curPath.filePath());
 
         if ( level == 0 && curPath.isDir() ) {
             int isGameDirFolder = GrShared::dFolders.contains( folderName );
@@ -59,7 +59,7 @@ void GrDScanner::findConfigFiles() {
 
     if ( cPaths.empty() ) {
         // later send signal for popup error
-        QString e = "Error: no configuration files found at " + rootDir.filePath();
+        QString e = "Error: no configuration files found at " + rootDir;
     }
 }
 
@@ -121,12 +121,12 @@ GrShared::AssetTypes GrDScanner::determineTypeFromFile(QString path) {
 }
 
 // Returns current directory depth relative to root path
-int GrDScanner::depth(DirEntry rootPath, DirEntry curPath) {
+int GrDScanner::depth(QString rootPath, QString curPath) {
     int _depth = 0;
 
 
-    QStringView r(curPath.filePath()); // root
-    QStringView c(curPath.filePath()); // current
+    QStringView r(curPath); // root
+    QStringView c(curPath); // current
 
     QChar separator = QDir::separator();
     _depth = c.count(separator) - r.count(separator);
@@ -147,7 +147,7 @@ void GrDScanner::loadAssets() {
 
         switch (type) {
         case AssetType::Animal:
-            m_assets.push_back(std::make_unique<CAnimal>(rootDir.filePath()));
+            m_assets.push_back(std::make_unique<CAnimal>(rootDir));
             break;
         default:
             break;
