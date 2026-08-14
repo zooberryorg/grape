@@ -50,6 +50,10 @@ public:
 
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
+    // manipulations
+    void setAssets(QMap<AssetType, QVector<GrAsset*>> groupTypes); // rebuilds tree compeletely
+    void insertProject(GrAsset* asset); // single row insert
+
 private:
     QMap<AssetType, QVector<GrAsset*>> m_grouptypes;
     QList<AssetType> m_keys;

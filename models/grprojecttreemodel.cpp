@@ -36,12 +36,9 @@ QModelIndex GrProjectTreeModel::index(int row, int column, const QModelIndex &pa
 {
     if ( !parent.isValid() ) {
         // found a group
-        if ( row < 0 || row >= m_keys.size() ) {
+        if ( row < 0 || row >= m_keys.size() )
             return QModelIndex();
-        }
-
         return createIndex(row, column, quintptr(-1));
-
     }
 
     // child
@@ -52,7 +49,7 @@ QModelIndex GrProjectTreeModel::index(int row, int column, const QModelIndex &pa
         return QModelIndex();
     }
 
-    return createIndex(row, column, quintptr(parent.row()));
+    return createIndex(row, column, quintptr(type));
 }
 
 QModelIndex GrProjectTreeModel::parent(const QModelIndex &index) const
@@ -60,7 +57,10 @@ QModelIndex GrProjectTreeModel::parent(const QModelIndex &index) const
     if ( !index.isValid() || index.internalId() == quintptr(-1) ) {
         return QModelIndex();
     }
-    return createIndex(int(index.internalId()), 0, quintptr(-1));
+
+    const AssetType type = static_cast<AssetType>(index.internalId());
+    const int groupRow = m_keys.indexOf(type);
+    return createIndex(groupRow, 0, quintptr(-1));
 }
 
 int GrProjectTreeModel::rowCount(const QModelIndex &parent) const
