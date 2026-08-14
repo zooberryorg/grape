@@ -103,6 +103,14 @@ QVariant GrProjectTreeModel::data(const QModelIndex &index, int role) const
     return asset->name();
 }
 
+void GrProjectTreeModel::setAssets(QMap<AssetType, QVector<GrAsset *>> groupTypes)
+{
+    beginResetModel();
+    m_grouptypes = groupTypes;
+    m_keys = groupTypes.keys();
+    endResetModel();
+}
+
 void GrProjectTreeModel::insertProject(GrAsset* asset)
 {
     const AssetType type = asset->getType();
