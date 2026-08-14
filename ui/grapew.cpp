@@ -1,25 +1,34 @@
 #include "grapew.h"
-#include "grprojecttreemodel.h"
-#include "grprojecttree.h"
+#include "grworkspace.h"
+#include "grwelcomescreen.h"
 
 GrapeW::GrapeW(QWidget *parent)
     : QMainWindow(parent)
 {
     QMenu* fileMenu = menuBar()->addMenu("&File");
-    QAction* newAction = fileMenu->addAction("&New...");
+    QAction* newProjectAction = fileMenu->addAction("&New Project...");
+    QAction* newWindowAction = fileMenu->addAction("&New Window...");
     QAction* openAction = fileMenu->addAction("&Open...");
-    fileMenu->addAction("&Save...");
-    fileMenu->addSeparator();
-    QMenu* importMenu = new QMenu("&Import");
+    QAction* saveAction = fileMenu->addAction("&Save...");
 
+    fileMenu->addSeparator();
+
+    QMenu* importMenu = new QMenu("&Import");
     fileMenu->addMenu(importMenu);
 
-    importMenu->addAction("&From directory...");
-    importMenu->addAction("&From ZTD file...");
-    fileMenu->addAction("&Export...");
+    QAction* fromDirAction = importMenu->addAction("&From directory...");
+    QAction* fromZtdAction = importMenu->addAction("&From ZTD file...");
+    QAction* exportAction = fileMenu->addAction("&Export...");
+
+    fileMenu->addSeparator();
+    QAction* closeWorkspaceAction = fileMenu->addAction("&Close Workspace...");
+    QAction* exitAction = fileMenu->addAction("&Exit...");
 
     central = new QStackedWidget(this);
     setCentralWidget(central);
+
+    welcomeScreen = new GrWelcomeScreen();
+    central->addWidget(welcomeScreen);
 
     // initial window size
     setMinimumSize(640, 320);

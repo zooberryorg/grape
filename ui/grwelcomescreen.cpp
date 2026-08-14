@@ -1,7 +1,7 @@
 #include "grwelcomescreen.h"
 
 
-GrWelceomScreen::GrWelceomScreen()
+GrWelcomeScreen::GrWelcomeScreen()
 {
 
 }

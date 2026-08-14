@@ -13,6 +13,9 @@
 #include <QSplitter>
 #include <QStackedWidget>
 
+class GrProjectTree;
+class GrWelcomeScreen;
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class GrapeW;
@@ -31,11 +34,11 @@ private slots:
     void handleOpenProject();
 
 private:
-    void createSubmenus();
-    QAction openFromFiles;
-
-
     // main containers
     QStackedWidget* central; // bg container
+
+    // views
+    GrProjectTree* projectTree;
+    GrWelcomeScreen* welcomeScreen;
 };
 #endif // GRAPEW_H

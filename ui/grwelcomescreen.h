@@ -3,10 +3,10 @@
 
 #include <QWidget>
 
-class GrWelceomScreen
+class GrWelcomeScreen : public QWidget
 {
 public:
-    GrWelceomScreen();
+    GrWelcomeScreen();
 };
 
 #endif // GRWELCOMESCREEN_H
