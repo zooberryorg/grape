@@ -67,8 +67,8 @@ void GrDScanner::findConfigFiles() {
 }
 
 // Helper function that scans a directory at root level for files with given exts
-QVector<DirEntry> GrDScanner::findConfigPathsInDir(QString path, QStringList validExts) {
-    QVector<DirEntry> paths;
+QVector<QString> GrDScanner::findConfigPathsInDir(QString path, QStringList validExts) {
+    QVector<QString> paths;
     bool exists = QDir(path).exists();
     QStringList pathFileList = QDir(path).entryList(QDir::Files);
     qDebug() << "Scanning:" << path << "exists:" << exists;
@@ -76,7 +76,7 @@ QVector<DirEntry> GrDScanner::findConfigPathsInDir(QString path, QStringList val
     for ( const auto& curPath : QDirListing(path, QDirListing::IteratorFlag::FilesOnly) ) {
         QString ext = curPath.fileInfo().suffix().toLower();
         if ( validExts.contains( ext, Qt::CaseInsensitive ) ) {
-            paths.append( curPath );
+            paths.append( curPath.filePath() );
         }
     }
     return paths;
@@ -142,7 +142,7 @@ int GrDScanner::depth(QString rootPath, QString curPath) {
 }
 
 // returns all config paths
-QVector<DirEntry> GrDScanner::getConfigPaths() {
+QVector<QString> GrDScanner::getConfigPaths() {
     return cPaths;
 }
 
@@ -150,11 +150,11 @@ QVector<DirEntry> GrDScanner::getConfigPaths() {
 void GrDScanner::loadAssets() {
 
     for ( const auto& path : cPaths ) {
-        AssetType type = determineTypeFromFile(path.filePath());
+        AssetType type = determineTypeFromFile( path );
 
         switch (type) {
         case AssetType::Animal:
-            m_assets.push_back(std::make_unique<CAnimal>(rootDir));
+            m_assets.push_back( std::make_unique<CAnimal>( rootDir ) );
             break;
         default:
             break;
