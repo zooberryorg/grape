@@ -41,11 +41,6 @@ GrapeW::~GrapeW()
     delete central;
 }
 
-void GrapeW::createSubmenus()
-{
-
-}
-
 void GrapeW::handleOpenProject()
 {
 
