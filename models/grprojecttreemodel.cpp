@@ -103,3 +103,27 @@ QVariant GrProjectTreeModel::data(const QModelIndex &index, int role) const
     return asset->name();
 }
 
+void GrProjectTreeModel::insertProject(GrAsset* asset)
+{
+    const AssetType type = asset->getType();
+    int groupRow = m_keys.indexOf(type);
+
+    // group doesnt exist yet so find location and sort by enum index
+    if ( groupRow == -1 ) {
+        groupRow = 0;
+        while ( groupRow < m_keys.size() && m_keys.at(groupRow) < type )
+            ++groupRow;
+
+        beginInsertRows(QModelIndex(), groupRow, groupRow);
+        m_keys.insert(groupRow, type);
+        m_grouptypes.insert(type, {});
+        endInsertRows();
+    }
+
+    const QModelIndex groupIndex = index(groupRow, 0, QModelIndex());
+    const int childRow = m_grouptypes[type].size();
+
+    beginInsertRows(groupIndex, childRow, childRow);
+    m_grouptypes[type].append(asset);
+    endInsertRows();
+}
