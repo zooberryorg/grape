@@ -5,7 +5,7 @@
 QHash<QString, QString> GrINI::getKeyValuesInSection(const CSimpleIniA& ini, QString section)
 {
     CSimpleIniA::TNamesDepend memberKeys;
-    ini.GetAllKeys("Member", memberKeys);
+    ini.GetAllKeys(section.toStdString().c_str(), memberKeys);
     QHash<QString, QString> pairs;
 
     for ( const auto& key : memberKeys ) {
