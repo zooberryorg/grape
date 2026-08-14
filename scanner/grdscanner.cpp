@@ -68,7 +68,7 @@ void GrDScanner::findConfigFiles() {
 }
 
 // Helper function that scans a directory at root level for files with given exts
-QVector<QString> GrDScanner::findConfigPathsInDir(QString path, QStringList validExts) {
+QStringList GrDScanner::findConfigPathsInDir(QString path, QStringList validExts) {
     QVector<QString> paths;
     bool exists = QDir(path).exists();
     QStringList pathFileList = QDir(path).entryList(QDir::Files);
@@ -137,7 +137,7 @@ int GrDScanner::depth(QString rootPath, QString curPath) {
 }
 
 // returns all config paths
-QVector<QString> GrDScanner::getConfigPaths() {
+QStringList GrDScanner::getConfigPaths() {
     return cPaths;
 }
 
@@ -149,7 +149,7 @@ void GrDScanner::loadAssets() {
 
         switch (type) {
         case AssetType::Animal:
-            m_assets.push_back( std::make_unique<CAnimal>( rootDir ) );
+            m_assets.push_back( std::make_unique<CAnimal>( path ) );
             break;
         default:
             break;
