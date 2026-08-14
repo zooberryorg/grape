@@ -9,7 +9,7 @@
 GrWorkspace::GrWorkspace(QWidget *parent)
     : QWidget{parent}
 {
-    workspaceHLayout = new QHBoxLayout(parent);
+    workspaceHLayout = new QHBoxLayout(this);
     hSplitter = new QSplitter;
     workspaceHLayout->addWidget(hSplitter);
 

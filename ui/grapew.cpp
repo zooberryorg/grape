@@ -58,7 +58,7 @@ void GrapeW::handleOpenProject()
         workspaceScreen->addProject(directory);
         central->addWidget(workspaceScreen);
         central->setCurrentIndex(1);
-    } else if ( central->count() > 1 ) {
+    } else if ( !directory.isEmpty() && central->count() > 1 ) {
         workspaceScreen->addProject(directory);
     }
 

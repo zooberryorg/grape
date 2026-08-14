@@ -16,6 +16,7 @@ class GrWorkspace : public QWidget
 public:
     explicit GrWorkspace(QWidget *parent = nullptr);
     void addProject(QString dir);
+    void updateTree();
 
 private:
     // projects
@@ -26,7 +27,7 @@ private:
     QSplitter* hSplitter; // workspace splitter (workspaceHLayout parent)
 
     // workspace (left)
-    QWidget* projectTree;
+    GrProjectTree* projectTree;
 
     // workspace (center)
     QFrame* canvasArea;
