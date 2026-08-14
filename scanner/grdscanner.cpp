@@ -4,6 +4,9 @@
 GrDScanner::GrDScanner(QString rootDir)
     : rootDir(rootDir)
 {
+    // clean input dir
+    this->rootDir = QDir::cleanPath(rootDir);
+
     loadTopLevels();
     findConfigFiles();
     loadAssets();
@@ -32,26 +35,26 @@ void GrDScanner::loadTopLevels() {
 // Finds all base config files for main game asset types given a root folder
 void GrDScanner::findConfigFiles() { 
     for ( auto& folder : foundGameFolders ) {
-        QString baseFolderPath = rootDir + QDir::separator() + folder;
+        QString baseFolderPath = rootDir + '/' + folder;
         if ( folder == "animals" ) { // animals
             cPaths.append(
                 findConfigPathsInDir(
                     baseFolderPath,
-                    {".ai", ".uca"}
+                    {"ai", "uca"}
                 )
             );
         } else if ( folder == "scenery" ) { // buildings, scenery, foliage
             cPaths.append(
                 findConfigPathsInDir(
-                    baseFolderPath + QDir::separator() + "other",
-                    {".ai", ".ucs", ".ucb"}
+                    baseFolderPath + '/' + "other",
+                    {"ai", "ucs", "ucb"}
                 )
             );
         } else if ( folder == "paths" || folder == "fences" ) { // paths, fences
             cPaths.append(
                 findConfigPathsInDir(
                     baseFolderPath,
-                    {".ai"}
+                    {"ai"}
                 )
             );
         }
@@ -66,6 +69,10 @@ void GrDScanner::findConfigFiles() {
 // Helper function that scans a directory at root level for files with given exts
 QVector<DirEntry> GrDScanner::findConfigPathsInDir(QString path, QStringList validExts) {
     QVector<DirEntry> paths;
+    bool exists = QDir(path).exists();
+    QStringList pathFileList = QDir(path).entryList(QDir::Files);
+    qDebug() << "Scanning:" << path << "exists:" << exists;
+    qDebug() << "entryList:" << pathFileList;
     for ( const auto& curPath : QDirListing(path, QDirListing::IteratorFlag::FilesOnly) ) {
         QString ext = curPath.fileInfo().suffix().toLower();
         if ( validExts.contains( ext, Qt::CaseInsensitive ) ) {
@@ -128,7 +135,7 @@ int GrDScanner::depth(QString rootPath, QString curPath) {
     QStringView r(curPath); // root
     QStringView c(curPath); // current
 
-    QChar separator = QDir::separator();
+    QChar separator = '/';
     _depth = c.count(separator) - r.count(separator);
 
     return _depth;

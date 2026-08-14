@@ -30,8 +30,9 @@ void GrWorkspace::addProject(QString dir)
     GrDScanner scanner(dir);
 
    for ( auto& asset : scanner.assets() ) {
+        GrAsset* assetPointer = asset.get();
         projects.push_back(std::move(asset));
-        projectTree->insertProject(asset.get());
+        projectTree->insertProject(assetPointer);
     }
 
     if ( projects.empty() ) {
