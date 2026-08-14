@@ -11,6 +11,10 @@
 #include <QLabel>
 #include <QFrame>
 #include <QSplitter>
+#include <QStackedWidget>
+
+class GrProjectTree;
+class GrWelcomeScreen;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -30,24 +34,11 @@ private slots:
     void handleOpenProject();
 
 private:
-    void createSubmenus();
-    QAction openFromFiles;
-
-
     // main containers
-    QWidget* central; // bg container
-    QHBoxLayout* workspaceHLayout; // horizontal layout (central parent)
-    QSplitter* hSplitter; // workspace splitter (workspaceHLayout parent)
+    QStackedWidget* central; // bg container
 
-    // workspace (left)
-    QWidget* leftBarPanel;
-    QVBoxLayout* workspaceVLayout;
-    QTreeView* fileTree;
-    QFileSystemModel* fileModel;
-
-    // workspace (center)
-    QFrame* canvasArea;
-
-    QLabel* explorerLabel;
+    // views
+    GrProjectTree* projectTree;
+    GrWelcomeScreen* welcomeScreen;
 };
 #endif // GRAPEW_H

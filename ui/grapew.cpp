@@ -1,59 +1,44 @@
 #include "grapew.h"
-#include "grprojecttreemodel.h"
+#include "grworkspace.h"
+#include "grwelcomescreen.h"
 
 GrapeW::GrapeW(QWidget *parent)
     : QMainWindow(parent)
 {
     QMenu* fileMenu = menuBar()->addMenu("&File");
-    fileMenu->addAction("&Open");
+    QAction* newProjectAction = fileMenu->addAction("&New Project...");
+    QAction* newWindowAction = fileMenu->addAction("&New Window...");
+    QAction* openAction = fileMenu->addAction("&Open...");
+    QAction* saveAction = fileMenu->addAction("&Save...");
 
-    central = new QWidget(this);
+    fileMenu->addSeparator();
+
+    QMenu* importMenu = new QMenu("&Import");
+    fileMenu->addMenu(importMenu);
+
+    QAction* fromDirAction = importMenu->addAction("&From directory...");
+    QAction* fromZtdAction = importMenu->addAction("&From ZTD file...");
+    QAction* exportAction = fileMenu->addAction("&Export...");
+
+    fileMenu->addSeparator();
+    QAction* closeWorkspaceAction = fileMenu->addAction("&Close Workspace...");
+    QAction* exitAction = fileMenu->addAction("&Exit...");
+
+    central = new QStackedWidget(this);
     setCentralWidget(central);
-    workspaceHLayout = new QHBoxLayout(central);
-    hSplitter = new QSplitter;
-    workspaceHLayout->addWidget(hSplitter);
 
-    // file tree setup
-    leftBarPanel = new QWidget;
-    workspaceVLayout = new QVBoxLayout(leftBarPanel);
-    explorerLabel = new QLabel("Explorer");
-    fileTree = new QTreeView(this);
-    fileModel = new GrProjectTreeModel(this);
-    fileModel->setRootPath("C:/");
-    fileTree->setModel(fileModel);
-
-    fileTree->setRootIndex(
-        fileModel->index("C:/")
-        );
-
-    fileTree->hideColumn(1);
-    fileTree->hideColumn(2);
-    fileTree->hideColumn(3);
-    fileTree->setHeaderHidden(true);
-
-    workspaceVLayout->addWidget(explorerLabel);
-    workspaceVLayout->addWidget(fileTree);
-
-    // Canvas area
-    canvasArea = new QFrame;
-    canvasArea->setFrameShape(QFrame::Box);
-
-    hSplitter->addWidget(leftBarPanel);
-    hSplitter->addWidget(canvasArea);
-    hSplitter->setSizes({250, 750});
+    welcomeScreen = new GrWelcomeScreen();
+    central->addWidget(welcomeScreen);
 
     // initial window size
     setMinimumSize(640, 320);
+
+    connect(openAction, &QAction::triggered, this, &GrapeW::handleOpenProject);
 }
 
 GrapeW::~GrapeW()
 {
     delete central;
-}
-
-void GrapeW::createSubmenus()
-{
-
 }
 
 void GrapeW::handleOpenProject()
