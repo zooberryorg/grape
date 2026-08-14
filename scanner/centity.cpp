@@ -3,9 +3,6 @@
 CEntity::CEntity(QString path)
     : GrAsset(path)
 {
-    m_intchars["cr_part1"]["ncolors"] = "";
-
-    QString charInts = "Characteristics/Integers";
     m_intchars[charInts]["cIconZoom"] = "";
     m_intchars[charInts]["cExpansionID"] = "";
     m_intchars[charInts]["cMoveable"] = "";
