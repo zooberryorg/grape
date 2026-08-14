@@ -24,3 +24,8 @@ GrProjectTree::GrProjectTree(QWidget *parent, QMap<AssetType, QVector<GrAsset*>>
     workspaceVLayout->addWidget(explorerLabel);
     workspaceVLayout->addWidget(fileTree);
 }
+
+void GrProjectTree::insertProject(GrAsset *asset)
+{
+    fileModel->insertProject(asset);
+}

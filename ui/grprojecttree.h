@@ -16,6 +16,7 @@ class GrProjectTree : public QWidget
     Q_OBJECT
 public:
     explicit GrProjectTree(QWidget *parent = nullptr, QMap<GrShared::AssetTypes, QVector<GrAsset*>> assets = {});
+    void insertProject(GrAsset* asset);
 
 private:
     QVBoxLayout* workspaceVLayout;
