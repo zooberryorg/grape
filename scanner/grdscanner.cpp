@@ -1,5 +1,6 @@
 #include "grdscanner.h"
 #include "canimal.h"
+#include "grini.h"
 
 GrDScanner::GrDScanner(QString rootDir)
     : rootDir(rootDir)
@@ -93,13 +94,7 @@ GrShared::AssetTypes GrDScanner::determineTypeFromFile(QString path) {
         // Error loading ini file at path:
     }
 
-    CSimpleIniA::TNamesDepend memberKeys;
-    ini.GetAllKeys("Member", memberKeys);
-    QStringList members;
-
-    for ( const auto& member : memberKeys ) {
-        members.append(QString(member.pItem));
-    }
+    QStringList members = GrINI::getFlagsInSection(path, "Member");
 
     if ( members.contains("animals") ) { // animals
 

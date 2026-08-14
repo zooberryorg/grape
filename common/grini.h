@@ -12,6 +12,7 @@ class GrINI
 public:
     static QHash<QString, QString> getKeyValuesInSection(const CSimpleIniA& ini, QString section);
     static void assignNewValuesToKeys(QHash<QString, QHash<QString, QString>>&, const QHash<QString, QString>&);
+    static QStringList getFlagsInSection(const QString& path, const QString& section);
 };
 
 #endif // GRINI_H
