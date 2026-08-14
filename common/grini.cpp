@@ -18,7 +18,7 @@ QHash<QString, QString> GrINI::getKeyValuesInSection(const CSimpleIniA& ini, QSt
 
 void GrINI::assignNewValuesToKeys(QHash<QString, QHash<QString, QString>>& target, const QHash<QString, QString>& input) {
     QString section = target.begin().key();
-    for (const auto& key : input.keys()) {
+    for (auto& key : input.keys()) {
         if ( target[section].contains(key) ) {
             target[section][key] = input.value(key);
         }

@@ -9,6 +9,8 @@ CAnimal::CAnimal(QString path)
     initAnimPaths();
     initIcon();
     initMembers();
+    initDefaultLcid();
+    init1033();
 }
 
 void CAnimal::load() {
