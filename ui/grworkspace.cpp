@@ -28,5 +28,16 @@ GrWorkspace::GrWorkspace(QWidget *parent)
 void GrWorkspace::addProject(QString dir)
 {
     GrDScanner scanner(dir);
-    projects.append(new GrAsset(dir));
+
+    if ( projects.empty() ) {
+        projects = scanner.assets();
+    } else {
+        for ( const auto& asset : scanner.assets() ) {
+            projects.push_back(std::move(asset));
+        }
+    }
+
+    if ( projects.empty() ) {
+        // handle error when no files found
+    }
 }
