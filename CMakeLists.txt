@@ -20,6 +20,7 @@ set(PROJECT_SOURCES
         # views
         ui/grapew.h ui/grapew.cpp ui/grapew.ui
         ui/grprojecttree.h ui/grprojecttree.cpp
+        ui/grwelcomescreen.h ui/grwelcomescreen.cpp
         # graphics
         graphics/gricon.h graphics/gricon.cpp
         graphics/grtexture.h graphics/grtexture.cpp
