@@ -37,13 +37,5 @@ private:
 
     // main containers
     QStackedWidget* central; // bg container
-    QHBoxLayout* workspaceHLayout; // horizontal layout (central parent)
-    QSplitter* hSplitter; // workspace splitter (workspaceHLayout parent)
-
-    // workspace (left)
-    QWidget* projectTree;
-
-    // workspace (center)
-    QFrame* canvasArea;
 };
 #endif // GRAPEW_H

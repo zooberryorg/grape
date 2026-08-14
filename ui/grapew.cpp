@@ -8,22 +8,8 @@ GrapeW::GrapeW(QWidget *parent)
     QMenu* fileMenu = menuBar()->addMenu("&File");
     fileMenu->addAction("&Open");
 
-    central = new QWidget(this);
+    central = new QStackedWidget(this);
     setCentralWidget(central);
-    workspaceHLayout = new QHBoxLayout(central);
-    hSplitter = new QSplitter;
-    workspaceHLayout->addWidget(hSplitter);
-
-    // file tree setup
-    projectTree = new GrProjectTree;
-
-    // Canvas area
-    canvasArea = new QFrame;
-    canvasArea->setFrameShape(QFrame::Box);
-
-    hSplitter->addWidget(projectTree);
-    hSplitter->addWidget(canvasArea);
-    hSplitter->setSizes({250, 750});
 
     // initial window size
     setMinimumSize(640, 320);
