@@ -3,19 +3,19 @@
 
 #include <QWidget>
 #include "grshared.h"
-#include "grasset.h"
-#include "grprojecttreemodel.h"
 
 class QVBoxLayout;
 class QTreeView;
-class QFileSystemModel;
 class QLabel;
+
+class GrProjectTreeModel;
+class GrAsset;
 
 class GrProjectTree : public QWidget
 {
     Q_OBJECT
 public:
-    explicit GrProjectTree(QWidget *parent = nullptr, QMap<AssetType, QVector<GrAsset*>> assets = {});
+    explicit GrProjectTree(QWidget *parent = nullptr, QMap<GrShared::AssetTypes, QVector<GrAsset*>> assets = {});
 
 private:
     QVBoxLayout* workspaceVLayout;

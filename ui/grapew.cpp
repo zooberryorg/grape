@@ -8,11 +8,14 @@ GrapeW::GrapeW(QWidget *parent)
     QMenu* fileMenu = menuBar()->addMenu("&File");
     fileMenu->addAction("&New...");
     fileMenu->addAction("&Open...");
-    QMenu* importMenu = fileMenu->addMenu("&Import");
+    fileMenu->addAction("&Save...");
+    QMenu* importMenu = new QMenu("&Import");
 
-    fileMenu->addAction("&From directory...");
-    fileMenu->addAction("&From ZTD file...");
+    fileMenu->addMenu(importMenu);
 
+    importMenu->addAction("&From directory...");
+    importMenu->addAction("&From ZTD file...");
+    fileMenu->addAction("&Export...");
 
     central = new QStackedWidget(this);
     setCentralWidget(central);

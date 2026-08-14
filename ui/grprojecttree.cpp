@@ -2,7 +2,10 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QTreeView>
+
 #include "grprojecttreemodel.h"
+#include "grasset.h"
+
 
 GrProjectTree::GrProjectTree(QWidget *parent, QMap<AssetType, QVector<GrAsset*>> assets)
 {
