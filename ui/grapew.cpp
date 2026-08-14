@@ -6,8 +6,8 @@ GrapeW::GrapeW(QWidget *parent)
     : QMainWindow(parent)
 {
     QMenu* fileMenu = menuBar()->addMenu("&File");
-    fileMenu->addAction("&New...");
-    fileMenu->addAction("&Open...");
+    QAction* newAction = fileMenu->addAction("&New...");
+    QAction* openAction = fileMenu->addAction("&Open...");
     fileMenu->addAction("&Save...");
     fileMenu->addSeparator();
     QMenu* importMenu = new QMenu("&Import");
@@ -24,7 +24,7 @@ GrapeW::GrapeW(QWidget *parent)
     // initial window size
     setMinimumSize(640, 320);
 
-    // connect(fileMenu->menuAction()->
+    connect(openAction, &QAction::triggered, this, &GrapeW::handleOpenProject);
 }
 
 GrapeW::~GrapeW()
