@@ -53,8 +53,12 @@ void GrapeW::handleOpenProject()
 
     // TODO: handle case when dir not found here
 
-    if ( !directory.isEmpty() ) {
+    if ( !directory.isEmpty() && central->count() < 2) {
         workspaceScreen = new GrWorkspace();
+        workspaceScreen->addProject(directory);
+        central->addWidget(workspaceScreen);
+        central->setCurrentIndex(1);
+    } else if ( central->count() > 1 ) {
         workspaceScreen->addProject(directory);
     }
 
