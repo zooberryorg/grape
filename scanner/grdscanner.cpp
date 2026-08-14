@@ -1,7 +1,7 @@
 #include "grdscanner.h"
 #include "canimal.h"
 
-GrDScanner::GrDScanner(DirEntry rootDir)
+GrDScanner::GrDScanner(QString rootDir)
     : rootDir(rootDir)
 {
     loadTopLevels();
@@ -11,7 +11,7 @@ GrDScanner::GrDScanner(DirEntry rootDir)
 
 // Finds all valid folders for main game asset types
 void GrDScanner::loadTopLevels() {
-    for ( const auto& curPath : QDirListing(rootDir.filePath(), QDirListing::IteratorFlag::DirsOnly) ) {
+    for ( const auto& curPath : QDirListing(rootDir) ) {
         QString folderName = curPath.fileName().toLower();
         int level = depth(rootDir, curPath);
 

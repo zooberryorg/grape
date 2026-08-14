@@ -20,7 +20,7 @@ class GrAsset;
 class GrDScanner
 {
 public:
-    GrDScanner(DirEntry rootDir);
+    GrDScanner(QString rootDir);
     Q_DISABLE_COPY(GrDScanner);
     QVector<DirEntry> loadConfigPaths();
     void loadAssets();
@@ -36,7 +36,7 @@ private:
     GrShared::AssetTypes determineTypeFromFile(QString);
 
     // fields
-    DirEntry rootDir;
+    QString rootDir;
     QVector<DirEntry> cPaths;
     QStringList foundGameFolders;
     std::vector<std::unique_ptr<GrAsset>> m_assets;
