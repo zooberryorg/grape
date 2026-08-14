@@ -11,6 +11,7 @@
 #include <QLabel>
 #include <QFrame>
 #include <QSplitter>
+#include <QStackedWidget>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -35,7 +36,7 @@ private:
 
 
     // main containers
-    QWidget* central; // bg container
+    QStackedWidget* central; // bg container
     QHBoxLayout* workspaceHLayout; // horizontal layout (central parent)
     QSplitter* hSplitter; // workspace splitter (workspaceHLayout parent)
 
