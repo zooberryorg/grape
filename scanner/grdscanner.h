@@ -16,7 +16,6 @@ using DirEntry = QDirListing::DirEntry;
 using AssetType = GrShared::AssetTypes;
 
 class GrAsset;
-class CAnimal;
 
 class GrDScanner
 {
