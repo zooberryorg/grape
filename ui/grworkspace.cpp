@@ -31,6 +31,7 @@ void GrWorkspace::addProject(QString dir)
 
    for ( auto& asset : scanner.assets() ) {
         GrAsset* assetPointer = asset.get();
+        asset->load();
         projects.push_back(std::move(asset));
         projectTree->insertProject(assetPointer);
     }

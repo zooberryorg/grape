@@ -5,7 +5,7 @@
 QHash<QString, QString> GrINI::getKeyValuesInSection(const CSimpleIniA& ini, QString section)
 {
     CSimpleIniA::TNamesDepend memberKeys;
-    ini.GetAllKeys("Member", memberKeys);
+    ini.GetAllKeys(section.toStdString().c_str(), memberKeys);
     QHash<QString, QString> pairs;
 
     for ( const auto& key : memberKeys ) {
@@ -17,6 +17,10 @@ QHash<QString, QString> GrINI::getKeyValuesInSection(const CSimpleIniA& ini, QSt
 }
 
 void GrINI::assignNewValuesToKeys(QHash<QString, QHash<QString, QString>>& target, const QHash<QString, QString>& input) {
+    if ( target.isEmpty() ) {
+        // TODO: handle error
+        return;
+    }
     QString section = target.begin().key();
     for (const auto& key : input.keys()) {
         if ( target[section].contains(key) ) {
