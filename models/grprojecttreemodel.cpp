@@ -36,12 +36,9 @@ QModelIndex GrProjectTreeModel::index(int row, int column, const QModelIndex &pa
 {
     if ( !parent.isValid() ) {
         // found a group
-        if ( row < 0 || row >= m_keys.size() ) {
+        if ( row < 0 || row >= m_keys.size() )
             return QModelIndex();
-        }
-
         return createIndex(row, column, quintptr(-1));
-
     }
 
     // child
@@ -52,7 +49,7 @@ QModelIndex GrProjectTreeModel::index(int row, int column, const QModelIndex &pa
         return QModelIndex();
     }
 
-    return createIndex(row, column, quintptr(parent.row()));
+    return createIndex(row, column, quintptr(type));
 }
 
 QModelIndex GrProjectTreeModel::parent(const QModelIndex &index) const
@@ -60,7 +57,10 @@ QModelIndex GrProjectTreeModel::parent(const QModelIndex &index) const
     if ( !index.isValid() || index.internalId() == quintptr(-1) ) {
         return QModelIndex();
     }
-    return createIndex(int(index.internalId()), 0, quintptr(-1));
+
+    const AssetType type = static_cast<AssetType>(index.internalId());
+    const int groupRow = m_keys.indexOf(type);
+    return createIndex(groupRow, 0, quintptr(-1));
 }
 
 int GrProjectTreeModel::rowCount(const QModelIndex &parent) const
@@ -88,7 +88,7 @@ int GrProjectTreeModel::columnCount(const QModelIndex & /*parent*/) const
 QVariant GrProjectTreeModel::data(const QModelIndex &index, int role) const
 {
     // if invis root, return empty QVariant
-    if ( !index.isValid() || role != Qt::DisplayRole )
+    if ( !index.isValid() || role != Qt::DisplayRole || index.column() != 0 )
         return QVariant();
 
     if ( index.internalId() == quintptr(-1) ) {
@@ -96,10 +96,40 @@ QVariant GrProjectTreeModel::data(const QModelIndex &index, int role) const
         return GrShared::TypeToString(m_keys.at(index.row()));
     }
 
-    qint32 assetId = int(index.internalId());
-    const auto& keyLocation = m_keys.at(assetId);
-    GrAsset* asset = m_grouptypes.value(keyLocation).at(index.row());
-
+    const AssetType type = static_cast<AssetType>(index.internalId());
+    GrAsset* asset = m_grouptypes.value(type).at(index.row());
     return asset->name();
 }
 
+void GrProjectTreeModel::setAssets(QMap<AssetType, QVector<GrAsset *>> groupTypes)
+{
+    beginResetModel();
+    m_grouptypes = groupTypes;
+    m_keys = groupTypes.keys();
+    endResetModel();
+}
+
+void GrProjectTreeModel::insertProject(GrAsset* asset)
+{
+    const AssetType type = asset->getType();
+    int groupRow = m_keys.indexOf(type);
+
+    // group doesnt exist yet so find location and sort by enum index
+    if ( groupRow == -1 ) {
+        groupRow = 0;
+        while ( groupRow < m_keys.size() && m_keys.at(groupRow) < type )
+            ++groupRow;
+
+        beginInsertRows(QModelIndex(), groupRow, groupRow);
+        m_keys.insert(groupRow, type);
+        m_grouptypes.insert(type, {});
+        endInsertRows();
+    }
+
+    const QModelIndex groupIndex = index(groupRow, 0, QModelIndex());
+    const int childRow = m_grouptypes[type].size();
+
+    beginInsertRows(groupIndex, childRow, childRow);
+    m_grouptypes[type].append(asset);
+    endInsertRows();
+}

@@ -1,4 +1,6 @@
 #include "grini.h"
+#include <QFile>
+#include <QTextStream>
 
 QHash<QString, QString> GrINI::getKeyValuesInSection(const CSimpleIniA& ini, QString section)
 {
@@ -21,4 +23,32 @@ void GrINI::assignNewValuesToKeys(QHash<QString, QHash<QString, QString>>& targe
             target[section][key] = input.value(key);
         }
     }
+}
+
+QStringList GrINI::getFlagsInSection(const QString& path, const QString& section)
+{
+    QStringList flags;
+    QFile file(path);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        return flags;
+
+    QTextStream in(&file);
+    bool inSection = false;
+
+    while (!in.atEnd()) {
+        QString line = in.readLine().trimmed();
+        if (line.isEmpty())
+            continue;
+
+        if (line.startsWith('[')) {
+            inSection = (line.compare("[" + section + "]", Qt::CaseInsensitive) == 0);
+            continue;
+        }
+
+        if (inSection) {
+            flags.append(line.toLower());
+        }
+    }
+
+    return flags;
 }

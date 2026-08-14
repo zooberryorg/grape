@@ -8,19 +8,26 @@ class QHBoxLayout;
 class QSplitter;
 class GrProjectTree;
 class GrCanvas;
+class GrAsset;
 
 class GrWorkspace : public QWidget
 {
     Q_OBJECT
 public:
     explicit GrWorkspace(QWidget *parent = nullptr);
+    void addProject(QString dir);
+    void updateTree();
 
 private:
+    // projects
+    std::vector<std::unique_ptr<GrAsset>> projects;
+
+    // UI stuff
     QHBoxLayout* workspaceHLayout; // horizontal layout (central parent)
     QSplitter* hSplitter; // workspace splitter (workspaceHLayout parent)
 
     // workspace (left)
-    QWidget* projectTree;
+    GrProjectTree* projectTree;
 
     // workspace (center)
     QFrame* canvasArea;

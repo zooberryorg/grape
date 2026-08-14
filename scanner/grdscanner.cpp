@@ -1,27 +1,23 @@
 #include "grdscanner.h"
 #include "canimal.h"
+#include "grini.h"
 
-GrDScanner::GrDScanner(DirEntry rootDir)
+GrDScanner::GrDScanner(QString rootDir)
     : rootDir(rootDir)
 {
-    validate();
+    // clean input dir
+    this->rootDir = QDir::cleanPath(rootDir);
+
     loadTopLevels();
     findConfigFiles();
     loadAssets();
 }
 
-void GrDScanner::validate() {
-    if (!rootDir.exists()) {
-        // later send signal for popup error
-        QString e = "Error: directory not found: " + rootDir.filePath();
-    }
-}
-
 // Finds all valid folders for main game asset types
 void GrDScanner::loadTopLevels() {
-    for ( const auto& curPath : QDirListing(rootDir.filePath(), QDirListing::IteratorFlag::DirsOnly) ) {
+    for ( const auto& curPath : QDirListing(rootDir) ) {
         QString folderName = curPath.fileName().toLower();
-        int level = depth(rootDir, curPath);
+        int level = depth(rootDir, curPath.filePath());
 
         if ( level == 0 && curPath.isDir() ) {
             int isGameDirFolder = GrShared::dFolders.contains( folderName );
@@ -33,32 +29,33 @@ void GrDScanner::loadTopLevels() {
 
     if ( foundGameFolders.empty() ) {
         // later send signal for popup error
-        QString e = "Error: incorrect directory structure or no config files found at " + rootDir.filePath();
+        QString e = "Error: incorrect directory structure or no config files found at " + rootDir;
     }
 }
 
 // Finds all base config files for main game asset types given a root folder
-void GrDScanner::findConfigFiles() {
+void GrDScanner::findConfigFiles() { 
     for ( auto& folder : foundGameFolders ) {
+        QString baseFolderPath = rootDir + '/' + folder;
         if ( folder == "animals" ) { // animals
             cPaths.append(
                 findConfigPathsInDir(
-                    rootDir.filePath() + folder,
-                    {".ai", ".uca"}
+                    baseFolderPath,
+                    {"ai", "uca"}
                 )
             );
         } else if ( folder == "scenery" ) { // buildings, scenery, foliage
             cPaths.append(
                 findConfigPathsInDir(
-                    rootDir.filePath() + folder + "/other",
-                    {".ai", ".ucs", ".ucb"}
+                    baseFolderPath + '/' + "other",
+                    {"ai", "ucs", "ucb"}
                 )
             );
         } else if ( folder == "paths" || folder == "fences" ) { // paths, fences
             cPaths.append(
                 findConfigPathsInDir(
-                    rootDir.filePath() + folder,
-                    {".ai"}
+                    baseFolderPath,
+                    {"ai"}
                 )
             );
         }
@@ -66,17 +63,21 @@ void GrDScanner::findConfigFiles() {
 
     if ( cPaths.empty() ) {
         // later send signal for popup error
-        QString e = "Error: no configuration files found at " + rootDir.filePath();
+        QString e = "Error: no configuration files found at " + rootDir;
     }
 }
 
 // Helper function that scans a directory at root level for files with given exts
-QVector<DirEntry> GrDScanner::findConfigPathsInDir(QString path, QStringList validExts) {
-    QVector<DirEntry> paths;
+QVector<QString> GrDScanner::findConfigPathsInDir(QString path, QStringList validExts) {
+    QVector<QString> paths;
+    bool exists = QDir(path).exists();
+    QStringList pathFileList = QDir(path).entryList(QDir::Files);
+    qDebug() << "Scanning:" << path << "exists:" << exists;
+    qDebug() << "entryList:" << pathFileList;
     for ( const auto& curPath : QDirListing(path, QDirListing::IteratorFlag::FilesOnly) ) {
         QString ext = curPath.fileInfo().suffix().toLower();
         if ( validExts.contains( ext, Qt::CaseInsensitive ) ) {
-            paths.append( curPath );
+            paths.append( curPath.filePath() );
         }
     }
     return paths;
@@ -93,13 +94,7 @@ GrShared::AssetTypes GrDScanner::determineTypeFromFile(QString path) {
         // Error loading ini file at path:
     }
 
-    CSimpleIniA::TNamesDepend memberKeys;
-    ini.GetAllKeys("Member", memberKeys);
-    QStringList members;
-
-    for ( const auto& member : memberKeys ) {
-        members.append(QString(member.pItem));
-    }
+    QStringList members = GrINI::getFlagsInSection(path, "Member");
 
     if ( members.contains("animals") ) { // animals
 
@@ -128,21 +123,21 @@ GrShared::AssetTypes GrDScanner::determineTypeFromFile(QString path) {
 }
 
 // Returns current directory depth relative to root path
-int GrDScanner::depth(DirEntry rootPath, DirEntry curPath) {
+int GrDScanner::depth(QString rootPath, QString curPath) {
     int _depth = 0;
 
 
-    QStringView r(curPath.filePath()); // root
-    QStringView c(curPath.filePath()); // current
+    QStringView r(curPath); // root
+    QStringView c(curPath); // current
 
-    QChar separator = QDir::separator();
+    QChar separator = '/';
     _depth = c.count(separator) - r.count(separator);
 
     return _depth;
 }
 
 // returns all config paths
-QVector<DirEntry> GrDScanner::getConfigPaths() {
+QVector<QString> GrDScanner::getConfigPaths() {
     return cPaths;
 }
 
@@ -150,16 +145,21 @@ QVector<DirEntry> GrDScanner::getConfigPaths() {
 void GrDScanner::loadAssets() {
 
     for ( const auto& path : cPaths ) {
-        AssetType type = determineTypeFromFile(path.filePath());
+        AssetType type = determineTypeFromFile( path );
 
         switch (type) {
         case AssetType::Animal:
-            m_assets.push_back(std::make_unique<CAnimal>(rootDir.filePath()));
+            m_assets.push_back( std::make_unique<CAnimal>( rootDir ) );
             break;
         default:
             break;
         }
     }
+}
+
+std::vector<std::unique_ptr<GrAsset> > GrDScanner::assets()
+{
+    return std::move(m_assets);
 }
 
 void GrDScanner::deleteAsset(qint32 index) {
