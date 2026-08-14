@@ -25,31 +25,32 @@ void GrDScanner::loadTopLevels() {
 
     if ( foundGameFolders.empty() ) {
         // later send signal for popup error
-        QString e = "Error: incorrect directory structure or no config files found at " + rootDir.filePath();
+        QString e = "Error: incorrect directory structure or no config files found at " + rootDir;
     }
 }
 
 // Finds all base config files for main game asset types given a root folder
-void GrDScanner::findConfigFiles() {
+void GrDScanner::findConfigFiles() { 
     for ( auto& folder : foundGameFolders ) {
+        QString baseFolderPath = rootDir + QDir::separator() + folder;
         if ( folder == "animals" ) { // animals
             cPaths.append(
                 findConfigPathsInDir(
-                    rootDir.filePath() + folder,
+                    baseFolderPath,
                     {".ai", ".uca"}
                 )
             );
         } else if ( folder == "scenery" ) { // buildings, scenery, foliage
             cPaths.append(
                 findConfigPathsInDir(
-                    rootDir.filePath() + folder + "/other",
+                    baseFolderPath + QDir::separator() + "other",
                     {".ai", ".ucs", ".ucb"}
                 )
             );
         } else if ( folder == "paths" || folder == "fences" ) { // paths, fences
             cPaths.append(
                 findConfigPathsInDir(
-                    rootDir.filePath() + folder,
+                    baseFolderPath,
                     {".ai"}
                 )
             );
