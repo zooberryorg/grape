@@ -29,12 +29,9 @@ void GrWorkspace::addProject(QString dir)
 {
     GrDScanner scanner(dir);
 
-    if ( projects.empty() ) {
-        projects = scanner.assets();
-    } else {
-        for ( auto& asset : scanner.assets() ) {
-            projects.push_back(std::move(asset));
-        }
+   for ( auto& asset : scanner.assets() ) {
+        projects.push_back(std::move(asset));
+        projectTree->insertProject(asset.get());
     }
 
     if ( projects.empty() ) {
