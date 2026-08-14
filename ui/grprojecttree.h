@@ -2,13 +2,14 @@
 #define GRPROJECTTREE_H
 
 #include <QWidget>
+#include "grshared.h"
+#include "grasset.h"
+#include "grprojecttreemodel.h"
 
 class QVBoxLayout;
 class QTreeView;
 class QFileSystemModel;
 class QLabel;
-class AssetType;
-class GrAsset;
 
 class GrProjectTree : public QWidget
 {
@@ -19,7 +20,7 @@ public:
 private:
     QVBoxLayout* workspaceVLayout;
     QTreeView* fileTree;
-    QFileSystemModel* fileModel;
+    GrProjectTreeModel* fileModel;
     QLabel* explorerLabel;
 
 };
