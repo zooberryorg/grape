@@ -1,6 +1,7 @@
 #include "grapew.h"
 #include "grworkspace.h"
 #include "grwelcomescreen.h"
+#include <QFileDialog>
 
 GrapeW::GrapeW(QWidget *parent)
     : QMainWindow(parent)
@@ -43,5 +44,18 @@ GrapeW::~GrapeW()
 
 void GrapeW::handleOpenProject()
 {
+    QString directory = QFileDialog::getExistingDirectory(
+        this,
+        tr("Open Project Directory"),
+        QDir::homePath(),
+        QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks
+    );
+
+    // TODO: handle case when dir not found here
+
+    if ( !directory.isEmpty() ) {
+        workspaceScreen = new GrWorkspace();
+        workspaceScreen->addProject(directory);
+    }
 
 }

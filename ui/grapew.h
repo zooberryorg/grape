@@ -13,7 +13,7 @@
 #include <QSplitter>
 #include <QStackedWidget>
 
-class GrProjectTree;
+class GrWorkspace;
 class GrWelcomeScreen;
 
 QT_BEGIN_NAMESPACE
@@ -38,7 +38,7 @@ private:
     QStackedWidget* central; // bg container
 
     // views
-    GrProjectTree* projectTree;
+    GrWorkspace* workspaceScreen;
     GrWelcomeScreen* welcomeScreen;
 };
 #endif // GRAPEW_H

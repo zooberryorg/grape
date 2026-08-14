@@ -32,7 +32,7 @@ void GrWorkspace::addProject(QString dir)
     if ( projects.empty() ) {
         projects = scanner.assets();
     } else {
-        for ( const auto& asset : scanner.assets() ) {
+        for ( auto& asset : scanner.assets() ) {
             projects.push_back(std::move(asset));
         }
     }
