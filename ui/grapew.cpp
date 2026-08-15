@@ -2,6 +2,7 @@
 #include "grworkspace.h"
 #include "grwelcomescreen.h"
 #include <QFileDialog>
+#include "grslots.h"
 
 GrapeW::GrapeW(QWidget *parent)
     : QMainWindow(parent)
@@ -30,7 +31,8 @@ GrapeW::GrapeW(QWidget *parent)
     central = new QStackedWidget(this);
     setCentralWidget(central);
 
-    welcomeScreen = new GrWelcomeScreen();
+    QMenuBar* menuB = menuBar();
+    welcomeScreen = new GrWelcomeScreen(this, central, workspaceScreen, menuB);
     central->addWidget(welcomeScreen);
 
     // initial window size
@@ -46,5 +48,5 @@ GrapeW::~GrapeW()
 
 void GrapeW::handleOpenProject()
 {
-
+    GrSlots::handleProjectOpen(this, central, new GrWorkspace, menuBar());
 }

@@ -4,7 +4,12 @@
 #include <QLabel>
 #include <QPushButton>
 
-GrWelcomeScreen::GrWelcomeScreen()
+GrWelcomeScreen::GrWelcomeScreen(
+        QWidget* mainWindow, QStackedWidget* stackedLayouts,
+        GrWorkspace* workspace, QMenuBar* menuBar
+)
+    : mainWindow(mainWindow), stackedLayouts(stackedLayouts),
+      workspace(workspace), menuBar(menuBar)
 {
     // -------- fonts
     QFont robotoHeader("Roboto");
@@ -91,6 +96,9 @@ GrWelcomeScreen::GrWelcomeScreen()
     rightColumn->addWidget(project2);
     rightColumn->addStretch();
 
+    // setup actions
+    //QAction* openAction = openProject->clicked(true);
+
     // Install layouts
     welcomeLayout->addLayout(columnsLayout);
 
@@ -98,5 +106,10 @@ GrWelcomeScreen::GrWelcomeScreen()
     columnsLayout->addWidget(divider);
     columnsLayout->addLayout(rightColumn);
 
+    connect(openProject, &QPushButton::clicked, this, &GrWelcomeScreen::handleOpenProject);
+}
+
+void GrWelcomeScreen::handleOpenProject()
+{
 
 }

@@ -10,7 +10,7 @@ class GrSlots
 {
 public:
     GrSlots();
-    void handleProjectOpen(QWidget*, QStackedWidget*, GrWorkspace*, QMenuBar*);
+    static void handleProjectOpen(QWidget*, QStackedWidget*, GrWorkspace*, QMenuBar*);
 };
 
 #endif // GRSLOTS_H
