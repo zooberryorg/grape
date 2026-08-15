@@ -36,6 +36,8 @@ set(PROJECT_SOURCES
         common/grshared.h
         common/grtreenode.h common/grtreenode.cpp
         common/grini.h common/grini.cpp
+        common/grslotsmgr.h common/grslotsmgr.cpp
+        resources.qrc
         # models
         models/grprojecttreemodel.h models/grprojecttreemodel.cpp
         ${TS_FILES}
@@ -46,7 +48,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 qt_add_executable(grape
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        resources.qrc
     )
 
 target_include_directories(

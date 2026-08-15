@@ -12,6 +12,8 @@ class GrWelcomeScreen : public QWidget
 public:
     GrWelcomeScreen();
 private:
+private slots:
+    void handleOpenProject();
 };
 
 #endif // GRWELCOMESCREEN_H
