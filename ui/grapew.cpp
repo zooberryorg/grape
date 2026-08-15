@@ -25,6 +25,8 @@ GrapeW::GrapeW(QWidget *parent)
     QAction* closeWorkspaceAction = fileMenu->addAction("&Close Workspace...");
     QAction* exitAction = fileMenu->addAction("&Exit...");
 
+    menuBar()->setHidden(true);
+
     central = new QStackedWidget(this);
     setCentralWidget(central);
 
@@ -58,6 +60,7 @@ void GrapeW::handleOpenProject()
         workspaceScreen->addProject(directory);
         central->addWidget(workspaceScreen);
         central->setCurrentIndex(1);
+        menuBar()->setHidden(false);
     } else if ( !directory.isEmpty() && central->count() > 1 ) {
         workspaceScreen->addProject(directory);
     }
