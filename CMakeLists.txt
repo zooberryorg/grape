@@ -36,7 +36,7 @@ set(PROJECT_SOURCES
         common/grshared.h
         common/grtreenode.h common/grtreenode.cpp
         common/grini.h common/grini.cpp
-        common/grslotsmgr.h common/grslotsmgr.cpp
+        common/grslots.h common/grslots.cpp
         resources.qrc
         # models
         models/grprojecttreemodel.h models/grprojecttreemodel.cpp

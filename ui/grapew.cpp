@@ -46,23 +46,5 @@ GrapeW::~GrapeW()
 
 void GrapeW::handleOpenProject()
 {
-    QString directory = QFileDialog::getExistingDirectory(
-        this,
-        tr("Open Project Directory"),
-        QDir::homePath(),
-        QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks
-    );
-
-    // TODO: handle case when dir not found here
-
-    if ( !directory.isEmpty() && central->count() < 2) {
-        workspaceScreen = new GrWorkspace();
-        workspaceScreen->addProject(directory);
-        central->addWidget(workspaceScreen);
-        central->setCurrentIndex(1);
-        menuBar()->setHidden(false);
-    } else if ( !directory.isEmpty() && central->count() > 1 ) {
-        workspaceScreen->addProject(directory);
-    }
 
 }
