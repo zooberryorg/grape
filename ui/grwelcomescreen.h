@@ -15,6 +15,8 @@ private:
     QHBoxLayout* workspaceHLayout;
     QVBoxLayout* workspaceVLLayout;
 
+    QLabel* appTitleLabel;
+    QLabel* appSubtitleLabel;
     QLabel* newProjectLabel;
 };
 
