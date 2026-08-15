@@ -12,7 +12,7 @@ class GrWelcomeScreen : public QWidget
 public:
     GrWelcomeScreen();
 private:
-    QHBoxLayout* workspaceHLayout;
+    QVBoxLayout* welcomeLayout;
     QVBoxLayout* workspaceVLLayout;
 
     QLabel* appTitleLabel;
