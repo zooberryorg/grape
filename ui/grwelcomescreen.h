@@ -6,12 +6,17 @@
 class QHBoxLayout;
 class QVBoxLayout;
 class QLabel;
+class QStackedWidget;
+class GrWorkspace;
+class QMenuBar;
 
 class GrWelcomeScreen : public QWidget
 {
+    Q_OBJECT
 public:
     GrWelcomeScreen();
-private:
+signals:
+    void openProjectRequested();
 };
 
 #endif // GRWELCOMESCREEN_H

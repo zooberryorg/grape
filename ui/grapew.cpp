@@ -2,6 +2,7 @@
 #include "grworkspace.h"
 #include "grwelcomescreen.h"
 #include <QFileDialog>
+#include "grslots.h"
 
 GrapeW::GrapeW(QWidget *parent)
     : QMainWindow(parent)
@@ -37,6 +38,7 @@ GrapeW::GrapeW(QWidget *parent)
     setMinimumSize(640, 320);
 
     connect(openAction, &QAction::triggered, this, &GrapeW::handleOpenProject);
+    connect(welcomeScreen, &GrWelcomeScreen::openProjectRequested, this, &GrapeW::handleOpenProject);
 }
 
 GrapeW::~GrapeW()
@@ -46,23 +48,5 @@ GrapeW::~GrapeW()
 
 void GrapeW::handleOpenProject()
 {
-    QString directory = QFileDialog::getExistingDirectory(
-        this,
-        tr("Open Project Directory"),
-        QDir::homePath(),
-        QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks
-    );
-
-    // TODO: handle case when dir not found here
-
-    if ( !directory.isEmpty() && central->count() < 2) {
-        workspaceScreen = new GrWorkspace();
-        workspaceScreen->addProject(directory);
-        central->addWidget(workspaceScreen);
-        central->setCurrentIndex(1);
-        menuBar()->setHidden(false);
-    } else if ( !directory.isEmpty() && central->count() > 1 ) {
-        workspaceScreen->addProject(directory);
-    }
-
+    GrSlots::handleProjectOpen(this, central, new GrWorkspace, menuBar());
 }

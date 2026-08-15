@@ -98,5 +98,6 @@ GrWelcomeScreen::GrWelcomeScreen()
     columnsLayout->addWidget(divider);
     columnsLayout->addLayout(rightColumn);
 
-
+    // forward signals
+    connect(openProject, &QPushButton::clicked, this, &GrWelcomeScreen::openProjectRequested);
 }
