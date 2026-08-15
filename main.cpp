@@ -9,6 +9,7 @@
 #include <QCoreApplication>
 #include <QDebug>
 #include <iostream>
+#include <QFontDatabase>
 
 void msgHandler( QtMsgType type, const QMessageLogContext &context, const QString &msg )
 {
@@ -22,6 +23,15 @@ int main(int argc, char *argv[])
 {
     qInstallMessageHandler( msgHandler );
     QApplication a(argc, argv);
+
+    // install fonts
+    QFontDatabase::addApplicationFont(":/fonts/Roboto-Light.ttf");
+    QFontDatabase::addApplicationFont(":/fonts/Roboto-Regular.ttf");
+    QFontDatabase::addApplicationFont(":/fonts/Roboto-Medium.ttf");
+    QFontDatabase::addApplicationFont(":/fonts/Roboto-SemiBold.ttf");
+    QFontDatabase::addApplicationFont(":/fonts/Roboto-Bold.ttf");
+
+    a.setFont(QFont("Roboto"));
 
     QTranslator translator;
     const QStringList uiLanguages = QLocale::system().uiLanguages();

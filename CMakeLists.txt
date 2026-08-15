@@ -46,6 +46,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 qt_add_executable(grape
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        resources.qrc
     )
 
 target_include_directories(
