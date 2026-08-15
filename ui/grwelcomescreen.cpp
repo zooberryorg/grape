@@ -24,6 +24,7 @@ GrWelcomeScreen::GrWelcomeScreen()
 
     // -------------------- MAIN LAYOUT
     QVBoxLayout* welcomeLayout = new QVBoxLayout(this);
+    welcomeLayout->setContentsMargins(32, 24, 32, 24);
 
     // --------------------- TITLE LAYOUT
     QVBoxLayout* titleLayout = new QVBoxLayout;
@@ -55,17 +56,37 @@ GrWelcomeScreen::GrWelcomeScreen()
     exitApp->setFont(robotoButton);
     exitApp->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
-    welcomeLayout->addLayout(titleLayout);
     welcomeLayout->addLayout(columnsLayout);
 
     columnsLayout->addLayout(leftColumn);
     columnsLayout->addLayout(rightColumn);
 
+    // ------------------------------- LEFT COLUMN
+
     titleLayout->addWidget(title);
     titleLayout->addWidget(subtitle);
+    leftColumn->addLayout(titleLayout);
 
     leftColumn->addWidget(newProject);
     leftColumn->addWidget(openProject);
     leftColumn->addWidget(importProject);
     leftColumn->addWidget(exitApp);
+
+    // -------------------------------- RIGHT COLUMN
+
+    QLabel* recentWorkspaces = new QLabel("Recent Workspaces");
+    recentWorkspaces->setFont(robotoSubheader);
+    recentWorkspaces->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+
+    QPushButton* project1 = new QPushButton("Workspace 1", this);
+    project1->setFont(robotoButton);
+    project1->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    QPushButton* project2 = new QPushButton("Workspace 2", this);
+    project2->setFont(robotoButton);
+    project2->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+
+    rightColumn->addWidget(recentWorkspaces);
+    rightColumn->addWidget(project1);
+    rightColumn->addWidget(project2);
+
 }
