@@ -12,6 +12,7 @@ class QMenuBar;
 
 class GrWelcomeScreen : public QWidget
 {
+    Q_OBJECT
 public:
     GrWelcomeScreen();
 signals:

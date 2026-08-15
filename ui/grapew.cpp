@@ -31,14 +31,14 @@ GrapeW::GrapeW(QWidget *parent)
     central = new QStackedWidget(this);
     setCentralWidget(central);
 
-    QMenuBar* menuB = menuBar();
-    welcomeScreen = new GrWelcomeScreen(this, central, workspaceScreen, menuB);
+    welcomeScreen = new GrWelcomeScreen();
     central->addWidget(welcomeScreen);
 
     // initial window size
     setMinimumSize(640, 320);
 
     connect(openAction, &QAction::triggered, this, &GrapeW::handleOpenProject);
+    connect(welcomeScreen, &GrWelcomeScreen::openProjectRequested, this, &GrapeW::handleOpenProject);
 }
 
 GrapeW::~GrapeW()
