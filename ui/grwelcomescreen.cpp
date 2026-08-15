@@ -2,9 +2,11 @@
 
 #include <QHBoxLayout>
 #include <QLabel>
+#include <QPushButton>
 
 GrWelcomeScreen::GrWelcomeScreen()
 {
+    // -------- fonts
     QFont robotoHeader("Roboto");
     robotoHeader.setPointSize(16);
     robotoHeader.setWeight(QFont::Bold);
@@ -13,23 +15,38 @@ GrWelcomeScreen::GrWelcomeScreen()
     robotoSubheader.setPointSize(12);
     robotoSubheader.setWeight(QFont::DemiBold);
 
-    welcomeLayout = new QVBoxLayout(this);
-    workspaceVLLayout = new QVBoxLayout(this);
-    workspaceVLLayout->setSpacing(4);
+    QFont robotoButton("Roboto");
+    robotoButton.setPointSize(10);
+    robotoButton.setWeight(QFont::Normal);
 
-    appTitleLabel = new QLabel("GrAPE", this);
-    appTitleLabel->setFont(robotoHeader);
-    appTitleLabel->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
-    appSubtitleLabel = new QLabel("the Great Animal Project Editor", this);
-    appSubtitleLabel->setFont(robotoSubheader);
-    appSubtitleLabel->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
-    workspaceVLLayout->addSpacing(20);
 
-    newProjectLabel = new QLabel("New Project", this);
-    newProjectLabel->setFont(robotoSubheader);
+    // -------- layouts
 
-    welcomeLayout->addLayout(workspaceVLLayout);
-    workspaceVLLayout->addWidget(appTitleLabel);
-    workspaceVLLayout->addWidget(appSubtitleLabel);
-    workspaceVLLayout->addWidget(newProjectLabel);
+    // -------------------- MAIN LAYOUT
+    QVBoxLayout* welcomeLayout = new QVBoxLayout(this);
+
+    // --------------------- TITLE LAYOUT
+    QVBoxLayout* titleLayout = new QVBoxLayout;
+    titleLayout->setSpacing(4);
+
+    QLabel* title = new QLabel("GrAPE", this);
+    title->setFont(robotoHeader);
+    title->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+    QLabel* subtitle = new QLabel("the Great Animal Project Editor", this);
+    subtitle->setFont(robotoSubheader);
+    subtitle->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+    titleLayout->addSpacing(20);
+
+    QPushButton* newProject = new QPushButton("New Project", this);
+    newProject->setFont(robotoButton);
+    newProject->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    QPushButton* openProject = new QPushButton("New Project", this);
+    openProject->setFont(robotoButton);
+    openProject->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+
+    welcomeLayout->addLayout(titleLayout);
+    titleLayout->addWidget(title);
+    titleLayout->addWidget(subtitle);
+    titleLayout->addWidget(newProject);
+    titleLayout->addWidget(openProject);
 }

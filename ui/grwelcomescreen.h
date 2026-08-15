@@ -12,12 +12,6 @@ class GrWelcomeScreen : public QWidget
 public:
     GrWelcomeScreen();
 private:
-    QVBoxLayout* welcomeLayout;
-    QVBoxLayout* workspaceVLLayout;
-
-    QLabel* appTitleLabel;
-    QLabel* appSubtitleLabel;
-    QLabel* newProjectLabel;
 };
 
 #endif // GRWELCOMESCREEN_H
