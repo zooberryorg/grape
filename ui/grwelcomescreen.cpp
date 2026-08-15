@@ -37,6 +37,11 @@ GrWelcomeScreen::GrWelcomeScreen()
     subtitle->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
     titleLayout->addSpacing(20);
 
+    // --------------------- COLUMNS LAYOUT
+    QHBoxLayout* columnsLayout = new QHBoxLayout;
+    QVBoxLayout* leftColumn = new QVBoxLayout;
+    QVBoxLayout* rightColumn = new QVBoxLayout;
+
     QPushButton* newProject = new QPushButton("New Project", this);
     newProject->setFont(robotoButton);
     newProject->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
@@ -51,10 +56,16 @@ GrWelcomeScreen::GrWelcomeScreen()
     exitApp->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
     welcomeLayout->addLayout(titleLayout);
+    welcomeLayout->addLayout(columnsLayout);
+
+    columnsLayout->addLayout(leftColumn);
+    columnsLayout->addLayout(rightColumn);
+
     titleLayout->addWidget(title);
     titleLayout->addWidget(subtitle);
-    titleLayout->addWidget(newProject);
-    titleLayout->addWidget(openProject);
-    titleLayout->addWidget(importProject);
-    titleLayout->addWidget(exitApp);
+
+    leftColumn->addWidget(newProject);
+    leftColumn->addWidget(openProject);
+    leftColumn->addWidget(importProject);
+    leftColumn->addWidget(exitApp);
 }
