@@ -13,14 +13,9 @@ class QMenuBar;
 class GrWelcomeScreen : public QWidget
 {
 public:
-    GrWelcomeScreen(QWidget*, QStackedWidget*, GrWorkspace*, QMenuBar*);
-private:
-    QWidget* mainWindow;
-    QStackedWidget* stackedLayouts;
-    GrWorkspace* workspace;
-    QMenuBar* menuBar;
-private slots:
-    void handleOpenProject();
+    GrWelcomeScreen();
+signals:
+    void openProjectRequested();
 };
 
 #endif // GRWELCOMESCREEN_H
