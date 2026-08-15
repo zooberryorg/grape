@@ -40,13 +40,21 @@ GrWelcomeScreen::GrWelcomeScreen()
     QPushButton* newProject = new QPushButton("New Project", this);
     newProject->setFont(robotoButton);
     newProject->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    QPushButton* openProject = new QPushButton("New Project", this);
+    QPushButton* openProject = new QPushButton("Open", this);
     openProject->setFont(robotoButton);
     openProject->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    QPushButton* importProject = new QPushButton("Import", this);
+    importProject->setFont(robotoButton);
+    importProject->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    QPushButton* exitApp = new QPushButton("Exit", this);
+    exitApp->setFont(robotoButton);
+    exitApp->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
     welcomeLayout->addLayout(titleLayout);
     titleLayout->addWidget(title);
     titleLayout->addWidget(subtitle);
     titleLayout->addWidget(newProject);
     titleLayout->addWidget(openProject);
+    titleLayout->addWidget(importProject);
+    titleLayout->addWidget(exitApp);
 }
