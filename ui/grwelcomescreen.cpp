@@ -25,6 +25,7 @@ GrWelcomeScreen::GrWelcomeScreen()
     // -------------------- MAIN LAYOUT
     QVBoxLayout* welcomeLayout = new QVBoxLayout(this);
     welcomeLayout->setContentsMargins(32, 24, 32, 24);
+    welcomeLayout->setSpacing(20);
 
     // --------------------- TITLE LAYOUT
     QVBoxLayout* titleLayout = new QVBoxLayout;
@@ -36,30 +37,25 @@ GrWelcomeScreen::GrWelcomeScreen()
     QLabel* subtitle = new QLabel("the Great Animal Project Editor", this);
     subtitle->setFont(robotoSubheader);
     subtitle->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+    subtitle->setStyleSheet("color: #888;");
     titleLayout->addSpacing(20);
 
     // --------------------- COLUMNS LAYOUT
     QHBoxLayout* columnsLayout = new QHBoxLayout;
     QVBoxLayout* leftColumn = new QVBoxLayout;
+    leftColumn->setSpacing(10);
     QVBoxLayout* rightColumn = new QVBoxLayout;
+    rightColumn->setSpacing(10);
 
     QPushButton* newProject = new QPushButton("New Project", this);
     newProject->setFont(robotoButton);
-    newProject->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     QPushButton* openProject = new QPushButton("Open", this);
     openProject->setFont(robotoButton);
-    openProject->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     QPushButton* importProject = new QPushButton("Import", this);
     importProject->setFont(robotoButton);
-    importProject->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     QPushButton* exitApp = new QPushButton("Exit", this);
     exitApp->setFont(robotoButton);
-    exitApp->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
-    welcomeLayout->addLayout(columnsLayout);
-
-    columnsLayout->addLayout(leftColumn);
-    columnsLayout->addLayout(rightColumn);
 
     // ------------------------------- LEFT COLUMN
 
@@ -70,7 +66,13 @@ GrWelcomeScreen::GrWelcomeScreen()
     leftColumn->addWidget(newProject);
     leftColumn->addWidget(openProject);
     leftColumn->addWidget(importProject);
+    leftColumn->addStretch();
     leftColumn->addWidget(exitApp);
+
+    // ------------------------------- DIVIDER
+    QFrame* divider = new QFrame(this);
+    divider->setFrameShape(QFrame::VLine);
+    divider->setFrameShadow(QFrame::Sunken);
 
     // -------------------------------- RIGHT COLUMN
 
@@ -80,13 +82,20 @@ GrWelcomeScreen::GrWelcomeScreen()
 
     QPushButton* project1 = new QPushButton("Workspace 1", this);
     project1->setFont(robotoButton);
-    project1->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     QPushButton* project2 = new QPushButton("Workspace 2", this);
     project2->setFont(robotoButton);
-    project2->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
     rightColumn->addWidget(recentWorkspaces);
     rightColumn->addWidget(project1);
     rightColumn->addWidget(project2);
+    rightColumn->addStretch();
+
+    // Install layouts
+    welcomeLayout->addLayout(columnsLayout);
+
+    columnsLayout->addLayout(leftColumn);
+    columnsLayout->addWidget(divider);
+    columnsLayout->addLayout(rightColumn);
+
 
 }
