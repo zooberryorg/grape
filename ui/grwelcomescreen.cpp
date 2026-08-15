@@ -62,6 +62,7 @@ GrWelcomeScreen::GrWelcomeScreen()
     titleLayout->addWidget(title);
     titleLayout->addWidget(subtitle);
     leftColumn->addLayout(titleLayout);
+    leftColumn->addStretch();
 
     leftColumn->addWidget(newProject);
     leftColumn->addWidget(openProject);
