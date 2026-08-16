@@ -4,6 +4,7 @@
 CScenery::CScenery(QString path)
     : CEntity(path)
 {
+    m_type = AssetType::Scenery;
     initProjectName();
     initGlobals();
     initIcon();
@@ -25,7 +26,7 @@ void CScenery::save()
 
 void CScenery::initGlobals()
 {
-
+    m_globals[globals]["Type"] = "";
 }
 
 void CScenery::initIcon()
@@ -70,7 +71,7 @@ void CScenery::initCharInts()
 
 void CScenery::initDefaultLcid()
 {
-
+    m_defaultlcid[defaultLcid]["LCID"] = "";
 }
 
 void CScenery::init1033()
@@ -80,9 +81,9 @@ void CScenery::init1033()
 
 void CScenery::initAnimations()
 {
-    m_animpaths[animations]["idle"] = "";
-    m_animpaths[animations]["IDLE"] = "";
-    m_animpaths[animations]["used"] = "";
-    m_animpaths[animations]["USED"] = "";
+    m_animations[animations]["idle"] = "";
+    m_animations[animations]["IDLE"] = "";
+    m_animations[animations]["used"] = "";
+    m_animations[animations]["USED"] = "";
 
 }
