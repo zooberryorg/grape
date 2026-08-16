@@ -30,9 +30,9 @@ GrWorkspace::GrWorkspace(QWidget *parent)
     idTab->setCheckable(true);
     group->addAction(idTab);
 
-    QAction* idTab = toolbar->addAction(QIcon(":/icons/id.svg"), "ID Settings");
-    idTab->setCheckable(true);
-    group->addAction(idTab);
+    QAction* moneyTab = toolbar->addAction(QIcon(":/icons/coin.svg"), "Finance Settings");
+    moneyTab->setCheckable(true);
+    group->addAction(moneyTab);
 
     // Canvas area
     canvasArea = new QFrame;
