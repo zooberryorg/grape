@@ -6,7 +6,9 @@
 class CBuilding : public CScenery
 {
 public:
-    CBuilding();
+    CBuilding(QString);
+    void initMembers();
+    void initCharInts();
 };
 
 #endif // CBUILDING_H
