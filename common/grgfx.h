@@ -8,6 +8,6 @@ namespace GrGfx
 {
     QIcon setSvgColor(const QString&, const QColor&, int, int);
     QPixmap emptyMapOfSize(int width, int height);
-};
+}
 
 #endif // GRGFX_H

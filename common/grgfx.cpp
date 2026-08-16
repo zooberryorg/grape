@@ -1,13 +1,13 @@
 #include "grgfx.h"
 #include <QSvgRenderer>
 #include <QColor>
-#include <qdebug.h>
+#include <QDebug>
 #include <QPainter>
 
 namespace GrGfx
 {
 
-    static QIcon setSvgColor(const QString& path, const QColor& color, int width, int height)
+    QIcon setSvgColor(const QString& path, const QColor& color, int width, int height)
     {
         QSvgRenderer renderer( path );
         if ( !renderer.isValid() ) {
@@ -27,7 +27,7 @@ namespace GrGfx
 
         return QIcon( map );}
 
-    static QPixmap emptyMapOfSize(int width, int height)
+    QPixmap emptyMapOfSize(int width, int height)
     {
         QPixmap map{ width, height };
         map.fill( Qt::transparent );

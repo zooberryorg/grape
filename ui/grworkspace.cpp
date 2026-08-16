@@ -28,12 +28,17 @@ GrWorkspace::GrWorkspace(QWidget *parent)
     QActionGroup* group = new QActionGroup(this);
     group->setExclusive(true);
 
-    QIcon idIcon = GrGfx::setSvgColor(":/icons/id.svg", QColor(), 50, 50);
-    QAction* idTab = toolbar->addAction(idIcon, "ID Settings");
+    QAction* idTab = toolbar->addAction(
+        GrGfx::setSvgColor(":/icons/id.svg", QColor("#12834b"), 50, 50),
+        "ID Settings"
+    );
     idTab->setCheckable(true);
     group->addAction(idTab);
 
-    QAction* moneyTab = toolbar->addAction(QIcon(":/icons/coin.svg"), "Finance Settings");
+    QAction* moneyTab = toolbar->addAction(
+        GrGfx::setSvgColor(":/icons/coin.svg", QColor("#12834b"), 50, 50),
+        "Finance Settings"
+    );
     moneyTab->setCheckable(true);
     group->addAction(moneyTab);
 
