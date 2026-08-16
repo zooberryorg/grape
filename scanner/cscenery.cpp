@@ -76,7 +76,10 @@ void CScenery::initDefaultLcid()
 
 void CScenery::init1033()
 {
-
+    m_1033[_1033]["cGeneralInfoFileName"] = "";
+    m_1033[_1033]["cLongHelp"] = "";
+    m_1033[_1033]["cName"] = "";
+    m_1033[_1033]["cTheString"] = "";
 }
 
 void CScenery::initAnimations()
