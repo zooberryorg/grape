@@ -1,5 +1,6 @@
 #include "grdscanner.h"
 #include "canimal.h"
+#include "cscenery.h"
 #include "grini.h"
 
 GrDScanner::GrDScanner(QString rootDir)
@@ -150,6 +151,9 @@ void GrDScanner::loadAssets() {
         switch (type) {
         case AssetType::Animal:
             m_assets.push_back( std::make_unique<CAnimal>( path ) );
+            break;
+        case AssetType::Scenery:
+            m_assets.push_back( std::make_unique<CScenery>( path ));
             break;
         default:
             break;
