@@ -1,10 +1,5 @@
 #include "gricon.h"
-
-
-GrIcon::GrIcon()
-{
-
-}
+#include <QSvgRenderer>
 
 QIcon GrIcon::setColor(const QString &)
 {

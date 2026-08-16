@@ -3,10 +3,8 @@
 
 #include <QIcon>
 
-class GrIcon
+namespace GrIcon
 {
-public:
-    GrIcon();
     static QIcon setColor(const QString&);
     static QIcon setSize(int, int);
 };
