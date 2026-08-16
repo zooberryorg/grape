@@ -32,6 +32,8 @@ void GrSlots::handleProjectOpen(QWidget* parent, QStackedWidget* stackedLayouts,
 
         menuBar->setHidden(false);
 
+        parent->setMinimumSize(1024, 764);
+
     } else if ( !directory.isEmpty() && stackedLayouts->count() > 1 ) {
 
         workspace->addProject(directory);

@@ -50,7 +50,11 @@ GrWorkspace::GrWorkspace(QWidget *parent)
     hSplitter->addWidget(projectTree);
     hSplitter->addWidget(canvasArea);
     hSplitter->addWidget(toolbarFrame);
-    hSplitter->setSizes({250, 750});
+    hSplitter->setSizes({250, 524, 250});
+
+    hSplitter->setStretchFactor(0, 0);
+    hSplitter->setStretchFactor(1, 1);
+    hSplitter->setStretchFactor(2, 0);
 }
 
 void GrWorkspace::addProject(QString dir)
