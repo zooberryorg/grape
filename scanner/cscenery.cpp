@@ -80,6 +80,7 @@ void CScenery::initMembers()
 
 void CScenery::initCharInts()
 {
+    m_intchars[charInts]["cPurchaseCost"] = "";
     m_intchars[charInts]["cHelpId"] = "";
     m_intchars[charInts]["cNameId"] = "";
     m_intchars[charInts]["cHabitat"] = "";

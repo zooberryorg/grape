@@ -30,6 +30,10 @@ GrWorkspace::GrWorkspace(QWidget *parent)
     idTab->setCheckable(true);
     group->addAction(idTab);
 
+    QAction* idTab = toolbar->addAction(QIcon(":/icons/id.svg"), "ID Settings");
+    idTab->setCheckable(true);
+    group->addAction(idTab);
+
     // Canvas area
     canvasArea = new QFrame;
     canvasArea->setFrameShape(QFrame::Box);
