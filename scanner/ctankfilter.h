@@ -11,6 +11,7 @@ public:
     void initCharInts();
     void initIcon();
     void initCharStrings();
+    void initFilterSounds();
 };
 
 #endif // CTANKFILTER_H

@@ -8,6 +8,7 @@ CTankFilter::CTankFilter(QString path)
     initMembers();
     initCharInts();
     initIcon();
+    initCharStrings();
 }
 
 void CTankFilter::initMembers()
@@ -40,4 +41,13 @@ void CTankFilter::initIcon()
 void CTankFilter::initCharStrings()
 {
     m_strchars[charStrings]["cInfoImageName"] = "";
+}
+
+void CTankFilter::initFilterSounds()
+{
+    m_filtersounds[filterSounds]["cHealthySounds"] = "";
+    m_filtersounds[filterSounds]["cHealthyAtten"] = "";
+    m_filtersounds[filterSounds]["cDecayedSound"] = "";
+    m_filtersounds[filterSounds]["cDecayedAtten"] = "";
+
 }
