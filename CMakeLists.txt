@@ -44,7 +44,7 @@ set(PROJECT_SOURCES
         common/grtreenode.h common/grtreenode.cpp
         common/grini.h common/grini.cpp
         common/grslots.h common/grslots.cpp
-        common/gricon.h common/gricon.cpp
+        common/grgfx.h common/grgfx.cpp
         resources.qrc
         # models
         models/grprojecttreemodel.h models/grprojecttreemodel.cpp
