@@ -6,7 +6,7 @@
 class CPath : public CScenery
 {
 public:
-    CPath();
+    CPath(QString);
 };
 
 #endif // CPATH_H
