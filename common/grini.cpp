@@ -78,8 +78,8 @@ bool GrINI::doesKeyInSectionExist(const CSimpleIniA& ini, const QString& section
     ini.GetAllKeys(section.toStdString().c_str(), memberKeys);
     QHash<QString, QString> pairs;
 
-    for ( const auto& key : memberKeys ) {
-        if ( QString(key.pItem.toStdString().c_str()) == key ) {
+    for ( const auto& k : memberKeys ) {
+        if ( QString(k.pItem) == key ) {
             return true;
         }
     }

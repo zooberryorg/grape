@@ -4,6 +4,7 @@
 #include "cbuilding.h"
 #include "cfence.h"
 #include "cpath.h"
+#include "ctankfilter.h"
 #include "grini.h"
 
 GrDScanner::GrDScanner(QString rootDir)
@@ -172,6 +173,9 @@ void GrDScanner::loadAssets() {
             break;
         case AssetType::Path:
             m_assets.push_back( std::make_unique<CPath>( path ) );
+            break;
+        case AssetType::TankFilter:
+            m_assets.push_back( std::make_unique<CTankFilter>( path ) );
             break;
         default:
             break;
