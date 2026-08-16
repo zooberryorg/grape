@@ -6,7 +6,9 @@
 class CFence : public CScenery
 {
 public:
-    CFence();
+    CFence(QString);
+    void initMembers();
+    void initCharInts();
 };
 
 #endif // CFENCE_H
