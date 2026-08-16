@@ -82,7 +82,7 @@ int GrProjectTreeModel::rowCount(const QModelIndex &parent) const
 
 int GrProjectTreeModel::columnCount(const QModelIndex & /*parent*/) const
 {
-    return 2;
+    return 1;
 }
 
 QVariant GrProjectTreeModel::data(const QModelIndex &index, int role) const
