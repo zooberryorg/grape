@@ -12,7 +12,11 @@ CTankFilter::CTankFilter(QString path)
 
 void CTankFilter::initMembers()
 {
-
+    m_members.clear();
+    m_members.append("habitatfences");
+    m_members.append("highfence");
+    m_members.append("fence");
+    m_members.append("aqua");
 }
 
 void CTankFilter::initCharInts()
