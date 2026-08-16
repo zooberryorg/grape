@@ -31,12 +31,16 @@ void CScenery::initGlobals()
 
 void CScenery::initIcon()
 {
+    m_icon[icons]["IconSE"] = "";
+    m_icon[icons]["IconSW"] = "";
+    m_icon[icons]["IconNW"] = "";
+    m_icon[icons]["IconNE"] = "";
 
 }
 
 void CScenery::initMembers()
 {
-
+    m_members.append("scenery");
 }
 
 void CScenery::initCharInts()

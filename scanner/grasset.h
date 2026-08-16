@@ -39,6 +39,7 @@ protected:
     QString defaultLcid = "defaultLCID";
     QString _1033 = "1033";
     QString globals = "Global";
+    QString icons = "Icon";
 
     // texture rgba data
     QVector<GrTexture> m_mFrames; // main sprite frames
