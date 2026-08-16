@@ -6,7 +6,10 @@
 class CTankFilter : public CScenery
 {
 public:
-    CTankFilter();
+    CTankFilter(QString);
+    void initMembers();
+    void initCharInts();
+    void initIcon();
 };
 
 #endif // CTANKFILTER_H
