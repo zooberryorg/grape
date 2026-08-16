@@ -7,6 +7,7 @@ class CTankFilter : public CScenery
 {
 public:
     CTankFilter(QString);
+    void load() override;
     void initMembers();
     void initCharInts();
     void initIcon();
