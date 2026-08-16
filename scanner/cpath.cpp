@@ -8,3 +8,14 @@ CPath::CPath(QString path)
     initMembers();
     initCharInts();
 }
+
+void CPath::initMembers()
+{
+    m_members.clear();
+    m_members.append("paths");
+}
+
+void CPath::initCharInts()
+{
+    m_intchars[charInts]["cMaterial"] = "";
+}

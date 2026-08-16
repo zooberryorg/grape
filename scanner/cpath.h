@@ -7,6 +7,8 @@ class CPath : public CScenery
 {
 public:
     CPath(QString);
+    void initMembers();
+    void initCharInts();
 };
 
 #endif // CPATH_H
