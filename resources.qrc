@@ -6,4 +6,16 @@
         <file alias="Roboto-Medium.ttf">assets/fonts/Roboto-Medium.ttf</file>
         <file alias="Roboto-SemiBold.ttf">assets/fonts/Roboto-SemiBold.ttf</file>
     </qresource>
+    <qresource prefix="/icons">
+        <file alias="path.svg">assets/icons/escalator.svg</file>
+        <file alias="filter.svg">assets/icons/filter.svg</file>
+        <file alias="coin.svg">assets/icons/coin.svg</file>
+        <file alias="fence.svg">assets/icons/fence.svg</file>
+        <file alias="building.svg">assets/icons/home.svg</file>
+        <file alias="id.svg">assets/icons/id.svg</file>
+        <file alias="fountain.svg">assets/icons/fountain.svg</file>
+        <file alias="paw.svg">assets/icons/paw.svg</file>
+        <file alias="music.svg">assets/icons/playlist.svg</file>
+        <file alias="tree.svg">assets/icons/tree.svg</file>
+    </qresource>
 </RCC>
