@@ -32,6 +32,7 @@ set(PROJECT_SOURCES
         scanner/cztunit.h scanner/cztunit.cpp
         scanner/canimal.h scanner/canimal.cpp
         scanner/cscenery.h scanner/cscenery.cpp
+        scanner/cbuilding.h scanner/cbuilding.cpp
         scanner/grdscanner.h scanner/grdscanner.cpp
         # shared sources
         common/grshared.h
