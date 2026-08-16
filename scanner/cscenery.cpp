@@ -1,5 +1,5 @@
 #include "cscenery.h"
-
+#include "grini.h"
 
 CScenery::CScenery(QString path)
     : CEntity(path)
@@ -16,7 +16,42 @@ CScenery::CScenery(QString path)
 
 void CScenery::load()
 {
+    CSimpleIniA ini;
+    int rc = ini.LoadFile(m_cpath.toStdString().c_str());
+    if ( rc < 0 ) {
+        // error handling here
+    }
 
+    QHash<QString, QString> foundCharInts = GrINI::getKeyValuesInSection(ini, charInts);
+    GrINI::assignNewValuesToKeys(m_intchars, foundCharInts);
+
+    QHash<QString, QString> foundAnimations = GrINI::getKeyValuesInSection(ini, animations);
+    GrINI::assignNewValuesToKeys(m_animpaths, foundAnimations);
+
+    QHash<QString, QString> foundIcons = GrINI::getKeyValuesInSection(ini, icons);
+    for ( const QString& value : foundIcons ) {
+        if ( value.contains("SE") ) {
+            m_icon[icons]["IconSE"] = value;
+        }
+        else if ( value.contains("SW") ) {
+            m_icon[icons]["IconSW"] = value;
+        }
+        else if ( value.contains("NE") ) {
+            m_icon[icons]["IconNE"] = value;
+        }
+        else if ( value.contains("NW") ) {
+            m_icon[icons]["IconNW"] = value;
+        }
+    }
+
+    QHash<QString, QString> foundGlobals = GrINI::getKeyValuesInSection(ini, globals);
+    GrINI::assignNewValuesToKeys(m_globals, foundGlobals);
+
+    QHash<QString, QString> foundDefaultLcid = GrINI::getKeyValuesInSection(ini, defaultLcid);
+    GrINI::assignNewValuesToKeys(m_defaultlcid, foundDefaultLcid);
+
+    QHash<QString, QString> found1033 = GrINI::getKeyValuesInSection(ini, _1033);
+    GrINI::assignNewValuesToKeys(m_1033, found1033);
 }
 
 void CScenery::save()
