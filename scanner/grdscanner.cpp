@@ -2,6 +2,7 @@
 #include "canimal.h"
 #include "cscenery.h"
 #include "cbuilding.h"
+#include "cfence.h"
 #include "grini.h"
 
 GrDScanner::GrDScanner(QString rootDir)
@@ -110,7 +111,8 @@ GrShared::AssetTypes GrDScanner::determineTypeFromFile(QString path) {
 
         return AssetType::Building;
 
-    } else if ( members.contains("fence") || members.contains("lowfence") || members.contains("zoofences") ) {
+    } else if ( members.contains("fence") || members.contains("lowfence") || members.contains("zoofences")
+                || members.contains("highfence") || members.contains("habitatfences") ) {
 
         return AssetType::Fence;
 
@@ -154,10 +156,13 @@ void GrDScanner::loadAssets() {
             m_assets.push_back( std::make_unique<CAnimal>( path ) );
             break;
         case AssetType::Scenery:
-            m_assets.push_back( std::make_unique<CScenery>( path ));
+            m_assets.push_back( std::make_unique<CScenery>( path ) );
             break;
         case AssetType::Building:
-            m_assets.push_back( std::make_unique<CBuilding>( path ));
+            m_assets.push_back( std::make_unique<CBuilding>( path ) );
+            break;
+        case AssetType::Fence:
+            m_assets.push_back( std::make_unique<CFence>( path ) );
             break;
         default:
             break;
