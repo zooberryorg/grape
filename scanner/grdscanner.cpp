@@ -112,17 +112,17 @@ GrShared::AssetTypes GrDScanner::determineTypeFromFile(QString path) {
 
         return AssetType::Building;
 
-    } else if ( members.contains("fence") || members.contains("lowfence") || members.contains("zoofences")
-                || members.contains("highfence") || members.contains("habitatfences") ) {
-
-        return AssetType::Fence;
-
     } else if ( members.contains("scenery") || members.contains("light") || members.contains("rocks")
                || members.contains("foliage") || members.contains("habitatfoliage") || members.contains("zoofoliage") ) {
 
         return AssetType::Scenery;
 
-    }
+    } else if ( members.contains("fence") || members.contains("lowfence") || members.contains("zoofences")
+               || members.contains("highfence") || members.contains("habitatfences") ) {
+
+       return AssetType::Fence;
+
+   }
 
     return AssetType::None;
 }
