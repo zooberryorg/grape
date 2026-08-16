@@ -34,13 +34,22 @@ GrWorkspace::GrWorkspace(QWidget *parent)
     moneyTab->setCheckable(true);
     group->addAction(moneyTab);
 
+    QWidget* toolbarFrame = new QWidget;
+    QHBoxLayout* toolbarLayout = new QHBoxLayout;
+    QVBoxLayout* configLayout = new QVBoxLayout;
+
+    toolbarFrame->setLayout(toolbarLayout);
+    toolbarLayout->addWidget(toolbar);
+    toolbarLayout->addLayout(configLayout);
+    configLayout->addStretch();
+
     // Canvas area
     canvasArea = new QFrame;
     canvasArea->setFrameShape(QFrame::Box);
 
     hSplitter->addWidget(projectTree);
     hSplitter->addWidget(canvasArea);
-    hSplitter->addWidget(toolbar);
+    hSplitter->addWidget(toolbarFrame);
     hSplitter->setSizes({250, 750});
 }
 
