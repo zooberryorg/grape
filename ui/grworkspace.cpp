@@ -7,6 +7,7 @@
 #include "grprojecttree.h"
 #include "grasset.h"
 #include "grdscanner.h"
+#include "grgfx.h"
 
 GrWorkspace::GrWorkspace(QWidget *parent)
     : QWidget{parent}
@@ -27,7 +28,8 @@ GrWorkspace::GrWorkspace(QWidget *parent)
     QActionGroup* group = new QActionGroup(this);
     group->setExclusive(true);
 
-    QAction* idTab = toolbar->addAction(QIcon(":/icons/id.svg"), "ID Settings");
+    QIcon idIcon = GrGfx::setSvgColor(":/icons/id.svg", QColor(), 50, 50);
+    QAction* idTab = toolbar->addAction(idIcon, "ID Settings");
     idTab->setCheckable(true);
     group->addAction(idTab);
 
