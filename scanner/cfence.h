@@ -9,6 +9,7 @@ public:
     CFence(QString);
     void initMembers();
     void initCharInts();
+    void initIcon();
 };
 
 #endif // CFENCE_H

@@ -7,6 +7,7 @@ CFence::CFence(QString path)
     m_type = AssetType::Fence;
     initMembers();
     initCharInts();
+    initIcon();
 }
 
 void CFence::initMembers()
@@ -29,4 +30,9 @@ void CFence::initCharInts()
     m_intchars[charInts]["cIndestructible"] = "";
     m_intchars[charInts]["cIsElectrified"] = "";
     m_intchars[charInts]["cNoDrawWater"] = "";
+}
+
+void CFence::initIcon() {
+    m_icon.clear();
+    m_icon["Icon"]["Icon"] = "";
 }

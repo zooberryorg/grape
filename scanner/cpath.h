@@ -9,6 +9,7 @@ public:
     CPath(QString);
     void initMembers();
     void initCharInts();
+    void initIcon();
 };
 
 #endif // CPATH_H

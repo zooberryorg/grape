@@ -19,3 +19,8 @@ void CPath::initCharInts()
 {
     m_intchars[charInts]["cMaterial"] = "";
 }
+
+void CPath::initIcon() {
+    m_icon.clear();
+    m_icon["Icon"]["Icon"] = "";
+}
