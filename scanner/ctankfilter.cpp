@@ -1,7 +1,8 @@
 #include "ctankfilter.h"
 
 
-CTankFilter::CTankFilter()
+CTankFilter::CTankFilter(QString path)
+    : CScenery(path)
 {
 
 }

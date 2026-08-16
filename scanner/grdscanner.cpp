@@ -117,6 +117,11 @@ GrShared::AssetTypes GrDScanner::determineTypeFromFile(QString path) {
 
         return AssetType::Scenery;
 
+    } else if ( GrINI::doesSectionExist(ini, "FilterSounds" ) ||
+                GrINI::doesKeyInSectionExist(ini, "Characteristics/Integers", "cFilterUpkeep" )) {
+
+        return AssetType::TankFilter;
+
     } else if ( members.contains("fence") || members.contains("lowfence") || members.contains("zoofences")
                || members.contains("highfence") || members.contains("habitatfences") ) {
 
