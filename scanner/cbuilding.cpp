@@ -4,7 +4,7 @@
 CBuilding::CBuilding(QString path)
     : CScenery(path)
 {
-    m_type = AssetType::Scenery;
+    m_type = AssetType::Building;
     initMembers();
     initCharInts();
 }

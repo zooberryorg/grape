@@ -153,11 +153,11 @@ void GrDScanner::loadAssets() {
         case AssetType::Animal:
             m_assets.push_back( std::make_unique<CAnimal>( path ) );
             break;
-        case AssetType::Building:
-            m_assets.push_back( std::make_unique<CBuilding>( path ));
-            break;
         case AssetType::Scenery:
             m_assets.push_back( std::make_unique<CScenery>( path ));
+            break;
+        case AssetType::Building:
+            m_assets.push_back( std::make_unique<CBuilding>( path ));
             break;
         default:
             break;
