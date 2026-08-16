@@ -12,7 +12,7 @@ GrWorkspace::GrWorkspace(QWidget *parent)
     : QWidget{parent}
 {
     workspaceHLayout = new QHBoxLayout(this);
-    hSplitter = new QSplitter;
+    hSplitter = new QSplitter(this);
     workspaceHLayout->addWidget(hSplitter);
 
     // file tree setup
@@ -22,6 +22,7 @@ GrWorkspace::GrWorkspace(QWidget *parent)
     QToolBar* toolbar = new QToolBar;
     toolbar->setOrientation(Qt::Vertical);
     toolbar->setToolButtonStyle(Qt::ToolButtonIconOnly);
+    toolbar->setMaximumWidth(50);
 
     QActionGroup* group = new QActionGroup(this);
     group->setExclusive(true);
@@ -34,14 +35,16 @@ GrWorkspace::GrWorkspace(QWidget *parent)
     moneyTab->setCheckable(true);
     group->addAction(moneyTab);
 
-    QWidget* toolbarFrame = new QWidget;
-    QHBoxLayout* toolbarLayout = new QHBoxLayout;
-    QVBoxLayout* configLayout = new QVBoxLayout;
+    QWidget* toolbarFrame = new QWidget(this);
+    QHBoxLayout* toolbarLayout = new QHBoxLayout(toolbarFrame);
+    QVBoxLayout* configLayout = new QVBoxLayout();
 
-    toolbarFrame->setLayout(toolbarLayout);
     toolbarLayout->addWidget(toolbar);
     toolbarLayout->addLayout(configLayout);
-    configLayout->addStretch();
+
+    QWidget* placeholder = new QWidget(toolbarFrame);
+    configLayout->addWidget(placeholder);
+    placeholder->setMinimumWidth(200);
 
     // Canvas area
     canvasArea = new QFrame;
