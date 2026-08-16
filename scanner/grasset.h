@@ -28,6 +28,7 @@ protected:
     // constants
     QString charInts = "Characteristics/Integers";
     QString charFloats = "Characteristics/Floats";
+    QString charStrings = "Characteristics/Strings";
     QString cSuitableObjects = "cSuitableObjects";
     QString cCompatibleAnimals = "cCompatibleAnimals";
     QString cCompatibleTerrain = "cCompatibleTerrain";
@@ -40,6 +41,7 @@ protected:
     QString _1033 = "1033";
     QString globals = "Global";
     QString icons = "Icon";
+    QString filterSounds = "FilterSounds";
 
     // texture rgba data
     QVector<GrTexture> m_mFrames; // main sprite frames
@@ -63,6 +65,7 @@ protected:
     QHash<QString, QHash<QString, QString>> m_defaultlcid;
     QHash<QString, QHash<QString, QString>> m_1033;
     QHash<QString, QHash<QString, QString>> m_animations;
+    QHash<QString, QHash<QString, QString>> m_filtersounds;
 
     QHash<QString, QStringList> m_unlock;
     // for every key in allKeys, return its value (<key, value>, <key, value>, ..., n>)

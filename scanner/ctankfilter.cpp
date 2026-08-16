@@ -36,3 +36,8 @@ void CTankFilter::initIcon()
     m_icon.clear();
     m_icon[icons]["Icon"] = "";
 }
+
+void CTankFilter::initCharStrings()
+{
+    m_strchars[charStrings]["cInfoImageName"] = "";
+}

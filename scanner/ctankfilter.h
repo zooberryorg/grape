@@ -10,6 +10,7 @@ public:
     void initMembers();
     void initCharInts();
     void initIcon();
+    void initCharStrings();
 };
 
 #endif // CTANKFILTER_H
