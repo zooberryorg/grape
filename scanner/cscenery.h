@@ -6,7 +6,17 @@
 class CScenery : public CEntity
 {
 public:
-    CScenery();
+    CScenery(QString);
+    void load() override;
+    void save() override;
+
+    void initGlobals();
+    void initIcon();
+    void initMembers();
+    void initCharInts();
+    void initDefaultLcid();
+    void init1033();
+
 };
 
 #endif // CSCENERY_H
