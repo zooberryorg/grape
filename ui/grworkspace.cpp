@@ -1,5 +1,6 @@
 #include <QSplitter>
 #include <QHBoxLayout>
+#include <QToolbar>
 
 #include "grworkspace.h"
 #include "grprojecttree.h"
@@ -15,6 +16,9 @@ GrWorkspace::GrWorkspace(QWidget *parent)
 
     // file tree setup
     projectTree = new GrProjectTree;
+    QToolBar* toolbar = new QToolBar;
+    toolbar->setOrientation(Qt::Vertical);
+    toolbar->setToolButtonStyle(Qt::ToolButtonIconOnly);
 
     // Canvas area
     canvasArea = new QFrame;
@@ -22,6 +26,7 @@ GrWorkspace::GrWorkspace(QWidget *parent)
 
     hSplitter->addWidget(projectTree);
     hSplitter->addWidget(canvasArea);
+    hSplitter->addWidget(toolbar);
     hSplitter->setSizes({250, 750});
 }
 

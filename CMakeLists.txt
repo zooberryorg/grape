@@ -22,6 +22,8 @@ set(PROJECT_SOURCES
         ui/grprojecttree.h ui/grprojecttree.cpp
         ui/grwelcomescreen.h ui/grwelcomescreen.cpp
         ui/grworkspace.h ui/grworkspace.cpp
+        # widgets
+        #ui/widgets/
         # graphics
         graphics/gricon.h graphics/gricon.cpp
         graphics/grtexture.h graphics/grtexture.cpp
