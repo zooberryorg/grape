@@ -56,3 +56,18 @@ QStringList GrINI::getFlagsInSection(const QString& path, const QString& section
 
     return flags;
 }
+
+bool GrINI::doesSectionExist(CSimpleIniA& ini, const QString& inputSection)
+{
+    CSimpleIniA::TNamesDepend sections;
+    ini.GetAllSections(sections);
+
+    for ( const auto& section : sections ) {
+        QString s_section = QString(section.pItem);
+        if ( s_section == inputSection ) {
+            return true;
+        }
+    }
+
+    return false;
+}
