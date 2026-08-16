@@ -1,6 +1,7 @@
 #include <QSplitter>
 #include <QHBoxLayout>
 #include <QToolbar>
+#include <QActionGroup>
 
 #include "grworkspace.h"
 #include "grprojecttree.h"
@@ -16,9 +17,18 @@ GrWorkspace::GrWorkspace(QWidget *parent)
 
     // file tree setup
     projectTree = new GrProjectTree;
+
+    // toolbar (right sidebar)
     QToolBar* toolbar = new QToolBar;
     toolbar->setOrientation(Qt::Vertical);
     toolbar->setToolButtonStyle(Qt::ToolButtonIconOnly);
+
+    QActionGroup* group = new QActionGroup(this);
+    group->setExclusive(true);
+
+    QAction* idTab = toolbar->addAction(QIcon(":/icons/id.svg"), "ID Settings");
+    idTab->setCheckable(true);
+    group->addAction(idTab);
 
     // Canvas area
     canvasArea = new QFrame;
