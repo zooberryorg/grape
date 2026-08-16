@@ -52,6 +52,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 qt_add_executable(grape
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        scanner/ctankfilter.h scanner/ctankfilter.cpp
     )
 
 target_include_directories(
