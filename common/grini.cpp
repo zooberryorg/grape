@@ -56,3 +56,47 @@ QStringList GrINI::getFlagsInSection(const QString& path, const QString& section
 
     return flags;
 }
+
+bool GrINI::doesSectionExist(const CSimpleIniA& ini, const QString& inputSection)
+{
+    CSimpleIniA::TNamesDepend sections;
+    ini.GetAllSections(sections);
+
+    for ( const auto& section : sections ) {
+        QString s_section = QString(section.pItem);
+        if ( s_section == inputSection ) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+bool GrINI::doesKeyInSectionExist(const CSimpleIniA& ini, const QString& section, const QString& key)
+{
+    CSimpleIniA::TNamesDepend memberKeys;
+    ini.GetAllKeys(section.toStdString().c_str(), memberKeys);
+    QHash<QString, QString> pairs;
+
+    for ( const auto& k : memberKeys ) {
+        if ( QString(k.pItem) == key ) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+void GrINI::loadConfig(const CSimpleIniA& ini, QList<QHash<QString, QHash<QString, QString>>*> sections)
+{
+    for (auto* s : sections )
+    {
+        if ( s->isEmpty() ) continue;
+
+        QString sectionName = s->begin().key();
+        GrINI::assignNewValuesToKeys(
+            *s,
+            GrINI::getKeyValuesInSection(ini, sectionName)
+        );
+    }
+}

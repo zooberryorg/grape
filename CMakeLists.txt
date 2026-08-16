@@ -35,6 +35,7 @@ set(PROJECT_SOURCES
         scanner/cbuilding.h scanner/cbuilding.cpp
         scanner/cfence.h scanner/cfence.cpp
         scanner/cpath.h scanner/cpath.cpp
+        scanner/ctankfilter.h scanner/ctankfilter.cpp
         scanner/grdscanner.h scanner/grdscanner.cpp
         # shared sources
         common/grshared.h

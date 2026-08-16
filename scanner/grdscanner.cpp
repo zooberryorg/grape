@@ -4,6 +4,7 @@
 #include "cbuilding.h"
 #include "cfence.h"
 #include "cpath.h"
+#include "ctankfilter.h"
 #include "grini.h"
 
 GrDScanner::GrDScanner(QString rootDir)
@@ -112,17 +113,22 @@ GrShared::AssetTypes GrDScanner::determineTypeFromFile(QString path) {
 
         return AssetType::Building;
 
-    } else if ( members.contains("fence") || members.contains("lowfence") || members.contains("zoofences")
-                || members.contains("highfence") || members.contains("habitatfences") ) {
-
-        return AssetType::Fence;
-
     } else if ( members.contains("scenery") || members.contains("light") || members.contains("rocks")
                || members.contains("foliage") || members.contains("habitatfoliage") || members.contains("zoofoliage") ) {
 
         return AssetType::Scenery;
 
-    }
+    } else if ( GrINI::doesSectionExist(ini, "FilterSounds" ) ||
+                GrINI::doesKeyInSectionExist(ini, "Characteristics/Integers", "cFilterUpkeep" )) {
+
+        return AssetType::TankFilter;
+
+    } else if ( members.contains("fence") || members.contains("lowfence") || members.contains("zoofences")
+               || members.contains("highfence") || members.contains("habitatfences") ) {
+
+       return AssetType::Fence;
+
+   }
 
     return AssetType::None;
 }
@@ -167,6 +173,9 @@ void GrDScanner::loadAssets() {
             break;
         case AssetType::Path:
             m_assets.push_back( std::make_unique<CPath>( path ) );
+            break;
+        case AssetType::TankFilter:
+            m_assets.push_back( std::make_unique<CTankFilter>( path ) );
             break;
         default:
             break;
