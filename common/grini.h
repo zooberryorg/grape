@@ -15,6 +15,7 @@ public:
     static QStringList getFlagsInSection(const QString& path, const QString& section);
     static bool doesSectionExist(const CSimpleIniA&, const QString&);
     static bool doesKeyInSectionExist(const CSimpleIniA&, const QString&, const QString&);
+    static void loadConfig(const CSimpleIniA&, QList<QHash<QString, QHash<QString, QString>>*>);
 };
 
 #endif // GRINI_H

@@ -79,10 +79,24 @@ bool GrINI::doesKeyInSectionExist(const CSimpleIniA& ini, const QString& section
     QHash<QString, QString> pairs;
 
     for ( const auto& key : memberKeys ) {
-        if ( QString(key.pItem.toStdString()) == key ) {
+        if ( QString(key.pItem.toStdString().c_str()) == key ) {
             return true;
         }
     }
 
     return false;
+}
+
+void GrINI::loadConfig(const CSimpleIniA& ini, QList<QHash<QString, QHash<QString, QString>>*> sections)
+{
+    for (auto* s : sections )
+    {
+        if ( s->isEmpty() ) continue;
+
+        QString sectionName = s->begin().key();
+        GrINI::assignNewValuesToKeys(
+            *s,
+            GrINI::getKeyValuesInSection(ini, sectionName)
+        );
+    }
 }
