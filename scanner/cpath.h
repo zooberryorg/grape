@@ -1,15 +1,15 @@
-#ifndef CFENCE_H
-#define CFENCE_H
+#ifndef CPATH_H
+#define CPATH_H
 
 #include "cscenery.h"
 
-class CFence : public CScenery
+class CPath : public CScenery
 {
 public:
-    CFence(QString);
+    CPath(QString);
     void initMembers();
     void initCharInts();
     void initIcon();
 };
 
-#endif // CFENCE_H
+#endif // CPATH_H
