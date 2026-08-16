@@ -16,7 +16,7 @@ public:
     void initCharInts();
     void initDefaultLcid();
     void init1033();
-
+    void initAnimations();
 };
 
 #endif // CSCENERY_H

@@ -4,7 +4,13 @@
 CScenery::CScenery(QString path)
     : CEntity(path)
 {
-
+    initProjectName();
+    initGlobals();
+    initIcon();
+    initMembers();
+    initCharInts();
+    initDefaultLcid();
+    init1033();
 }
 
 void CScenery::load()
@@ -69,5 +75,14 @@ void CScenery::initDefaultLcid()
 
 void CScenery::init1033()
 {
+
+}
+
+void CScenery::initAnimations()
+{
+    m_animpaths[animations]["idle"] = "";
+    m_animpaths[animations]["IDLE"] = "";
+    m_animpaths[animations]["used"] = "";
+    m_animpaths[animations]["USED"] = "";
 
 }
