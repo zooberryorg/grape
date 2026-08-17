@@ -17,14 +17,15 @@ set(TS_FILES lang/grape_en_US.ts)
 
 set(PROJECT_SOURCES
         main.cpp
-        # views
+        # views (pages)
         ui/grapew.h ui/grapew.cpp ui/grapew.ui
         ui/grprojecttree.h ui/grprojecttree.cpp
         ui/grwelcomescreen.h ui/grwelcomescreen.cpp
         ui/grworkspace.h ui/grworkspace.cpp
-        # widgets
-        #ui/widgets/
-        # graphics
+        # widgets (components)
+        ui/widgets/grui.h ui/widgets/grui.cpp
+        ui/widgets/grpropertiespane.h ui/widgets/grpropertiespane.cpp
+        # graphics (texture maps)
         graphics/gricon.h graphics/gricon.cpp
         graphics/grtexture.h graphics/grtexture.cpp
         # scanner files (data)
@@ -39,7 +40,7 @@ set(PROJECT_SOURCES
         scanner/cpath.h scanner/cpath.cpp
         scanner/ctankfilter.h scanner/ctankfilter.cpp
         scanner/grdscanner.h scanner/grdscanner.cpp
-        # shared sources
+        # shared sources (misc)
         common/grshared.h
         common/grtreenode.h common/grtreenode.cpp
         common/grini.h common/grini.cpp
@@ -56,7 +57,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 qt_add_executable(grape
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        ui/widgets/grui.h ui/widgets/grui.cpp
     )
 
 target_include_directories(
