@@ -19,7 +19,7 @@ void GrPropertiesPane::applyToAsset()
 
 }
 
-QWidget* GrPropertiesPane::createFieldWidget(const QString& configKey, const QVariant& value, QWidget* parent)
+QWidget* GrPropertiesPane::createField(const QString& section, const QString& key, const QVariant& value, QWidget* parent)
 {
     QWidget* field = nullptr;
 

@@ -12,6 +12,7 @@ public:
     explicit GrPropertiesPane(QWidget *parent = nullptr);
     void loadAsset(GrAsset* asset);
     void applyToAsset();
+    QWidget* createField(const QString& section, const QString& key, const QVariant& value, QWidget* parent);
 private:
     struct Field {
         QString section;
