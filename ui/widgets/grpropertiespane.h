@@ -2,8 +2,10 @@
 #define GRPROPERTIESPANE_H
 
 #include <QWidget>
+#include <QHash>
 
 class GrAsset;
+class QVBoxLayout;
 
 class GrPropertiesPane : public QWidget
 {
@@ -20,6 +22,9 @@ private:
         QWidget* widget;
         std::function<QVariant()> getValue;
     };
+    QHash<QString, QHash<QString, Field>> m_fields;
+    GrAsset* m_assignedAsset = nullptr;
+    QVBoxLayout* m_layout;
 };
 
 #endif // GRPROPERTIESPANE_H
