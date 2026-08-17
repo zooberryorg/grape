@@ -14,7 +14,12 @@ enum PropertyGroup {
     Slots,
     Terrain, // terrain and habitat prefs
     BehaviorSets,
-    NeedsSatisfaction,
+    Needs,
+    Exhibit,
+    Keepers,
+    Guests,
+    Traits,
+    Social
 };
 
 enum WidgetType {
