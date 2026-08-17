@@ -5,6 +5,18 @@
 
 namespace GrShared {
 
+enum WidgetType {
+    TerrainBuilder,
+    PreyBuilder,
+    AssetPicker,
+    LineText,
+    MultilineText,
+    Switch,
+    IdPicker,
+    Integer,
+    Float
+};
+
 enum AssetTypes {
     Scenery,
     Fence,
