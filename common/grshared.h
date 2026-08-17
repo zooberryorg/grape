@@ -8,9 +8,9 @@ namespace GrShared {
 enum PropertyGroup {
     ID, // name, era, helpid, project name
     Prey, // cPrey list
-    Commerce,
+    Commerce, // purchase cost, upkeep, items sold
     Sounds,
-    Graphics,
+    Graphics, // bg, fg, shadow layers, icons, plaques
     Slots,
     Terrain, // terrain and habitat prefs
     BehaviorSets,
