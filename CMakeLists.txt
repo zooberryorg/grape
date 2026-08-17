@@ -23,7 +23,6 @@ set(PROJECT_SOURCES
         ui/grwelcomescreen.h ui/grwelcomescreen.cpp
         ui/grworkspace.h ui/grworkspace.cpp
         # widgets (components)
-        ui/widgets/grui.h ui/widgets/grui.cpp
         ui/widgets/grpropertiespane.h ui/widgets/grpropertiespane.cpp
         # graphics (texture maps)
         graphics/gricon.h graphics/gricon.cpp

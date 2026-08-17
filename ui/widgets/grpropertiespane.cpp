@@ -1,5 +1,7 @@
 #include "grpropertiespane.h"
-
+#include <QSpinBox>
+#include <QCheckBox>
+#include <QLineEdit>
 
 GrPropertiesPane::GrPropertiesPane(QWidget *parent)
     : QWidget{parent}
@@ -17,7 +19,7 @@ void GrPropertiesPane::applyToAsset()
 
 }
 
-QWidget* createFieldWidget(const QString& configKey, const QVariant& value, QWidget* parent)
+QWidget* GrPropertiesPane::createFieldWidget(const QString& configKey, const QVariant& value, QWidget* parent)
 {
     QWidget* field = nullptr;
 
