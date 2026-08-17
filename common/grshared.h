@@ -5,6 +5,18 @@
 
 namespace GrShared {
 
+enum PropertyGroup {
+    ID, // name, era, helpid, project name
+    Prey, // cPrey list
+    Commerce,
+    Sounds,
+    Graphics,
+    Slots,
+    Terrain, // terrain and habitat prefs
+    BehaviorSets,
+    NeedsSatisfaction,
+};
+
 enum WidgetType {
     TerrainBuilder,
     PreyBuilder,
