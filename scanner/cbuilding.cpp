@@ -33,7 +33,7 @@ void CBuilding::initCharInts() {
     m_intchars[charInts]["cHideRegularInfo"] = { "", Group::Commerce, Widget::Float };
     m_intchars[charInts]["cHoldsOntoUser"] = { "", Group::Slots, Widget::Integer };
     m_intchars[charInts]["cUserTracker"] = { "", Group::Slots, Widget::Integer };
-    m_intchars[charInts]["cIdler"] = "";
+    m_intchars[charInts]["cIdler"] = { "", Group::Traits, Widget::Integer };
     m_intchars[charInts]["cExhibitViewer"] = { "", Group::Exhibit, Widget::Integer };
     m_intchars[charInts]["cAlternatePanelTitle"] = { "", Group::UI, Widget::Integer };
     m_intchars[charInts]["cDirectEntrance"] = { "", Group::Slots, Widget::Integer };
