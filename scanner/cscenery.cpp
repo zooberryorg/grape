@@ -56,15 +56,15 @@ void CScenery::save()
 
 void CScenery::initGlobals()
 {
-    m_globals[globals]["Type"] = "";
+    m_globals[globals]["Type"] = { "", Group::ID, Widget::IdPicker };
 }
 
 void CScenery::initIcon()
 {
-    m_icon[icons]["IconSE"] = "";
-    m_icon[icons]["IconSW"] = "";
-    m_icon[icons]["IconNW"] = "";
-    m_icon[icons]["IconNE"] = "";
+    m_icon[icons]["IconSE"] = { "", Group::Graphics, Widget::LineText };
+    m_icon[icons]["IconSW"] = { "", Group::Graphics, Widget::LineText };
+    m_icon[icons]["IconNW"] = { "", Group::Graphics, Widget::LineText };
+    m_icon[icons]["IconNE"] = { "", Group::Graphics, Widget::LineText };
 
 }
 
