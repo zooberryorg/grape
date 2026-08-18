@@ -41,7 +41,9 @@ struct Value {
     WidgetType widgetType;
 };
 
-using Property = QList<QHash<QString, QHash<QString, Value>>*>;
+using Key = QHash<QString, Value>;
+using Section = QHash<QString, Key>;
+using Config = QList<Section*>;
 
 enum AssetTypes {
     Scenery,

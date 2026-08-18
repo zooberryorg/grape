@@ -21,11 +21,11 @@ void GrPropertiesPane::applyToAsset()
 
 }
 
-QWidget* GrPropertiesPane::createField(const QString& section, const QString& key, const GrShared::Value& value, QWidget* parent)
+QWidget* GrPropertiesPane::createField(const GrShared::Property& property, const QWidget* parent)
 {
     QWidget* field = nullptr;
 
-    switch (value.typeId()) {
+    switch (property)) {
         case QMetaType::Int: {
             QSpinBox* spin = new QSpinBox(parent);
             spin->setRange(std::numeric_limits<int>::min(), std::numeric_limits<int>::max());

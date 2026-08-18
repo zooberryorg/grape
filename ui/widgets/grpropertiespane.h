@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QHash>
+#include "grshared.h"
 
 class GrAsset;
 class QVBoxLayout;
@@ -14,7 +15,7 @@ public:
     explicit GrPropertiesPane(QWidget *parent = nullptr);
     void loadAsset(GrAsset* asset);
     void applyToAsset();
-    QWidget* createField(const QString& section, const QString& key, const QVariant& value, QWidget* parent);
+    QWidget* createField(const GrShared::Property& property, QWidget* parent);
 private:
     struct Field {
         QString section;

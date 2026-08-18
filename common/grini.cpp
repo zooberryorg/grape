@@ -87,7 +87,7 @@ bool GrINI::doesKeyInSectionExist(const CSimpleIniA& ini, const QString& section
     return false;
 }
 
-void GrINI::loadConfig(const CSimpleIniA& ini, GrShared::Property sections)
+void GrINI::loadConfig(const CSimpleIniA& ini, GrShared::Config sections)
 {
     for (auto* s : sections )
     {
