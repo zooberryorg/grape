@@ -10,19 +10,12 @@
 #include "SimpleIni.h"
 
 using AssetType = GrShared::AssetTypes;
-using Group = GrShared::PropertyGroup;
-using Widget = GrShared::WidgetType;
+using Value = GrShared::Value;
 
 class GrAsset
 {
 public:
     GrAsset();
-    struct Value {
-        QString v;
-        Group group;
-        Widget widgetType;
-    };
-
     GrAsset(QString);
     virtual ~GrAsset() = default;
     virtual void load() = 0;

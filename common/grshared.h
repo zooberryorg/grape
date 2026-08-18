@@ -35,6 +35,12 @@ enum WidgetType {
     Float
 };
 
+struct Value {
+    QString v;
+    PropertyGroup group;
+    WidgetType widgetType;
+};
+
 enum AssetTypes {
     Scenery,
     Fence,
