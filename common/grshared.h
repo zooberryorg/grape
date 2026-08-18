@@ -5,6 +5,42 @@
 
 namespace GrShared {
 
+enum PropertyGroup {
+    ID, // name, era, helpid, project name
+    Prey, // cPrey list
+    Commerce, // purchase cost, upkeep, items sold
+    Sounds,
+    Graphics, // bg, fg, shadow layers, icons, plaques
+    Slots,
+    Terrain, // terrain and habitat prefs
+    BehaviorSets,
+    Needs,
+    Exhibit,
+    Keepers,
+    Guests,
+    Traits,
+    Social,
+    UI
+};
+
+enum WidgetType {
+    TerrainBuilder,
+    PreyBuilder,
+    AssetPicker,
+    LineText,
+    MultilineText,
+    Switch,
+    IdPicker,
+    Integer,
+    Float
+};
+
+struct Value {
+    QString v;
+    PropertyGroup group;
+    WidgetType widgetType;
+};
+
 enum AssetTypes {
     Scenery,
     Fence,

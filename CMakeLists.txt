@@ -9,20 +9,22 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools Svg)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools Svg)
 add_subdirectory(libs/simpleini)
 
 set(TS_FILES lang/grape_en_US.ts)
 
 set(PROJECT_SOURCES
         main.cpp
-        # views
+        # views (pages)
         ui/grapew.h ui/grapew.cpp ui/grapew.ui
         ui/grprojecttree.h ui/grprojecttree.cpp
         ui/grwelcomescreen.h ui/grwelcomescreen.cpp
         ui/grworkspace.h ui/grworkspace.cpp
-        # graphics
+        # widgets (components)
+        ui/widgets/grpropertiespane.h ui/widgets/grpropertiespane.cpp
+        # graphics (texture maps)
         graphics/gricon.h graphics/gricon.cpp
         graphics/grtexture.h graphics/grtexture.cpp
         # scanner files (data)
@@ -37,11 +39,12 @@ set(PROJECT_SOURCES
         scanner/cpath.h scanner/cpath.cpp
         scanner/ctankfilter.h scanner/ctankfilter.cpp
         scanner/grdscanner.h scanner/grdscanner.cpp
-        # shared sources
+        # shared sources (misc)
         common/grshared.h
         common/grtreenode.h common/grtreenode.cpp
         common/grini.h common/grini.cpp
         common/grslots.h common/grslots.cpp
+        common/grgfx.h common/grgfx.cpp
         resources.qrc
         # models
         models/grprojecttreemodel.h models/grprojecttreemodel.cpp
@@ -88,6 +91,7 @@ endif()
 target_link_libraries(grape PRIVATE
     Qt${QT_VERSION_MAJOR}::Widgets
     SimpleIni::SimpleIni
+    Qt6::Svg
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

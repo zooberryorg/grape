@@ -39,32 +39,32 @@ void CTankFilter::initMembers()
 
 void CTankFilter::initCharInts()
 {
-    m_intchars[charInts]["cStartingHealth"] = "";
-    m_intchars[charInts]["cDecayedHealth"] = "";
-    m_intchars[charInts]["cDecayTime"] = "";
-    m_intchars[charInts]["cFilterDelay"] = "";
-    m_intchars[charInts]["cFilterUpkeep"] = "";
-    m_intchars[charInts]["cFilterCleanAmount"] = "";
-    m_intchars[charInts]["cFilterDecayedCleanAmount"] = "";
-    m_intchars[charInts]["cPriceFactor"] = "";
+    m_intchars[charInts]["cStartingHealth"] = { "", Group::Traits, Widget::Integer };
+    m_intchars[charInts]["cDecayedHealth"] = { "", Group::Traits, Widget::Integer };
+    m_intchars[charInts]["cDecayTime"] = { "", Group::Traits, Widget::Integer };
+    m_intchars[charInts]["cFilterDelay"] = { "", Group::Traits, Widget::Integer };
+    m_intchars[charInts]["cFilterUpkeep"] = { "", Group::Traits, Widget::Integer };
+    m_intchars[charInts]["cFilterCleanAmount"] = { "", Group::Traits, Widget::Integer };
+    m_intchars[charInts]["cFilterDecayedCleanAmount"] = { "", Group::Traits, Widget::Integer };
+    m_intchars[charInts]["cPriceFactor"] = { "", Group::Commerce, Widget::Integer };
 }
 
 void CTankFilter::initIcon()
 {
     m_icon.clear();
-    m_icon[icons]["Icon"] = "";
+    m_icon[icons]["Icon"] = { "", Group::Graphics, Widget::LineText };
 }
 
 void CTankFilter::initCharStrings()
 {
-    m_strchars[charStrings]["cInfoImageName"] = "";
+    m_strchars[charStrings]["cInfoImageName"] = { "", Group::Graphics, Widget::LineText };
 }
 
 void CTankFilter::initFilterSounds()
 {
-    m_filtersounds[filterSounds]["cHealthySounds"] = "";
-    m_filtersounds[filterSounds]["cHealthyAtten"] = "";
-    m_filtersounds[filterSounds]["cDecayedSound"] = "";
-    m_filtersounds[filterSounds]["cDecayedAtten"] = "";
+    m_filtersounds[filterSounds]["cHealthySounds"] = { "", Group::Sounds, Widget::LineText };
+    m_filtersounds[filterSounds]["cHealthyAtten"] = { "", Group::Sounds, Widget::Integer };
+    m_filtersounds[filterSounds]["cDecayedSound"] = { "", Group::Sounds, Widget::LineText };
+    m_filtersounds[filterSounds]["cDecayedAtten"] = { "", Group::Sounds, Widget::LineText };
 
 }
