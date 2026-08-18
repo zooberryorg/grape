@@ -3,6 +3,8 @@
 #include <QCheckBox>
 #include <QLineEdit>
 
+#include "grshared.h"
+
 GrPropertiesPane::GrPropertiesPane(QWidget *parent)
     : QWidget{parent}
 {
@@ -19,7 +21,7 @@ void GrPropertiesPane::applyToAsset()
 
 }
 
-QWidget* GrPropertiesPane::createField(const QString& section, const QString& key, const QVariant& value, QWidget* parent)
+QWidget* GrPropertiesPane::createField(const QString& section, const QString& key, const GrShared::Value& value, QWidget* parent)
 {
     QWidget* field = nullptr;
 

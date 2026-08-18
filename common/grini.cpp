@@ -87,7 +87,7 @@ bool GrINI::doesKeyInSectionExist(const CSimpleIniA& ini, const QString& section
     return false;
 }
 
-void GrINI::loadConfig(const CSimpleIniA& ini, QList<QHash<QString, QHash<QString, Value>>*> sections)
+void GrINI::loadConfig(const CSimpleIniA& ini, GrShared::Property sections)
 {
     for (auto* s : sections )
     {
