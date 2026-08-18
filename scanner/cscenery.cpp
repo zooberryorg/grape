@@ -22,36 +22,31 @@ void CScenery::load()
         // error handling here
     }
 
-    QHash<QString, QString> foundCharInts = GrINI::getKeyValuesInSection(ini, charInts);
-    GrINI::assignNewValuesToKeys(m_intchars, foundCharInts);
-
-    QHash<QString, QString> foundAnimations = GrINI::getKeyValuesInSection(ini, animations);
-    GrINI::assignNewValuesToKeys(m_animpaths, foundAnimations);
+    GrINI::loadConfig( ini,
+        {
+            &m_intchars,
+            &m_animpaths,
+            &m_globals,
+            &m_defaultlcid,
+            &m_1033
+        }
+    );
 
     QHash<QString, QString> foundIcons = GrINI::getKeyValuesInSection(ini, icons);
     for ( const QString& value : foundIcons ) {
         if ( value.contains("SE") ) {
-            m_icon[icons]["IconSE"] = value;
+            m_icon[icons]["IconSE"].v = value;
         }
         else if ( value.contains("SW") ) {
-            m_icon[icons]["IconSW"] = value;
+            m_icon[icons]["IconSW"].v = value;
         }
         else if ( value.contains("NE") ) {
-            m_icon[icons]["IconNE"] = value;
+            m_icon[icons]["IconNE"].v = value;
         }
         else if ( value.contains("NW") ) {
-            m_icon[icons]["IconNW"] = value;
+            m_icon[icons]["IconNW"].v = value;
         }
     }
-
-    QHash<QString, QString> foundGlobals = GrINI::getKeyValuesInSection(ini, globals);
-    GrINI::assignNewValuesToKeys(m_globals, foundGlobals);
-
-    QHash<QString, QString> foundDefaultLcid = GrINI::getKeyValuesInSection(ini, defaultLcid);
-    GrINI::assignNewValuesToKeys(m_defaultlcid, foundDefaultLcid);
-
-    QHash<QString, QString> found1033 = GrINI::getKeyValuesInSection(ini, _1033);
-    GrINI::assignNewValuesToKeys(m_1033, found1033);
 }
 
 void CScenery::save()
