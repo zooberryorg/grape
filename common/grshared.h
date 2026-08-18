@@ -19,7 +19,8 @@ enum PropertyGroup {
     Keepers,
     Guests,
     Traits,
-    Social
+    Social,
+    UI
 };
 
 enum WidgetType {
