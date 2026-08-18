@@ -80,53 +80,53 @@ void CScenery::initMembers()
 
 void CScenery::initCharInts()
 {
-    m_intchars[charInts]["cPurchaseCost"] = "";
-    m_intchars[charInts]["cHelpId"] = "";
-    m_intchars[charInts]["cNameId"] = "";
-    m_intchars[charInts]["cHabitat"] = "";
-    m_intchars[charInts]["cLocation"] = "";
-    m_intchars[charInts]["cEra"] = "";
-    m_intchars[charInts]["cMaxFoodUnits"] = "";
-    m_intchars[charInts]["cStink"] = "";
-    m_intchars[charInts]["cEstheticWeight"] = "";
-    m_intchars[charInts]["cSelectable"] = "";
-    m_intchars[charInts]["cDeletable"] = "";
-    m_intchars[charInts]["cFoliage"] = "";
-    m_intchars[charInts]["cAutoRotate"] = "";
-    m_intchars[charInts]["cLand"] = "";
-    m_intchars[charInts]["cSwims"] = ""; // not in game files
-    m_intchars[charInts]["cUnderwater"] = "";
-    m_intchars[charInts]["cSurface"] = "";
-    m_intchars[charInts]["cSubmerge"] = "";
-    m_intchars[charInts]["cOnlySwims"] = "";
-    m_intchars[charInts]["cNeedsConfirm"] = "";
-    m_intchars[charInts]["cGawkOnlyFromFront"] = "";
-    m_intchars[charInts]["cDeadOnLand"] = "";
-    m_intchars[charInts]["cDeadOnFlatWater"] = ""; // not in game files
-    m_intchars[charInts]["cDeadUnderwater"] = ""; // not in game files
-    m_intchars[charInts]["cUsesTreeRubble"] = "";
-    m_intchars[charInts]["cForcesSceneryRubble"] = "";
-    m_intchars[charInts]["cBlocksLos"] = "";
+    m_intchars[charInts]["cPurchaseCost"] = { "", Group::Commerce, Widget::Integer };
+    m_intchars[charInts]["cHelpId"] = { "", Group::ID, Widget::IdPicker };
+    m_intchars[charInts]["cNameId"] = { "", Group::ID, Widget::IdPicker };
+    m_intchars[charInts]["cHabitat"] = { "", Group::Terrain, Widget::IdPicker };
+    m_intchars[charInts]["cLocation"] = { "", Group::Terrain, Widget::IdPicker };
+    m_intchars[charInts]["cEra"] = { "", Group::Terrain, Widget::IdPicker };
+    m_intchars[charInts]["cMaxFoodUnits"] = { "", Group::Traits, Widget::Integer };
+    m_intchars[charInts]["cStink"] = { "", Group::Traits, Widget::Switch };
+    m_intchars[charInts]["cEstheticWeight"] = { "", Group::Traits, Widget::Integer };
+    m_intchars[charInts]["cSelectable"] = { "", Group::UI, Widget::Switch };
+    m_intchars[charInts]["cDeletable"] = { "", Group::UI, Widget::Switch };
+    m_intchars[charInts]["cFoliage"] = { "", Group::Traits, Widget::Switch };
+    m_intchars[charInts]["cAutoRotate"] = { "", Group::UI, Widget::Switch };
+    m_intchars[charInts]["cLand"] = { "", Group::Traits, Widget::Switch };
+    m_intchars[charInts]["cSwims"] = { "", Group::Traits, Widget::Switch }; // not in game files
+    m_intchars[charInts]["cUnderwater"] = { "", Group::Traits, Widget::Switch };
+    m_intchars[charInts]["cSurface"] = { "", Group::Traits, Widget::Switch };
+    m_intchars[charInts]["cSubmerge"] = { "", Group::Traits, Widget::Switch };
+    m_intchars[charInts]["cOnlySwims"] = { "", Group::Traits, Widget::Switch };
+    m_intchars[charInts]["cNeedsConfirm"] = { "", Group::UI, Widget::Switch };
+    m_intchars[charInts]["cGawkOnlyFromFront"] = { "", Group::Slots, Widget::Switch };
+    m_intchars[charInts]["cDeadOnLand"] = { "", Group::Traits, Widget::Switch };
+    m_intchars[charInts]["cDeadOnFlatWater"] = { "", Group::Traits, Widget::Switch }; // not in game files
+    m_intchars[charInts]["cDeadUnderwater"] = { "", Group::Traits, Widget::Switch }; // not in game files
+    m_intchars[charInts]["cUsesTreeRubble"] = { "", Group::Traits, Widget::Switch };
+    m_intchars[charInts]["cForcesSceneryRubble"] = { "", Group::Traits, Widget::Switch };
+    m_intchars[charInts]["cBlocksLos"] = { "", Group::Traits, Widget::Switch };
 }
 
 void CScenery::initDefaultLcid()
 {
-    m_defaultlcid[defaultLcid]["LCID"] = "";
+    m_defaultlcid[defaultLcid]["LCID"] = { "", Group::ID, Widget::LineText };
 }
 
 void CScenery::init1033()
 {
-    m_1033[_1033]["cGeneralInfoFileName"] = "";
-    m_1033[_1033]["cLongHelp"] = "";
-    m_1033[_1033]["cName"] = "";
-    m_1033[_1033]["cTheString"] = "";
+    m_1033[_1033]["cGeneralInfoFileName"] = { "", Group::Graphics, Widget::LineText };
+    m_1033[_1033]["cLongHelp"] = { "", Group::ID, Widget::MultilineText };
+    m_1033[_1033]["cName"] = { "", Group::ID, Widget::LineText };
+    m_1033[_1033]["cTheString"] = { "", Group::ID, Widget::LineText };
 }
 
 void CScenery::initAnimations()
 {
-    m_animations[animations]["idle"] = "";
-    m_animations[animations]["IDLE"] = "";
-    m_animations[animations]["used"] = "";
-    m_animations[animations]["USED"] = "";
+    m_animations[animations]["idle"] = { "", Group::Graphics, Widget::LineText };
+    m_animations[animations]["IDLE"] = { "", Group::Graphics, Widget::LineText };
+    m_animations[animations]["used"] = { "", Group::Graphics, Widget::LineText };
+    m_animations[animations]["USED"] = { "", Group::Graphics, Widget::LineText };
 
 }
