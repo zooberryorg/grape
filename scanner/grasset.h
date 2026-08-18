@@ -10,6 +10,8 @@
 #include "SimpleIni.h"
 
 using AssetType = GrShared::AssetTypes;
+using Widget = GrShared::WidgetType;
+using Group = GrShared::PropertyGroup;
 using Value = GrShared::Value;
 
 class GrAsset
