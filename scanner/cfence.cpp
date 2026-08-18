@@ -18,21 +18,21 @@ void CFence::initMembers()
 
 void CFence::initCharInts()
 {
-    m_intchars[charInts]["cStrength"] = "";
-    m_intchars[charInts]["cLife"] = "";
-    m_intchars[charInts]["cDecayedLife"] = "";
-    m_intchars[charInts]["cDecayedDelta"] = "";
-    m_intchars[charInts]["cBreakSoundAtten"] = "";
-    m_intchars[charInts]["cOpenSoundAtten"] = "";
-    m_intchars[charInts]["cSeeThrough"] = "";
-    m_intchars[charInts]["cIsJumpable"] = "";
-    m_intchars[charInts]["cIsClimbable"] = "";
-    m_intchars[charInts]["cIndestructible"] = "";
-    m_intchars[charInts]["cIsElectrified"] = "";
-    m_intchars[charInts]["cNoDrawWater"] = "";
+    m_intchars[charInts]["cStrength"] = { "", Group::Traits, Widget::Integer };
+    m_intchars[charInts]["cLife"] = { "", Group::Traits, Widget::Integer };
+    m_intchars[charInts]["cDecayedLife"] = { "", Group::Traits, Widget::Integer };
+    m_intchars[charInts]["cDecayedDelta"] = { "", Group::Traits, Widget::Integer };
+    m_intchars[charInts]["cBreakSoundAtten"] = { "", Group::Sounds, Widget::Integer };
+    m_intchars[charInts]["cOpenSoundAtten"] = { "", Group::Sounds, Widget::Integer };
+    m_intchars[charInts]["cSeeThrough"] = { "", Group::Traits, Widget::Switch };
+    m_intchars[charInts]["cIsJumpable"] = { "", Group::Traits, Widget::Switch };
+    m_intchars[charInts]["cIsClimbable"] = { "", Group::Traits, Widget::Switch };
+    m_intchars[charInts]["cIndestructible"] = { "", Group::Traits, Widget::Switch };
+    m_intchars[charInts]["cIsElectrified"] = { "", Group::Traits, Widget::Switch };
+    m_intchars[charInts]["cNoDrawWater"] = { "", Group::Traits, Widget::Switch };
 }
 
 void CFence::initIcon() {
     m_icon.clear();
-    m_icon["Icon"]["Icon"] = "";
+    m_icon["Icon"]["Icon"] = { "", Group::Graphics, Widget::LineText };
 }

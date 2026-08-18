@@ -11,7 +11,7 @@
 
 using AssetType = GrShared::AssetTypes;
 using Group = GrShared::PropertyGroup;
-using GrWidget = GrShared::WidgetType;
+using Widget = GrShared::WidgetType;
 
 class GrAsset
 {
@@ -20,7 +20,7 @@ public:
     struct Value {
         QString v;
         Group group;
-        GrWidget widgetType;
+        Widget widgetType;
     };
 
     GrAsset(QString);
