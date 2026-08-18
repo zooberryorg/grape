@@ -50,6 +50,6 @@ QWidget* GrPropertiesPane::createField(const QString& section, const QString& ke
         }
     }
 
-    field->setProperty("configKey", configKey);
+    field->setProperty("configKey", key);
     return field;
 }
