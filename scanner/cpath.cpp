@@ -17,10 +17,10 @@ void CPath::initMembers()
 
 void CPath::initCharInts()
 {
-    m_intchars[charInts]["cMaterial"] = "";
+    m_intchars[charInts]["cMaterial"] = { "", Group::Traits, Widget::Switch };
 }
 
 void CPath::initIcon() {
     m_icon.clear();
-    m_icon["Icon"]["Icon"] = "";
+    m_icon["Icon"]["Icon"] = { "", Group::Graphics, Widget::LineText };
 }
