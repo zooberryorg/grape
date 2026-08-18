@@ -20,20 +20,15 @@ void CAnimal::load() {
         // error handling here
     }
 
-    QHash<QString, QString> foundCharInts = GrINI::getKeyValuesInSection(ini, charInts);
-    GrINI::assignNewValuesToKeys(m_intchars, foundCharInts);
-
-    QHash<QString, QString> foundAnimPaths = GrINI::getKeyValuesInSection(ini, animPaths);
-    GrINI::assignNewValuesToKeys(m_animpaths, foundAnimPaths);
-
-    QHash<QString, QString> foundIcons = GrINI::getKeyValuesInSection(ini, "Icon");
-    GrINI::assignNewValuesToKeys(m_icon, foundIcons);
-
-    QHash<QString, QString> foundDefaultLcid = GrINI::getKeyValuesInSection(ini, defaultLcid);
-    GrINI::assignNewValuesToKeys(m_defaultlcid, foundDefaultLcid);
-
-    QHash<QString, QString> found1033 = GrINI::getKeyValuesInSection(ini, _1033);
-    GrINI::assignNewValuesToKeys(m_1033, found1033);
+    GrINI::loadConfig( ini,
+        {
+            &m_intchars,
+            &m_animpaths,
+            &m_icon,
+            &m_defaultlcid,
+            &m_1033
+        }
+    );
 }
 
 void CAnimal::save() {
