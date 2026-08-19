@@ -9,6 +9,8 @@ class QSplitter;
 class GrProjectTree;
 class GrCanvas;
 class GrAsset;
+class QStackedWidget;
+class GrProject;
 
 class GrWorkspace : public QWidget
 {
@@ -16,7 +18,6 @@ class GrWorkspace : public QWidget
 public:
     explicit GrWorkspace(QWidget *parent = nullptr);
     void addProject(QString dir);
-    void updateTree();
 
 private:
     // projects
@@ -29,8 +30,10 @@ private:
     // workspace (left)
     GrProjectTree* projectTree;
 
-    // workspace (center)
+    // workspace (right)
+    QStackedWidget* projectStack;
     QFrame* canvasArea;
+    QHash<QString, GrProject*> m_projects;
 
 signals:
 

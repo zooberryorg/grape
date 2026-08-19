@@ -8,8 +8,9 @@
 #include "grasset.h"
 #include "grdscanner.h"
 #include "grgfx.h"
+#include "grproject.h"
 
-GrWorkspace::GrProject(QWidget *parent)
+GrWorkspace::GrWorkspace(QWidget *parent)
     : QWidget{parent}
 {
     workspaceHLayout = new QHBoxLayout(this);
