@@ -28,6 +28,7 @@ public:
     void initProjectName();
     GrShared::AssetTypes getType() { return m_type; };
     QString getProjectId() { return m_projectid; };
+    QList<GrShared::Section*> allSections();
 
 protected:
     // constants
