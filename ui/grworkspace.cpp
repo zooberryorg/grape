@@ -32,6 +32,7 @@ GrWorkspace::GrWorkspace(QWidget *parent)
 void GrWorkspace::addProject(QString dir)
 {
     GrDScanner scanner( dir );
+    GrProject* lastPage = nullptr;
 
    for ( auto& asset : scanner.assets() ) {
         GrAsset* assetPointer = asset.get();
@@ -40,15 +41,20 @@ void GrWorkspace::addProject(QString dir)
 
         m_projects.insert( asset->getProjectId(), page );
         asset->load();
+        page->showAsset(assetPointer);
         projects.push_back( std::move( asset ) );
         projectTree->insertProject( assetPointer );
+
+        lastPage = page;
     }
 
     if ( projects.empty() ) {
         // handle error when no files found
     }
 
-    projectStack->setCurrentWidget( projectStack->currentWidget() );
+    if ( lastPage ) {
+        projectStack->setCurrentWidget( lastPage );
+    }
 }
 
 void GrWorkspace::handleAssetSelected(GrAsset* asset)

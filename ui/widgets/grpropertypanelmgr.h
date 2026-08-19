@@ -16,11 +16,13 @@ public:
 
 signals:
 private:
-    QToolBar* m_toolbar;
+    QWidget* m_toolbar;
+    QVBoxLayout* m_toolbarLayout;
     QActionGroup* m_group;
     QStackedWidget* m_panelStack;
     QHash<GrShared::PropertyGroup, GrPropertyPanel*> m_panels;
     QHash<GrShared::PropertyGroup, QAction*> m_actions;
+    QHash<GrShared::PropertyGroup, QToolButton*> m_buttons;
 
 };
 
