@@ -9,9 +9,13 @@
 
 GrProjectTree::GrProjectTree(QWidget *parent, QMap<AssetType, QVector<GrAsset*>> assets)
 {
-    setObjectName("explorerContainer");
     // vertical layout that contains the project tree itself
     workspaceVLayout = new QVBoxLayout(this);
+    QWidget* treeFrame = new QWidget(this);
+    treeFrame->setObjectName("explorerContainer");
+    treeFrame->setAttribute(Qt::WA_StyledBackground, true);
+    QVBoxLayout* treeLayout = new QVBoxLayout(treeFrame);
+    workspaceVLayout->addWidget(treeFrame);
 
     // "Explorer" label above tree
     explorerLabel = new QLabel("Explorer");
@@ -23,13 +27,23 @@ GrProjectTree::GrProjectTree(QWidget *parent, QMap<AssetType, QVector<GrAsset*>>
     fileTree->setHeaderHidden(true);
     fileTree->setAnimated(true);
     fileTree->setUniformRowHeights(true);
-    fileTree->setContentsMargins( 1, 1, 1, 1 );
+    fileTree->setContentsMargins( 2, 2, 2, 2 );
+    explorerLabel->setContentsMargins( 2, 2, 2, 2 );
+    QWidget* versionBox = new QWidget(this);
+    QLabel* version = new QLabel("GrAPE 0.1.0", versionBox);
+    QVBoxLayout* versionLayout = new QVBoxLayout;
+    versionBox->setLayout(versionLayout);
+    versionLayout->addWidget(version);
+    versionLayout->setContentsMargins( 0, 0, 0, 0 );
+    versionBox->setObjectName("explorerContainer");;
 
 
-    workspaceVLayout->addWidget(explorerLabel);
-    workspaceVLayout->addWidget(fileTree);
+    treeLayout->addWidget(explorerLabel);
+    treeLayout->addWidget(fileTree);
+    workspaceVLayout->addWidget(versionBox);
 
-    workspaceVLayout->setContentsMargins(0, 0, 0, 0);
+    workspaceVLayout->setContentsMargins(4, 4, 4, 4);
+
 
     connect( fileTree->selectionModel(), &QItemSelectionModel::currentChanged, this, &GrProjectTree::handleSelectionChanged);
 }

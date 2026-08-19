@@ -1,7 +1,11 @@
 QWidget#explorerContainer {
-    background-color: #fff;
+    background-color: #1e2b1a;
     border-radius: 8px;
-    padding: 2px;
+    border-color: #263720;
+    border-style: solid;
+    border-width: 1px;
+    /* padding */
+    padding: 4px;
 }
 QWidget#centralWindow {
     background-color: #171f14;
@@ -12,7 +16,7 @@ QWidget#canvasArea {
     border-radius: 8px;
 }
 QWidget#propertyPanel {
-    background-color: #1e2b1a;
+    background-color: #263621;
     border-left: 0px;
     border-top: 1px solid #263720;
     border-right: 1px solid #263720;
@@ -34,21 +38,35 @@ QWidget#toolbarButton {
     border-bottom-left-radius: 8px;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
+    border-top: 1px solid #171f14;
+    border-right: 0px;
+    border-bottom: 1px solid #171f14;
+    border-left: 1px solid #171f14;
+
 
 }
 QWidget#toolbarButton:hover {
-    background-color: #1e2b1a;
-    border: 1px solid #1e2b1a;
+    background-color: #263621;
+    border-top: 1px solid #263621;
+    border-right: 0px;
+    border-bottom: 1px solid #263621;
+    border-left: 1px solid #263621;
     color: #807641;
 }
 QWidget#toolbarButton:pressed {
-    background-color: #1e2b1a;
-    border: 1px solid #1e2b1a;
+    background-color: #263621;
+    border-top: 1px solid #263621;
+    border-right: 0px;
+    border-bottom: 1px solid #263621;
+    border-left: 1px solid #263621;
     color: #807641;
 }
 QWidget#toolbarButton:checked {
-    background-color: #1e2b1a;
-    border: 1px solid #1e2b1a;
+    background-color: #263621;
+    border-top: 1px solid #263621;
+    border-right: 0px;
+    border-bottom: 1px solid #263621;
+    border-left: 1px solid #263621;
     color: #807641;
 }
 
@@ -61,13 +79,8 @@ QWidget#toolbar {
 
 }
 QTreeView {
-    background-color: #1e2b1a;
-    border-radius: 8px;
-    border-color: #263720;
-    border-style: solid;
-    border-width: 1px;
-    /* padding */
-    padding: 4px;
+    background-color: transparent;
+    border: 0px;
 }
 QTreeView::item:selected {
     outline: 0px;

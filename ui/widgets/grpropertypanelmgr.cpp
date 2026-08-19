@@ -90,7 +90,7 @@ void GrPropertyPanelMgr::loadAsset(GrAsset *asset)
         m_panels.insert(g, panel);
 
         QIcon icon = groupIcons.contains(g)
-            ? GrGfx::setSvgColor(groupIcons[g], QColor("#12834b"), 50, 50)
+            ? GrGfx::setSvgColor(groupIcons[g], QColor("#c2c6c0"), 50, 50)
             : QIcon();
 
         QAction* action = m_toolbar->addAction(icon, GrShared::GroupToString(g));
