@@ -24,6 +24,9 @@ private:
     GrProjectTreeModel* fileModel;
     QLabel* explorerLabel;
 
+signals:
+    void assetSelected(GrAsset* asset);
+
 };
 
 #endif // GRPROJECTTREE_H
