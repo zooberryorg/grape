@@ -31,8 +31,11 @@ static const QHash<GrShared::PropertyGroup, QString> groupIcons = {
 GrPropertyPanelMgr::GrPropertyPanelMgr(QWidget *parent)
     : QWidget{parent}
 {
+    setObjectName("propertyPanelGroup");
+    setAttribute(Qt::WA_StyledBackground, true);
+
     m_toolbar = new QWidget;
-    m_toolbar->setFixedWidth(50);
+    m_toolbar->setFixedWidth(30);
     m_toolbarLayout = new QVBoxLayout(m_toolbar);
     m_toolbarLayout->setContentsMargins( 0, 0, 0, 0 );
     m_toolbarLayout->setSpacing(0);
@@ -47,6 +50,8 @@ GrPropertyPanelMgr::GrPropertyPanelMgr(QWidget *parent)
     layout->addWidget(m_toolbar);
     layout->addWidget(m_panelStack, 1);
     layout->setContentsMargins( 0, 0, 0, 0 );
+    layout->setSpacing(0);
+
 }
 
 void GrPropertyPanelMgr::loadAsset(GrAsset *asset)
@@ -89,7 +94,7 @@ void GrPropertyPanelMgr::loadAsset(GrAsset *asset)
         QToolButton* button = new QToolButton(m_toolbar);
         button->setDefaultAction(action);
         button->setToolButtonStyle(Qt::ToolButtonIconOnly);
-        button->setFixedSize(40, 40);
+        button->setFixedSize(30, 30);
         m_toolbarLayout->insertWidget(m_toolbarLayout->count() - 1, button);
         m_buttons.insert(g, button);
 

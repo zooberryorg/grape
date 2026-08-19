@@ -11,6 +11,19 @@ QWidget#canvasArea {
     border: 1px solid #263720;
     border-radius: 8px;
 }
+QWidget#propertyPanel {
+    background-color: #1e2b1a;
+    border: 1px solid #263720;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+QWidget#propertyPanelGroup {
+    background-color: #171f14;
+    border: 1px solid #263720;
+    border-radius: 8px;
+}
 QTreeView {
     background-color: #1e2b1a;
     border-radius: 8px;
