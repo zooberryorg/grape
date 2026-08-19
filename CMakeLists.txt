@@ -24,7 +24,7 @@ set(PROJECT_SOURCES
         ui/grworkspace.h ui/grworkspace.cpp
         # widgets (components)
         ui/widgets/grpropertypanel.h ui/widgets/grpropertypanel.cpp
-        ui/widgets/grpropertypanelbuilder.h ui/widgets/GrPropertyPanelBuilder.cpp
+        ui/widgets/grpropertypanelmgr.h ui/widgets/grpropertypanelmgr.cpp
         # graphics (texture maps)
         graphics/gricon.h graphics/gricon.cpp
         graphics/grtexture.h graphics/grtexture.cpp
