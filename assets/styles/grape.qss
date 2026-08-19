@@ -1,0 +1,15 @@
+QWidget#explorerContainer {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 2px;
+}
+QWidget#centralWindow {
+    background-color: #171f14;
+}
+QTreeView {
+    background-color: #1e2b1a;
+    border-radius: 8px;
+    border-color: #1e2b1a;
+    /* padding */
+    padding: 4px;
+}

@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     // setup qss
-    QFile style(":/theme/grape.qss");
+    QFile style(":/styles/grape.qss");
     style.open(QFile::ReadOnly);
     a.setStyleSheet(QLatin1String(style.readAll()));
 

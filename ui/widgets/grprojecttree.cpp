@@ -9,6 +9,7 @@
 
 GrProjectTree::GrProjectTree(QWidget *parent, QMap<AssetType, QVector<GrAsset*>> assets)
 {
+    setObjectName("explorerContainer");
     // vertical layout that contains the project tree itself
     workspaceVLayout = new QVBoxLayout(this);
 

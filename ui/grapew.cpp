@@ -29,6 +29,7 @@ GrapeW::GrapeW(QWidget *parent)
     menuBar()->setHidden(true);
 
     central = new QStackedWidget(this);
+    central->setObjectName("centralWindow");
     setCentralWidget(central);
 
     welcomeScreen = new GrWelcomeScreen();
