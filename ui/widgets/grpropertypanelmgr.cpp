@@ -1,5 +1,9 @@
 #include "grpropertypanelmgr.h"
 
+static const QHash<GrShared::PropertyGroup, QString> groupIcons = {
+    { GrShared::ID,       ":/icons/id.svg" },
+    { GrShared::Commerce, ":/icons/coin.svg" },
+};
 
 GrPropertyPanelMgr::GrPropertyPanelMgr(QWidget *parent)
     : QWidget{parent}

@@ -17,14 +17,7 @@ GrPropertyPanel::GrPropertyPanel(QWidget *parent, GrShared::PropertyGroup groupT
       m_group{groupType}
 {
     m_layout = new QVBoxLayout(this);
-
-    QWidget* toolbarFrame = new QWidget(this);
-    QVBoxLayout* configLayout = new QVBoxLayout();
-
-    QWidget* placeholder = new QWidget(toolbarFrame);
-    configLayout->addWidget(placeholder);
-    placeholder->setMinimumWidth(200);
-
+    m_layout->addStretch();
 }
 
 void GrPropertyPanel::loadAsset(GrAsset* asset)
