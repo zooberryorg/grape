@@ -32,7 +32,6 @@ private:
 
     // workspace (right)
     QStackedWidget* projectStack;
-    QFrame* canvasArea;
     QHash<QString, GrProject*> m_projects;
 
 signals:

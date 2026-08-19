@@ -54,13 +54,7 @@ GrWorkspace::GrWorkspace(QWidget *parent)
     configLayout->addWidget(placeholder);
     placeholder->setMinimumWidth(200);
 
-    // Canvas area
-    canvasArea = new QFrame;
-    canvasArea->setFrameShape(QFrame::Box);
-
     hSplitter->addWidget(projectTree);
-    hSplitter->addWidget(canvasArea);
-    hSplitter->addWidget(toolbarFrame);
     hSplitter->setSizes({250, 524, 250});
 
     hSplitter->setStretchFactor(0, 0);
