@@ -27,6 +27,8 @@ GrWorkspace::GrWorkspace(QWidget *parent)
 
     hSplitter->setStretchFactor(0, 0);
     hSplitter->setStretchFactor(1, 1);
+
+    connect(projectTree, &GrProjectTree::assetSelected, this, &GrWorkspace::handleAssetSelected);
 }
 
 void GrWorkspace::addProject(QString dir)

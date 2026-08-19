@@ -68,7 +68,7 @@ QWidget* GrPropertyPanel::createField(QWidget* parent, const QString& section, c
     QWidget* fieldCtr = new QWidget(parent);
     QWidget* field = nullptr;
     QVBoxLayout* layout = new QVBoxLayout(fieldCtr);
-    QLabel* label = new QLabel(key, parent);
+    QLabel* label = new QLabel(key, fieldCtr);
     layout->addWidget(label);
 
     switch (value.widgetType) {
