@@ -9,7 +9,7 @@
 #include "grdscanner.h"
 #include "grgfx.h"
 
-GrWorkspace::GrWorkspace(QWidget *parent)
+GrWorkspace::GrProject(QWidget *parent)
     : QWidget{parent}
 {
     workspaceHLayout = new QHBoxLayout(this);

@@ -19,12 +19,12 @@ set(PROJECT_SOURCES
         main.cpp
         # views (pages)
         ui/grapew.h ui/grapew.cpp ui/grapew.ui
-        ui/grprojecttree.h ui/grprojecttree.cpp
         ui/grwelcomescreen.h ui/grwelcomescreen.cpp
         ui/grworkspace.h ui/grworkspace.cpp
         # widgets (components)
         ui/widgets/grpropertypanel.h ui/widgets/grpropertypanel.cpp
         ui/widgets/grpropertypanelmgr.h ui/widgets/grpropertypanelmgr.cpp
+        ui/widgets/grprojecttree.h ui/widgets/grprojecttree.cpp
         # graphics (texture maps)
         graphics/gricon.h graphics/gricon.cpp
         graphics/grtexture.h graphics/grtexture.cpp
