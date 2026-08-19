@@ -33,8 +33,13 @@ void GrWorkspace::addProject(QString dir)
 {
     GrDScanner scanner( dir );
 
+    GrProject* page = new GrProject(this);
+    projectStack->addWidget(page);
+    projectStack->setCurrentWidget(page);
+
    for ( auto& asset : scanner.assets() ) {
         GrAsset* assetPointer = asset.get();
+        m_projects.insert(asset->getProjectId(), page);
         asset->load();
         projects.push_back( std::move( asset ) );
         projectTree->insertProject( assetPointer );
