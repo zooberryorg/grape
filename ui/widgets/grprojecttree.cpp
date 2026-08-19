@@ -20,9 +20,15 @@ GrProjectTree::GrProjectTree(QWidget *parent, QMap<AssetType, QVector<GrAsset*>>
     fileTree = new QTreeView(this);
     fileTree->setModel(fileModel);
     fileTree->setHeaderHidden(true);
+    fileTree->setAnimated(true);
+    fileTree->setUniformRowHeights(true);
+    fileTree->setContentsMargins( 1, 1, 1, 1 );
+
 
     workspaceVLayout->addWidget(explorerLabel);
     workspaceVLayout->addWidget(fileTree);
+
+    workspaceVLayout->setContentsMargins(0, 0, 0, 0);
 
     connect( fileTree->selectionModel(), &QItemSelectionModel::currentChanged, this, &GrProjectTree::handleSelectionChanged);
 }

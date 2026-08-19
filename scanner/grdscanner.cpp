@@ -52,7 +52,37 @@ void GrDScanner::findConfigFiles() {
         } else if ( folder == "scenery" ) { // buildings, scenery, foliage
             cPaths.append(
                 findConfigPathsInDir(
+                    baseFolderPath + '/' + "building",
+                    {"ai", "ucs", "ucb"}
+                )
+            );
+            cPaths.append(
+                findConfigPathsInDir(
+                    baseFolderPath + '/' + "foliage",
+                    {"ai", "ucs", "ucb"}
+                )
+            );
+            cPaths.append(
+                findConfigPathsInDir(
                     baseFolderPath + '/' + "other",
+                    {"ai", "ucs", "ucb"}
+                )
+            );
+            cPaths.append(
+                findConfigPathsInDir(
+                    baseFolderPath + '/' + "rock",
+                    {"ai", "ucs", "ucb"}
+                )
+            );
+            cPaths.append(
+                findConfigPathsInDir(
+                    baseFolderPath + '/' + "terrain",
+                    {"ai", "ucs", "ucb"}
+                )
+            );
+            cPaths.append(
+                findConfigPathsInDir(
+                    baseFolderPath + '/' + "toy",
                     {"ai", "ucs", "ucb"}
                 )
             );
