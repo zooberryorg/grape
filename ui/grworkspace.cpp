@@ -2,12 +2,12 @@
 #include <QHBoxLayout>
 #include <QToolbar>
 #include <QActionGroup>
+#include <QStackedWidget>
 
 #include "grworkspace.h"
 #include "grprojecttree.h"
 #include "grasset.h"
 #include "grdscanner.h"
-#include "grgfx.h"
 #include "grproject.h"
 
 GrWorkspace::GrWorkspace(QWidget *parent)
@@ -19,13 +19,14 @@ GrWorkspace::GrWorkspace(QWidget *parent)
 
     // file tree setup
     projectTree = new GrProjectTree;
+    projectStack = new QStackedWidget;
 
     hSplitter->addWidget(projectTree);
-    hSplitter->setSizes({250, 524, 250});
+    hSplitter->addWidget(projectStack);
+    // hSplitter->setSizes({250, 524, 250});
 
     hSplitter->setStretchFactor(0, 0);
     hSplitter->setStretchFactor(1, 1);
-    hSplitter->setStretchFactor(2, 0);
 }
 
 void GrWorkspace::addProject(QString dir)
