@@ -23,7 +23,8 @@ set(PROJECT_SOURCES
         ui/grwelcomescreen.h ui/grwelcomescreen.cpp
         ui/grworkspace.h ui/grworkspace.cpp
         # widgets (components)
-        ui/widgets/grpropertiespane.h ui/widgets/grpropertiespane.cpp
+        ui/widgets/grpropertypanel.h ui/widgets/grpropertypanel.cpp
+        ui/widgets/grpropertypanelbuilder.h ui/widgets/GrPropertyPanelBuilder.cpp
         # graphics (texture maps)
         graphics/gricon.h graphics/gricon.cpp
         graphics/grtexture.h graphics/grtexture.cpp
@@ -56,7 +57,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 qt_add_executable(grape
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        ui/widgets/grpropertypanelbuilder.h ui/widgets/GrPropertyPanelBuilder.cpp
     )
 
 target_include_directories(

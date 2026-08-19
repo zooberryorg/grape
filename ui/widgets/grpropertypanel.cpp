@@ -1,4 +1,4 @@
-#include "grpropertiespane.h"
+#include "grpropertypanel.h"
 #include <QSpinBox>
 #include <QCheckBox>
 #include <QLineEdit>

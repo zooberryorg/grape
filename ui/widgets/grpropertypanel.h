@@ -1,5 +1,5 @@
-#ifndef GRPROPERTIESPANE_H
-#define GRPROPERTIESPANE_H
+#ifndef GRPROPERTYPANEL_H
+#define GRPROPERTYPANEL_H
 
 #include <QWidget>
 #include <QHash>
@@ -28,4 +28,4 @@ private:
     QVBoxLayout* m_layout;
 };
 
-#endif // GRPROPERTIESPANE_H
+#endif // GRPROPERTYPANEL_H
