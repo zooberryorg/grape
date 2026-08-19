@@ -44,3 +44,8 @@ void GrWorkspace::addProject(QString dir)
         // handle error when no files found
     }
 }
+
+void GrWorkspace::handleAssetSelected(GrAsset* asset)
+{
+    GrProject* page = m_projects.value(asset->getProjectId());
+}

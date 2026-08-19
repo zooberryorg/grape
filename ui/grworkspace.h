@@ -34,7 +34,8 @@ private:
     QStackedWidget* projectStack;
     QHash<QString, GrProject*> m_projects;
 
-signals:
+private slots:
+    void handleAssetSelected(GrAsset*);
 
 };
 
