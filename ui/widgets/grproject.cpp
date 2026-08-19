@@ -19,3 +19,7 @@ GrProject::GrProject(QWidget *parent)
     projectLayout->addWidget(canvasArea, 1);
     projectLayout->addWidget(panelMgr);
 }
+
+void GrProject::showAsset(GrAsset* asset) {
+    panelMgr->loadAsset(asset);
+}
