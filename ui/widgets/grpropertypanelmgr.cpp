@@ -34,8 +34,8 @@ GrPropertyPanelMgr::GrPropertyPanelMgr(QWidget *parent)
     m_toolbar = new QWidget;
     m_toolbar->setFixedWidth(50);
     m_toolbarLayout = new QVBoxLayout(m_toolbar);
-    m_toolbarLayout->setContentsMargins( 4, 4, 4, 4 );
-    m_toolbarLayout->setSpacing(4);
+    m_toolbarLayout->setContentsMargins( 0, 0, 0, 0 );
+    m_toolbarLayout->setSpacing(0);
     m_toolbarLayout->addStretch();
 
     m_group = new QActionGroup(this);
@@ -43,9 +43,10 @@ GrPropertyPanelMgr::GrPropertyPanelMgr(QWidget *parent)
 
     m_panelStack = new QStackedWidget;
 
-    auto* layout = new QHBoxLayout(this);
+    QHBoxLayout* layout = new QHBoxLayout(this);
     layout->addWidget(m_toolbar);
     layout->addWidget(m_panelStack, 1);
+    layout->setContentsMargins( 0, 0, 0, 0 );
 }
 
 void GrPropertyPanelMgr::loadAsset(GrAsset *asset)
