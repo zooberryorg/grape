@@ -34,12 +34,20 @@ GrPropertyPanelMgr::GrPropertyPanelMgr(QWidget *parent)
     setObjectName("propertyPanelGroup");
     setAttribute(Qt::WA_StyledBackground, true);
 
-    m_toolbar = new QWidget;
+    m_toolbar = new QWidget(this);
     m_toolbar->setFixedWidth(30);
-    m_toolbarLayout = new QVBoxLayout(m_toolbar);
+    m_toolbar->setObjectName("toolbar");
+    m_toolbar->setAttribute(Qt::WA_StyledBackground, true);
+
+    QHBoxLayout* toolbarHSpace = new QHBoxLayout(m_toolbar);
+    toolbarHSpace->setContentsMargins( 0, 0, 0, 0 );
+    m_toolbarLayout = new QVBoxLayout;
     m_toolbarLayout->setContentsMargins( 0, 0, 0, 0 );
     m_toolbarLayout->setSpacing(0);
     m_toolbarLayout->addStretch();
+
+    toolbarHSpace->addStretch();
+    toolbarHSpace->addLayout(m_toolbarLayout);
 
     m_group = new QActionGroup(this);
     m_group->setExclusive(true);
@@ -94,7 +102,8 @@ void GrPropertyPanelMgr::loadAsset(GrAsset *asset)
         QToolButton* button = new QToolButton(m_toolbar);
         button->setDefaultAction(action);
         button->setToolButtonStyle(Qt::ToolButtonIconOnly);
-        button->setFixedSize(30, 30);
+        button->setFixedSize(28, 30);
+        button->setObjectName("toolbarButton");
         m_toolbarLayout->insertWidget(m_toolbarLayout->count() - 1, button);
         m_buttons.insert(g, button);
 

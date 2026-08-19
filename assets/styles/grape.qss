@@ -13,7 +13,10 @@ QWidget#canvasArea {
 }
 QWidget#propertyPanel {
     background-color: #1e2b1a;
-    border: 1px solid #263720;
+    border-left: 0px;
+    border-top: 1px solid #263720;
+    border-right: 1px solid #263720;
+    border-bottom: 1px solid #263720;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
     border-top-right-radius: 8px;
@@ -23,6 +26,39 @@ QWidget#propertyPanelGroup {
     background-color: #171f14;
     border: 1px solid #263720;
     border-radius: 8px;
+}
+QWidget#toolbarButton {
+    background-color: #171f14;
+    border: 1px solid #171f14;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+
+}
+QWidget#toolbarButton:hover {
+    background-color: #1e2b1a;
+    border: 1px solid #1e2b1a;
+    color: #807641;
+}
+QWidget#toolbarButton:pressed {
+    background-color: #1e2b1a;
+    border: 1px solid #1e2b1a;
+    color: #807641;
+}
+QWidget#toolbarButton:checked {
+    background-color: #1e2b1a;
+    border: 1px solid #1e2b1a;
+    color: #807641;
+}
+
+QWidget#toolbar {
+    border: 1px solid #263720;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+
 }
 QTreeView {
     background-color: #1e2b1a;
