@@ -2,6 +2,7 @@
 
 #include <QActionGroup>
 #include <QHBoxLayout>
+#include <QToolButton>
 
 #include "grasset.h"
 #include "grpropertypanel.h"
@@ -14,10 +15,12 @@ static const QHash<GrShared::PropertyGroup, QString> groupIcons = {
 GrPropertyPanelMgr::GrPropertyPanelMgr(QWidget *parent)
     : QWidget{parent}
 {
-    m_toolbar = new QToolBar;
-    m_toolbar->setOrientation(Qt::Vertical);
-    m_toolbar->setToolButtonStyle(Qt::ToolButtonIconOnly);
-    m_toolbar->setMaximumWidth(50);
+    m_toolbar = new QWidget;
+    m_toolbar->setFixedWidth(50);
+    m_toolbarLayout = new QVBoxLayout(m_toolbar);
+    m_toolbarLayout->setContentsMargins( 4, 4, 4, 4 );
+    m_toolbarLayout->setSpacing(4);
+    m_toolbarLayout->addStretch();
 
     m_group = new QActionGroup(this);
     m_group->setExclusive(true);
@@ -25,14 +28,15 @@ GrPropertyPanelMgr::GrPropertyPanelMgr(QWidget *parent)
     m_panelStack = new QStackedWidget;
 
     auto* layout = new QHBoxLayout(this);
-    layout->addWidget(m_panelStack, 1);
     layout->addWidget(m_toolbar);
+    layout->addWidget(m_panelStack, 1);
 }
 
 void GrPropertyPanelMgr::loadAsset(GrAsset *asset)
 {
     // reset anything inside of the panel
     qDeleteAll(m_panels);
+    qDeleteAll(m_buttons);
     qDeleteAll(m_actions);
     m_panels.clear();
     m_actions.clear();
@@ -63,6 +67,14 @@ void GrPropertyPanelMgr::loadAsset(GrAsset *asset)
         action->setCheckable(true);
         m_group->addAction(action);
         m_actions.insert(g, action);
+
+        // make the buttons
+        QToolButton* button = new QToolButton(m_toolbar);
+        button->setDefaultAction(action);
+        button->setToolButtonStyle(Qt::ToolButtonIconOnly);
+        button->setFixedSize(40, 40);
+        m_toolbarLayout->insertWidget(m_toolbarLayout->count() - 1, button);
+        m_buttons.insert(g, button);
 
         connect(action, &QAction::triggered, this, [this, panel]{ m_panelStack->setCurrentWidget(panel); });
     }
