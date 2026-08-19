@@ -20,7 +20,8 @@ enum PropertyGroup {
     Guests,
     Traits,
     Social,
-    UI
+    UI,
+    Misc
 };
 
 enum WidgetType {

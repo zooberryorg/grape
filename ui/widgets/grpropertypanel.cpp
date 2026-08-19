@@ -2,14 +2,16 @@
 #include <QSpinBox>
 #include <QCheckBox>
 #include <QLineEdit>
+#include <QToolBar>
 
 #include "grshared.h"
 #include "grini.h"
 
 using Widget = GrShared::WidgetType;
 
-GrPropertyPanel::GrPropertyPanel(QWidget *parent)
-    : QWidget{parent}
+GrPropertyPanel::GrPropertyPanel(QWidget *parent, GrShared::PropertyGroup groupType)
+    : QWidget{parent},
+      m_group{groupType}
 {
     // toolbar (right sidebar)
     QToolBar* toolbar = new QToolBar;
