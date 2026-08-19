@@ -3,6 +3,8 @@
 #include <QCheckBox>
 #include <QLineEdit>
 #include <QToolBar>
+#include <QLayoutItem>
+#include <QVBoxLayout>
 
 #include "grshared.h"
 #include "grini.h"
@@ -13,28 +15,7 @@ GrPropertyPanel::GrPropertyPanel(QWidget *parent, GrShared::PropertyGroup groupT
     : QWidget{parent},
       m_group{groupType}
 {
-    // toolbar (right sidebar)
-    QToolBar* toolbar = new QToolBar;
-    toolbar->setOrientation(Qt::Vertical);
-    toolbar->setToolButtonStyle(Qt::ToolButtonIconOnly);
-    toolbar->setMaximumWidth(50);
-
-    QActionGroup* group = new QActionGroup(this);
-    group->setExclusive(true);
-
-    QAction* idTab = toolbar->addAction(
-        GrGfx::setSvgColor(":/icons/id.svg", QColor("#12834b"), 50, 50),
-        "ID Settings"
-    );
-    idTab->setCheckable(true);
-    group->addAction(idTab);
-
-    QAction* moneyTab = toolbar->addAction(
-        GrGfx::setSvgColor(":/icons/coin.svg", QColor("#12834b"), 50, 50),
-        "Finance Settings"
-    );
-    moneyTab->setCheckable(true);
-    group->addAction(moneyTab);
+    m_layout = new QVBoxLayout(this);
 
     QWidget* toolbarFrame = new QWidget(this);
     QHBoxLayout* toolbarLayout = new QHBoxLayout(toolbarFrame);
@@ -51,7 +32,33 @@ GrPropertyPanel::GrPropertyPanel(QWidget *parent, GrShared::PropertyGroup groupT
 
 void GrPropertyPanel::loadAsset(GrAsset *asset)
 {
+    m_assignedAsset = asset;
+    m_fields.clear();
 
+    // remove any previous field widgets (keep the trailing stretch)
+    QLayoutItem* item;
+    while (m_layout->count() > 1 && (item = m_layout->takeAt(0))) {
+        delete item->widget();
+        delete item;
+    }
+
+    for ( GrShared::Section* section : asset->allSections() ) {
+        for ( auto sIt = section->constBegin(); sIt != section->constEnd(); ++sIt ) {
+            const QString& sectionName = sIt.key();
+            const GrShared::Key& key = sIt.value();
+
+            for ( auto kIt = key.constBegin(); kIt != key.constEnd(); ++kIt ) {
+                const GrShared::Value& value = kIt.value();
+                if ( value.group != m_group ) continue;   // not this panel's group
+                if ( value.v.isEmpty() ) continue;         // no value, no field
+
+                QWidget* field = createField(this, sectionName, kIt.key(), value);
+                m_layout->insertWidget(m_layout->count() - 1, field);
+                m_fields[sectionName][kIt.key()] = { sectionName, kIt.key(), field,
+                    [field, type = value.widgetType]() -> QVariant { /* read back by type */ return QVariant(); } };
+            }
+        }
+    }
 }
 
 void GrPropertyPanel::applyToAsset()
