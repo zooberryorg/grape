@@ -7,9 +7,25 @@
 #include "grasset.h"
 #include "grpropertypanel.h"
 
+using Group = GrShared::PropertyGroup;
+
 static const QHash<GrShared::PropertyGroup, QString> groupIcons = {
-    { GrShared::ID,       ":/icons/id.svg" },
-    { GrShared::Commerce, ":/icons/coin.svg" },
+    { Group::ID, ":/icons/id.svg" },
+    { Group::Commerce, ":/icons/coin.svg" },
+    { Group::Sounds, ":/icons/playlist.svg" },
+    { Group::Social, ":/icons/heart.svg" },
+    { Group::BehaviorSets, ":/icons/analyze.svg" },
+    { Group::Exhibit, ":/icons/layout-dashboard.svg" },
+    { Group::Graphics, ":/icons/box-multiple.svg" },
+    { Group::Guests, ":/icons/person.svg" },
+    { Group::Keepers, ":/icons/hat.svg" },
+    { Group::Needs, ":/icons/paw.svg" },
+    { Group::Prey, ":/icons/pig.svg" },
+    { Group::Slots, ":/icons/building-2.svg" },
+    { Group::Terrain, ":/icons/mountain.svg" },
+    { Group::Traits, ":/icons/sparkles.svg" },
+    { Group::UI, ":/icons/ui.svg" },
+    { Group::Misc, ":/icons/misc.svg" },
 };
 
 GrPropertyPanelMgr::GrPropertyPanelMgr(QWidget *parent)
