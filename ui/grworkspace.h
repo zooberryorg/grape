@@ -35,7 +35,7 @@ private:
     QHash<QString, GrProject*> m_projects;
 
 private slots:
-    void handleAssetSelected(GrAsset*);
+    void handleAssetSelected(GrAsset* asset);
 
 };
 

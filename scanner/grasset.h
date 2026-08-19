@@ -26,6 +26,7 @@ public:
     void loadLayers();
     void initProjectName();
     GrShared::AssetTypes getType() { return m_type; };
+    QString getProjectId() { return m_projectid; };
 
 protected:
     // constants
