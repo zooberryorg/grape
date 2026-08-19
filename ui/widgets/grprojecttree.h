@@ -24,6 +24,12 @@ private:
     GrProjectTreeModel* fileModel;
     QLabel* explorerLabel;
 
+signals:
+    void assetSelected(GrAsset* asset);
+
+private slots:
+    void handleSelectionChanged(const QModelIndex& current, const QModelIndex&);
+
 };
 
 #endif // GRPROJECTTREE_H

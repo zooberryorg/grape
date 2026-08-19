@@ -17,5 +17,19 @@
         <file alias="paw.svg">assets/icons/paw.svg</file>
         <file alias="music.svg">assets/icons/playlist.svg</file>
         <file alias="tree.svg">assets/icons/tree.svg</file>
+        <file alias="misc.svg">assets/icons/misc.svg</file>
+        <file alias="ui.svg">assets/icons/ui.svg</file>
+        <file alias="sparkles.svg">assets/icons/sparkles.svg</file>
+        <file alias="mountain.svg">assets/icons/mountain.svg</file>
+        <file alias="building-2.svg">assets/icons/building-2.svg</file>
+        <file alias="pig.svg">assets/icons/pig.svg</file>
+        <file alias="box-multiple.svg">assets/icons/box-multiple.svg</file>
+        <file alias="person.svg">assets/icons/person.svg</file>
+        <file alias="palette.svg">assets/icons/palette.svg</file>
+        <file alias="layout-dashboard.svg">assets/icons/layout-dashboard.svg</file>
+        <file alias="analyze.svg">assets/icons/analyze.svg</file>
+        <file alias="cookie-man.svg">assets/icons/cookie-man.svg</file>
+        <file alias="transform.svg">assets/icons/transform.svg</file>
+        <file alias="heart.svg">assets/icons/heart.svg</file>
     </qresource>
 </RCC>

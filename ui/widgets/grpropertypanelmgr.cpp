@@ -1,0 +1,102 @@
+#include "grpropertypanelmgr.h"
+
+#include <QActionGroup>
+#include <QHBoxLayout>
+#include <QToolButton>
+
+#include "grasset.h"
+#include "grpropertypanel.h"
+
+using Group = GrShared::PropertyGroup;
+
+static const QHash<GrShared::PropertyGroup, QString> groupIcons = {
+    { Group::ID, ":/icons/id.svg" },
+    { Group::Commerce, ":/icons/coin.svg" },
+    { Group::Sounds, ":/icons/playlist.svg" },
+    { Group::Social, ":/icons/heart.svg" },
+    { Group::BehaviorSets, ":/icons/analyze.svg" },
+    { Group::Exhibit, ":/icons/layout-dashboard.svg" },
+    { Group::Graphics, ":/icons/box-multiple.svg" },
+    { Group::Guests, ":/icons/person.svg" },
+    { Group::Keepers, ":/icons/hat.svg" },
+    { Group::Needs, ":/icons/paw.svg" },
+    { Group::Prey, ":/icons/pig.svg" },
+    { Group::Slots, ":/icons/building-2.svg" },
+    { Group::Terrain, ":/icons/mountain.svg" },
+    { Group::Traits, ":/icons/sparkles.svg" },
+    { Group::UI, ":/icons/ui.svg" },
+    { Group::Misc, ":/icons/misc.svg" },
+};
+
+GrPropertyPanelMgr::GrPropertyPanelMgr(QWidget *parent)
+    : QWidget{parent}
+{
+    m_toolbar = new QWidget;
+    m_toolbar->setFixedWidth(50);
+    m_toolbarLayout = new QVBoxLayout(m_toolbar);
+    m_toolbarLayout->setContentsMargins( 4, 4, 4, 4 );
+    m_toolbarLayout->setSpacing(4);
+    m_toolbarLayout->addStretch();
+
+    m_group = new QActionGroup(this);
+    m_group->setExclusive(true);
+
+    m_panelStack = new QStackedWidget;
+
+    auto* layout = new QHBoxLayout(this);
+    layout->addWidget(m_toolbar);
+    layout->addWidget(m_panelStack, 1);
+}
+
+void GrPropertyPanelMgr::loadAsset(GrAsset *asset)
+{
+    // reset anything inside of the panel
+    qDeleteAll(m_panels);
+    qDeleteAll(m_buttons);
+    qDeleteAll(m_actions);
+    m_panels.clear();
+    m_actions.clear();
+
+    // only get groups with something loaded
+    QSet<GrShared::PropertyGroup> populatedGroups;
+    for ( GrShared::Section* section : asset->allSections() ){
+        for ( const auto& key : *section ) {
+            for ( const auto& value : key ) {
+                if ( !value.v.isEmpty() ) {
+                    populatedGroups.insert(value.group);
+                }
+            }
+        }
+    }
+
+    for ( GrShared::PropertyGroup g : populatedGroups ) {
+        auto* panel = new GrPropertyPanel(m_panelStack, g);
+        panel->loadAsset(asset);
+        m_panelStack->addWidget(panel);
+        m_panels.insert(g, panel);
+
+        QIcon icon = groupIcons.contains(g)
+            ? GrGfx::setSvgColor(groupIcons[g], QColor("#12834b"), 50, 50)
+            : QIcon();
+
+        QAction* action = m_toolbar->addAction(icon, GrShared::GroupToString(g));
+        action->setCheckable(true);
+        m_group->addAction(action);
+        m_actions.insert(g, action);
+
+        // make the buttons
+        QToolButton* button = new QToolButton(m_toolbar);
+        button->setDefaultAction(action);
+        button->setToolButtonStyle(Qt::ToolButtonIconOnly);
+        button->setFixedSize(40, 40);
+        m_toolbarLayout->insertWidget(m_toolbarLayout->count() - 1, button);
+        m_buttons.insert(g, button);
+
+        connect(action, &QAction::triggered, this, [this, panel]{ m_panelStack->setCurrentWidget(panel); });
+    }
+
+    if ( !m_actions.isEmpty() ) {
+        m_actions.begin().value()->setChecked(true);
+        m_panelStack->setCurrentWidget(m_panels.begin().value());
+    }
+}

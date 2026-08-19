@@ -17,13 +17,15 @@ set(TS_FILES lang/grape_en_US.ts)
 
 set(PROJECT_SOURCES
         main.cpp
+        # widgets (components)
+        ui/widgets/grpropertypanel.h ui/widgets/grpropertypanel.cpp
+        ui/widgets/grpropertypanelmgr.h ui/widgets/grpropertypanelmgr.cpp
+        ui/widgets/grproject.h ui/widgets/grproject.cpp
+        ui/widgets/grprojecttree.h ui/widgets/grprojecttree.cpp
         # views (pages)
         ui/grapew.h ui/grapew.cpp ui/grapew.ui
-        ui/grprojecttree.h ui/grprojecttree.cpp
         ui/grwelcomescreen.h ui/grwelcomescreen.cpp
         ui/grworkspace.h ui/grworkspace.cpp
-        # widgets (components)
-        ui/widgets/grpropertiespane.h ui/widgets/grpropertiespane.cpp
         # graphics (texture maps)
         graphics/gricon.h graphics/gricon.cpp
         graphics/grtexture.h graphics/grtexture.cpp
@@ -62,6 +64,7 @@ target_include_directories(
     grape PRIVATE
     common
     ui
+    ui/widgets
     models
     graphics
     scanner

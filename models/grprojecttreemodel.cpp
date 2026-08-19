@@ -88,17 +88,27 @@ int GrProjectTreeModel::columnCount(const QModelIndex & /*parent*/) const
 QVariant GrProjectTreeModel::data(const QModelIndex &index, int role) const
 {
     // if invis root, return empty QVariant
-    if ( !index.isValid() || role != Qt::DisplayRole || index.column() != 0 )
+    if ( !index.isValid() || index.column() != 0 )
         return QVariant();
 
     if ( index.internalId() == quintptr(-1) ) {
-        // row parsing
-        return GrShared::TypeToString(m_keys.at(index.row()));
+        if ( role == Qt::DisplayRole )
+        {
+            return GrShared::TypeToString(m_keys.at(index.row()));
+        }
+        return QVariant();
     }
 
     const AssetType type = static_cast<AssetType>(index.internalId());
     GrAsset* asset = m_grouptypes.value(type).at(index.row());
-    return asset->name();
+
+    if (role == Qt::DisplayRole) {
+        return asset->name();
+    }
+    if (role == Qt::UserRole) {
+        return QVariant::fromValue( asset );
+    }
+    return QVariant();
 }
 
 void GrProjectTreeModel::setAssets(QMap<AssetType, QVector<GrAsset *>> groupTypes)

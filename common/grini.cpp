@@ -1,6 +1,7 @@
 #include "grini.h"
 #include <QFile>
 #include <QTextStream>
+#include <QVariant>
 
 QHash<QString, QString> GrINI::getKeyValuesInSection(const CSimpleIniA& ini, QString section)
 {
@@ -87,7 +88,7 @@ bool GrINI::doesKeyInSectionExist(const CSimpleIniA& ini, const QString& section
     return false;
 }
 
-void GrINI::loadConfig(const CSimpleIniA& ini, QList<QHash<QString, QHash<QString, Value>>*> sections)
+void GrINI::loadConfig(const CSimpleIniA& ini, GrShared::Config sections)
 {
     for (auto* s : sections )
     {
@@ -99,4 +100,16 @@ void GrINI::loadConfig(const CSimpleIniA& ini, QList<QHash<QString, QHash<QStrin
             GrINI::getKeyValuesInSection(ini, sectionName)
         );
     }
+}
+
+QVariant GrINI::stringToBool(const QString &b)
+{
+    if ( b == "0" ) {
+        return false;
+    }
+    else if ( b == "1" ) {
+        return true;
+    }
+
+    return QVariant();
 }

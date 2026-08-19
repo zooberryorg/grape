@@ -23,9 +23,23 @@ GrProjectTree::GrProjectTree(QWidget *parent, QMap<AssetType, QVector<GrAsset*>>
 
     workspaceVLayout->addWidget(explorerLabel);
     workspaceVLayout->addWidget(fileTree);
+
+    connect( fileTree->selectionModel(), &QItemSelectionModel::currentChanged, this, &GrProjectTree::handleSelectionChanged);
 }
 
 void GrProjectTree::insertProject(GrAsset *asset)
 {
     fileModel->insertProject(asset);
+}
+
+void GrProjectTree::handleSelectionChanged(const QModelIndex &current, const QModelIndex &)
+{
+    if ( !current.isValid() || current.internalId() == quintptr(-1) ) {
+        return;
+    }
+
+    GrAsset* asset = fileModel->data( current, Qt::UserRole ).value<GrAsset*>();
+    if ( asset ) {
+        emit assetSelected( asset );
+    }
 }
