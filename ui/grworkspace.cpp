@@ -13,16 +13,16 @@
 GrWorkspace::GrWorkspace(QWidget *parent)
     : QWidget{parent}
 {
-    workspaceHLayout = new QHBoxLayout(this);
-    hSplitter = new QSplitter(this);
-    workspaceHLayout->addWidget(hSplitter);
+    workspaceHLayout = new QHBoxLayout( this );
+    hSplitter = new QSplitter( this );
+    workspaceHLayout->addWidget( hSplitter );
 
     // file tree setup
     projectTree = new GrProjectTree;
     projectStack = new QStackedWidget;
 
-    hSplitter->addWidget(projectTree);
-    hSplitter->addWidget(projectStack);
+    hSplitter->addWidget( projectTree );
+    hSplitter->addWidget( projectStack );
     // hSplitter->setSizes({250, 524, 250});
 
     hSplitter->setStretchFactor(0, 0);
@@ -31,13 +31,13 @@ GrWorkspace::GrWorkspace(QWidget *parent)
 
 void GrWorkspace::addProject(QString dir)
 {
-    GrDScanner scanner(dir);
+    GrDScanner scanner( dir );
 
    for ( auto& asset : scanner.assets() ) {
         GrAsset* assetPointer = asset.get();
         asset->load();
-        projects.push_back(std::move(asset));
-        projectTree->insertProject(assetPointer);
+        projects.push_back( std::move( asset ) );
+        projectTree->insertProject( assetPointer );
     }
 
     if ( projects.empty() ) {
@@ -47,5 +47,11 @@ void GrWorkspace::addProject(QString dir)
 
 void GrWorkspace::handleAssetSelected(GrAsset* asset)
 {
-    GrProject* page = m_projects.value(asset->getProjectId());
+    GrProject* page = m_projects.value( asset->getProjectId() );
+    if ( !page ) {
+        return;
+    }
+
+    projectStack->setCurrentWidget( page );
+    page->showAsset( asset );
 }
