@@ -6,6 +6,11 @@ QWidget#explorerContainer {
 QWidget#centralWindow {
     background-color: #171f14;
 }
+QWidget#canvasArea {
+    background-color: #1e2b1a;
+    border: 1px solid #263720;
+    border-radius: 8px;
+}
 QTreeView {
     background-color: #1e2b1a;
     border-radius: 8px;

@@ -12,6 +12,7 @@ GrProject::GrProject(QWidget *parent)
 
     // Canvas area
     canvasArea = new QFrame(this);
+    canvasArea->setObjectName("canvasArea");
     canvasArea->setFrameShape(QFrame::Box);
 
     panelMgr = new GrPropertyPanelMgr(this);
