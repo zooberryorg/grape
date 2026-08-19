@@ -3,6 +3,7 @@
 
 #include <QVector>
 #include <QHash>
+#include <QMetaType>
 
 #include "grtexture.h"
 #include "grgfx.h"
@@ -79,5 +80,7 @@ protected:
     QString m_projectid;
     GrShared::AssetTypes m_type;
 };
+
+Q_DECLARE_METATYPE(GrAsset*)
 
 #endif // GRASSET_H
