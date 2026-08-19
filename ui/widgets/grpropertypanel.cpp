@@ -5,6 +5,7 @@
 #include <QToolBar>
 #include <QLayoutItem>
 #include <QVBoxLayout>
+#include <QLabel>
 
 #include "grshared.h"
 #include "grini.h"
@@ -64,36 +65,41 @@ void GrPropertyPanel::applyToAsset()
 
 QWidget* GrPropertyPanel::createField(QWidget* parent, const QString& section, const QString& key, const GrShared::Value& value)
 {
+    QWidget* fieldCtr = new QWidget(parent);
     QWidget* field = nullptr;
+    QVBoxLayout* layout = new QVBoxLayout(fieldCtr);
+    QLabel* label = new QLabel(key, parent);
+    layout->addWidget(label);
 
     switch (value.widgetType) {
         case Widget::Integer: {
-            QSpinBox* spin = new QSpinBox(parent);
+            QSpinBox* spin = new QSpinBox(fieldCtr);
             spin->setRange(-1000, 1000);
             spin->setValue(value.v.toInt());
             field = spin;
             break;
         }
         case Widget::Float: {
-            QDoubleSpinBox* spin = new QDoubleSpinBox(parent);
+            QDoubleSpinBox* spin = new QDoubleSpinBox(fieldCtr);
             spin->setValue(value.v.toDouble());
             field = spin;
             break;
         }
         case Widget::Switch: {
-            QCheckBox* check = new QCheckBox(parent);
+            QCheckBox* check = new QCheckBox(fieldCtr);
             bool isTrue = GrINI::stringToBool(value.v).toBool();
             check->setChecked(isTrue);
             field = check;
             break;
         }
         default: {
-            QLineEdit* edit = new QLineEdit(value.v, parent);
+            QLineEdit* edit = new QLineEdit(value.v, fieldCtr);
             field = edit;
             break;
         }
     }
 
     field->setProperty("configKey", key);
-    return field;
+    layout->addWidget(field);
+    return fieldCtr;
 }
