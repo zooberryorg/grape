@@ -56,6 +56,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 qt_add_executable(grape
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        ui/widgets/grpropertypanelbuilder.h ui/widgets/GrPropertyPanelBuilder.cpp
     )
 
 target_include_directories(
