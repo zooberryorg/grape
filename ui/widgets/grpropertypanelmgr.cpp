@@ -68,7 +68,7 @@ void GrPropertyPanelMgr::loadAsset(GrAsset *asset)
     }
 
     if ( !m_actions.isEmpty() ) {
-        m_actions.first()->setChecked(true);
-        m_panelStack->setCurrentWidget(m_panels.first());
+        m_actions.begin().value()->setChecked(true);
+        m_panelStack->setCurrentWidget(m_panels.begin().value());
     }
 }
