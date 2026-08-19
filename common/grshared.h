@@ -106,6 +106,45 @@ inline const QString TypeToString(AssetTypes type) {
     }
 }
 
+inline const QString GroupToString(PropertyGroup group) {
+    switch(group) {
+        case ( ID ):
+            return "ID";
+        case ( Prey ):
+            return "Prey";
+        case ( Commerce ):
+            return "Commerce";
+        case ( Sounds ):
+            return "Sounds";
+        case ( Graphics ):
+            return "Graphics";
+        case ( Slots ):
+            return "Slots";
+        case ( Terrain ):
+            return "Terrain";
+        case ( BehaviorSets ):
+            return "Behavior Sets";
+        case ( Needs ):
+            return "Needs";
+        case ( Exhibit ):
+            return "Exhibit";
+        case ( Keepers ):
+            return "Keepers";
+        case ( Guests ):
+            return "Guests";
+        case ( Traits ):
+            return "Traits";
+        case ( Social ):
+            return "Social";
+        case ( UI ):
+            return "UI";
+        case ( Misc ):
+        default:
+            return "Misc";
+    }
+}
+
+
 inline const QVector<QString> dFolders = { // default folders
     "animals",
     "fences",
