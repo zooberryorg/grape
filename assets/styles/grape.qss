@@ -9,7 +9,12 @@ QWidget#centralWindow {
 QTreeView {
     background-color: #1e2b1a;
     border-radius: 8px;
-    border-color: #1e2b1a;
+    border-color: #263720;
     /* padding */
     padding: 4px;
+}
+QTreeView::item:selected {
+    outline: 0px;
+    background-color: #807641;
+    border-radius: 4px;
 }

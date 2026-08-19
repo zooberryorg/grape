@@ -18,6 +18,7 @@ GrProject::GrProject(QWidget *parent)
 
     projectLayout->addWidget(canvasArea, 1);
     projectLayout->addWidget(panelMgr);
+    projectLayout->setContentsMargins(0, 0, 0, 0);
 }
 
 void GrProject::showAsset(GrAsset* asset) {
