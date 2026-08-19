@@ -8,6 +8,7 @@
 
 #include "grshared.h"
 #include "grini.h"
+#include "grasset.h"
 
 using Widget = GrShared::WidgetType;
 
@@ -18,11 +19,7 @@ GrPropertyPanel::GrPropertyPanel(QWidget *parent, GrShared::PropertyGroup groupT
     m_layout = new QVBoxLayout(this);
 
     QWidget* toolbarFrame = new QWidget(this);
-    QHBoxLayout* toolbarLayout = new QHBoxLayout(toolbarFrame);
     QVBoxLayout* configLayout = new QVBoxLayout();
-
-    toolbarLayout->addWidget(toolbar);
-    toolbarLayout->addLayout(configLayout);
 
     QWidget* placeholder = new QWidget(toolbarFrame);
     configLayout->addWidget(placeholder);
@@ -30,14 +27,13 @@ GrPropertyPanel::GrPropertyPanel(QWidget *parent, GrShared::PropertyGroup groupT
 
 }
 
-void GrPropertyPanel::loadAsset(GrAsset *asset)
+void GrPropertyPanel::loadAsset(GrAsset* asset)
 {
     m_assignedAsset = asset;
     m_fields.clear();
 
-    // remove any previous field widgets (keep the trailing stretch)
     QLayoutItem* item;
-    while (m_layout->count() > 1 && (item = m_layout->takeAt(0))) {
+    while ( m_layout->count() > 1 && ( item = m_layout->takeAt(0) ) ) {
         delete item->widget();
         delete item;
     }
@@ -49,13 +45,20 @@ void GrPropertyPanel::loadAsset(GrAsset *asset)
 
             for ( auto kIt = key.constBegin(); kIt != key.constEnd(); ++kIt ) {
                 const GrShared::Value& value = kIt.value();
-                if ( value.group != m_group ) continue;   // not this panel's group
-                if ( value.v.isEmpty() ) continue;         // no value, no field
 
-                QWidget* field = createField(this, sectionName, kIt.key(), value);
+                if ( value.group != m_group )
+                    continue;
+                if ( value.v.isEmpty() )
+                    continue;
+
+                QWidget* field = createField( this, sectionName, kIt.key(), value );
                 m_layout->insertWidget(m_layout->count() - 1, field);
                 m_fields[sectionName][kIt.key()] = { sectionName, kIt.key(), field,
-                    [field, type = value.widgetType]() -> QVariant { /* read back by type */ return QVariant(); } };
+                    [field, type = value.widgetType]() ->
+                        QVariant {
+                            return QVariant();
+                    }
+                };
             }
         }
     }
