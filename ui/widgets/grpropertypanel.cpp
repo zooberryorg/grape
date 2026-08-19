@@ -5,48 +5,50 @@
 
 #include "grshared.h"
 
-GrPropertiesPane::GrPropertiesPane(QWidget *parent)
+using Widget = GrShared::WidgetType;
+
+GrPropertyPanel::GrPropertyPanel(QWidget *parent)
     : QWidget{parent}
 {
 
 }
 
-void GrPropertiesPane::loadAsset(GrAsset *asset)
+void GrPropertyPanel::loadAsset(GrAsset *asset)
 {
 
 }
 
-void GrPropertiesPane::applyToAsset()
+void GrPropertyPanel::applyToAsset()
 {
 
 }
 
-QWidget* GrPropertiesPane::createField(const GrShared::Property& property, const QWidget* parent)
+QWidget* GrPropertyPanel::createField(QWidget* parent, const QString& section, const QString& key, const GrShared::Value& value)
 {
     QWidget* field = nullptr;
 
-    switch (property)) {
-        case QMetaType::Int: {
+    switch (value.widgetType) {
+        case Widget::Integer: {
             QSpinBox* spin = new QSpinBox(parent);
             spin->setRange(std::numeric_limits<int>::min(), std::numeric_limits<int>::max());
-            spin->setValue(value.toInt());
+            spin->setValue(value.v.toInt());
             field = spin;
             break;
         }
-        case QMetaType::Double: {
+        case Widget::Float: {
             QDoubleSpinBox* spin = new QDoubleSpinBox(parent);
-            spin->setValue(value.toDouble());
+            spin->setValue(value.v.toDouble());
             field = spin;
             break;
         }
-        case QMetaType::Bool: {
+        case Widget::Switch: {
             QCheckBox* check = new QCheckBox(parent);
-            check->setChecked(value.toBool());
+            check->setChecked(value.v.toBool());
             field = check;
             break;
         }
         default: {
-            QLineEdit* edit = new QLineEdit(value.toString(), parent);
+            QLineEdit* edit = new QLineEdit(value.v.toString(), parent);
             field = edit;
             break;
         }

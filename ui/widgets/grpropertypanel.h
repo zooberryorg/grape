@@ -8,14 +8,14 @@
 class GrAsset;
 class QVBoxLayout;
 
-class GrPropertiesPane : public QWidget
+class GrPropertyPanel : public QWidget
 {
     Q_OBJECT
 public:
-    explicit GrPropertiesPane(QWidget *parent = nullptr);
+    explicit GrPropertyPanel(QWidget *parent = nullptr);
     void loadAsset(GrAsset* asset);
     void applyToAsset();
-    QWidget* createField(const GrShared::Property& property, QWidget* parent);
+    QWidget* createField(QWidget* parent, const QString& section, const QString& key, const GrShared::Value& value);
 private:
     struct Field {
         QString section;

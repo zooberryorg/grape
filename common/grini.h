@@ -19,6 +19,7 @@ public:
     static bool doesSectionExist(const CSimpleIniA&, const QString&);
     static bool doesKeyInSectionExist(const CSimpleIniA&, const QString&, const QString&);
     static void loadConfig(const CSimpleIniA&, GrShared::Config);
+    static bool stringToBool(const QString& b);
 };
 
 #endif // GRINI_H

@@ -2,6 +2,8 @@
 #define GRPROPERTYPANELBUILDER_H
 
 #include <QWidget>
+#include <QAction>
+#include "grpropertypanel.h"
 
 class GrPropertyPanelBuilder : public QWidget
 {
