@@ -4,6 +4,7 @@
 #include <QLineEdit>
 
 #include "grshared.h"
+#include "grini.h"
 
 using Widget = GrShared::WidgetType;
 
@@ -30,7 +31,7 @@ QWidget* GrPropertyPanel::createField(QWidget* parent, const QString& section, c
     switch (value.widgetType) {
         case Widget::Integer: {
             QSpinBox* spin = new QSpinBox(parent);
-            spin->setRange(std::numeric_limits<int>::min(), std::numeric_limits<int>::max());
+            spin->setRange(-1000, 1000);
             spin->setValue(value.v.toInt());
             field = spin;
             break;
@@ -43,12 +44,13 @@ QWidget* GrPropertyPanel::createField(QWidget* parent, const QString& section, c
         }
         case Widget::Switch: {
             QCheckBox* check = new QCheckBox(parent);
-            check->setChecked(value.v.toBool());
+            bool isTrue = GrINI::stringToBool(value.v).toBool();
+            check->setChecked(isTrue);
             field = check;
             break;
         }
         default: {
-            QLineEdit* edit = new QLineEdit(value.v.toString(), parent);
+            QLineEdit* edit = new QLineEdit(value.v, parent);
             field = edit;
             break;
         }

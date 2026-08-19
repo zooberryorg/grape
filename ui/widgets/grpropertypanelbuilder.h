@@ -12,6 +12,8 @@ public:
     explicit GrPropertyPanelBuilder(QWidget *parent = nullptr);
 
 signals:
+//private:
+  //  GrPropertyPanel
 
 };
 
