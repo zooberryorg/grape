@@ -33,13 +33,12 @@ void GrWorkspace::addProject(QString dir)
 {
     GrDScanner scanner( dir );
 
-    GrProject* page = new GrProject(this);
-    projectStack->addWidget(page);
-    projectStack->setCurrentWidget(page);
-
    for ( auto& asset : scanner.assets() ) {
         GrAsset* assetPointer = asset.get();
-        m_projects.insert(asset->getProjectId(), page);
+        GrProject* page = new GrProject(this);
+        projectStack->addWidget( page );
+
+        m_projects.insert( asset->getProjectId(), page );
         asset->load();
         projects.push_back( std::move( asset ) );
         projectTree->insertProject( assetPointer );
@@ -48,6 +47,8 @@ void GrWorkspace::addProject(QString dir)
     if ( projects.empty() ) {
         // handle error when no files found
     }
+
+    projectStack->setCurrentWidget( projectStack->currentWidget() );
 }
 
 void GrWorkspace::handleAssetSelected(GrAsset* asset)
