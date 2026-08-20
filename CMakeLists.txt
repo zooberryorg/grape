@@ -24,6 +24,7 @@ set(PROJECT_SOURCES
         ui/widgets/grprojecttree.h ui/widgets/grprojecttree.cpp
         ui/widgets/grstatusbar.h ui/widgets/grstatusbar.cpp
         ui/widgets/grcanvasworkspace.h ui/widgets/grcanvasworkspace.cpp
+        ui/widgets/grcheckbox.h ui/widgets/grcheckbox.cpp
         # views (pages)
         ui/grapew.h ui/grapew.cpp ui/grapew.ui
         ui/grwelcomescreen.h ui/grwelcomescreen.cpp
