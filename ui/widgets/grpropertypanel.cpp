@@ -23,6 +23,7 @@ GrPropertyPanel::GrPropertyPanel(QWidget *parent, GrShared::PropertyGroup groupT
     m_layout = new QVBoxLayout(this);
     m_layout->addStretch();
     m_layout->setContentsMargins( 0, 0, 0, 0 );
+    m_layout->setAlignment(Qt::AlignCenter);
 }
 
 void GrPropertyPanel::loadAsset(GrAsset* asset)

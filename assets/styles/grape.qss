@@ -94,8 +94,8 @@ QCheckBox {
     font-size: 11px;
 }
 QCheckBox::indicator {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border: 2px solid #182315;
     border-radius: 4px;
     background-color: #182315;
