@@ -5,12 +5,14 @@
 #include <QFrame>
 
 class QHBoxLayout;
+class QVBoxLayout;
 class QSplitter;
 class GrProjectTree;
 class GrCanvas;
 class GrAsset;
 class QStackedWidget;
 class GrProject;
+class QStatusBar;
 
 class GrWorkspace : public QWidget
 {
@@ -34,6 +36,9 @@ private:
     QStackedWidget* projectStack;
     QHash<QString, GrProject*> m_projects;
 
+    QVBoxLayout* workspaceVLayout;
+    QSplitter *vSplitter;
+    QStatusBar* statusBar;
 private slots:
     void handleAssetSelected(GrAsset* asset);
 
