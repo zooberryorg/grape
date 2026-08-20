@@ -21,7 +21,7 @@ GrWorkspace::GrWorkspace(QWidget *parent)
     vSplitter = new QSplitter(Qt::Vertical, this);
     hSplitter = new QSplitter(Qt::Horizontal, this);
 
-    workspaceVLayout->setContentsMargins(0, 0, 0, 0);
+    workspaceVLayout->setContentsMargins(5, 5, 5, 5);
     workspaceVLayout->addWidget(vSplitter);
 
     // file tree setup
