@@ -133,9 +133,10 @@ QVariant GrProjectTreeModel::groupIcon(const AssetType& type) const
             return GrGfx::setSvgColor(":/icons/fountain.svg", "#fff", 30, 30);
         case AssetType::Foliage:
             return GrGfx::setSvgColor(":/icons/tree.svg", "#fff", 30, 30);
-
+        case AssetType::TankFilter:
+            return GrGfx::setSvgColor(":/icons/filter.svg", "#fff", 30, 30);
         default:
-            return GrGfx::setSvgColor(":/icons/file-smile.svg", "#fff", 30, 30);
+            return GrGfx::setSvgColor(":/icons/file-smile.svg", "#949da9", 30, 30);
     }
 }
 
