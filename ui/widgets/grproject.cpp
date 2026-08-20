@@ -2,13 +2,19 @@
 
 #include <QFrame>
 #include <QHBoxLayout>
+#include <QSplitter>
 
 #include "grpropertypanelmgr.h"
 
 GrProject::GrProject(QWidget *parent)
     : QWidget{parent}
 {
+    QSplitter* hSplitter = new QSplitter(Qt::Horizontal, this);
+
     QHBoxLayout* projectLayout = new QHBoxLayout(this);
+    projectLayout->setContentsMargins(0, 0, 0, 0);
+
+    projectLayout->addWidget(hSplitter);
 
     // Canvas area
     canvasArea = new QFrame(this);
@@ -17,9 +23,10 @@ GrProject::GrProject(QWidget *parent)
 
     panelMgr = new GrPropertyPanelMgr(this);
 
-    projectLayout->addWidget(canvasArea, 1);
-    projectLayout->addWidget(panelMgr);
-    projectLayout->setContentsMargins(0, 0, 0, 0);
+    hSplitter->addWidget(canvasArea);
+    hSplitter->addWidget(panelMgr);
+
+    hSplitter->setStretchFactor(0, 1);
 }
 
 void GrProject::showAsset(GrAsset* asset) {
