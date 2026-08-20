@@ -1,8 +1,12 @@
 #include "grcheckbox.h"
 
 
-GrCheckbox::GrCheckbox(QWidget *parent)
-    : QWidget{parent}
-{
+#include <QHBoxLayout>
 
+GrCheckbox::GrCheckbox(QWidget *parent, const QString& label)
+    : QCheckBox{parent}
+{
+    QHBoxLayout* hLayout = new QHBoxLayout(this);
+
+    checkbox = new QCheckBox();
 }
