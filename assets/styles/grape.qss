@@ -128,3 +128,47 @@ QListView
 QStatusBar::item {
     border: none;
 }
+
+/* QSpinBox */
+QSpinBox {
+    border: 2px solid #2e4226;
+    border-radius: 4px;
+    background-color: #182315;
+    font-size: 11px;
+}
+
+QSpinBox::hover {
+    background-color: #1d2719;
+}
+
+QSpinBox::focus {
+    border: 2px solid #c9a961;
+}
+
+QSpinBox::up-button {
+    subcontrol-origin: border;
+    subcontrol-position: top right;
+    width: 18px;
+}
+
+QSpinBox::down-button {
+    subcontrol-origin: border;
+    subcontrol-position: bottom right;
+    width: 18px;
+}
+
+QSpinBox::up-arrow {
+    image: url(:/images/up_arrow.png);
+    width: 8px;
+    height: 8px;
+}
+
+QSpinBox::down-arrow {
+    image: url(:/images/down_arrow.png);
+    width: 8px;
+    height: 8px;
+}
+
+QSpinBox::up-button:hover, QSpinBox::down-button:hover {
+    background-color: #e0e0e0;
+}
