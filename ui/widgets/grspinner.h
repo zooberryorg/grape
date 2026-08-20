@@ -3,14 +3,18 @@
 
 #include <QWidget>
 
+class QSpinBox;
+
 class GrSpinner : public QWidget
 {
     Q_OBJECT
 public:
-    explicit GrSpinner(QWidget *parent = nullptr);
+    explicit GrSpinner(QWidget *parent, const QString& label, const QString& caption);
 
 signals:
 
+private:
+    QSpinBox *spinbox;
 };
 
 #endif // GRSPINNER_H
