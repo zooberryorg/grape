@@ -11,12 +11,17 @@ GrSpinner::GrSpinner(QWidget *parent, const QString& label, const QString& capti
     : QWidget{parent}
 {
     QVBoxLayout* vLayout = new QVBoxLayout(this);
-    QVBoxLayout* hLayout = new QVBoxLayout;
+    QHBoxLayout* hLayout = new QHBoxLayout;
     vLayout->setContentsMargins( 2, 0, 2, 0 );
     vLayout->setSpacing(0);
     spinbox = new QSpinBox;
     QLabel* captionLabel = new QLabel(caption);
     QLabel* widgetLabel = new QLabel(label);
+
+    QFont widgetFont = widgetLabel->font();
+    widgetFont.setPointSize(8);
+    widgetLabel->setFont(widgetFont);
+    captionLabel->setFont(widgetFont);
 
     QGraphicsDropShadowEffect *shadowEffect = new QGraphicsDropShadowEffect(this);
     shadowEffect->setBlurRadius(4);
