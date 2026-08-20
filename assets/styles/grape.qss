@@ -87,3 +87,6 @@ QTreeView::item:selected {
     background-color: #807641;
     border-radius: 4px;
 }
+QStatusBar::item {
+    border: none;
+}

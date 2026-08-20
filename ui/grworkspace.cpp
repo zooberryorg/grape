@@ -10,11 +10,12 @@
 #include "grasset.h"
 #include "grdscanner.h"
 #include "grproject.h"
+#include "grstatusbar.h"
 
 GrWorkspace::GrWorkspace(QWidget *parent)
     : QWidget{parent}
 {
-    statusBar = new QStatusBar( this );
+    statusBar = new GrStatusBar( this );
     workspaceVLayout = new QVBoxLayout( this );
 
     vSplitter = new QSplitter(Qt::Vertical, this);

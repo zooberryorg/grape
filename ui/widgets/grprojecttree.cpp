@@ -30,19 +30,9 @@ GrProjectTree::GrProjectTree(QWidget *parent, QMap<AssetType, QVector<GrAsset*>>
     fileTree->setUniformRowHeights(true);
     fileTree->setContentsMargins( 2, 2, 2, 2 );
     explorerLabel->setContentsMargins( 2, 2, 2, 2 );
-    QWidget* versionBox = new QWidget(this);
-    QLabel* version = new QLabel("GrAPE 0.1.0", versionBox);
-    QVBoxLayout* versionLayout = new QVBoxLayout;
-    versionBox->setLayout(versionLayout);
-    versionLayout->addWidget(version);
-    versionLayout->setContentsMargins( 0, 0, 0, 0 );
-    versionBox->setObjectName("explorerContainer");;
-
 
     treeLayout->addWidget(explorerLabel);
     treeLayout->addWidget(fileTree);
-    workspaceVLayout->addWidget(versionBox);
-
     workspaceVLayout->setContentsMargins( 0, 0, 0, 0 );
 
 

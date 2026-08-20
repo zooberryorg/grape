@@ -12,7 +12,7 @@ class GrCanvas;
 class GrAsset;
 class QStackedWidget;
 class GrProject;
-class QStatusBar;
+class GrStatusBar;
 
 class GrWorkspace : public QWidget
 {
@@ -38,7 +38,7 @@ private:
 
     QVBoxLayout* workspaceVLayout;
     QSplitter *vSplitter;
-    QStatusBar* statusBar;
+    GrStatusBar* statusBar;
 private slots:
     void handleAssetSelected(GrAsset* asset);
 
