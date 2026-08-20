@@ -2,11 +2,16 @@
 
 
 #include <QHBoxLayout>
+#include <QCheckBox>
+#include <QLabel>
 
-GrCheckbox::GrCheckbox(QWidget *parent, const QString& label)
-    : QCheckBox{parent}
+GrCheckbox::GrCheckbox(QWidget *parent, const QString& label, const QString& caption)
+    : QWidget{parent}
 {
-    QHBoxLayout* hLayout = new QHBoxLayout(this);
+    QVBoxLayout* vLayout = new QVBoxLayout(this);
+    QCheckBox* checkbox = new QCheckBox(label);
+    QLabel* captionLabel = new QLabel(caption);
 
-    checkbox = new QCheckBox();
+    vLayout->addWidget(checkbox);
+    vLayout->addWidget(captionLabel);
 }

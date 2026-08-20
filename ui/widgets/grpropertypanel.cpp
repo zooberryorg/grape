@@ -1,6 +1,5 @@
 #include "grpropertypanel.h"
 #include <QSpinBox>
-#include <QCheckBox>
 #include <QLineEdit>
 #include <QToolBar>
 #include <QLayoutItem>
@@ -10,6 +9,7 @@
 #include "grshared.h"
 #include "grini.h"
 #include "grasset.h"
+#include "grcheckbox.h"
 
 using Widget = GrShared::WidgetType;
 
@@ -90,7 +90,7 @@ QWidget* GrPropertyPanel::createField(QWidget* parent, const QString& section, c
             break;
         }
         case Widget::Switch: {
-            QCheckBox* check = new QCheckBox(fieldCtr);
+            GrCheckbox* check = new GrCheckbox(fieldCtr, label);
             bool isTrue = GrINI::stringToBool(value.v).toBool();
             check->setChecked(isTrue);
             field = check;
