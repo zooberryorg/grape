@@ -23,6 +23,7 @@ set(PROJECT_SOURCES
         ui/widgets/grproject.h ui/widgets/grproject.cpp
         ui/widgets/grprojecttree.h ui/widgets/grprojecttree.cpp
         ui/widgets/grstatusbar.h ui/widgets/grstatusbar.cpp
+        ui/widgets/grcanvasworkspace.h ui/widgets/grcanvasworkspace.cpp
         # views (pages)
         ui/grapew.h ui/grapew.cpp ui/grapew.ui
         ui/grwelcomescreen.h ui/grwelcomescreen.cpp
@@ -59,7 +60,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 qt_add_executable(grape
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        ui/widgets/grcanvasworkspace.h ui/widgets/grcanvasworkspace.cpp
     )
 
 target_include_directories(

@@ -3,11 +3,18 @@
 
 #include <QWidget>
 
-class GrCanvasWorkspace
+class QFrame;
+
+class GrCanvasWorkspace : QWidget
 {
     Q_OBJECT
 public:
-    GrCanvasWorkspace();
+    GrCanvasWorkspace(QWidget* parent);
+private:
+    QFrame *canvasArea;
+    QFrame *fgLayers;
+    QFrame *bgLayer;
+    QFrame *shadowLayers;
 };
 
 #endif // GRCANVASWORKSPACE_H
