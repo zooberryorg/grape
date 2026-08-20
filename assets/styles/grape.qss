@@ -78,9 +78,14 @@ QWidget#toolbar {
     border-bottom-right-radius: 0px;
 
 }
+/* QTreeView */
 QTreeView {
-    background-color: transparent;
-    border: 0px;
+    background-color: #263621;
+    border: 1px solid #263720;
+    border-radius: 8px;
+    font-size: 11px;
+    margin: 6px;
+    padding: 4px;
 }
 QTreeView::item:selected {
     outline: 0px;
@@ -90,6 +95,7 @@ QTreeView::item:selected {
 QStatusBar::item {
     border: none;
 }
+/* QCheckBox */
 QCheckBox {
     font-size: 11px;
 }
