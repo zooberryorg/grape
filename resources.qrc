@@ -31,6 +31,7 @@
         <file alias="cookie-man.svg">assets/icons/cookie-man.svg</file>
         <file alias="transform.svg">assets/icons/transform.svg</file>
         <file alias="heart.svg">assets/icons/heart.svg</file>
+        <file alias="file-smile.svg">assets/icons/file-smile.svg</file>
     </qresource>
     <qresource prefix="/styles">
         <file alias="grape.qss">assets/styles/grape.qss</file>

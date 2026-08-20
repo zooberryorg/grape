@@ -63,6 +63,7 @@ enum AssetTypes {
     MaintenanceWorker,
     Keeper,
     Ambient,
+    Foliage,
     None
 };
 
