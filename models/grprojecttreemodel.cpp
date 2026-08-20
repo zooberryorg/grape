@@ -100,6 +100,9 @@ QVariant GrProjectTreeModel::data(const QModelIndex &index, int role) const
         } if ( role == Qt::DecorationRole ) {
             return groupIcon(type);
         }
+        if ( role == Qt::ForegroundRole ) {
+            return QColor("#fff");
+        }
         return QVariant();
     }
 
@@ -110,11 +113,15 @@ QVariant GrProjectTreeModel::data(const QModelIndex &index, int role) const
         return asset->name();
     }
     if (role == Qt::DecorationRole) {
-        return GrGfx::setSvgColor(":/icons/file-smile.svg", "#fff", 30, 30);
+        return GrGfx::setSvgColor(":/icons/file-smile.svg", "#949da9", 30, 30);
     }
     if (role == Qt::UserRole) {
         return QVariant::fromValue( asset );
     }
+    if ( role == Qt::ForegroundRole ) {
+        return QColor("#949da9");
+    }
+
     return QVariant();
 }
 
@@ -133,7 +140,8 @@ QVariant GrProjectTreeModel::groupIcon(const AssetType& type) const
             return GrGfx::setSvgColor(":/icons/fountain.svg", "#fff", 30, 30);
         case AssetType::Foliage:
             return GrGfx::setSvgColor(":/icons/tree.svg", "#fff", 30, 30);
-
+        case AssetType::TankFilter:
+            return GrGfx::setSvgColor(":/icons/filter.svg", "#fff", 30, 30);
         default:
             return GrGfx::setSvgColor(":/icons/file-smile.svg", "#fff", 30, 30);
     }

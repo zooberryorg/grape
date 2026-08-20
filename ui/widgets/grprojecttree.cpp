@@ -2,6 +2,7 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QTreeView>
+#include <QHeaderView>
 
 #include "grprojecttreemodel.h"
 #include "grasset.h"
@@ -15,7 +16,8 @@ GrProjectTree::GrProjectTree(QWidget *parent, QMap<AssetType, QVector<GrAsset*>>
     treeFrame->setObjectName("explorerContainer");
     treeFrame->setAttribute(Qt::WA_StyledBackground, true);
     QVBoxLayout* treeLayout = new QVBoxLayout(treeFrame);
-    treeLayout->setContentsMargins( 0, 0, 0, 0 );
+    treeLayout->setContentsMargins( 8, 8, 8, 8 );
+    treeLayout->setSpacing(6);
     workspaceVLayout->addWidget(treeFrame);
 
     // "Explorer" label above tree
@@ -29,6 +31,7 @@ GrProjectTree::GrProjectTree(QWidget *parent, QMap<AssetType, QVector<GrAsset*>>
     fileTree->setAnimated(true);
     fileTree->setUniformRowHeights(true);
     fileTree->setContentsMargins( 2, 2, 2, 2 );
+    fileTree->setRootIsDecorated(false);
     explorerLabel->setContentsMargins( 2, 2, 2, 2 );
 
     treeLayout->addWidget(explorerLabel);
@@ -37,6 +40,9 @@ GrProjectTree::GrProjectTree(QWidget *parent, QMap<AssetType, QVector<GrAsset*>>
 
 
     connect( fileTree->selectionModel(), &QItemSelectionModel::currentChanged, this, &GrProjectTree::handleSelectionChanged);
+    connect(fileModel, &GrProjectTreeModel::rowsInserted, this, [=](const QModelIndex &index, int first, int last){
+        fileTree->expand(index);
+    });
 }
 
 void GrProjectTree::insertProject(GrAsset *asset)

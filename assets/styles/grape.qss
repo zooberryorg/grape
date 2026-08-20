@@ -25,6 +25,7 @@ QWidget#propertyPanel {
     border-bottom-left-radius: 0px;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
+    padding: 10px;
 }
 QWidget#propertyPanelGroup {
     background-color: #171f14;
@@ -78,18 +79,28 @@ QWidget#toolbar {
     border-bottom-right-radius: 0px;
 
 }
+/* QTreeView */
 QTreeView {
-    background-color: transparent;
-    border: 0px;
+    background-color: #263621;
+    border: 1px solid #395132;
+    border-radius: 8px;
+    font-size: 11px;
+    padding: 4px;
+    outline: none;
+}
+QTreeView::branch:selected {
+    outline: 0px;
+    background-color: #263621;
+    border: none;
 }
 QTreeView::item:selected {
     outline: 0px;
     background-color: #807641;
-    border-radius: 4px;
-}
-QStatusBar::item {
     border: none;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
 }
+/* QCheckBox */
 QCheckBox {
     font-size: 11px;
 }
@@ -108,4 +119,12 @@ QCheckBox::indicator:checked {
     border-color: #d5ac50;
     background-color: #d5ac50;
     image: url(:/icons/check.svg); 
+}
+
+QListView
+{
+    outline: none;
+}
+QStatusBar::item {
+    border: none;
 }
