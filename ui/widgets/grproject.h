@@ -6,6 +6,7 @@
 class GrAsset;
 class QFrame;
 class GrPropertyPanelMgr;
+class GrCanvasWorkspace;
 
 class GrProject : public QWidget
 {
@@ -16,7 +17,7 @@ public:
 
 signals:
 private:
-    QFrame* canvasArea;
+    GrCanvasWorkspace* canvasArea;
     GrPropertyPanelMgr* panelMgr;
 
 };
