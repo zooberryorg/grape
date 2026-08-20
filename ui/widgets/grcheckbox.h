@@ -6,11 +6,12 @@
 class QLabel;
 class QCheckBox;
 
-class GrCheckbox : public QWidget
+class GrCheckBox : public QWidget
 {
     Q_OBJECT
 public:
-    explicit GrCheckbox(QWidget *parent = nullptr, const QString& label = "", const QString& caption = "");
+    explicit GrCheckBox(QWidget *parent = nullptr, const QString& label = "", const QString& caption = "");
+    QCheckBox* widget() { return checkbox; };
 
 signals:
 

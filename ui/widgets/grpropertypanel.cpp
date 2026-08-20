@@ -5,6 +5,7 @@
 #include <QLayoutItem>
 #include <QVBoxLayout>
 #include <QLabel>
+#include <QCheckBox>
 
 #include "grshared.h"
 #include "grini.h"
@@ -72,8 +73,7 @@ QWidget* GrPropertyPanel::createField(QWidget* parent, const QString& section, c
     QWidget* field = nullptr;
     QVBoxLayout* layout = new QVBoxLayout(fieldCtr);
     layout->setContentsMargins( 0, 0, 0, 0 );
-    QLabel* label = new QLabel(key, fieldCtr);
-    layout->addWidget(label);
+    layout->setSpacing(0);
 
     switch (value.widgetType) {
         case Widget::Integer: {
@@ -90,9 +90,9 @@ QWidget* GrPropertyPanel::createField(QWidget* parent, const QString& section, c
             break;
         }
         case Widget::Switch: {
-            GrCheckbox* check = new GrCheckbox(fieldCtr, label);
+            GrCheckBox* check = new GrCheckBox(fieldCtr, key);
             bool isTrue = GrINI::stringToBool(value.v).toBool();
-            check->setChecked(isTrue);
+            check->widget()->setChecked(isTrue);
             field = check;
             break;
         }

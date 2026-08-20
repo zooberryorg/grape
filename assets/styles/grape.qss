@@ -90,3 +90,6 @@ QTreeView::item:selected {
 QStatusBar::item {
     border: none;
 }
+QCheckBox {
+    font-size: 10px;
+}
