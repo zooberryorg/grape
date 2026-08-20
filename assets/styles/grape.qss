@@ -82,10 +82,9 @@ QWidget#toolbar {
 /* QTreeView */
 QTreeView {
     background-color: #263621;
-    border: 1px solid #263720;
+    border: 1px solid #395132;
     border-radius: 8px;
     font-size: 11px;
-    margin: 6px;
     padding: 4px;
     outline: none;
 }
@@ -125,4 +124,7 @@ QCheckBox::indicator:checked {
 QListView
 {
     outline: none;
+}
+QStatusBar::item {
+    border: none;
 }

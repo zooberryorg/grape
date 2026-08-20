@@ -16,7 +16,8 @@ GrProjectTree::GrProjectTree(QWidget *parent, QMap<AssetType, QVector<GrAsset*>>
     treeFrame->setObjectName("explorerContainer");
     treeFrame->setAttribute(Qt::WA_StyledBackground, true);
     QVBoxLayout* treeLayout = new QVBoxLayout(treeFrame);
-    treeLayout->setContentsMargins( 0, 0, 0, 0 );
+    treeLayout->setContentsMargins( 8, 8, 8, 8 );
+    treeLayout->setSpacing(6);
     workspaceVLayout->addWidget(treeFrame);
 
     // "Explorer" label above tree
