@@ -4,24 +4,29 @@
 #include <QVBoxLayout>
 
 GrCanvasWorkspace::GrCanvasWorkspace(QWidget* parent)
+    :QWidget(parent)
 {
-    QVBoxLayout* workspaceLayout = new QVBoxLayout(parent);
+    QVBoxLayout* workspaceLayout = new QVBoxLayout(this);
+    workspaceLayout->setContentsMargins( 0, 0, 0, 0 );
 
-    canvasArea = new QFrame(this);
+    canvasArea = new QFrame;
     canvasArea->setObjectName("canvasArea");
     canvasArea->setFrameShape(QFrame::Box);
 
-    fgLayers = new QFrame(this);
-    fgLayers->setObjectName("fgLayerWidget");
+    fgLayers = new QFrame;
+    fgLayers->setObjectName("canvasArea");
     fgLayers->setFrameShape(QFrame::Box);
+    fgLayers->setMaximumHeight(80);
 
-    bgLayer = new QFrame(this);
-    bgLayer->setObjectName("bgLayerWidget");
+    bgLayer = new QFrame;
+    bgLayer->setObjectName("canvasArea");
     bgLayer->setFrameShape(QFrame::Box);
+    bgLayer->setMaximumHeight(80);
 
-    shadowLayers = new QFrame(this);
-    shadowLayers->setObjectName("shadowLayerWidget");
+    shadowLayers = new QFrame;
+    shadowLayers->setObjectName("canvasArea");
     shadowLayers->setFrameShape(QFrame::Box);
+    shadowLayers->setMaximumHeight(80);
 
     workspaceLayout->addWidget(canvasArea);
     workspaceLayout->addWidget(fgLayers);

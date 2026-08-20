@@ -5,6 +5,7 @@
 #include <QSplitter>
 
 #include "grpropertypanelmgr.h"
+#include "grcanvasworkspace.h"
 
 GrProject::GrProject(QWidget *parent)
     : QWidget{parent}
@@ -17,10 +18,7 @@ GrProject::GrProject(QWidget *parent)
     projectLayout->addWidget(hSplitter);
 
     // Canvas area
-    canvasArea = new QFrame(this);
-    canvasArea->setObjectName("canvasArea");
-    canvasArea->setFrameShape(QFrame::Box);
-
+    canvasArea = new GrCanvasWorkspace(this);
     panelMgr = new GrPropertyPanelMgr(this);
 
     hSplitter->addWidget(canvasArea);

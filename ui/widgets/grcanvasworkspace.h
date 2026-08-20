@@ -5,11 +5,11 @@
 
 class QFrame;
 
-class GrCanvasWorkspace : QWidget
+class GrCanvasWorkspace : public QWidget
 {
     Q_OBJECT
 public:
-    GrCanvasWorkspace(QWidget* parent);
+    explicit GrCanvasWorkspace(QWidget* parent = nullptr);
 private:
     QFrame *canvasArea;
     QFrame *fgLayers;
