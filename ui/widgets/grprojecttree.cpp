@@ -37,6 +37,9 @@ GrProjectTree::GrProjectTree(QWidget *parent, QMap<AssetType, QVector<GrAsset*>>
 
 
     connect( fileTree->selectionModel(), &QItemSelectionModel::currentChanged, this, &GrProjectTree::handleSelectionChanged);
+    connect(fileModel, &GrProjectTreeModel::rowsInserted, this, [=](const QModelIndex &index, int first, int last){
+        fileTree->expand(index);
+    });
 }
 
 void GrProjectTree::insertProject(GrAsset *asset)
