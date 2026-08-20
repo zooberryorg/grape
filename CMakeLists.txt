@@ -22,6 +22,7 @@ set(PROJECT_SOURCES
         ui/widgets/grpropertypanelmgr.h ui/widgets/grpropertypanelmgr.cpp
         ui/widgets/grproject.h ui/widgets/grproject.cpp
         ui/widgets/grprojecttree.h ui/widgets/grprojecttree.cpp
+        ui/widgets/grstatusbar.h ui/widgets/grstatusbar.cpp
         # views (pages)
         ui/grapew.h ui/grapew.cpp ui/grapew.ui
         ui/grwelcomescreen.h ui/grwelcomescreen.cpp

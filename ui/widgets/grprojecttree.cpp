@@ -11,6 +11,12 @@ GrProjectTree::GrProjectTree(QWidget *parent, QMap<AssetType, QVector<GrAsset*>>
 {
     // vertical layout that contains the project tree itself
     workspaceVLayout = new QVBoxLayout(this);
+    QWidget* treeFrame = new QWidget(this);
+    treeFrame->setObjectName("explorerContainer");
+    treeFrame->setAttribute(Qt::WA_StyledBackground, true);
+    QVBoxLayout* treeLayout = new QVBoxLayout(treeFrame);
+    treeLayout->setContentsMargins( 0, 0, 0, 0 );
+    workspaceVLayout->addWidget(treeFrame);
 
     // "Explorer" label above tree
     explorerLabel = new QLabel("Explorer");
@@ -20,9 +26,15 @@ GrProjectTree::GrProjectTree(QWidget *parent, QMap<AssetType, QVector<GrAsset*>>
     fileTree = new QTreeView(this);
     fileTree->setModel(fileModel);
     fileTree->setHeaderHidden(true);
+    fileTree->setAnimated(true);
+    fileTree->setUniformRowHeights(true);
+    fileTree->setContentsMargins( 2, 2, 2, 2 );
+    explorerLabel->setContentsMargins( 2, 2, 2, 2 );
 
-    workspaceVLayout->addWidget(explorerLabel);
-    workspaceVLayout->addWidget(fileTree);
+    treeLayout->addWidget(explorerLabel);
+    treeLayout->addWidget(fileTree);
+    workspaceVLayout->setContentsMargins( 0, 0, 0, 0 );
+
 
     connect( fileTree->selectionModel(), &QItemSelectionModel::currentChanged, this, &GrProjectTree::handleSelectionChanged);
 }

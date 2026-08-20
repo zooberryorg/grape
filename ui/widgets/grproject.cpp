@@ -12,12 +12,14 @@ GrProject::GrProject(QWidget *parent)
 
     // Canvas area
     canvasArea = new QFrame(this);
+    canvasArea->setObjectName("canvasArea");
     canvasArea->setFrameShape(QFrame::Box);
 
     panelMgr = new GrPropertyPanelMgr(this);
 
     projectLayout->addWidget(canvasArea, 1);
     projectLayout->addWidget(panelMgr);
+    projectLayout->setContentsMargins(0, 0, 0, 0);
 }
 
 void GrProject::showAsset(GrAsset* asset) {

@@ -17,8 +17,11 @@ GrPropertyPanel::GrPropertyPanel(QWidget *parent, GrShared::PropertyGroup groupT
     : QWidget{parent},
       m_group{groupType}
 {
+    setObjectName("propertyPanel");
+    setAttribute(Qt::WA_StyledBackground, true);
     m_layout = new QVBoxLayout(this);
     m_layout->addStretch();
+    m_layout->setContentsMargins( 0, 0, 0, 0 );
 }
 
 void GrPropertyPanel::loadAsset(GrAsset* asset)
@@ -68,6 +71,7 @@ QWidget* GrPropertyPanel::createField(QWidget* parent, const QString& section, c
     QWidget* fieldCtr = new QWidget(parent);
     QWidget* field = nullptr;
     QVBoxLayout* layout = new QVBoxLayout(fieldCtr);
+    layout->setContentsMargins( 0, 0, 0, 0 );
     QLabel* label = new QLabel(key, fieldCtr);
     layout->addWidget(label);
 

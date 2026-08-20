@@ -31,21 +31,35 @@ static const QHash<GrShared::PropertyGroup, QString> groupIcons = {
 GrPropertyPanelMgr::GrPropertyPanelMgr(QWidget *parent)
     : QWidget{parent}
 {
-    m_toolbar = new QWidget;
-    m_toolbar->setFixedWidth(50);
-    m_toolbarLayout = new QVBoxLayout(m_toolbar);
-    m_toolbarLayout->setContentsMargins( 4, 4, 4, 4 );
-    m_toolbarLayout->setSpacing(4);
+    setObjectName("propertyPanelGroup");
+    setAttribute(Qt::WA_StyledBackground, true);
+
+    m_toolbar = new QWidget(this);
+    m_toolbar->setFixedWidth(30);
+    m_toolbar->setObjectName("toolbar");
+    m_toolbar->setAttribute(Qt::WA_StyledBackground, true);
+
+    QHBoxLayout* toolbarHSpace = new QHBoxLayout(m_toolbar);
+    toolbarHSpace->setContentsMargins( 0, 0, 0, 0 );
+    m_toolbarLayout = new QVBoxLayout;
+    m_toolbarLayout->setContentsMargins( 0, 0, 0, 0 );
+    m_toolbarLayout->setSpacing(0);
     m_toolbarLayout->addStretch();
+
+    toolbarHSpace->addStretch();
+    toolbarHSpace->addLayout(m_toolbarLayout);
 
     m_group = new QActionGroup(this);
     m_group->setExclusive(true);
 
     m_panelStack = new QStackedWidget;
 
-    auto* layout = new QHBoxLayout(this);
+    QHBoxLayout* layout = new QHBoxLayout(this);
     layout->addWidget(m_toolbar);
     layout->addWidget(m_panelStack, 1);
+    layout->setContentsMargins( 0, 0, 0, 0 );
+    layout->setSpacing(0);
+
 }
 
 void GrPropertyPanelMgr::loadAsset(GrAsset *asset)
@@ -76,7 +90,7 @@ void GrPropertyPanelMgr::loadAsset(GrAsset *asset)
         m_panels.insert(g, panel);
 
         QIcon icon = groupIcons.contains(g)
-            ? GrGfx::setSvgColor(groupIcons[g], QColor("#12834b"), 50, 50)
+            ? GrGfx::setSvgColor(groupIcons[g], QColor("#c2c6c0"), 50, 50)
             : QIcon();
 
         QAction* action = m_toolbar->addAction(icon, GrShared::GroupToString(g));
@@ -88,7 +102,8 @@ void GrPropertyPanelMgr::loadAsset(GrAsset *asset)
         QToolButton* button = new QToolButton(m_toolbar);
         button->setDefaultAction(action);
         button->setToolButtonStyle(Qt::ToolButtonIconOnly);
-        button->setFixedSize(40, 40);
+        button->setFixedSize(28, 30);
+        button->setObjectName("toolbarButton");
         m_toolbarLayout->insertWidget(m_toolbarLayout->count() - 1, button);
         m_buttons.insert(g, button);
 

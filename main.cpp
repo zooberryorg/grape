@@ -24,6 +24,11 @@ int main(int argc, char *argv[])
     qInstallMessageHandler( msgHandler );
     QApplication a(argc, argv);
 
+    // setup qss
+    QFile style(":/styles/grape.qss");
+    style.open(QFile::ReadOnly);
+    a.setStyleSheet(QLatin1String(style.readAll()));
+
     // install fonts
     QFontDatabase::addApplicationFont(":/fonts/Roboto-Light.ttf");
     QFontDatabase::addApplicationFont(":/fonts/Roboto-Regular.ttf");

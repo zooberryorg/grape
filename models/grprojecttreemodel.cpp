@@ -24,6 +24,7 @@
 #include "grprojecttreemodel.h"
 #include "grtreenode.h"
 #include <QDebug>
+#include "grgfx.h"
 
 GrProjectTreeModel::GrProjectTreeModel(QMap<AssetType, QVector<GrAsset*>> groupTypes, QObject *parent)
     : QAbstractItemModel(parent)
@@ -92,9 +93,12 @@ QVariant GrProjectTreeModel::data(const QModelIndex &index, int role) const
         return QVariant();
 
     if ( index.internalId() == quintptr(-1) ) {
+        const AssetType type = m_keys.at(index.row());
         if ( role == Qt::DisplayRole )
         {
-            return GrShared::TypeToString(m_keys.at(index.row()));
+            return GrShared::TypeToString(type);
+        } if ( role == Qt::DecorationRole ) {
+            return groupIcon(type);
         }
         return QVariant();
     }
@@ -105,10 +109,34 @@ QVariant GrProjectTreeModel::data(const QModelIndex &index, int role) const
     if (role == Qt::DisplayRole) {
         return asset->name();
     }
+    if (role == Qt::DecorationRole) {
+        return GrGfx::setSvgColor(":/icons/file-smile.svg", "#fff", 30, 30);
+    }
     if (role == Qt::UserRole) {
         return QVariant::fromValue( asset );
     }
     return QVariant();
+}
+
+QVariant GrProjectTreeModel::groupIcon(const AssetType& type) const
+{
+    switch ( type ) {
+        case AssetType::Animal:
+            return GrGfx::setSvgColor(":/icons/paw.svg", "#fff", 30, 30);
+        case AssetType::Building:
+            return GrGfx::setSvgColor(":/icons/building.svg", "#fff", 30, 30);
+        case AssetType::Fence:
+            return GrGfx::setSvgColor(":/icons/fence.svg", "#fff", 30, 30);
+        case AssetType::Path:
+            return GrGfx::setSvgColor(":/icons/path.svg", "#fff", 30, 30);
+        case AssetType::Scenery:
+            return GrGfx::setSvgColor(":/icons/fountain.svg", "#fff", 30, 30);
+        case AssetType::Foliage:
+            return GrGfx::setSvgColor(":/icons/tree.svg", "#fff", 30, 30);
+
+        default:
+            return GrGfx::setSvgColor(":/icons/file-smile.svg", "#fff", 30, 30);
+    }
 }
 
 void GrProjectTreeModel::setAssets(QMap<AssetType, QVector<GrAsset *>> groupTypes)

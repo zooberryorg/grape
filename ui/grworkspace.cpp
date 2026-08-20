@@ -3,19 +3,26 @@
 #include <QToolbar>
 #include <QActionGroup>
 #include <QStackedWidget>
+#include <QStatusBar>
 
 #include "grworkspace.h"
 #include "grprojecttree.h"
 #include "grasset.h"
 #include "grdscanner.h"
 #include "grproject.h"
+#include "grstatusbar.h"
 
 GrWorkspace::GrWorkspace(QWidget *parent)
     : QWidget{parent}
 {
-    workspaceHLayout = new QHBoxLayout( this );
-    hSplitter = new QSplitter( this );
-    workspaceHLayout->addWidget( hSplitter );
+    statusBar = new GrStatusBar( this );
+    workspaceVLayout = new QVBoxLayout( this );
+
+    vSplitter = new QSplitter(Qt::Vertical, this);
+    hSplitter = new QSplitter(Qt::Horizontal, this);
+
+    workspaceVLayout->setContentsMargins(5, 5, 5, 5);
+    workspaceVLayout->addWidget(vSplitter);
 
     // file tree setup
     projectTree = new GrProjectTree;
@@ -24,6 +31,8 @@ GrWorkspace::GrWorkspace(QWidget *parent)
     hSplitter->addWidget( projectTree );
     hSplitter->addWidget( projectStack );
     // hSplitter->setSizes({250, 524, 250});
+    vSplitter->addWidget(hSplitter);
+    vSplitter->addWidget(statusBar);
 
     hSplitter->setStretchFactor(0, 0);
     hSplitter->setStretchFactor(1, 1);
