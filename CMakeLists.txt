@@ -61,6 +61,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 qt_add_executable(grape
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        ui/widgets/grspinner.h ui/widgets/grspinner.cpp
     )
 
 target_include_directories(
