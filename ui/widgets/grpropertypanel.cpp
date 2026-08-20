@@ -1,15 +1,16 @@
 #include "grpropertypanel.h"
 #include <QSpinBox>
-#include <QCheckBox>
 #include <QLineEdit>
 #include <QToolBar>
 #include <QLayoutItem>
 #include <QVBoxLayout>
 #include <QLabel>
+#include <QCheckBox>
 
 #include "grshared.h"
 #include "grini.h"
 #include "grasset.h"
+#include "grcheckbox.h"
 
 using Widget = GrShared::WidgetType;
 
@@ -22,6 +23,7 @@ GrPropertyPanel::GrPropertyPanel(QWidget *parent, GrShared::PropertyGroup groupT
     m_layout = new QVBoxLayout(this);
     m_layout->addStretch();
     m_layout->setContentsMargins( 0, 0, 0, 0 );
+    m_layout->setAlignment(Qt::AlignCenter);
 }
 
 void GrPropertyPanel::loadAsset(GrAsset* asset)
@@ -72,8 +74,7 @@ QWidget* GrPropertyPanel::createField(QWidget* parent, const QString& section, c
     QWidget* field = nullptr;
     QVBoxLayout* layout = new QVBoxLayout(fieldCtr);
     layout->setContentsMargins( 0, 0, 0, 0 );
-    QLabel* label = new QLabel(key, fieldCtr);
-    layout->addWidget(label);
+    layout->setSpacing(0);
 
     switch (value.widgetType) {
         case Widget::Integer: {
@@ -90,9 +91,9 @@ QWidget* GrPropertyPanel::createField(QWidget* parent, const QString& section, c
             break;
         }
         case Widget::Switch: {
-            QCheckBox* check = new QCheckBox(fieldCtr);
+            GrCheckBox* check = new GrCheckBox(fieldCtr, key);
             bool isTrue = GrINI::stringToBool(value.v).toBool();
-            check->setChecked(isTrue);
+            check->widget()->setChecked(isTrue);
             field = check;
             break;
         }
