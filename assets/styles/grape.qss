@@ -91,5 +91,21 @@ QStatusBar::item {
     border: none;
 }
 QCheckBox {
-    font-size: 10px;
+    font-size: 11px;
+}
+QCheckBox::indicator {
+    width: 10px;
+    height: 10px;
+    border: 2px solid #182315;
+    border-radius: 4px;
+    background-color: #182315;
+}
+QCheckBox::indicator:hover {
+    border: 2px solid #1d2719;
+    background-color: #1d2719;
+}
+QCheckBox::indicator:checked {
+    border-color: #d5ac50;
+    background-color: #d5ac50;
+    image: url(:/icons/check.svg); 
 }
