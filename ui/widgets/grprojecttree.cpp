@@ -2,6 +2,7 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QTreeView>
+#include <QHeaderView>
 
 #include "grprojecttreemodel.h"
 #include "grasset.h"
@@ -29,6 +30,7 @@ GrProjectTree::GrProjectTree(QWidget *parent, QMap<AssetType, QVector<GrAsset*>>
     fileTree->setAnimated(true);
     fileTree->setUniformRowHeights(true);
     fileTree->setContentsMargins( 2, 2, 2, 2 );
+    fileTree->setRootIsDecorated(false);
     explorerLabel->setContentsMargins( 2, 2, 2, 2 );
 
     treeLayout->addWidget(explorerLabel);
