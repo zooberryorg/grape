@@ -22,4 +22,5 @@ GrLangTableBrowser::GrLangTableBrowser(QWidget *parent, const QString& path)
     langTable->setSortingEnabled(true);
 
     layout->addWidget(langTable);
+    layout->setContentsMargins(5, 5, 5, 5);
 }

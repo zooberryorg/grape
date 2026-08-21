@@ -26,6 +26,7 @@ GrWorkspace::GrWorkspace(QWidget *parent)
     workspaceVLayout->addWidget(vSplitter);
 
     leftSidebarLayout = new QVBoxLayout;
+    leftSidebarLayout->setContentsMargins(0, 0, 0, 0);
 
     // file tree setup
     projectTree = new GrProjectTree;
