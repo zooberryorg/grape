@@ -11,11 +11,8 @@
 GrSpinner::GrSpinner(QWidget *parent, const QString& label, const QString& caption)
     : GrWidget{parent}
 {
-    QVBoxLayout* vLayout = new QVBoxLayout(this);
     QHBoxLayout* hLayout = new QHBoxLayout;
     hLayout->setSpacing(10);
-    vLayout->setContentsMargins( 2, 0, 2, 0 );
-    vLayout->setSpacing(0);
     spinbox = new QSpinBox;
     QLabel* captionLabel = new QLabel(caption);
     QLabel* widgetLabel = new QLabel(label);
