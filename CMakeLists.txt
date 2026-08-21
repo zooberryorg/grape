@@ -72,6 +72,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 qt_add_executable(grape
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        ui/widgets/grlangtablebrowser.h ui/widgets/grlangtablebrowser.cpp
     )
 
 target_include_directories(
