@@ -3,6 +3,7 @@
 #include <QVBoxLayout>
 #include <QTableView>
 #include <QSortFilterProxyModel>
+#include <QHeaderView>
 
 #include "grlangtablemodel.h"
 #include "grpe.h"
@@ -20,6 +21,7 @@ GrLangTableBrowser::GrLangTableBrowser(QWidget *parent, const QString& path)
     QTableView* langTable = new QTableView(this);
     langTable->setModel(proxy);
     langTable->setSortingEnabled(true);
+    langTable->horizontalHeader()->setStretchLastSection(true);
 
     layout->addWidget(langTable);
     layout->setContentsMargins(5, 5, 5, 5);
