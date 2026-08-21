@@ -11,6 +11,9 @@
 GrLangTableBrowser::GrLangTableBrowser(QWidget *parent, const QString& path)
     : QWidget{parent}
 {
+    this->setObjectName("explorerContainer");
+    this->setAttribute(Qt::WA_StyledBackground, true);
+
     QVBoxLayout* layout = new QVBoxLayout(this);
     GrLangTableModel* langModel = new GrLangTableModel(this);
     langModel->setEntries(GrPE::getStringTables(path));
