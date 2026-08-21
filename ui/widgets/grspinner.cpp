@@ -24,12 +24,25 @@ GrSpinner::GrSpinner(QWidget *parent, const QString& label, const QString& capti
     widgetLabel->setFont(widgetFont);
     captionLabel->setFont(widgetFont);
 
-    QGraphicsDropShadowEffect *shadowEffect = new QGraphicsDropShadowEffect(this);
-    shadowEffect->setBlurRadius(4);
-    shadowEffect->setColor(QColor(0, 0, 0, 140));
-    shadowEffect->setOffset(0, 2);
+    QGraphicsDropShadowEffect *sSpinbox = new QGraphicsDropShadowEffect(this);
+    sSpinbox->setBlurRadius(4);
+    sSpinbox->setColor(QColor(0, 0, 0, 140));
+    sSpinbox->setOffset(0, 2);
 
-    spinbox->setGraphicsEffect(shadowEffect);
+    QGraphicsDropShadowEffect *sWidgetLabel = new QGraphicsDropShadowEffect(this);
+    sWidgetLabel->setBlurRadius(4);
+    sWidgetLabel->setColor(QColor(0, 0, 0, 140));
+    sWidgetLabel->setOffset(0, 2);
+
+    QGraphicsDropShadowEffect *sCaptionLabel = new QGraphicsDropShadowEffect(this);
+    sCaptionLabel->setBlurRadius(4);
+    sCaptionLabel->setColor(QColor(0, 0, 0, 140));
+    sCaptionLabel->setOffset(0, 2);
+
+
+    spinbox->setGraphicsEffect(sSpinbox);
+    widgetLabel->setGraphicsEffect(sWidgetLabel);
+    captionLabel->setGraphicsEffect(sCaptionLabel);
     spinbox->setCursor(Qt::ArrowCursor);
 
     vLayout->addLayout(hLayout);
