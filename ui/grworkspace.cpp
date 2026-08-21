@@ -50,6 +50,12 @@ GrWorkspace::GrWorkspace(QWidget *parent)
     hSplitter->setStretchFactor(0, 0);
     hSplitter->setStretchFactor(1, 1);
 
+    for (int i = 1; i < vSplitter->count(); ++i)
+        vSplitter->handle(i)->setAttribute(Qt::WA_Hover, true);
+
+    for (int i = 1; i < hSplitter->count(); ++i)
+        hSplitter->handle(i)->setAttribute(Qt::WA_Hover, true);
+
     connect(projectTree, &GrProjectTree::assetSelected, this, &GrWorkspace::handleAssetSelected);
 }
 

@@ -25,6 +25,9 @@ GrProject::GrProject(QWidget *parent)
     hSplitter->addWidget(panelMgr);
 
     hSplitter->setStretchFactor(0, 1);
+
+    for (int i = 1; i < hSplitter->count(); ++i)
+        hSplitter->handle(i)->setAttribute(Qt::WA_Hover, true);
 }
 
 void GrProject::showAsset(GrAsset* asset) {
