@@ -31,7 +31,7 @@ GrWelcomeScreen::GrWelcomeScreen()
     QVBoxLayout* titleLayout = new QVBoxLayout;
     titleLayout->setSpacing(4);
 
-    QLabel* title = new QLabel("GrAPE", this);
+    QLabel* title = new QLabel("APE Studio", this);
     title->setFont(robotoHeader);
     title->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
     QLabel* subtitle = new QLabel("the Great Animal Project Editor", this);

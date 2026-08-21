@@ -195,3 +195,23 @@ QSpinBox::down-button:hover {
 QSpinBox::up-button:hover {
     background-color: #14361f;
 }
+/* QSplitter */
+QSplitter::handle {
+    background-color: #171f14;
+    border: 1px solid #171f14;
+    border-radius: 4px;
+}
+QSplitter::handle:hover {
+    background-color: #c9a961;
+    border: 1px solid #c9a961;
+    border-radius: 4px;
+}
+/* QTableView */
+QTableView {
+    background-color: #263621;
+    border: 1px solid #395132;
+    border-radius: 8px;
+    font-size: 9px;
+    padding: 4px;
+    outline: none;
+}

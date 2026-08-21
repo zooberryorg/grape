@@ -11,6 +11,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools Svg)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools Svg)
+include(FetchContent)
+FetchContent_Declare(
+    LIEF
+    GIT_REPOSITORY https://github.com/lief-project/LIEF.git
+    GIT_TAG 1.0.0
+)
+FetchContent_MakeAvailable(LIEF)
 add_subdirectory(libs/simpleini)
 
 set(TS_FILES lang/grape_en_US.ts)
@@ -27,6 +34,8 @@ set(PROJECT_SOURCES
         ui/widgets/grcanvasworkspace.h ui/widgets/grcanvasworkspace.cpp
         ui/widgets/grcheckbox.h ui/widgets/grcheckbox.cpp
         ui/widgets/grspinner.h ui/widgets/grspinner.cpp
+        ui/widgets/grlangtablebrowser.h ui/widgets/grlangtablebrowser.cpp
+        ui/widgets/grlineedit.h ui/widgets/grlineedit.cpp
         # views (pages)
         ui/grapew.h ui/grapew.cpp ui/grapew.ui
         ui/grwelcomescreen.h ui/grwelcomescreen.cpp
@@ -52,9 +61,11 @@ set(PROJECT_SOURCES
         common/grini.h common/grini.cpp
         common/grslots.h common/grslots.cpp
         common/grgfx.h common/grgfx.cpp
+        common/grpe.h common/grpe.cpp
         resources.qrc
         # models
         models/grprojecttreemodel.h models/grprojecttreemodel.cpp
+        models/grlangtablemodel.h models/grlangtablemodel.cpp
         ${TS_FILES}
 )
 
@@ -100,6 +111,7 @@ target_link_libraries(grape PRIVATE
     Qt${QT_VERSION_MAJOR}::Widgets
     SimpleIni::SimpleIni
     Qt6::Svg
+    LIEF::LIEF
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

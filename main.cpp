@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
     QFontDatabase::addApplicationFont(":/fonts/Roboto-SemiBold.ttf");
     QFontDatabase::addApplicationFont(":/fonts/Roboto-Bold.ttf");
 
-    a.setFont(QFont("Roboto"));
+    a.setFont(QFont("Roboto", 11));
 
     QTranslator translator;
     const QStringList uiLanguages = QLocale::system().uiLanguages();
@@ -47,6 +47,9 @@ int main(int argc, char *argv[])
             break;
         }
     }
+
+    QApplication::setStyle(QStyleFactory::create("Fusion"));
+
     GrapeW w;
     w.show();
     return a.exec();

@@ -37,6 +37,7 @@ GrapeW::GrapeW(QWidget *parent)
 
     // initial window size
     setMinimumSize(640, 320);
+    setWindowTitle("APE Studio");
 
     connect(openAction, &QAction::triggered, this, &GrapeW::handleOpenProject);
     connect(welcomeScreen, &GrWelcomeScreen::openProjectRequested, this, &GrapeW::handleOpenProject);
