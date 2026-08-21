@@ -39,6 +39,7 @@ private:
     QVBoxLayout* workspaceVLayout;
     QSplitter *vSplitter;
     GrStatusBar* statusBar;
+    QVBoxLayout *leftSidebarLayout;
 private slots:
     void handleAssetSelected(GrAsset* asset);
 
