@@ -12,6 +12,7 @@ GrSpinner::GrSpinner(QWidget *parent, const QString& label, const QString& capti
 {
     QVBoxLayout* vLayout = new QVBoxLayout(this);
     QHBoxLayout* hLayout = new QHBoxLayout;
+    hLayout->setSpacing(10);
     vLayout->setContentsMargins( 2, 0, 2, 0 );
     vLayout->setSpacing(0);
     spinbox = new QSpinBox;
@@ -25,8 +26,8 @@ GrSpinner::GrSpinner(QWidget *parent, const QString& label, const QString& capti
 
     QGraphicsDropShadowEffect *shadowEffect = new QGraphicsDropShadowEffect(this);
     shadowEffect->setBlurRadius(4);
-    shadowEffect->setColor(QColor(0, 0, 0, 120));
-    shadowEffect->setOffset(0, 1);
+    shadowEffect->setColor(QColor(0, 0, 0, 140));
+    shadowEffect->setOffset(0, 2);
 
     spinbox->setGraphicsEffect(shadowEffect);
 
