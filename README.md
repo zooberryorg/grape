@@ -1,4 +1,4 @@
-# GrAPE - the great animal project editor for Zoo Tycoon 1
+# APE Studio - animal project editor for Zoo Tycoon 1
 
 A modern take on the classic [APE tool](https://zootycoon.fandom.com/wiki/APE) made by Blue Fang in 2001.
 
@@ -27,7 +27,7 @@ A modern take on the classic [APE tool](https://zootycoon.fandom.com/wiki/APE) m
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/zooberryorg/grape.git
+   git clone https://github.com/zooberryorg/ape-studio.git
    ```
 
 ## License
