@@ -11,6 +11,7 @@
 #include "grini.h"
 #include "grasset.h"
 #include "grcheckbox.h"
+#include "grspinner.h"
 
 using Widget = GrShared::WidgetType;
 
@@ -78,9 +79,9 @@ QWidget* GrPropertyPanel::createField(QWidget* parent, const QString& section, c
 
     switch (value.widgetType) {
         case Widget::Integer: {
-            QSpinBox* spin = new QSpinBox(fieldCtr);
-            spin->setRange(-1000, 1000);
-            spin->setValue(value.v.toInt());
+            GrSpinner* spin = new GrSpinner(fieldCtr, key);
+            spin->widget()->setRange(-1000, 1000);
+            spin->widget()->setValue(value.v.toInt());
             field = spin;
             break;
         }

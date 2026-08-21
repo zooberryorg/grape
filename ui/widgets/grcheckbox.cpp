@@ -17,8 +17,8 @@ GrCheckBox::GrCheckBox(QWidget *parent, const QString& label, const QString& cap
 
     QGraphicsDropShadowEffect *shadowEffect = new QGraphicsDropShadowEffect(this);
     shadowEffect->setBlurRadius(4);
-    shadowEffect->setColor(QColor(0, 0, 0, 120));
-    shadowEffect->setOffset(0, 1);
+    shadowEffect->setColor(QColor(0, 0, 0, 140));
+    shadowEffect->setOffset(0, 2);
 
     checkbox->setGraphicsEffect(shadowEffect);
 
