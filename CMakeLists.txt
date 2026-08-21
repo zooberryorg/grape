@@ -11,6 +11,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools Svg)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools Svg)
+include(FetchContent)
+FetchContent_Declare(
+    LIEF
+    GIT_REPOSITORY https://github.com/lief-project/LIEF.git
+    GIT_TAG 1.0.0
+)
+FetchContent_MakeAvailable(LIEF)
 add_subdirectory(libs/simpleini)
 
 set(TS_FILES lang/grape_en_US.ts)
@@ -100,6 +107,7 @@ target_link_libraries(grape PRIVATE
     Qt${QT_VERSION_MAJOR}::Widgets
     SimpleIni::SimpleIni
     Qt6::Svg
+    LIEF::LIEF
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
