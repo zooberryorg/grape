@@ -59,9 +59,11 @@ set(PROJECT_SOURCES
         common/grini.h common/grini.cpp
         common/grslots.h common/grslots.cpp
         common/grgfx.h common/grgfx.cpp
+        common/grpe.h common/grpe.cpp
         resources.qrc
         # models
         models/grprojecttreemodel.h models/grprojecttreemodel.cpp
+        models/grlangtablemodel.h models/grlangtablemodel.cpp
         ${TS_FILES}
 )
 
@@ -70,7 +72,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 qt_add_executable(grape
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        common/grpe.h common/grpe.cpp
     )
 
 target_include_directories(
