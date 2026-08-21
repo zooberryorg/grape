@@ -1,17 +1,18 @@
 #ifndef GRCHECKBOX_H
 #define GRCHECKBOX_H
 
-#include <QWidget>
+#include <QCheckBox>
+#include "grwidget.h"
 
 class QLabel;
 class QCheckBox;
 
-class GrCheckBox : public QWidget
+class GrCheckBox : public GrWidget
 {
     Q_OBJECT
 public:
     explicit GrCheckBox(QWidget *parent = nullptr, const QString& label = "", const QString& caption = "");
-    QCheckBox* widget() { return checkbox; };
+    QWidget* widget() override { return checkbox; };
 
 signals:
 
