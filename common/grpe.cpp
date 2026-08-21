@@ -36,7 +36,7 @@ namespace GrPE {
         for (const auto& entry : mgr.string_table()) {
             if (!entry.is_defined())
                 continue;
-            result.emplace(entry.id, entry.string_u8());
+            result.append(GrPE::Entry{ entry.id, QString(entry.string) });
         }
 
         return result;

@@ -32,7 +32,7 @@ GrWorkspace::GrWorkspace(QWidget *parent)
     projectStack = new QStackedWidget;
 
     // lang table
-    GrLangTableBrowser* langBrowser = new GrLangTableBrowser;
+    GrLangTableBrowser* langBrowser = new GrLangTableBrowser(this, "C:\\Program Files (x86)\\Microsoft Games\\Zoo Tycoon CC\\lang200.dll");
 
     leftSidebarLayout->addWidget(projectTree);
     leftSidebarLayout->addWidget(langBrowser);

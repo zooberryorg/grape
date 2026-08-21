@@ -20,4 +20,6 @@ GrLangTableBrowser::GrLangTableBrowser(QWidget *parent, const QString& path)
     QTableView* langTable = new QTableView(this);
     langTable->setModel(proxy);
     langTable->setSortingEnabled(true);
+
+    layout->addWidget(langTable);
 }
