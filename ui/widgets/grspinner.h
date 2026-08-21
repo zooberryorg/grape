@@ -1,18 +1,15 @@
 #ifndef GRSPINNER_H
 #define GRSPINNER_H
 
-#include <QWidget>
+#include <QSpinBox>
+#include "grwidget.h"
 
-class QSpinBox;
-
-class GrSpinner : public QWidget
+class GrSpinner : public GrWidget
 {
     Q_OBJECT
 public:
     explicit GrSpinner(QWidget *parent = nullptr, const QString& label = "", const QString& caption = "");
-    QSpinBox* widget() { return spinbox; };
-
-signals:
+    QWidget* widget() override { return spinbox; };
 
 private:
     QSpinBox *spinbox;
