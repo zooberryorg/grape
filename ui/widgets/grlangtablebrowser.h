@@ -7,7 +7,7 @@ class GrLangTableBrowser : public QWidget
 {
     Q_OBJECT
 public:
-    explicit GrLangTableBrowser(QWidget *parent = nullptr);
+    explicit GrLangTableBrowser(QWidget *parent = nullptr, const QString& path = "");
 
 signals:
 
