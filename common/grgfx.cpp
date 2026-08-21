@@ -33,4 +33,15 @@ namespace GrGfx
         map.fill( Qt::transparent );
         return map;
     }
+
+    QGraphicsDropShadowEffect *shadowFx()
+    {
+        QGraphicsDropShadowEffect *shadowEffect = new QGraphicsDropShadowEffect();
+        shadowEffect->setBlurRadius(4);
+        shadowEffect->setColor(QColor(0, 0, 0, 140));
+        shadowEffect->setOffset(0, 2);
+
+        return shadowEffect;
+    }
+
 }

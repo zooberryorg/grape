@@ -22,6 +22,7 @@ set(PROJECT_SOURCES
         ui/widgets/grpropertypanelmgr.h ui/widgets/grpropertypanelmgr.cpp
         ui/widgets/grproject.h ui/widgets/grproject.cpp
         ui/widgets/grprojecttree.h ui/widgets/grprojecttree.cpp
+        ui/widgets/grwidget.h ui/widgets/grwidget.cpp
         ui/widgets/grstatusbar.h ui/widgets/grstatusbar.cpp
         ui/widgets/grcanvasworkspace.h ui/widgets/grcanvasworkspace.cpp
         ui/widgets/grcheckbox.h ui/widgets/grcheckbox.cpp

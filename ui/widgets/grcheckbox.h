@@ -1,12 +1,12 @@
 #ifndef GRCHECKBOX_H
 #define GRCHECKBOX_H
 
-#include <QWidget>
+#include "grwidget.h"
 
 class QLabel;
 class QCheckBox;
 
-class GrCheckBox : public QWidget
+class GrCheckBox : public GrWidget
 {
     Q_OBJECT
 public:

@@ -1,4 +1,5 @@
 #include "grspinner.h"
+#include "grgfx.h"
 
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -8,13 +9,10 @@
 #include <QSpinBox>
 
 GrSpinner::GrSpinner(QWidget *parent, const QString& label, const QString& caption)
-    : QWidget{parent}
+    : GrWidget{parent}
 {
-    QVBoxLayout* vLayout = new QVBoxLayout(this);
     QHBoxLayout* hLayout = new QHBoxLayout;
     hLayout->setSpacing(10);
-    vLayout->setContentsMargins( 2, 0, 2, 0 );
-    vLayout->setSpacing(0);
     spinbox = new QSpinBox;
     QLabel* captionLabel = new QLabel(caption);
     QLabel* widgetLabel = new QLabel(label);
@@ -24,25 +22,9 @@ GrSpinner::GrSpinner(QWidget *parent, const QString& label, const QString& capti
     widgetLabel->setFont(widgetFont);
     captionLabel->setFont(widgetFont);
 
-    QGraphicsDropShadowEffect *sSpinbox = new QGraphicsDropShadowEffect(this);
-    sSpinbox->setBlurRadius(4);
-    sSpinbox->setColor(QColor(0, 0, 0, 140));
-    sSpinbox->setOffset(0, 2);
-
-    QGraphicsDropShadowEffect *sWidgetLabel = new QGraphicsDropShadowEffect(this);
-    sWidgetLabel->setBlurRadius(4);
-    sWidgetLabel->setColor(QColor(0, 0, 0, 140));
-    sWidgetLabel->setOffset(0, 2);
-
-    QGraphicsDropShadowEffect *sCaptionLabel = new QGraphicsDropShadowEffect(this);
-    sCaptionLabel->setBlurRadius(4);
-    sCaptionLabel->setColor(QColor(0, 0, 0, 140));
-    sCaptionLabel->setOffset(0, 2);
-
-
-    spinbox->setGraphicsEffect(sSpinbox);
-    widgetLabel->setGraphicsEffect(sWidgetLabel);
-    captionLabel->setGraphicsEffect(sCaptionLabel);
+    spinbox->setGraphicsEffect(GrGfx::shadowFx());
+    widgetLabel->setGraphicsEffect(GrGfx::shadowFx());
+    captionLabel->setGraphicsEffect(GrGfx::shadowFx());
     spinbox->setCursor(Qt::ArrowCursor);
 
     vLayout->addLayout(hLayout);
