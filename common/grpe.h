@@ -10,7 +10,7 @@ namespace GrPE
         QString value;
     };
 
-    QVector<Entry> getStringTables();
+    QVector<GrPE::Entry> getStringTables(const QString& path);
 }
 
 #endif // GRPE_H
