@@ -148,24 +148,30 @@ QSpinBox::focus {
 QSpinBox::up-button {
     subcontrol-origin: border;
     subcontrol-position: top right;
-    width: 18px;
-    border-left: 1px solid #2e4226;
-    border-bottom: 1px solid #2e4226;
+    /* width: 18px; */
+    image: url(:/icons/arrow-up.svg);
+    width: 16px;
+    height: 8px;
+    border-left: 1px solid #24361f;
+    border-bottom: 1px solid #24361f;
     border-top-right-radius: 4px;
     border-top: 2px solid #2e4226;
     border-right: 2px solid #2e4226;
-    background-color: #151d12;
+    background-color: #24361f;
 }
 
 QSpinBox::down-button {
     subcontrol-origin: border;
     subcontrol-position: bottom right;
-    width: 18px;
-    border-left: 1px solid #2e4226;
+    /* width: 18px; */
+    image: url(:/icons/arrow-down.svg);
+    width: 16px;
+    height: 8px;
+    border-left: 1px solid #24361f;
     border-bottom: 2px solid #2e4226;
     border-right: 2px solid #2e4226;
     border-bottom-right-radius: 4px;
-    background-color: #151d12;
+    background-color: #24361f;
 }
 
 QSpinBox::down-button:focus {
@@ -183,25 +189,9 @@ QSpinBox::up-button:focus {
 }
 
 QSpinBox::down-button:hover {
-    background-color: #1d2719;
+    background-color: #14361f;
 }
 
 QSpinBox::up-button:hover {
-    background-color: #1d2719;
-}
-
-QSpinBox::up-arrow {
-    image: url(:/images/up_arrow.png);
-    width: 8px;
-    height: 8px;
-}
-
-QSpinBox::down-arrow {
-    image: url(:/images/down_arrow.png);
-    width: 8px;
-    height: 8px;
-}
-
-QSpinBox::up-button:hover, QSpinBox::down-button:hover {
-    background-color: #e0e0e0;
+    background-color: #14361f;
 }

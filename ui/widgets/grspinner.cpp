@@ -30,6 +30,7 @@ GrSpinner::GrSpinner(QWidget *parent, const QString& label, const QString& capti
     shadowEffect->setOffset(0, 2);
 
     spinbox->setGraphicsEffect(shadowEffect);
+    spinbox->setCursor(Qt::ArrowCursor);
 
     vLayout->addLayout(hLayout);
     hLayout->addWidget(widgetLabel);

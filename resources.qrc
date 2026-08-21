@@ -33,6 +33,9 @@
         <file alias="heart.svg">assets/icons/heart.svg</file>
         <file alias="file-smile.svg">assets/icons/file-smile.svg</file>
         <file alias="check.svg">assets/icons/check.svg</file>
+        <file alias="arrow-down.svg">assets/icons/arrow-down.svg</file>
+        <file alias="arrow-up.svg">assets/icons/arrow-up.svg</file>
+        <file alias="hat.svg">assets/icons/hat.svg</file>
     </qresource>
     <qresource prefix="/styles">
         <file alias="grape.qss">assets/styles/grape.qss</file>
