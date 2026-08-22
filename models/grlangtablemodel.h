@@ -12,7 +12,7 @@ class GrLangTableModel : public QAbstractTableModel
 public:
     explicit GrLangTableModel(QObject *parent = nullptr);
 
-    void setEntries(QString, QVector<StringEntry> entries);
+    void setEntries(QVector<StringEntry> entries);
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;

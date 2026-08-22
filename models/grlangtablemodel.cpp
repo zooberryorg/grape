@@ -5,7 +5,7 @@ GrLangTableModel::GrLangTableModel(QObject *parent)
 {
 }
 
-void GrLangTableModel::setEntries(QString, QVector<StringEntry> entries)
+void GrLangTableModel::setEntries(QVector<StringEntry> entries)
 {
     beginResetModel();
     m_entries = std::move(entries);

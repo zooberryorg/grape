@@ -22,7 +22,7 @@ signals:
 private:
     QSortFilterProxyModel *proxy;
     QTableView *langTable;
-    QMap<QString, QVector<GrPE::Entry>> langFiles;
+    QVector<GrPE::Entry> langFiles;
 };
 
 #endif // GRLANGTABLEBROWSER_H

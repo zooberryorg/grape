@@ -2,6 +2,7 @@
 
 #include <LIEF/LIEF.hpp>
 #include <QDebug>
+#include <QFileInfo>
 
 namespace GrPE {
 
@@ -9,6 +10,7 @@ namespace GrPE {
     {
 
         QVector<GrPE::Entry> result;
+        QFileInfo* file = new QFileInfo(path);
 
         std::unique_ptr<LIEF::PE::Binary> binary = LIEF::PE::Parser::parse(path.toStdString());
         if (!binary) {
@@ -36,7 +38,7 @@ namespace GrPE {
         for (const auto& entry : mgr.string_table()) {
             if (!entry.is_defined())
                 continue;
-            result.append(GrPE::Entry{ entry.id, QString(entry.string) });
+            result.append(GrPE::Entry{ entry.id, QString(entry.string), file->fileName() });
         }
 
         return result;

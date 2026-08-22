@@ -21,7 +21,8 @@ GrLangTableBrowser::GrLangTableBrowser(QWidget *parent, const QString& path)
 
     QVBoxLayout* layout = new QVBoxLayout(this);
     GrLangTableModel* langModel = new GrLangTableModel(this);
-    langModel->setEntries(GrPE::getStringTables(path));
+    loadLangFiles(path);
+    langModel->setEntries(langFiles);
 
     QSortFilterProxyModel* proxy = new QSortFilterProxyModel(this);
     proxy->setSourceModel(langModel);
@@ -53,10 +54,10 @@ void GrLangTableBrowser::loadLangFiles(const QString &path)
     for ( const auto& curPath : QDirListing(path) ) {
         QString folderName = curPath.fileName().toLower();
 
-        bool isDll = curPath.fileName().contains(".dll");
-        bool isLang = curPath.fileName().contains("lang");
+        bool isDll = curPath.fileName().toLower().contains(".dll");
+        bool isLang = curPath.fileName().toLower().contains("lang");
         if ( curPath.isFile() && isDll && isLang ) {
-            langFiles.insert( curPath.fileName(), GrPE::getStringTables(curPath.filePath()) );
+            langFiles.append( GrPE::getStringTables(curPath.filePath()) );
         }
     }
 }
