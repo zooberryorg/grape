@@ -14,9 +14,9 @@ protected:
         QModelIndex idIndex = sourceModel()->index(sourceRow, 0, sourceParent);
         QModelIndex valueIndex = sourceModel()->index(sourceRow, 1, sourceParent);
 
-        const QString pattern = filterRegularExpression().pattern();
-        return sourceModel()->data(idIndex).toString().contains(pattern, Qt::CaseInsensitive)
-            || sourceModel()->data(valueIndex).toString().contains(pattern, Qt::CaseInsensitive);
+        const QRegularExpression& re = filterRegularExpression();
+        return sourceModel()->data(idIndex).toString().contains(re)
+            || sourceModel()->data(valueIndex).toString().contains(re);
     }
 };
 
