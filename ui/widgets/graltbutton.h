@@ -9,6 +9,9 @@ class GrAltButton : public QPushButton
     Q_OBJECT
 public:
     explicit GrAltButton(const QString& name = "", QWidget* parent = nullptr);
-};
+    void setNormalIcon(const QIcon& icon);
+    void setHoverIcon(const QIcon& icon);
+}
+
 
 #endif // GRALTBUTTON_H

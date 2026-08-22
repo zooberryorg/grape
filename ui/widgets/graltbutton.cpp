@@ -8,3 +8,14 @@ GrAltButton::GrAltButton(const QString& name, QWidget* parent)
     setAttribute(Qt::WA_Hover, true);
     installEventFilter(this);
 }
+
+void GrAltButton::setNormalIcon(const QIcon &icon)
+{
+    m_normalIcon = icon;
+    setIcon(m_normalIcon);
+}
+
+void GrAltButton::setHoverIcon(const QIcon &icon)
+{
+    m_hoverIcon = icon;
+}
