@@ -22,7 +22,7 @@ protected:
 private:
     QIcon m_normalIcon;
     QIcon m_hoverIcon;
-}
+};
 
 
 #endif // GRALTBUTTON_H

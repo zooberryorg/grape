@@ -15,6 +15,7 @@
 #include "grlineedit.h"
 #include "grlangfilterproxy.h"
 #include "graltbutton.h"
+#include "grgfx.h"
 
 GrLangTableBrowser::GrLangTableBrowser(QWidget *parent, const QString& path)
     : QWidget{parent}
@@ -24,7 +25,7 @@ GrLangTableBrowser::GrLangTableBrowser(QWidget *parent, const QString& path)
 
     QVBoxLayout* layout = new QVBoxLayout(this);
     QHBoxLayout* searchLayout = new QHBoxLayout(this);
-    layout->setContentsMargins(0, 0, 0, 0);
+    searchLayout->setContentsMargins(0, 0, 0, 0);
 
     QWidget* searchArea = new QWidget;
 
@@ -34,6 +35,10 @@ GrLangTableBrowser::GrLangTableBrowser(QWidget *parent, const QString& path)
 
     // action buttons
     GrAltButton* clearText = new GrAltButton;
+    int iconSize = 18;
+    clearText->setNormalIcon(GrGfx::setSvgColor(":/icons/text-clear.svg", "#fff", iconSize, iconSize));
+    clearText->setHoverIcon((GrGfx::setSvgColor(":/icons/text-clear.svg", "#c9a961", iconSize, iconSize)));
+    clearText->setFixedSize(QSize(20,20));
     searchArea->setLayout(searchLayout);
     searchLayout->addWidget(searchbar);
     searchLayout->addWidget(clearText);

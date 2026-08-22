@@ -9,6 +9,10 @@ GrAltButton::GrAltButton(const QString& name, QWidget* parent)
     setObjectName("altButton");
     setAttribute(Qt::WA_Hover, true);
     installEventFilter(this);
+
+    QPalette pal = palette();
+    pal.setColor(QPalette::Button, QColor("#263621"));
+    setPalette(pal);
 }
 
 void GrAltButton::setNormalIcon(const QIcon &icon)
