@@ -23,7 +23,7 @@ int GrLangTableModel::columnCount(const QModelIndex &parent) const
 {
     if (parent.isValid())
         return 0;
-    return 2;
+    return 3;
 }
 
 QVariant GrLangTableModel::data(const QModelIndex &index, int role) const
@@ -36,6 +36,7 @@ QVariant GrLangTableModel::data(const QModelIndex &index, int role) const
         switch (index.column()) {
             case 0: return entry.id;
             case 1: return entry.value;
+            case 2: return entry.dllFileName;
         }
     }
     return QVariant();
@@ -49,6 +50,7 @@ QVariant GrLangTableModel::headerData(int section, Qt::Orientation orientation, 
     switch (section) {
         case 0: return "ID";
         case 1: return "Value";
+        case 2: return "File Name";
     }
     return QVariant();
 }

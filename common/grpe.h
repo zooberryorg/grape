@@ -8,6 +8,7 @@ namespace GrPE
     struct Entry {
         unsigned int id;
         QString value;
+        QString dllFileName;
     };
 
     QVector<GrPE::Entry> getStringTables(const QString& path);
