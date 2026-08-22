@@ -12,6 +12,8 @@
 
 #include "grlangtablemodel.h"
 #include "grpe.h"
+#include "grlineedit.h"
+#include "grlangfilterproxy.h"
 
 GrLangTableBrowser::GrLangTableBrowser(QWidget *parent, const QString& path)
     : QWidget{parent}
@@ -20,20 +22,33 @@ GrLangTableBrowser::GrLangTableBrowser(QWidget *parent, const QString& path)
     this->setAttribute(Qt::WA_StyledBackground, true);
 
     QVBoxLayout* layout = new QVBoxLayout(this);
+
+    // searchbar setup
+    GrLineEdit* searchbar = new GrLineEdit();
+    searchbar->widget()->setPlaceholderText("Search");
+
+    // table setup
     GrLangTableModel* langModel = new GrLangTableModel(this);
     loadLangFiles(path);
     langModel->setEntries(langFiles);
 
-    QSortFilterProxyModel* proxy = new QSortFilterProxyModel(this);
+    // proxy filter model
+    GrLangFilterProxy* proxy = new GrLangFilterProxy(this);
     proxy->setSourceModel(langModel);
+    proxy->setFilterCaseSensitivity(Qt::CaseInsensitive);
 
+    // setup table view
     langTable = new QTableView(this);
     langTable->setModel(proxy);
     langTable->setSortingEnabled(true);
     langTable->horizontalHeader()->setStretchLastSection(true);
 
+    // add to layout
+    layout->addWidget(searchbar);
     layout->addWidget(langTable);
     layout->setContentsMargins(5, 5, 5, 5);
+
+    connect(searchbar->widget(), &QLineEdit::textChanged, proxy, &QSortFilterProxyModel::setFilterFixedString);
 }
 
 void GrLangTableBrowser::setupTableModel()
