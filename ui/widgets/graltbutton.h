@@ -17,7 +17,11 @@ public:
 
 protected:
     void enterEvent(QEnterEvent* event) override;
-    void leaveEvent(QEnter* event) override;
+    void leaveEvent(QEvent* event) override;
+
+private:
+    QIcon m_normalIcon;
+    QIcon m_hoverIcon;
 }
 
 

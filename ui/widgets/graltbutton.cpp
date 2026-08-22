@@ -30,7 +30,7 @@ void GrAltButton::enterEvent(QEnterEvent *event)
     QPushButton::enterEvent(event);
 }
 
-void GrAltButton::leaveEvent(QEnter *event)
+void GrAltButton::leaveEvent(QEvent *event)
 {
     setIcon(m_normalIcon);
     QPushButton::leaveEvent(event);
