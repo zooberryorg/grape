@@ -93,12 +93,12 @@ void GrLangTableBrowser::loadLangFiles(const QString &path)
 {
     for ( const auto& curPath : QDirListing(path) ) {
         QString folderName = curPath.fileName().toLower();
-        dllFileNames.append(curPath.fileName());
 
         bool isDll = curPath.fileName().toLower().contains(".dll");
         bool isLang = curPath.fileName().toLower().contains("lang");
         if ( curPath.isFile() && isDll && isLang ) {
             langFiles.append( GrPE::getStringTables(curPath.filePath()) );
+            dllFileNames.append(curPath.fileName());
         }
     }
 }
