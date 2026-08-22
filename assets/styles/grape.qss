@@ -316,7 +316,7 @@ QWidget#filterMenu {
 
 QWidget#filterMenu QLabel {
     color: #8fa384;
-    font-size: 10px;
+    font-size: 8px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
