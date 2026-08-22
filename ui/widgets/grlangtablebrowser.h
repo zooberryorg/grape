@@ -25,14 +25,13 @@ public:
 signals:
 
 private:
-    QSortFilterProxyModel *proxy;
+    GrLangFilterProxy *proxy;
     QTableView *langTable;
     QVector<GrPE::Entry> langFiles;
     QStringList dllFileNames;
     GrLineEdit *searchbar;
     GrAltButton *filterButton;
     GrLangTableModel *langModel;
-    GrLangFilterProxy* langProxy = nullptr;
     void initFilterProxy();
 
 private slots:

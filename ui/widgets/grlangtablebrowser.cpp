@@ -25,7 +25,7 @@ GrLangTableBrowser::GrLangTableBrowser(QWidget *parent, const QString& path)
     this->setAttribute(Qt::WA_StyledBackground, true);
 
     QVBoxLayout* layout = new QVBoxLayout(this);
-    QHBoxLayout* searchLayout = new QHBoxLayout(this);
+    QHBoxLayout* searchLayout = new QHBoxLayout;
     searchLayout->setContentsMargins(0, 0, 0, 0);
 
     QWidget* searchArea = new QWidget;
@@ -58,14 +58,13 @@ GrLangTableBrowser::GrLangTableBrowser(QWidget *parent, const QString& path)
     loadLangFiles(path);
     langModel->setEntries(langFiles);
 
-    // proxy filter model
-    initFilterProxy();
-
     // setup table view
     langTable = new QTableView(this);
-    langTable->setModel(proxy);
     langTable->setSortingEnabled(true);
     langTable->horizontalHeader()->setStretchLastSection(true);
+
+    // setup proxy
+    initFilterProxy();
 
     // add to layout
     layout->addWidget(searchArea);
@@ -82,7 +81,7 @@ void GrLangTableBrowser::setupTableModel()
     GrLangTableModel* sourceModel = new GrLangTableModel(this);
     sourceModel->setEntries(langFiles);
 
-    proxy = new QSortFilterProxyModel(this);
+    proxy = new GrLangFilterProxy(this);
     proxy->setSourceModel(sourceModel);
     proxy->setFilterCaseSensitivity(Qt::CaseInsensitive);
     proxy->setFilterKeyColumn(1);
