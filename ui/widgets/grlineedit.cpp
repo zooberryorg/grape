@@ -5,7 +5,7 @@
 #include <QLabel>
 #include "grgfx.h"
 
-GrLineEdit::GrLineEdit(QWidget *parent, const QString& caption, const QString& label)
+GrLineEdit::GrLineEdit(QWidget *parent, const QString& label, const QString& caption)
     : GrWidget{parent}
 {
     QHBoxLayout* hLayout = new QHBoxLayout;
