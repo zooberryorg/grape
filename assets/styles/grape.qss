@@ -103,22 +103,36 @@ QTreeView::item:selected {
 /* QCheckBox */
 QCheckBox {
     font-size: 11px;
+    color: #c9c9c9;
+    spacing: 6px;
 }
 QCheckBox::indicator {
-    width: 8px;
-    height: 8px;
-    border: 2px solid #182315;
-    border-radius: 4px;
+    width: 14px;
+    height: 14px;
+    border: 2px solid #2e4226;
+    border-radius: 3px;
     background-color: #182315;
 }
 QCheckBox::indicator:hover {
-    border: 2px solid #1d2719;
+    border: 2px solid #395132;
     background-color: #1d2719;
 }
 QCheckBox::indicator:checked {
     border-color: #d5ac50;
     background-color: #d5ac50;
-    image: url(:/icons/check.svg); 
+    image: url(:/icons/check.svg);
+}
+QCheckBox::indicator:checked:hover {
+    border-color: #c9a961;
+    background-color: #c9a961;
+}
+QCheckBox::indicator:disabled {
+    background-color: #141d10;
+    border: 2px solid #232f20;
+}
+QCheckBox::indicator:checked:disabled {
+    background-color: #4a4030;
+    border-color: #4a4030;
 }
 
 QListView
