@@ -9,7 +9,7 @@ CEntity::CEntity(QString path)
     m_intchars[charInts]["walkable"] = { "", Group::Traits, Widget::Switch };
     m_intchars[charInts]["walkableByTall"] = { "", Group::Traits, Widget::Switch };
     m_intchars[charInts]["cRubbleable"] = { "", Group::Traits, Widget::Switch };
-    m_intchars[charInts]["cUseNumbersInName"] = { "", Group::Graphics, Widget::Switch };
+    m_intchars[charInts]["cUseNumbersInName"] = { "", Group::UI, Widget::Switch };
     m_intchars[charInts]["cUsesRealShadows"] = { "", Group::Graphics, Widget::Switch };
     m_intchars[charInts]["cHasShadowImages"] = { "", Group::Graphics, Widget::Switch };
     m_intchars[charInts]["cForceShadowBlack"] = { "", Group::Graphics, Widget::Switch };

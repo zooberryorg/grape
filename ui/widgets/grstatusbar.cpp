@@ -10,4 +10,5 @@ GrStatusBar::GrStatusBar(QWidget *parent)
     versionFont.setPointSize(10);
     version->setFont(versionFont);
     addPermanentWidget(version);
+    setMinimumHeight(30);
 }

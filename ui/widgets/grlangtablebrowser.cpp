@@ -4,6 +4,7 @@
 #include <QTableView>
 #include <QSortFilterProxyModel>
 #include <QHeaderView>
+#include <QTableView>
 
 #include "grlangtablemodel.h"
 #include "grpe.h"
@@ -21,11 +22,24 @@ GrLangTableBrowser::GrLangTableBrowser(QWidget *parent, const QString& path)
     QSortFilterProxyModel* proxy = new QSortFilterProxyModel(this);
     proxy->setSourceModel(langModel);
 
-    QTableView* langTable = new QTableView(this);
+    langTable = new QTableView(this);
     langTable->setModel(proxy);
     langTable->setSortingEnabled(true);
     langTable->horizontalHeader()->setStretchLastSection(true);
 
     layout->addWidget(langTable);
     layout->setContentsMargins(5, 5, 5, 5);
+}
+
+void GrLangTableBrowser::setupTableModel()
+{
+    GrLangTableModel* sourceModel = new GrLangTableModel(this);
+    sourceModel->setEntries(entries);
+
+    proxy = new QSortFilterProxyModel(this);
+    proxy->setSourceModel(sourceModel);
+    proxy->setFilterCaseSensitivity(Qt::CaseInsensitive);
+    proxy->setFilterKeyColumn(1);
+
+    langTable->setModel(proxy);
 }
