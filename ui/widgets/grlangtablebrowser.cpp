@@ -6,6 +6,10 @@
 #include <QHeaderView>
 #include <QTableView>
 
+#include <QDir>
+#include <QDirIterator>
+
+
 #include "grlangtablemodel.h"
 #include "grpe.h"
 
@@ -34,7 +38,7 @@ GrLangTableBrowser::GrLangTableBrowser(QWidget *parent, const QString& path)
 void GrLangTableBrowser::setupTableModel()
 {
     GrLangTableModel* sourceModel = new GrLangTableModel(this);
-    sourceModel->setEntries(entries);
+    sourceModel->setEntries(langFiles);
 
     proxy = new QSortFilterProxyModel(this);
     proxy->setSourceModel(sourceModel);
@@ -42,4 +46,17 @@ void GrLangTableBrowser::setupTableModel()
     proxy->setFilterKeyColumn(1);
 
     langTable->setModel(proxy);
+}
+
+void GrLangTableBrowser::loadLangFiles(const QString &path)
+{
+    for ( const auto& curPath : QDirListing(path) ) {
+        QString folderName = curPath.fileName().toLower();
+
+        bool isDll = curPath.fileName().contains(".dll");
+        bool isLang = curPath.fileName().contains("lang");
+        if ( curPath.isFile() && isDll && isLang ) {
+            langFiles.insert( curPath.fileName(), GrPE::getStringTables(curPath.filePath()) );
+        }
+    }
 }
