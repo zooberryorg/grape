@@ -228,3 +228,14 @@ QLineEdit::hover {
 QLineEdit::focus {
     border: 2px solid #c9a961;
 }
+
+QPushButton#altButton {
+    background-color: #263621;
+    border: 1px solid #395132;
+    border-radius: 4px;
+}
+QPushButton#altButton:hover {
+    background-color: #163621;
+    border: 1px solid #c9a961;
+    border-radius: 4px;
+}

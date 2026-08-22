@@ -3,6 +3,8 @@
 #include <QEvent>
 #include <QEnterEvent>
 
+#include "grgfx.h"
+
 GrAltButton::GrAltButton(const QString& name, QWidget* parent)
     : QPushButton{name, parent}
 {
@@ -10,9 +12,7 @@ GrAltButton::GrAltButton(const QString& name, QWidget* parent)
     setAttribute(Qt::WA_Hover, true);
     installEventFilter(this);
 
-    QPalette pal = palette();
-    pal.setColor(QPalette::Button, QColor("#263621"));
-    setPalette(pal);
+    setGraphicsEffect(GrGfx::shadowFx());
 }
 
 void GrAltButton::setNormalIcon(const QIcon &icon)
