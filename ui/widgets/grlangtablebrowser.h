@@ -19,15 +19,11 @@ class GrLangTableBrowser : public QWidget
 {
     Q_OBJECT
 public:
-    struct LangFiles {
-        QVector<GrPE::Entry> files;
-        QStringList fileNames;
-    };
     explicit GrLangTableBrowser(QWidget *parent = nullptr, const QString& path = "");
     explicit GrLangTableBrowser(QWidget *parent, const QVector<GrPE::Entry>& entries, const QStringList& dllNames);
 
     void setupTableModel();
-    LangFiles loadLangFiles(const QString& path);
+    void loadLangFiles();
     void showFilterMenu();
 signals:
 
@@ -47,6 +43,7 @@ private:
     void initLangBrowser();
     QWidget *searchArea;
     GrAltButton *clearTextButton;
+    QString m_path;
 private slots:
     void handleClearSearch();
 };

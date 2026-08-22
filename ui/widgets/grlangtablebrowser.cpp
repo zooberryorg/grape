@@ -21,73 +21,18 @@
 GrLangTableBrowser::GrLangTableBrowser(QWidget *parent, const QString& path)
     : QWidget{parent}
 {
-    this->setObjectName("explorerContainer");
-    this->setAttribute(Qt::WA_StyledBackground, true);
-
-    QVBoxLayout* layout = new QVBoxLayout(this);
-    QHBoxLayout* searchLayout = new QHBoxLayout;
-    searchLayout->setContentsMargins(0, 0, 0, 0);
-
-    QWidget* searchArea = new QWidget;
-
-    // searchbar setup
-    searchbar = new GrLineEdit();
-    searchbar->widget()->setPlaceholderText("Search");
-
-    // action buttons
-    GrAltButton* clearText = new GrAltButton;
-    filterButton = new GrAltButton;
-    int iconSize = 18;
-    int btnSize = 25;
-    clearText->setNormalIcon(GrGfx::setSvgColor(":/icons/text-clear.svg", "#fff", iconSize, iconSize));
-    clearText->setHoverIcon((GrGfx::setSvgColor(":/icons/text-clear.svg", "#c9a961", iconSize, iconSize)));
-    clearText->setFixedSize(QSize(btnSize,btnSize));
-    clearText->setToolTip("Clear search");
-
-    filterButton->setNormalIcon(GrGfx::setSvgColor(":/icons/adjustments.svg", "#fff", iconSize, iconSize));
-    filterButton->setHoverIcon((GrGfx::setSvgColor(":/icons/adjustments.svg", "#c9a961", iconSize, iconSize)));
-    filterButton->setFixedSize(QSize(btnSize,btnSize));
-    filterButton->setToolTip("Filter results");
-
-    searchArea->setLayout(searchLayout);
-    searchLayout->addWidget(searchbar);
-    searchLayout->addWidget(clearText);
-    searchLayout->addWidget(filterButton);
-
-    // table setup
-    langModel = new GrLangTableModel(this);
-    loadLangFiles(path);
-    langModel->setEntries(langFiles);
-
-    // setup table view
-    langTable = new QTableView(this);
-    langTable->setSortingEnabled(true);
-    langTable->horizontalHeader()->setStretchLastSection(true);
-    langTable->verticalHeader()->setVisible(false);
-    langTable->setShowGrid(false);
-    langTable->setAlternatingRowColors(true);
-    langTable->setSelectionBehavior(QAbstractItemView::SelectRows);
-    langTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
-
-    // setup proxy
-    initFilterProxy();
-
-    // add to layout
-    layout->addWidget(searchArea);
-    layout->addWidget(langTable);
-    layout->setContentsMargins(5, 5, 5, 5);
-
-    connect(searchbar->widget(), &QLineEdit::textChanged, proxy, &QSortFilterProxyModel::setFilterFixedString);
-    connect(clearText, &QPushButton::clicked, this, &GrLangTableBrowser::handleClearSearch);
-    connect(filterButton, &QPushButton::clicked, this, &GrLangTableBrowser::showFilterMenu);
+    m_path = path;
+    initLangBrowser();
 }
 
 GrLangTableBrowser::GrLangTableBrowser(QWidget *parent, const QVector<GrPE::Entry> &entries, const QStringList &dllNames)
 {
-
+    langFiles = entries;
+    dllFileNames = dllNames;
+    initLangBrowser();
 }
 
-void GrLangTableBrowser::initLangBrowser(const QString& path) {
+void GrLangTableBrowser::initLangBrowser() {
     setObjectName("explorerContainer");
     setAttribute(Qt::WA_StyledBackground, true);
 
@@ -123,8 +68,8 @@ void GrLangTableBrowser::initLangBrowser(const QString& path) {
 
     // table setup
     langModel = new GrLangTableModel(this);
-    if ( !path.isEmpty() ) {
-        loadLangFiles(path);
+    if ( langFiles.isEmpty() ) {
+        loadLangFiles();
     }
     langModel->setEntries(langFiles);
 
@@ -147,7 +92,7 @@ void GrLangTableBrowser::initLangBrowser(const QString& path) {
     layout->setContentsMargins(5, 5, 5, 5);
 
     connect(searchbar->widget(), &QLineEdit::textChanged, proxy, &QSortFilterProxyModel::setFilterFixedString);
-    connect(clearText, &QPushButton::clicked, this, &GrLangTableBrowser::handleClearSearch);
+    connect(clearTextButton, &QPushButton::clicked, this, &GrLangTableBrowser::handleClearSearch);
     connect(filterButton, &QPushButton::clicked, this, &GrLangTableBrowser::showFilterMenu);
 }
 
@@ -164,23 +109,18 @@ void GrLangTableBrowser::setupTableModel()
     langTable->setModel(proxy);
 }
 
-GrLangTableBrowser::LangFiles GrLangTableBrowser::loadLangFiles(const QString &path)
+void GrLangTableBrowser::loadLangFiles()
 {
-    QVector<GrPE::Entry> entries;
-    QStringList fileNames;
-
-    for ( const auto& curPath : QDirListing(path) ) {
+    for ( const auto& curPath : QDirListing(m_path) ) {
         QString folderName = curPath.fileName().toLower();
 
         bool isDll = curPath.fileName().toLower().contains(".dll");
         bool isLang = curPath.fileName().toLower().contains("lang");
         if ( curPath.isFile() && isDll && isLang ) {
-            entries.append( GrPE::getStringTables(curPath.filePath()) );
-            fileNames.append(curPath.fileName());
+            langFiles.append( GrPE::getStringTables(curPath.filePath()) );
+            dllFileNames.append(curPath.fileName());
         }
     }
-
-    return { entries, fileNames };
 }
 
 void GrLangTableBrowser::showFilterMenu()
