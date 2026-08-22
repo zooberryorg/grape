@@ -30,7 +30,7 @@ GrLangTableBrowser::GrLangTableBrowser(QWidget *parent, const QString& path)
     QWidget* searchArea = new QWidget;
 
     // searchbar setup
-    GrLineEdit* searchbar = new GrLineEdit();
+    searchbar = new GrLineEdit();
     searchbar->widget()->setPlaceholderText("Search");
 
     // action buttons
@@ -74,6 +74,7 @@ GrLangTableBrowser::GrLangTableBrowser(QWidget *parent, const QString& path)
     layout->setContentsMargins(5, 5, 5, 5);
 
     connect(searchbar->widget(), &QLineEdit::textChanged, proxy, &QSortFilterProxyModel::setFilterFixedString);
+    connect(clearText, &QPushButton::clicked, this, &GrLangTableBrowser::handleClearSearch);
 }
 
 void GrLangTableBrowser::setupTableModel()
@@ -100,4 +101,8 @@ void GrLangTableBrowser::loadLangFiles(const QString &path)
             langFiles.append( GrPE::getStringTables(curPath.filePath()) );
         }
     }
+}
+
+void GrLangTableBrowser::handleClearSearch() {
+    searchbar->widget()->clear();
 }

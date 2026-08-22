@@ -8,6 +8,7 @@
 
 class QSortFilterProxyModel;
 class QTableView;
+class GrLineEdit;
 
 class GrLangTableBrowser : public QWidget
 {
@@ -23,6 +24,9 @@ private:
     QSortFilterProxyModel *proxy;
     QTableView *langTable;
     QVector<GrPE::Entry> langFiles;
+    GrLineEdit *searchbar;
+private slots:
+    void handleClearSearch();
 };
 
 #endif // GRLANGTABLEBROWSER_H
