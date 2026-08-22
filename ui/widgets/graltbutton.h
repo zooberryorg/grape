@@ -22,8 +22,6 @@ protected:
 private:
     QIcon m_normalIcon;
     QIcon m_hoverIcon;
-    QPalette normalPal;
-    QPalette hoverPal;
 };
 
 

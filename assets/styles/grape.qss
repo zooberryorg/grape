@@ -239,3 +239,9 @@ QPushButton#altButton:hover {
     border: 1px solid #c9a961;
     border-radius: 4px;
 }
+
+QHeaderView::section {
+    background-color: #263621;
+    border: 1px solid #395132;
+    font-size: 11px;
+}

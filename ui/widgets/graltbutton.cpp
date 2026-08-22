@@ -10,7 +10,6 @@ GrAltButton::GrAltButton(const QString& name, QWidget* parent)
 {
     setObjectName("altButton");
     setAttribute(Qt::WA_Hover, true);
-    installEventFilter(this);
 
     setGraphicsEffect(GrGfx::shadowFx());
 }
