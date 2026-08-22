@@ -4,7 +4,7 @@
 #include <QComboBox>
 #include <QLabel>
 
-GrFilterMenu::GrFilterMenu(QWidget* parent, QStringList dllFileNames)
+GrFilterMenu::GrFilterMenu(QWidget* parent, const QStringList& dllFileNames)
     : QWidget(parent, Qt::Popup)
 {
     setAttribute(Qt::WA_StyledBackground, true);
