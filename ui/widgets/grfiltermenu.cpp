@@ -18,6 +18,7 @@ GrFilterMenu::GrFilterMenu(QWidget* parent, const QStringList& dllFileNames)
     filterDllFiles->addItems(dllFileNames);
     filterDllFiles->setMaxVisibleItems(15);
     filterDllFiles->view()->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    filterDllFiles->view()->setObjectName("filterMenuList");
 
     layout->addWidget(new QLabel("Search by File:", this));
     layout->addWidget(filterDllFiles);

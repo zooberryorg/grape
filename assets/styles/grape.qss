@@ -251,3 +251,48 @@ QHeaderView::section {
 QHeaderView::section:first {
     border-left: 1px solid #395132;
 }
+
+QWidget#filterMenu {
+    background-color: #263621;
+    border: 1px solid #395132;
+    border-radius: 6px;
+}
+
+QWidget#filterMenu QLabel {
+    color: #8fa384;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+QWidget#filterMenu QComboBox {
+    background-color: #1e2b1a;
+    border: 1px solid #395132;
+    border-radius: 4px;
+    padding: 4px 8px;
+    color: #c9c9c9;
+}
+QWidget#filterMenu QComboBox:hover {
+    border: 1px solid #c9a961;
+}
+QWidget#filterMenu QComboBox::drop-down {
+    border: none;
+    width: 20px;
+}
+
+QAbstractItemView#filterMenuList {
+    background-color: #263621;
+    border: 1px solid #395132;
+    border-radius: 4px;
+    outline: none;
+    padding: 2px;
+}
+QAbstractItemView#filterMenuList::item {
+    padding: 4px 8px;
+    border-radius: 3px;
+}
+QAbstractItemView#filterMenuList::item:selected {
+    background-color: #807641;
+    color: #171f14;
+}
