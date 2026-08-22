@@ -37,6 +37,7 @@
         <file alias="arrow-up.svg">assets/icons/arrow-up.svg</file>
         <file alias="hat.svg">assets/icons/hat.svg</file>
         <file alias="text-clear.svg">assets/icons/text-clear.svg</file>
+        <file alias="adjustments.svg">assets/icons/adjustments.svg</file>
     </qresource>
     <qresource prefix="/styles">
         <file alias="grape.qss">assets/styles/grape.qss</file>

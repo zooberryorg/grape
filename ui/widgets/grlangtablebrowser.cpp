@@ -35,13 +35,22 @@ GrLangTableBrowser::GrLangTableBrowser(QWidget *parent, const QString& path)
 
     // action buttons
     GrAltButton* clearText = new GrAltButton;
+    GrAltButton* filter = new GrAltButton;
     int iconSize = 18;
     clearText->setNormalIcon(GrGfx::setSvgColor(":/icons/text-clear.svg", "#fff", iconSize, iconSize));
     clearText->setHoverIcon((GrGfx::setSvgColor(":/icons/text-clear.svg", "#c9a961", iconSize, iconSize)));
     clearText->setFixedSize(QSize(20,20));
+    clearText->setToolTip("Clear search");
+
+    filter->setNormalIcon(GrGfx::setSvgColor(":/icons/adjustments.svg", "#fff", iconSize, iconSize));
+    filter->setHoverIcon((GrGfx::setSvgColor(":/icons/adjustments.svg", "#c9a961", iconSize, iconSize)));
+    filter->setFixedSize(QSize(20,20));
+    filter->setToolTip("Filter results");
+
     searchArea->setLayout(searchLayout);
     searchLayout->addWidget(searchbar);
     searchLayout->addWidget(clearText);
+    searchLayout->addWidget(filter);
 
     // table setup
     GrLangTableModel* langModel = new GrLangTableModel(this);
