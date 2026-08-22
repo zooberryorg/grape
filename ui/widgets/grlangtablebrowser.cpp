@@ -16,6 +16,7 @@
 #include "grlangfilterproxy.h"
 #include "graltbutton.h"
 #include "grgfx.h"
+#include "grfiltermenu.h"
 
 GrLangTableBrowser::GrLangTableBrowser(QWidget *parent, const QString& path)
     : QWidget{parent}
@@ -35,17 +36,17 @@ GrLangTableBrowser::GrLangTableBrowser(QWidget *parent, const QString& path)
 
     // action buttons
     GrAltButton* clearText = new GrAltButton;
-    GrAltButton* filter = new GrAltButton;
+    filterButton = new GrAltButton;
     int iconSize = 18;
     clearText->setNormalIcon(GrGfx::setSvgColor(":/icons/text-clear.svg", "#fff", iconSize, iconSize));
     clearText->setHoverIcon((GrGfx::setSvgColor(":/icons/text-clear.svg", "#c9a961", iconSize, iconSize)));
     clearText->setFixedSize(QSize(20,20));
     clearText->setToolTip("Clear search");
 
-    filter->setNormalIcon(GrGfx::setSvgColor(":/icons/adjustments.svg", "#fff", iconSize, iconSize));
-    filter->setHoverIcon((GrGfx::setSvgColor(":/icons/adjustments.svg", "#c9a961", iconSize, iconSize)));
-    filter->setFixedSize(QSize(20,20));
-    filter->setToolTip("Filter results");
+    filterButton->setNormalIcon(GrGfx::setSvgColor(":/icons/adjustments.svg", "#fff", iconSize, iconSize));
+    filterButton->setHoverIcon((GrGfx::setSvgColor(":/icons/adjustments.svg", "#c9a961", iconSize, iconSize)));
+    filterButton->setFixedSize(QSize(20,20));
+    filterButton->setToolTip("Filter results");
 
     searchArea->setLayout(searchLayout);
     searchLayout->addWidget(searchbar);
@@ -94,6 +95,7 @@ void GrLangTableBrowser::loadLangFiles(const QString &path)
 {
     for ( const auto& curPath : QDirListing(path) ) {
         QString folderName = curPath.fileName().toLower();
+        dllFileNames.append(curPath.fileName());
 
         bool isDll = curPath.fileName().toLower().contains(".dll");
         bool isLang = curPath.fileName().toLower().contains("lang");
@@ -101,6 +103,18 @@ void GrLangTableBrowser::loadLangFiles(const QString &path)
             langFiles.append( GrPE::getStringTables(curPath.filePath()) );
         }
     }
+}
+
+void GrLangTableBrowser::showFilterMenu()
+{
+    GrFilterMenu* menu = new GrFilterMenu(this, dllFileNames);
+    menu->setAttribute(Qt::WA_DeleteOnClose);
+
+    const QPoint pos = filterButton->mapToGlobal(QPoint(0, filterButton->height() + 2));
+    menu->move(pos);
+    menu->show();
+
+    connect(menu, &GrFilterMenu::filtersChanged, this, &GrLangTableBrowser::updateFilterProxy);
 }
 
 void GrLangTableBrowser::handleClearSearch() {

@@ -9,6 +9,7 @@
 class QSortFilterProxyModel;
 class QTableView;
 class GrLineEdit;
+class GrAltButton;
 
 class GrLangTableBrowser : public QWidget
 {
@@ -18,13 +19,16 @@ public:
 
     void setupTableModel();
     void loadLangFiles(const QString& path);
+    void showFilterMenu();
 signals:
 
 private:
     QSortFilterProxyModel *proxy;
     QTableView *langTable;
     QVector<GrPE::Entry> langFiles;
+    QStringList dllFileNames;
     GrLineEdit *searchbar;
+    GrAltButton *filterButton;
 private slots:
     void handleClearSearch();
 };
