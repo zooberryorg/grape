@@ -18,3 +18,4 @@ GrFilterMenu::GrFilterMenu(QWidget* parent, const QStringList& dllFileNames)
     layout->addWidget(new QLabel("Search by File:", this));
     layout->addWidget(filterDllFiles);
 }
+

@@ -5,6 +5,7 @@
 
 class QComboBox;
 class QVBoxLayout;
+class GrLangFilterProxy;
 
 class GrFilterMenu : public QWidget
 {

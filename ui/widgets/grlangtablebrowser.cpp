@@ -59,9 +59,7 @@ GrLangTableBrowser::GrLangTableBrowser(QWidget *parent, const QString& path)
     langModel->setEntries(langFiles);
 
     // proxy filter model
-    GrLangFilterProxy* proxy = new GrLangFilterProxy(this);
-    proxy->setSourceModel(langModel);
-    proxy->setFilterCaseSensitivity(Qt::CaseInsensitive);
+    initFilterProxy();
 
     // setup table view
     langTable = new QTableView(this);
@@ -109,16 +107,19 @@ void GrLangTableBrowser::showFilterMenu()
 {
     GrFilterMenu* menu = new GrFilterMenu(this, dllFileNames);
     menu->setAttribute(Qt::WA_DeleteOnClose);
-
     const QPoint pos = filterButton->mapToGlobal(QPoint(0, filterButton->height() + 2));
     menu->move(pos);
     menu->show();
 
-    GrLangFilterProxy* proxy = new GrLangFilterProxy(this);
+    connect(menu, &GrFilterMenu::filtersChanged, proxy, &GrLangFilterProxy::setDllFilter);
+}
+
+void GrLangTableBrowser::initFilterProxy()
+{
+    proxy = new GrLangFilterProxy(this);
     proxy->setSourceModel(langModel);
     proxy->setFilterCaseSensitivity(Qt::CaseInsensitive);
-
-    connect(menu, &GrFilterMenu::filtersChanged, this, &QSortFilterProxyModel::setFilterFixedString);
+    langTable->setModel(proxy);
 }
 
 void GrLangTableBrowser::handleClearSearch() {

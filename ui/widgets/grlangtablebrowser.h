@@ -11,6 +11,7 @@ class QTableView;
 class GrLineEdit;
 class GrAltButton;
 class GrLangTableModel;
+class GrLangFilterProxy;
 
 class GrLangTableBrowser : public QWidget
 {
@@ -31,6 +32,9 @@ private:
     GrLineEdit *searchbar;
     GrAltButton *filterButton;
     GrLangTableModel *langModel;
+    GrLangFilterProxy* langProxy = nullptr;
+    void initFilterProxy();
+
 private slots:
     void handleClearSearch();
 };
