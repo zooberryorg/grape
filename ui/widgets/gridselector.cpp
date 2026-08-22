@@ -20,7 +20,7 @@ GrIdSelector::GrIdSelector(QWidget *parent)
     GrLangTableBrowser* browser = new GrLangTableBrowser;
     QLabel* label = new QLabel("ID Picker");
     GrAltButton* cancelButton = new GrAltButton("Cancel", this);
-    GrAltButton* selectButton = new GrAltButton("Cancel", this);
+    GrAltButton* selectButton = new GrAltButton("Select", this);
 
     layout->addWidget(label);
     layout->addWidget(browser);

@@ -82,6 +82,75 @@ GrLangTableBrowser::GrLangTableBrowser(QWidget *parent, const QString& path)
     connect(filterButton, &QPushButton::clicked, this, &GrLangTableBrowser::showFilterMenu);
 }
 
+GrLangTableBrowser::GrLangTableBrowser(QWidget *parent, const QVector<GrPE::Entry> &entries, const QStringList &dllNames)
+{
+
+}
+
+void GrLangTableBrowser::initLangBrowser(const QString& path) {
+    setObjectName("explorerContainer");
+    setAttribute(Qt::WA_StyledBackground, true);
+
+    layout = new QVBoxLayout(this);
+    searchLayout = new QHBoxLayout;
+    searchLayout->setContentsMargins(0, 0, 0, 0);
+
+    searchArea = new QWidget;
+
+    // searchbar setup
+    searchbar = new GrLineEdit();
+    searchbar->widget()->setPlaceholderText("Search");
+
+    // action buttons
+    clearTextButton = new GrAltButton;
+    filterButton = new GrAltButton;
+    int iconSize = 18;
+    int btnSize = 25;
+    clearTextButton->setNormalIcon(GrGfx::setSvgColor(":/icons/text-clear.svg", "#fff", iconSize, iconSize));
+    clearTextButton->setHoverIcon((GrGfx::setSvgColor(":/icons/text-clear.svg", "#c9a961", iconSize, iconSize)));
+    clearTextButton->setFixedSize(QSize(btnSize,btnSize));
+    clearTextButton->setToolTip("Clear search");
+
+    filterButton->setNormalIcon(GrGfx::setSvgColor(":/icons/adjustments.svg", "#fff", iconSize, iconSize));
+    filterButton->setHoverIcon((GrGfx::setSvgColor(":/icons/adjustments.svg", "#c9a961", iconSize, iconSize)));
+    filterButton->setFixedSize(QSize(btnSize,btnSize));
+    filterButton->setToolTip("Filter results");
+
+    searchArea->setLayout(searchLayout);
+    searchLayout->addWidget(searchbar);
+    searchLayout->addWidget(clearTextButton);
+    searchLayout->addWidget(filterButton);
+
+    // table setup
+    langModel = new GrLangTableModel(this);
+    if ( !path.isEmpty() ) {
+        loadLangFiles(path);
+    }
+    langModel->setEntries(langFiles);
+
+    // setup table view
+    langTable = new QTableView(this);
+    langTable->setSortingEnabled(true);
+    langTable->horizontalHeader()->setStretchLastSection(true);
+    langTable->verticalHeader()->setVisible(false);
+    langTable->setShowGrid(false);
+    langTable->setAlternatingRowColors(true);
+    langTable->setSelectionBehavior(QAbstractItemView::SelectRows);
+    langTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+    // setup proxy
+    initFilterProxy();
+
+    // add to layout
+    layout->addWidget(searchArea);
+    layout->addWidget(langTable);
+    layout->setContentsMargins(5, 5, 5, 5);
+
+    connect(searchbar->widget(), &QLineEdit::textChanged, proxy, &QSortFilterProxyModel::setFilterFixedString);
+    connect(clearText, &QPushButton::clicked, this, &GrLangTableBrowser::handleClearSearch);
+    connect(filterButton, &QPushButton::clicked, this, &GrLangTableBrowser::showFilterMenu);
+}
+
 void GrLangTableBrowser::setupTableModel()
 {
     GrLangTableModel* sourceModel = new GrLangTableModel(this);
@@ -95,18 +164,23 @@ void GrLangTableBrowser::setupTableModel()
     langTable->setModel(proxy);
 }
 
-void GrLangTableBrowser::loadLangFiles(const QString &path)
+GrLangTableBrowser::LangFiles GrLangTableBrowser::loadLangFiles(const QString &path)
 {
+    QVector<GrPE::Entry> entries;
+    QStringList fileNames;
+
     for ( const auto& curPath : QDirListing(path) ) {
         QString folderName = curPath.fileName().toLower();
 
         bool isDll = curPath.fileName().toLower().contains(".dll");
         bool isLang = curPath.fileName().toLower().contains("lang");
         if ( curPath.isFile() && isDll && isLang ) {
-            langFiles.append( GrPE::getStringTables(curPath.filePath()) );
-            dllFileNames.append(curPath.fileName());
+            entries.append( GrPE::getStringTables(curPath.filePath()) );
+            fileNames.append(curPath.fileName());
         }
     }
+
+    return { entries, fileNames };
 }
 
 void GrLangTableBrowser::showFilterMenu()
