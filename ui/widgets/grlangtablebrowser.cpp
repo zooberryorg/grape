@@ -64,6 +64,10 @@ GrLangTableBrowser::GrLangTableBrowser(QWidget *parent, const QString& path)
     langTable->setSortingEnabled(true);
     langTable->horizontalHeader()->setStretchLastSection(true);
     langTable->verticalHeader()->setVisible(false);
+    langTable->setShowGrid(false);
+    langTable->setAlternatingRowColors(true);
+    langTable->setSelectionBehavior(QAbstractItemView::SelectRows);
+    langTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     // setup proxy
     initFilterProxy();
