@@ -36,6 +36,7 @@ set(PROJECT_SOURCES
         ui/widgets/grspinner.h ui/widgets/grspinner.cpp
         ui/widgets/grlangtablebrowser.h ui/widgets/grlangtablebrowser.cpp
         ui/widgets/grlineedit.h ui/widgets/grlineedit.cpp
+        ui/widgets/graltbutton.h ui/widgets/graltbutton.cpp
         # views (pages)
         ui/grapew.h ui/grapew.cpp ui/grapew.ui
         ui/grwelcomescreen.h ui/grwelcomescreen.cpp
