@@ -48,8 +48,6 @@ int main(int argc, char *argv[])
         }
     }
 
-    QApplication::setStyle(QStyleFactory::create("Fusion"));
-
     GrapeW w;
     w.show();
     return a.exec();
