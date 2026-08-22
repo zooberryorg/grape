@@ -206,14 +206,52 @@ QSplitter::handle:hover {
     border: 1px solid #c9a961;
     border-radius: 4px;
 }
-/* QTableView */
+/* QHeaderView */
+QHeaderView::section {
+    background-color: #1e2b1a;
+    color: #8fa384;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border: none;
+    border-right: 1px solid #395132;
+    border-bottom: 1px solid #395132;
+}
+QHeaderView::section:first {
+    border-left: 1px solid #395132;
+}
+QHeaderView::section:hover {
+    background-color: #24361f;
+}
+
+QTableCornerButton::section {
+    background-color: #1e2b1a;
+    border: none;
+    border-right: 1px solid #395132;
+    border-bottom: 1px solid #395132;
+}
+
 QTableView {
     background-color: #263621;
+    alternate-background-color: #223020;
     border: 1px solid #395132;
     border-radius: 8px;
-    font-size: 9px;
-    padding: 4px;
+    font-size: 11px;
     outline: none;
+    gridline-color: transparent;
+    selection-background-color: #807641;
+    selection-color: #171f14;
+}
+QTableView::item {
+    padding: 4px 8px;
+    border: none;
+}
+QTableView::item:selected {
+    background-color: #807641;
+    color: #171f14;
+}
+QTableView::item:hover {
+    background-color: #2e4226;
 }
 /* QLineEdit */
 QLineEdit {
@@ -240,18 +278,7 @@ QPushButton#altButton:hover {
     border-radius: 4px;
 }
 
-QHeaderView::section {
-    background-color: #1e2b1a;
-    font-size: 11px;
-    padding: 1px;
-    border: none;
-    border-right: 1px solid #395132;
-    border-bottom: 1px solid #395132;
-}
-QHeaderView::section:first {
-    border-left: 1px solid #395132;
-}
-
+/* Filter Menu */
 QWidget#filterMenu {
     background-color: #263621;
     border: 1px solid #395132;
