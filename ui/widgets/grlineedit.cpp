@@ -24,9 +24,13 @@ GrLineEdit::GrLineEdit(QWidget *parent, const QString& label, const QString& cap
     captionLabel->setGraphicsEffect(GrGfx::shadowFx());
     lineEdit->setCursor(Qt::ArrowCursor);
 
-    vLayout->addLayout(hLayout);
-    hLayout->addWidget(widgetLabel);
     hLayout->addWidget(lineEdit);
+    vLayout->addLayout(hLayout);
+
+    // don't add missing components
+    if ( !label.isEmpty() ) {
+        hLayout->addWidget(widgetLabel);
+    }
     if ( !caption.isEmpty() ) {
         vLayout->addWidget(captionLabel);
     }
