@@ -2,15 +2,20 @@
 #define GRLINEEDIT_H
 
 #include <QWidget>
+#include "grwidget.h"
+#include <QLineEdit>
 
-class GrLineEdit : public QWidget
+class QLineEdit;
+
+class GrLineEdit : public GrWidget
 {
     Q_OBJECT
 public:
-    explicit GrLineEdit(QWidget *parent = nullptr);
+    explicit GrLineEdit(QWidget *parent = nullptr, const QString& label = "", const QString& caption = "");
+    QLineEdit* widget() { return lineEdit; };
 
-signals:
-
+private:
+    QLineEdit *lineEdit;
 };
 
 #endif // GRLINEEDIT_H

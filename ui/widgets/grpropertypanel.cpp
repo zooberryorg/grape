@@ -12,6 +12,7 @@
 #include "grasset.h"
 #include "grcheckbox.h"
 #include "grspinner.h"
+#include "grlineedit.h"
 
 using Widget = GrShared::WidgetType;
 
@@ -99,7 +100,8 @@ QWidget* GrPropertyPanel::createField(QWidget* parent, const QString& section, c
             break;
         }
         default: {
-            QLineEdit* edit = new QLineEdit(value.v, fieldCtr);
+            GrLineEdit* edit = new GrLineEdit(fieldCtr, key);
+            edit->widget()->setText(value.v);
             field = edit;
             break;
         }

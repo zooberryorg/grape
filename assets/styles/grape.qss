@@ -215,3 +215,16 @@ QTableView {
     padding: 4px;
     outline: none;
 }
+/* QLineEdit */
+QLineEdit {
+    border: 2px solid #2e4226;
+    border-radius: 4px;
+    background-color: #182315;
+    font-size: 11px;
+}
+QLineEdit::hover {
+    background-color: #1d2719;
+}
+QLineEdit::focus {
+    border: 2px solid #c9a961;
+}
