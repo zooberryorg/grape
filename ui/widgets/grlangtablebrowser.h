@@ -22,9 +22,9 @@ public:
     explicit GrLangTableBrowser(QWidget *parent = nullptr, const QString& path = "");
     explicit GrLangTableBrowser(QWidget *parent, const QVector<GrPE::Entry>& entries, const QStringList& dllNames);
 
-    void setupTableModel();
-    void loadLangFiles();
     void showFilterMenu();
+    QVector<GrPE::Entry> entries() const { return langFiles; }
+    QStringList dllNames() const { return dllFileNames; }
 signals:
 
 private:
@@ -41,6 +41,9 @@ private:
     QVBoxLayout* layout;
 
     void initLangBrowser();
+    void setupTableModel();
+    void loadLangFiles();
+
     QWidget *searchArea;
     GrAltButton *clearTextButton;
     QString m_path;
