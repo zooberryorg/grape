@@ -63,6 +63,7 @@ GrLangTableBrowser::GrLangTableBrowser(QWidget *parent, const QString& path)
     langTable = new QTableView(this);
     langTable->setSortingEnabled(true);
     langTable->horizontalHeader()->setStretchLastSection(true);
+    langTable->verticalHeader()->setVisible(false);
 
     // setup proxy
     initFilterProxy();
