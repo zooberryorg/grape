@@ -1,5 +1,7 @@
 #include "graltbutton.h"
 
+#include <QEvent>
+#include <QEnterEvent>
 
 GrAltButton::GrAltButton(const QString& name, QWidget* parent)
     : QPushButton{name, parent}
@@ -18,4 +20,18 @@ void GrAltButton::setNormalIcon(const QIcon &icon)
 void GrAltButton::setHoverIcon(const QIcon &icon)
 {
     m_hoverIcon = icon;
+}
+
+void GrAltButton::enterEvent(QEnterEvent *event)
+{
+    if ( !m_hoverIcon.isNull() ) {
+        setIcon(m_hoverIcon);
+    }
+    QPushButton::enterEvent(event);
+}
+
+void GrAltButton::leaveEvent(QEnter *event)
+{
+    setIcon(m_normalIcon);
+    QPushButton::leaveEvent(event);
 }
