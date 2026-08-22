@@ -137,11 +137,11 @@ QSpinBox {
     font-size: 11px;
 }
 
-QSpinBox::hover {
+QSpinBox:hover {
     background-color: #1d2719;
 }
 
-QSpinBox::focus {
+QSpinBox:focus {
     border: 2px solid #c9a961;
 }
 
@@ -258,24 +258,42 @@ QLineEdit {
     border: 2px solid #2e4226;
     border-radius: 4px;
     background-color: #182315;
+    color: #c9c9c9;
     font-size: 11px;
+    padding: 4px 8px;
+    selection-background-color: #807641;
+    selection-color: #171f14;
 }
-QLineEdit::hover {
+QLineEdit:hover {
+    background-color: #1d2719;
+    border: 2px solid #395132;
+}
+QLineEdit:focus {
+    border: 2px solid #c9a961;
     background-color: #1d2719;
 }
-QLineEdit::focus {
-    border: 2px solid #c9a961;
+QLineEdit:disabled {
+    background-color: #141d10;
+    color: #5a6a52;
 }
-
+/* QPushButton */
 QPushButton#altButton {
     background-color: #263621;
     border: 1px solid #395132;
     border-radius: 4px;
+    padding: 4px 8px;
 }
 QPushButton#altButton:hover {
     background-color: #163621;
     border: 1px solid #c9a961;
-    border-radius: 4px;
+}
+QPushButton#altButton:pressed {
+    background-color: #131f0f;
+    border: 1px solid #c9a961;
+}
+QPushButton#altButton:disabled {
+    background-color: #1b241a;
+    border: 1px solid #2a352a;
 }
 
 /* Filter Menu */

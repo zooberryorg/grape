@@ -5,6 +5,8 @@
 #include <QLabel>
 #include <QAbstractItemView>
 
+#include "grgfx.h"
+
 GrFilterMenu::GrFilterMenu(QWidget* parent, const QStringList& dllFileNames)
     : QWidget(parent, Qt::Popup)
 {
@@ -22,6 +24,8 @@ GrFilterMenu::GrFilterMenu(QWidget* parent, const QStringList& dllFileNames)
 
     layout->addWidget(new QLabel("Search by File:", this));
     layout->addWidget(filterDllFiles);
+
+    setGraphicsEffect(GrGfx::shadowFx());
 
     connect(filterDllFiles, &QComboBox::currentTextChanged, this, &GrFilterMenu::handleDllMenuChanged);
 }
