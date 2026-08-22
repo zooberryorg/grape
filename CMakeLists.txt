@@ -66,7 +66,7 @@ set(PROJECT_SOURCES
         # models
         models/grprojecttreemodel.h models/grprojecttreemodel.cpp
         models/grlangtablemodel.h models/grlangtablemodel.cpp
-        models/grlangfilterproxy.h models/grlangfilterproxy.cpp
+        models/grlangfilterproxy.h
         ${TS_FILES}
 )
 
