@@ -74,6 +74,7 @@ GrLangTableBrowser::GrLangTableBrowser(QWidget *parent, const QString& path)
 
     connect(searchbar->widget(), &QLineEdit::textChanged, proxy, &QSortFilterProxyModel::setFilterFixedString);
     connect(clearText, &QPushButton::clicked, this, &GrLangTableBrowser::handleClearSearch);
+    connect(filterButton, &QPushButton::clicked, this, &GrLangTableBrowser::showFilterMenu);
 }
 
 void GrLangTableBrowser::setupTableModel()
