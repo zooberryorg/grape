@@ -19,13 +19,11 @@ GrLineEdit::GrLineEdit(QWidget *parent, const QString& label, const QString& cap
     widgetLabel->setFont(widgetFont);
     captionLabel->setFont(widgetFont);
 
+    // set up graphics
     lineEdit->setGraphicsEffect(GrGfx::shadowFx());
     widgetLabel->setGraphicsEffect(GrGfx::shadowFx());
     captionLabel->setGraphicsEffect(GrGfx::shadowFx());
     lineEdit->setCursor(Qt::ArrowCursor);
-
-    hLayout->addWidget(lineEdit);
-    vLayout->addLayout(hLayout);
 
     // don't add missing components
     if ( !label.isEmpty() ) {
@@ -34,4 +32,8 @@ GrLineEdit::GrLineEdit(QWidget *parent, const QString& label, const QString& cap
     if ( !caption.isEmpty() ) {
         vLayout->addWidget(captionLabel);
     }
+
+    vLayout->addLayout(hLayout);
+    hLayout->addWidget(lineEdit);
+
 }
