@@ -10,6 +10,7 @@ class QSortFilterProxyModel;
 class QTableView;
 class GrLineEdit;
 class GrAltButton;
+class GrLangTableModel;
 
 class GrLangTableBrowser : public QWidget
 {
@@ -29,6 +30,7 @@ private:
     QStringList dllFileNames;
     GrLineEdit *searchbar;
     GrAltButton *filterButton;
+    GrLangTableModel *langModel;
 private slots:
     void handleClearSearch();
 };

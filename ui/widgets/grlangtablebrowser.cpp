@@ -51,10 +51,10 @@ GrLangTableBrowser::GrLangTableBrowser(QWidget *parent, const QString& path)
     searchArea->setLayout(searchLayout);
     searchLayout->addWidget(searchbar);
     searchLayout->addWidget(clearText);
-    searchLayout->addWidget(filter);
+    searchLayout->addWidget(filterButton);
 
     // table setup
-    GrLangTableModel* langModel = new GrLangTableModel(this);
+    langModel = new GrLangTableModel(this);
     loadLangFiles(path);
     langModel->setEntries(langFiles);
 
@@ -114,7 +114,11 @@ void GrLangTableBrowser::showFilterMenu()
     menu->move(pos);
     menu->show();
 
-    connect(menu, &GrFilterMenu::filtersChanged, this, &GrLangTableBrowser::updateFilterProxy);
+    GrLangFilterProxy* proxy = new GrLangFilterProxy(this);
+    proxy->setSourceModel(langModel);
+    proxy->setFilterCaseSensitivity(Qt::CaseInsensitive);
+
+    connect(menu, &GrFilterMenu::filtersChanged, this, &QSortFilterProxyModel::setFilterFixedString);
 }
 
 void GrLangTableBrowser::handleClearSearch() {
