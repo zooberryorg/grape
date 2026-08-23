@@ -7,6 +7,7 @@
 
 #include "graltbutton.h"
 #include "grlineedit.h"
+#include "gridselectorpopup.h"
 
 GrIdSelector::GrIdSelector(QWidget *parent, const QString& label, const QString& caption, GrLangTableBrowser* source)
     : QWidget{parent}
@@ -46,4 +47,16 @@ bool GrIdSelector::eventFilter(QObject* watched, QEvent* event)
         }
     }
     return QWidget::eventFilter(watched, event);
+}
+
+void GrIdSelector::openPicker()
+{
+    GrIdSelectorPopup* popup = new GrIdSelectorPopup(this, m_sourceBrowser->entries(), m_sourceBrowser->dllNames());
+
+    const QPoint pos = lineEdit->mapToGlobal(QPoint(0, lineEdit->height() + 2));
+    popup->move(pos);
+    popup->show();
+
+    connect(popup, &GrIdSelectorPopup::idSelected, this, &GrIdSelector::handleIdSelected);
+    connect(popup, &GrIdSelectorPopup::cancelled, this, &GrIdSelector::handleCancel);
 }
