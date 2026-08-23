@@ -98,5 +98,6 @@ bool GrZIP::extractAllTo(const QString &destDir) const
 
 void GrZIP::setErrorFromMiniz() const
 {
-
+    const mz_zip_error err = mz_zip_get_last_error(archive());
+    m_lastError = QString::fromUtf8(mz_zip_get_error_string(err));
 }
