@@ -13,6 +13,7 @@
 #include "grcheckbox.h"
 #include "grspinner.h"
 #include "grlineedit.h"
+#include "gridselector.h"
 
 using Widget = GrShared::WidgetType;
 
@@ -98,6 +99,9 @@ QWidget* GrPropertyPanel::createField(QWidget* parent, const QString& section, c
             check->widget()->setChecked(isTrue);
             field = check;
             break;
+        }
+        case Widget::IdPicker {
+            GrIdSelector* idSelector = new GrIdSelector(fieldCtr, key, "", m_langBrowserSource);
         }
         default: {
             GrLineEdit* edit = new GrLineEdit(fieldCtr, key);

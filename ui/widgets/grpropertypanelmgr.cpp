@@ -84,10 +84,15 @@ void GrPropertyPanelMgr::loadAsset(GrAsset *asset)
     }
 
     for ( GrShared::PropertyGroup g : populatedGroups ) {
-        auto* panel = new GrPropertyPanel(m_panelStack, g);
+        GrPropertyPanel* panel = new GrPropertyPanel(m_panelStack, g);
         panel->loadAsset(asset);
         m_panelStack->addWidget(panel);
         m_panels.insert(g, panel);
+
+        // if dll files were loaded, ensure source is installed in every panel
+        if ( m_langBrowserSource ) {
+            panel->setLangBrowserSource(m_langBrowserSource);
+        }
 
         QIcon icon = groupIcons.contains(g)
             ? GrGfx::setSvgColor(groupIcons[g], QColor("#c2c6c0"), 50, 50)
