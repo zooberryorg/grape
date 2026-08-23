@@ -23,6 +23,8 @@ private:
     bool m_suppressNextFocus;
 signals:
     void idChanged(int id);
+protected:
+    bool eventFilter(QObject *watched, QEvent *event);
 private slots:
     void handleCancel(int id, const QString& value);
     void handleIdSelected();

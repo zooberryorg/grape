@@ -3,6 +3,7 @@
 #include "grlangtablebrowser.h"
 #include <QVBoxLayout>
 #include <QLabel>
+#include <QEvent>
 
 #include "graltbutton.h"
 #include "grlineedit.h"
@@ -33,4 +34,16 @@ void GrIdSelector::handleCancel(int id, const QString &value)
 void GrIdSelector::handleIdSelected()
 {
     m_suppressNextFocus = true;
+}
+
+bool GrIdSelector::eventFilter(QObject* watched, QEvent* event)
+{
+    if (watched == lineEdit->widget() && event->type() == QEvent::FocusIn) {
+        if (m_suppressNextFocus) {
+            m_suppressNextFocus = false;
+        } else {
+            openPicker();
+        }
+    }
+    return QWidget::eventFilter(watched, event);
 }
