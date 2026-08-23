@@ -20,12 +20,10 @@ QStringList GrZIP::fileNames() const
     QStringList names;
     if (!m_isOpen) return names;
 
-    mz_zip_archive* archive = const_cast<mz_zip_archive*>(&m_archive);
-
-    const mz_uint count = mz_zip_reader_get_num_files(archive);
+    const mz_uint count = mz_zip_reader_get_num_files(archive());
     for (mz_uint i = 0; i < count; ++i) {
         mz_zip_archive_file_stat stat;
-        if (mz_zip_reader_file_stat(archive, i, &stat))
+        if (mz_zip_reader_file_stat(archive(), i, &stat))
             names << QString::fromUtf8(stat.m_filename);
     }
     return names;
@@ -33,7 +31,18 @@ QStringList GrZIP::fileNames() const
 
 bool GrZIP::extractFileToBuffer(const QString &name, QByteArray &out) const
 {
+    if (!m_isOpen) return false;
 
+    size_t size = 0;
+    void* data = mz_zip_reader_extract_file_to_heap(archive(), name.toUtf8().constData(), &size, 0);
+    if (!data) {
+        const_cast<GrZIP*>(this)->setErrorFromMiniz();
+        return false;
+    }
+
+    out = QByteArray(static_cast<const char*>(data), static_cast<int>(size));
+    mz_free(data);
+    return true;
 }
 
 bool GrZIP::extractAllTo(const QString &destDir) const
