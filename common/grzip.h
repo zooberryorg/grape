@@ -23,7 +23,7 @@ private:
     mutable QString m_lastError;
     mz_zip_archive* archive() const { return const_cast<mz_zip_archive*>(&m_archive); }
 
-    void setErrorFromMiniz();
+    void setErrorFromMiniz() const;
 };
 
 #endif // GRZIP_H
