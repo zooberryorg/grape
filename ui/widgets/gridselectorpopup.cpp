@@ -21,8 +21,8 @@ GrIdSelectorPopup::GrIdSelectorPopup(QWidget *parent, const QVector<GrPE::Entry>
 
     m_source = new GrLangTableBrowser(this, entries, dllNames);
     QLabel* label = new QLabel("ID Picker");
-    GrAltButton* cancelButton = new GrAltButton("Cancel", this);
-    GrAltButton* selectButton = new GrAltButton("Select", this);
+    cancelButton = new GrAltButton("Cancel", this);
+    selectButton = new GrAltButton("Select", this);
 
     layout->addWidget(label);
     layout->addWidget(m_source);
