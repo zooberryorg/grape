@@ -66,6 +66,7 @@ set(PROJECT_SOURCES
         common/grslots.h common/grslots.cpp
         common/grgfx.h common/grgfx.cpp
         common/grpe.h common/grpe.cpp
+        common/grzip.h common/grzip.cpp
         resources.qrc
         # models
         models/grprojecttreemodel.h models/grprojecttreemodel.cpp
