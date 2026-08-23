@@ -13,6 +13,7 @@ class GrAsset;
 class QStackedWidget;
 class GrProject;
 class GrStatusBar;
+class GrLangTableBrowser;
 
 class GrWorkspace : public QWidget
 {
@@ -40,6 +41,7 @@ private:
     QSplitter *vSplitter;
     GrStatusBar* statusBar;
     QVBoxLayout *leftSidebarLayout;
+    GrLangTableBrowser *langBrowser;
 private slots:
     void handleAssetSelected(GrAsset* asset);
 

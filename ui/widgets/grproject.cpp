@@ -6,6 +6,7 @@
 
 #include "grpropertypanelmgr.h"
 #include "grcanvasworkspace.h"
+#include "grlangtablebrowser.h"
 
 GrProject::GrProject(QWidget *parent)
     : QWidget{parent}
@@ -32,4 +33,9 @@ GrProject::GrProject(QWidget *parent)
 
 void GrProject::showAsset(GrAsset* asset) {
     panelMgr->loadAsset(asset);
+}
+
+void GrProject::setLangBrowserSource(GrLangTableBrowser *source)
+{
+    panelMgr->setLangBrowserSource(source);
 }

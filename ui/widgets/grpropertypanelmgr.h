@@ -7,12 +7,16 @@
 #include <QStackedWidget>
 #include "grpropertypanel.h"
 
+class GrLangTableBrowser;
+
 class GrPropertyPanelMgr : public QWidget
 {
     Q_OBJECT
 public:
     explicit GrPropertyPanelMgr(QWidget *parent = nullptr);
     void loadAsset(GrAsset* asset);
+    void setLangBrowserSource(GrLangTableBrowser* source) { m_langBrowserSource = source; };
+    GrLangTableBrowser* getLangBrowserSource() { return m_langBrowserSource; };
 
 signals:
 private:
@@ -23,6 +27,7 @@ private:
     QHash<GrShared::PropertyGroup, GrPropertyPanel*> m_panels;
     QHash<GrShared::PropertyGroup, QAction*> m_actions;
     QHash<GrShared::PropertyGroup, QToolButton*> m_buttons;
+    GrLangTableBrowser* m_langBrowserSource;
 
 };
 

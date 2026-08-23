@@ -87,15 +87,28 @@ QTreeView {
     font-size: 11px;
     padding: 4px;
     outline: none;
+    show-decoration-selected: 1;
 }
-QTreeView::branch:selected {
-    outline: 0px;
-    background-color: #263621;
+
+QTreeView::item {
+    padding: 4px 6px;
     border: none;
 }
-QTreeView::item:selected {
-    outline: 0px;
+QTreeView::item:hover {
+    background-color: #2e4226;
+}
+QTreeView::branch:hover {
+    background-color: #2e4226;
+}
+
+QTreeView::branch:selected {
     background-color: #807641;
+    border: none;
+    outline: 0;
+}
+QTreeView::item:selected {
+    background-color: #807641;
+    color: #171f14;
     border: none;
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
@@ -303,7 +316,7 @@ QWidget#filterMenu {
 
 QWidget#filterMenu QLabel {
     color: #8fa384;
-    font-size: 10px;
+    font-size: 8px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;

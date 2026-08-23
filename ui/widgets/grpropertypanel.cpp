@@ -13,12 +13,14 @@
 #include "grcheckbox.h"
 #include "grspinner.h"
 #include "grlineedit.h"
+#include "gridselector.h"
 
 using Widget = GrShared::WidgetType;
 
 GrPropertyPanel::GrPropertyPanel(QWidget *parent, GrShared::PropertyGroup groupType)
     : QWidget{parent},
-      m_group{groupType}
+      m_group{groupType},
+      m_langBrowserSource{nullptr}
 {
     setObjectName("propertyPanel");
     setAttribute(Qt::WA_StyledBackground, true);
@@ -98,6 +100,15 @@ QWidget* GrPropertyPanel::createField(QWidget* parent, const QString& section, c
             check->widget()->setChecked(isTrue);
             field = check;
             break;
+        }
+        case Widget::IdPicker: {
+            if ( m_langBrowserSource ) {
+                GrIdSelector* idSelector = new GrIdSelector(fieldCtr, key, "", m_langBrowserSource);
+                idSelector->widget()->setText(value.v);
+                field = idSelector;
+                break;
+            }
+            // else, use default
         }
         default: {
             GrLineEdit* edit = new GrLineEdit(fieldCtr, key);

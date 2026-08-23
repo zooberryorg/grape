@@ -49,7 +49,7 @@ QVariant GrLangTableModel::headerData(int section, Qt::Orientation orientation, 
 
     switch (section) {
         case 0: return "ID";
-        case 1: return "Value";
+        case 1: return "String";
         case 2: return "File Name";
     }
     return QVariant();

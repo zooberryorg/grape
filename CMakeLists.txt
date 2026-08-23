@@ -37,6 +37,9 @@ set(PROJECT_SOURCES
         ui/widgets/grlangtablebrowser.h ui/widgets/grlangtablebrowser.cpp
         ui/widgets/grlineedit.h ui/widgets/grlineedit.cpp
         ui/widgets/graltbutton.h ui/widgets/graltbutton.cpp
+        ui/widgets/grfiltermenu.h ui/widgets/grfiltermenu.cpp
+        ui/widgets/gridselector.h ui/widgets/gridselector.cpp
+        ui/widgets/gridselectorpopup.h ui/widgets/gridselectorpopup.cpp
         # views (pages)
         ui/grapew.h ui/grapew.cpp ui/grapew.ui
         ui/grwelcomescreen.h ui/grwelcomescreen.cpp
@@ -76,7 +79,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 qt_add_executable(grape
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        ui/widgets/grfiltermenu.h ui/widgets/grfiltermenu.cpp
     )
 
 target_include_directories(

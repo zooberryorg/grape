@@ -12,16 +12,21 @@ class GrLineEdit;
 class GrAltButton;
 class GrLangTableModel;
 class GrLangFilterProxy;
+class QHBoxLayout;
+class QVBoxLayout;
 
 class GrLangTableBrowser : public QWidget
 {
     Q_OBJECT
 public:
     explicit GrLangTableBrowser(QWidget *parent = nullptr, const QString& path = "");
+    explicit GrLangTableBrowser(QWidget *parent, const QVector<GrPE::Entry>& entries, const QStringList& dllNames);
 
-    void setupTableModel();
-    void loadLangFiles(const QString& path);
     void showFilterMenu();
+    QVector<GrPE::Entry> entries() const { return langFiles; }
+    QStringList dllNames() const { return dllFileNames; }
+    bool hasSelection() const;
+    GrPE::Entry selectedEntry() const;
 signals:
 
 private:
@@ -34,6 +39,16 @@ private:
     GrLangTableModel *langModel;
     void initFilterProxy();
 
+    QHBoxLayout* searchLayout;
+    QVBoxLayout* layout;
+
+    void initLangBrowser();
+    void setupTableModel();
+    void loadLangFiles();
+
+    QWidget *searchArea;
+    GrAltButton *clearTextButton;
+    QString m_path;
 private slots:
     void handleClearSearch();
 };
