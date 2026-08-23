@@ -19,7 +19,8 @@ using Widget = GrShared::WidgetType;
 
 GrPropertyPanel::GrPropertyPanel(QWidget *parent, GrShared::PropertyGroup groupType)
     : QWidget{parent},
-      m_group{groupType}
+      m_group{groupType},
+      m_langBrowserSource{nullptr}
 {
     setObjectName("propertyPanel");
     setAttribute(Qt::WA_StyledBackground, true);
