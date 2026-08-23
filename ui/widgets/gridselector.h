@@ -26,8 +26,8 @@ signals:
 protected:
     bool eventFilter(QObject *watched, QEvent *event);
 private slots:
-    void handleCancel(int id, const QString& value);
-    void handleIdSelected();
+    void handleCancel();
+    void handleIdSelected(int id, const QString &value);
 
 };
 

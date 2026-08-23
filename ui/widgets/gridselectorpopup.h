@@ -7,6 +7,7 @@
 class QVBoxLayout;
 class QHBoxLayout;
 class GrLangTableBrowser;
+class GrAltButton;
 
 class GrIdSelectorPopup : public QWidget
 {
@@ -16,9 +17,9 @@ public:
 private:
     QVBoxLayout* layout;
     QHBoxLayout* buttonLayout;
-    int m_selectedId;
     GrLangTableBrowser* m_source;
-    void openPicker();
+    GrAltButton* cancelButton;
+    GrAltButton* selectButton;
 signals:
     void idSelected(int id, const QString& value);
     void cancelled();

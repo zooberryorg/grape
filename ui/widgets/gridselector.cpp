@@ -24,17 +24,17 @@ GrIdSelector::GrIdSelector(QWidget *parent, const QString& label, const QString&
     vLayout->addWidget(lineEdit);
 }
 
-void GrIdSelector::handleCancel(int id, const QString &value)
+void GrIdSelector::handleCancel()
+{
+    m_suppressNextFocus = true;
+}
+
+void GrIdSelector::handleIdSelected(int id, const QString &value)
 {
     m_selectedId = id;
     m_suppressNextFocus = true;
     lineEdit->widget()->setText(value);
     emit idChanged(id);
-}
-
-void GrIdSelector::handleIdSelected()
-{
-    m_suppressNextFocus = true;
 }
 
 bool GrIdSelector::eventFilter(QObject* watched, QEvent* event)
