@@ -21,6 +21,7 @@ private:
     mz_zip_archive m_archive;
     bool m_isOpen = false;
     mutable QString m_lastError;
+    mz_zip_archive* archive() const { return const_cast<mz_zip_archive*>(&m_archive); }
 
     void setErrorFromMiniz();
 };
