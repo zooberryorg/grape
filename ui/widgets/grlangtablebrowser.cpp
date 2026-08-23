@@ -26,6 +26,7 @@ GrLangTableBrowser::GrLangTableBrowser(QWidget *parent, const QString& path)
 }
 
 GrLangTableBrowser::GrLangTableBrowser(QWidget *parent, const QVector<GrPE::Entry> &entries, const QStringList &dllNames)
+    : QWidget{parent}
 {
     langFiles = entries;
     dllFileNames = dllNames;
@@ -132,6 +133,23 @@ void GrLangTableBrowser::showFilterMenu()
     menu->show();
 
     connect(menu, &GrFilterMenu::filtersChanged, proxy, &GrLangFilterProxy::setDllFilter);
+}
+
+bool GrLangTableBrowser::hasSelection() const
+{
+    return langTable->selectionModel() && langTable->selectionModel()->hasSelection();
+}
+
+GrPE::Entry GrLangTableBrowser::selectedEntry() const
+{
+    const QModelIndex proxyIndex = langTable->selectionModel()->currentIndex();
+    const QModelIndex sourceIndex = proxy->mapToSource(proxyIndex);
+
+    const unsigned int id = langModel->data(langModel->index(sourceIndex.row(), 0)).toUInt();
+    const QString value = langModel->data(langModel->index(sourceIndex.row(), 1)).toString();
+    const QString fileName = langModel->data(langModel->index(sourceIndex.row(), 2)).toString();
+
+    return GrPE::Entry{ id, value, fileName };
 }
 
 void GrLangTableBrowser::initFilterProxy()

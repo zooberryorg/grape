@@ -25,7 +25,7 @@ signals:
     void cancelled();
 private slots:
     void handleSelected();
-    void handleCancelled(GrLangTableBrowser* source);
+    void handleCancelled();
 };
 
 #endif // GRIDSELECTORPOPUP_H

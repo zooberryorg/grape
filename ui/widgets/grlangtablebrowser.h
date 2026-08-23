@@ -25,6 +25,8 @@ public:
     void showFilterMenu();
     QVector<GrPE::Entry> entries() const { return langFiles; }
     QStringList dllNames() const { return dllFileNames; }
+    bool hasSelection() const;
+    GrPE::Entry selectedEntry() const;
 signals:
 
 private:

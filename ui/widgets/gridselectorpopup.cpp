@@ -17,30 +17,33 @@ GrIdSelectorPopup::GrIdSelectorPopup(QWidget *parent, const QVector<GrPE::Entry>
     QWidget* buttonArea = new QWidget(this);
     buttonArea->setLayout(buttonLayout);
 
-    GrLangTableBrowser* browser = new GrLangTableBrowser(this, entries, dllNames);
+    m_source = new GrLangTableBrowser(this, entries, dllNames);
     QLabel* label = new QLabel("ID Picker");
     GrAltButton* cancelButton = new GrAltButton("Cancel", this);
     GrAltButton* selectButton = new GrAltButton("Select", this);
 
     layout->addWidget(label);
-    layout->addWidget(browser);
+    layout->addWidget(m_source);
     layout->addWidget(buttonArea);
 
     buttonLayout->addWidget(cancelButton);
     buttonLayout->addWidget(selectButton);
+
+    connect(cancelButton, &QPushButton::clicked, this, &GrIdSelectorPopup::handleCancelled);
+    connect(selectButton, &QPushButton::clicked, this, &GrIdSelectorPopup::handleSelected);
 }
 
 void GrIdSelectorPopup::handleSelected()
 {
-    emit cancelled();
+    if (m_source->hasSelection()) {
+        const GrPE::Entry entry = m_source->selectedEntry();
+        emit idSelected(entry.id, entry.value);
+    }
     close();
 }
 
-void GrIdSelectorPopup::handleCancelled(GrLangTableBrowser *source)
+void GrIdSelectorPopup::handleCancelled()
 {
-    if (source->hasSelection()) {
-        const GrPE::Entry entry = source->selectedEntry();
-        emit idSelected(entry.id, entry.value);
-    }
+    emit cancelled();
     close();
 }
