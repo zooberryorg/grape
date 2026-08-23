@@ -23,6 +23,9 @@ private:
 signals:
     void idSelected(int id, const QString& value);
     void cancelled();
+private slots:
+    void handleSelected();
+    void handleCancelled(GrLangTableBrowser* source);
 };
 
 #endif // GRIDSELECTORPOPUP_H

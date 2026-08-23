@@ -7,7 +7,7 @@
 #include "graltbutton.h"
 
 GrIdSelectorPopup::GrIdSelectorPopup(QWidget *parent, const QVector<GrPE::Entry> &entries, const QStringList &dllNames)
-    : QWidget{parent}
+    : QWidget{parent, Qt::Popup}
 {
     setObjectName("explorerContainer");
     setAttribute(Qt::WA_StyledBackground, true);
@@ -28,4 +28,19 @@ GrIdSelectorPopup::GrIdSelectorPopup(QWidget *parent, const QVector<GrPE::Entry>
 
     buttonLayout->addWidget(cancelButton);
     buttonLayout->addWidget(selectButton);
+}
+
+void GrIdSelectorPopup::handleSelected()
+{
+    emit cancelled();
+    close();
+}
+
+void GrIdSelectorPopup::handleCancelled(GrLangTableBrowser *source)
+{
+    if (source->hasSelection()) {
+        const GrPE::Entry entry = source->selectedEntry();
+        emit idSelected(entry.id, entry.value);
+    }
+    close();
 }
