@@ -7,6 +7,7 @@ class GrAsset;
 class QFrame;
 class GrPropertyPanelMgr;
 class GrCanvasWorkspace;
+class GrLangTableBrowser;
 
 class GrProject : public QWidget
 {
@@ -14,7 +15,7 @@ class GrProject : public QWidget
 public:
     explicit GrProject(QWidget *parent = nullptr);
     void showAsset(GrAsset* asset);
-
+    void setLangBrowserSource(GrLangTableBrowser* source);
 signals:
 private:
     GrCanvasWorkspace* canvasArea;

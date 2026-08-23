@@ -29,7 +29,8 @@ static const QHash<GrShared::PropertyGroup, QString> groupIcons = {
 };
 
 GrPropertyPanelMgr::GrPropertyPanelMgr(QWidget *parent)
-    : QWidget{parent}
+    : QWidget{parent},
+      m_langBrowserSource{nullptr}
 {
     setObjectName("propertyPanelGroup");
     setAttribute(Qt::WA_StyledBackground, true);
