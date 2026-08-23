@@ -6,7 +6,7 @@
 
 #include "graltbutton.h"
 
-GrIdSelectorPopup::GrIdSelectorPopup(QWidget *parent)
+GrIdSelectorPopup::GrIdSelectorPopup(QWidget *parent, const QVector<GrPE::Entry> &entries, const QStringList &dllNames)
     : QWidget{parent}
 {
     setObjectName("explorerContainer");

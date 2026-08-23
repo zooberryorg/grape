@@ -51,7 +51,7 @@ bool GrIdSelector::eventFilter(QObject* watched, QEvent* event)
 
 void GrIdSelector::openPicker()
 {
-    GrIdSelectorPopup* popup = new GrIdSelectorPopup(this, m_sourceBrowser->entries(), m_sourceBrowser->dllNames());
+    GrIdSelectorPopup* popup = new GrIdSelectorPopup(this, m_source->entries(), m_source->dllNames());
 
     const QPoint pos = lineEdit->mapToGlobal(QPoint(0, lineEdit->height() + 2));
     popup->move(pos);
