@@ -11,7 +11,8 @@ GrZIP::GrZIP(const QString& archivePath)
 
 GrZIP::~GrZIP()
 {
-
+    if (m_isOpen)
+        mz_zip_reader_end(&m_archive);
 }
 
 QStringList GrZIP::fileNames() const
