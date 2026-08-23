@@ -40,5 +40,6 @@ private:
     // views
     GrWorkspace* workspaceScreen;
     GrWelcomeScreen* welcomeScreen;
+    void handleImportFromZTD(QAction *, void (*)(bool), GrapeW *, );
 };
 #endif // GRAPEW_H

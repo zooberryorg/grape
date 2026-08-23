@@ -352,3 +352,66 @@ QAbstractItemView#filterMenuList::item:selected {
     background-color: #807641;
     color: #171f14;
 }
+/* QMenuBar */
+QMenuBar {
+    background-color: #1e2b1a;
+    color: #c9c9c9;
+    border-bottom: 1px solid #395132;
+    padding: 2px 4px;
+    spacing: 2px;
+    font-size: 11px;
+}
+QMenuBar::item {
+    background: transparent;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+QMenuBar::item:selected {
+    background-color: #2e4226;
+}
+QMenuBar::item:pressed {
+    background-color: #807641;
+    color: #171f14;
+}
+QMenuBar::item:disabled {
+    color: #5a6a52;
+}
+/* QMenu dropdowns */
+QMenu {
+    background-color: #263621;
+    border: 1px solid #395132;
+    border-radius: 6px;
+    padding: 4px;
+}
+QMenu::separator {
+    height: 1px;
+    background-color: #395132;
+    margin: 4px 8px;
+}
+QMenu::item {
+    padding: 6px 28px 6px 12px;
+    border-radius: 4px;
+    color: #c9c9c9;
+}
+QMenu::item:selected {
+    background-color: #807641;
+    color: #171f14;
+}
+QMenu::item:disabled {
+    color: #5a6a52;
+}
+QMenu::icon {
+    padding-left: 8px;
+    width: 16px;
+    height: 16px;
+}
+QMenu::indicator {
+    width: 14px;
+    height: 14px;
+    margin-left: 4px;
+}
+QMenu::right-arrow {
+    width: 10px;
+    height: 10px;
+    margin-right: 8px;
+}

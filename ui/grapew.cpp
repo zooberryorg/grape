@@ -40,6 +40,7 @@ GrapeW::GrapeW(QWidget *parent)
     setWindowTitle("APE Studio");
 
     connect(openAction, &QAction::triggered, this, &GrapeW::handleOpenProject);
+    connect(fromZtdAction, &QAction::triggered, this, &GrapeW::handleImportFromZTD);
     connect(welcomeScreen, &GrWelcomeScreen::openProjectRequested, this, &GrapeW::handleOpenProject);
 }
 
