@@ -12,7 +12,8 @@ GrIdSelector::GrIdSelector(QWidget *parent, const QString& label, const QString&
     : QWidget{parent},
       m_source{source},
       m_selectedId{0},
-      m_suppressNextFocus{false}
+      m_suppressNextFocus{false},
+      m_popup{nullptr}
 {
     setObjectName("explorerContainer");
     setAttribute(Qt::WA_StyledBackground, true);
@@ -58,12 +59,21 @@ void GrIdSelector::openPicker()
         return;
     }
 
-    GrIdSelectorPopup* popup = new GrIdSelectorPopup(this, m_source->entries(), m_source->dllNames());
+    if ( m_popup ) {
+        return;
+    }
+
+    m_popup = new GrIdSelectorPopup(this, m_source->entries(), m_source->dllNames());
+    m_popup->setAttribute(Qt::WA_DeleteOnClose);
 
     const QPoint pos = m_lineEdit->mapToGlobal(QPoint(0, m_lineEdit->height() + 2));
-    popup->move(pos);
-    popup->show();
+    m_popup->move(pos);
+    m_popup->show();
 
-    connect(popup, &GrIdSelectorPopup::idSelected, this, &GrIdSelector::handleIdSelected);
-    connect(popup, &GrIdSelectorPopup::cancelled, this, &GrIdSelector::handleCancel);
+    connect(m_popup, &GrIdSelectorPopup::idSelected, this, &GrIdSelector::handleIdSelected);
+    connect(m_popup, &GrIdSelectorPopup::cancelled, this, &GrIdSelector::handleCancel);
+    // when popup destroyed
+    connect(m_popup, &QObject::destroyed, this, [this] {
+            m_popup = nullptr;
+        });
 }

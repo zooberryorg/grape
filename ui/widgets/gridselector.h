@@ -7,6 +7,7 @@
 class QVBoxLayout;
 class QHBoxLayout;
 class GrLangTableBrowser;
+class GrIdSelectorPopup;
 
 class GrIdSelector : public QWidget
 {
@@ -23,10 +24,11 @@ private:
     GrLineEdit* m_lineEdit;
     QVBoxLayout *vLayout;
     bool m_suppressNextFocus;
+    GrIdSelectorPopup* m_popup;
 signals:
     void idChanged(int id);
 protected:
-    bool eventFilter(QObject *watched, QEvent *event);
+    bool eventFilter(QObject *watched, QEvent *event) override;
 private slots:
     void handleCancel();
     void handleIdSelected(int id, const QString &value, const QString& fileName);

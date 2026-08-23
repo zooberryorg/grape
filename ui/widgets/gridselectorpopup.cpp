@@ -3,6 +3,7 @@
 #include "grlangtablebrowser.h"
 #include <QVBoxLayout>
 #include <QLabel>
+#include <QApplication>
 
 #include "graltbutton.h"
 
@@ -11,6 +12,7 @@ GrIdSelectorPopup::GrIdSelectorPopup(QWidget *parent, const QVector<GrPE::Entry>
 {
     setObjectName("explorerContainer");
     setAttribute(Qt::WA_StyledBackground, true);
+    connect(qApp, &QGuiApplication::applicationStateChanged, this, &GrIdSelectorPopup::handleAppStateChange);
 
     layout = new QVBoxLayout(this);
     buttonLayout = new QHBoxLayout;
@@ -46,4 +48,10 @@ void GrIdSelectorPopup::handleCancelled()
 {
     emit cancelled();
     close();
+}
+
+void GrIdSelectorPopup::handleAppStateChange(Qt::ApplicationState state)
+{
+    if (state != Qt::ApplicationActive)
+        close();
 }

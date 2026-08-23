@@ -26,6 +26,7 @@ signals:
 private slots:
     void handleSelected();
     void handleCancelled();
+    void handleAppStateChange(Qt::ApplicationState state);
 };
 
 #endif // GRIDSELECTORPOPUP_H
