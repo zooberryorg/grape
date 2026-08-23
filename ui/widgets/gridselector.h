@@ -29,7 +29,7 @@ protected:
     bool eventFilter(QObject *watched, QEvent *event);
 private slots:
     void handleCancel();
-    void handleIdSelected(int id, const QString &value);
+    void handleIdSelected(int id, const QString &value, const QString& fileName);
 
 };
 

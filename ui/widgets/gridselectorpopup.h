@@ -21,7 +21,7 @@ private:
     GrAltButton* cancelButton;
     GrAltButton* selectButton;
 signals:
-    void idSelected(int id, const QString& value);
+    void idSelected(int id, const QString& value, const QString& fileName);
     void cancelled();
 private slots:
     void handleSelected();

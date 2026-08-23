@@ -31,11 +31,11 @@ void GrIdSelector::handleCancel()
     m_suppressNextFocus = true;
 }
 
-void GrIdSelector::handleIdSelected(int id, const QString &value)
+void GrIdSelector::handleIdSelected(int id, const QString &value, const QString& fileName)
 {
     m_selectedId = id;
     m_suppressNextFocus = true;
-    m_lineEdit->widget()->setText(value);
+    m_lineEdit->widget()->setText(QString::number(id));
     emit idChanged(id);
 }
 

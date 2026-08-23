@@ -37,7 +37,7 @@ void GrIdSelectorPopup::handleSelected()
 {
     if (m_source->hasSelection()) {
         const GrPE::Entry entry = m_source->selectedEntry();
-        emit idSelected(entry.id, entry.value);
+        emit idSelected(entry.id, entry.value, entry.dllFileName);
     }
     close();
 }
