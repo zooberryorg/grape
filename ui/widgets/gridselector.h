@@ -2,11 +2,11 @@
 #define GRIDSELECTOR_H
 
 #include <QWidget>
+#include "grlineedit.h"
 
 class QVBoxLayout;
 class QHBoxLayout;
 class GrLangTableBrowser;
-class GrLineEdit;
 
 class GrIdSelector : public QWidget
 {
@@ -14,11 +14,13 @@ class GrIdSelector : public QWidget
 public:
     explicit GrIdSelector(QWidget *parent = nullptr, const QString& label = "", const QString& caption = "", GrLangTableBrowser* source = nullptr);
     int selectedId() const { return m_selectedId; };
+    QLineEdit* widget() { return m_lineEdit->widget(); };
+
 private:
     int m_selectedId;
     GrLangTableBrowser* m_source;
     void openPicker();
-    GrLineEdit* lineEdit;
+    GrLineEdit* m_lineEdit;
     QVBoxLayout *vLayout;
     bool m_suppressNextFocus;
 signals:

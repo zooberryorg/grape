@@ -100,8 +100,11 @@ QWidget* GrPropertyPanel::createField(QWidget* parent, const QString& section, c
             field = check;
             break;
         }
-        case Widget::IdPicker {
+        case Widget::IdPicker: {
             GrIdSelector* idSelector = new GrIdSelector(fieldCtr, key, "", m_langBrowserSource);
+            idSelector->widget()->setText(value.v);
+            field = idSelector;
+            break;
         }
         default: {
             GrLineEdit* edit = new GrLineEdit(fieldCtr, key);
