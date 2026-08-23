@@ -6,6 +6,7 @@
 class QVBoxLayout;
 class QHBoxLayout;
 class GrLangTableBrowser;
+class GrLineEdit;
 
 class GrIdSelector : public QWidget
 {
@@ -14,12 +15,15 @@ public:
     explicit GrIdSelector(QWidget *parent = nullptr, GrLangTableBrowser* source = nullptr);
     int selectedId() const { return m_selectedId; };
 private:
-    QVBoxLayout* layout;
-    QHBoxLayout* buttonLayout;
     int m_selectedId;
     GrLangTableBrowser* m_source;
+    void openPicker();
+    GrLineEdit* lineEdit;
 signals:
     void idChanged(int id);
+private slots:
+    void handleCancel();
+    void handleIdSelected();
 
 };
 
