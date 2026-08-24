@@ -52,7 +52,14 @@ QImage GrGraphic::compositeFrame(int frameIndex) const
 
 void GrGraphic::eraseAt(int frameIndex, int x, int y)
 {
+    if (frameIndex < 0 || frameIndex >= m_alphaMasks.size())
+        return;
 
+    QImage& mask = m_alphaMasks[frameIndex];
+    if (x < 0 || x >= mask.width() || y < 0 || y >= mask.height())
+        return;
+
+    mask.scanLine(y)[x] = 0;
 }
 
 QPoint GrGraphic::frameOffset(int frameIndex) const
