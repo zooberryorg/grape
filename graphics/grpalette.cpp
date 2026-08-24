@@ -21,7 +21,8 @@ bool GrPalette::load(const QString &path)
 
 bool GrPalette::save(const QString &path) const
 {
-
+    m_pal->save(path.toStdString());
+    return true;
 }
 
 QVector<QRgb> GrPalette::palette() const
@@ -62,10 +63,4 @@ QColor GrPalette::color(int index) const
 GrPalette *GrPalette::load(std::shared_ptr<PalF> existing, QObject *parent)
 {
 
-}
-
-bool GrPalette::save(const QString &path)
-{
-    m_pal->save(path.toStdString());
-    return true;
 }
