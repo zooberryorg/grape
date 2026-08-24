@@ -64,7 +64,7 @@ set(PROJECT_SOURCES
         common/grshared.h
         common/grtreenode.h common/grtreenode.cpp
         common/grini.h common/grini.cpp
-        common/grslots.h common/grslots.cpp
+
         common/grgfx.h common/grgfx.cpp
         common/grpe.h common/grpe.cpp
         common/grzip.h common/grzip.cpp

@@ -53,7 +53,32 @@ GrapeW::~GrapeW()
 
 void GrapeW::handleImportProjectFromDisk()
 {
-    GrSlots::handleProjectOpen(this, central, new GrWorkspace, menuBar());
+    QString directory = QFileDialog::getExistingDirectory(
+        parent,
+        QFileDialog::tr("Open Project Directory"),
+        QDir::homePath(),
+        QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks
+    );
+
+    // TODO: handle case when dir not found here
+
+    if ( !directory.isEmpty() && stackedLayouts->count() < 2 ) {
+
+        workspace = new GrWorkspace();
+        workspace->addProject(directory);
+
+        stackedLayouts->addWidget(workspace);
+        stackedLayouts->setCurrentIndex(1);
+
+        menuBar->setHidden(false);
+
+        parent->setMinimumSize(1024, 764);
+
+    } else if ( !directory.isEmpty() && stackedLayouts->count() > 1 ) {
+
+        workspace->addProject(directory);
+
+    }
 }
 
 void GrapeW::handleImportProjectFromZTD()
