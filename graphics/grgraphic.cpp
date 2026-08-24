@@ -1,11 +1,11 @@
 #include "grgraphic.h"
 #include "ztalib/ZtaF.h"
-
-GrTexture::GrTexture() {}
+#include "grpalette.h"
 
 GrGraphic::GrGraphic(std::shared_ptr<ZtaData> data, GrPalette *palette, QObject *parent)
 {
-
+    connect(m_palette, &GrPalette::paletteChanged, this, &GrGraphic::handlePaletteChanged);
+    decodeFrames();
 }
 
 QImage GrGraphic::compositeFrame(int frameIndex) const
