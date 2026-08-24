@@ -3,6 +3,8 @@
 #include <QColor>
 
 GrPalette::GrPalette(std::shared_ptr<PalF> source, QObject *parent)
+    : QObject(parent),
+      m_pal(std::move(source))
 {
 
 }
