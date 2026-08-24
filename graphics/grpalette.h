@@ -26,6 +26,7 @@ signals:
 private:
     friend class GrGraphic;
     static GrPalette* load(std::shared_ptr<PalF> existing, QObject* parent = nullptr);
+    std::shared_ptr<PalF> shared_palette() const { return m_pal; }
     std::shared_ptr<PalF> m_pal;
 };
 
