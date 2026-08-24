@@ -2,7 +2,6 @@
 #include "grworkspace.h"
 #include "grwelcomescreen.h"
 #include <QFileDialog>
-#include "grslots.h"
 
 GrapeW::GrapeW(QWidget *parent)
     : QMainWindow(parent)
@@ -54,27 +53,29 @@ GrapeW::~GrapeW()
 void GrapeW::handleImportProjectFromDisk()
 {
     QString directory = QFileDialog::getExistingDirectory(
-        parent,
+        this,
         QFileDialog::tr("Open Project Directory"),
         QDir::homePath(),
         QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks
     );
 
+    GrWorkspace* workspace = new GrWorkspace;
+
     // TODO: handle case when dir not found here
 
-    if ( !directory.isEmpty() && stackedLayouts->count() < 2 ) {
+    if ( !directory.isEmpty() && central->count() < 2 ) {
 
         workspace = new GrWorkspace();
         workspace->addProject(directory);
 
-        stackedLayouts->addWidget(workspace);
-        stackedLayouts->setCurrentIndex(1);
+        central->addWidget(workspace);
+        central->setCurrentIndex(1);
 
-        menuBar->setHidden(false);
+        menuBar()->setHidden(false);
 
-        parent->setMinimumSize(1024, 764);
+        this->setMinimumSize(1024, 764);
 
-    } else if ( !directory.isEmpty() && stackedLayouts->count() > 1 ) {
+    } else if ( !directory.isEmpty() && central->count() > 1 ) {
 
         workspace->addProject(directory);
 
@@ -83,5 +84,12 @@ void GrapeW::handleImportProjectFromDisk()
 
 void GrapeW::handleImportProjectFromZTD()
 {
-    GrSlots::handleProjectOpen(this, central, new GrWorkspace, menuBar());
+    QStringList ztdFiles = QFileDialog::getOpenFileNames(
+        this,
+        QFileDialog::tr("Open ZTD File(s)"),
+        QDir::homePath(),
+        QFileDialog::tr("ZTD Files (*.ztd)")
+    );
+
+
 }
