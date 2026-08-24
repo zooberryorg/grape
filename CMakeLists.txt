@@ -20,6 +20,7 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(LIEF)
 add_subdirectory(libs/simpleini)
 add_subdirectory(libs/miniz)
+add_subdirectory(libs/ztalib)
 
 set(TS_FILES lang/grape_en_US.ts)
 
@@ -47,7 +48,7 @@ set(PROJECT_SOURCES
         ui/grworkspace.h ui/grworkspace.cpp
         # graphics (texture maps)
         graphics/gricon.h graphics/gricon.cpp
-        graphics/grtexture.h graphics/grtexture.cpp
+        graphics/grgraphic.h graphics/grgraphic.cpp
         # scanner files (data)
         scanner/grasset.h scanner/grasset.cpp
         scanner/centity.h scanner/centity.cpp
@@ -120,6 +121,7 @@ target_link_libraries(grape PRIVATE
     Qt6::Svg
     LIEF::LIEF
     miniz
+    ztalib
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

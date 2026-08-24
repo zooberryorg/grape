@@ -5,7 +5,7 @@
 #include <QHash>
 #include <QMetaType>
 
-#include "grtexture.h"
+#include "grgraphic.h"
 #include "grgfx.h"
 #include "grshared.h"
 #include "SimpleIni.h"
