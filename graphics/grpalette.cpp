@@ -44,5 +44,6 @@ QColor GrPalette::color(int index) const
 
 bool GrPalette::save(const QString &path)
 {
-
+    m_pal->save(path.toStdString());
+    return true;
 }
