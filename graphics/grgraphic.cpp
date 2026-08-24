@@ -13,6 +13,38 @@ GrGraphic::GrGraphic(QObject *parent)
     decode();
 }
 
+bool GrGraphic::load(const QString &path, GrPalette *palette, const QString &paletteOverridePath)
+{
+    std::shared_ptr<ZtaData> data = m_ztaF->load(
+        path.toStdString(), 0, paletteOverridePath.toStdString()
+    );
+    if (!data)
+        return false;
+
+    m_data = std::move(data);
+
+    if (m_palette)
+        disconnect(m_palette, &GrPalette::paletteChanged, this, &GrGraphic::handlePaletteChanged);
+
+    if (palette) {
+        m_data->palette = palette->shared_palette();
+        m_palette = palette;
+    } else {
+        m_palette = GrPalette::load(m_data->palette, this);
+    }
+
+    connect(m_palette, &GrPalette::paletteChanged, this, &GrGraphic::handlePaletteChanged);
+
+    decode();
+    emit loaded();
+    return true;
+}
+
+bool GrGraphic::save(const QString &path, const QString &projectRoot, const QString &palettePath)
+{
+
+}
+
 QImage GrGraphic::compositeFrame(int frameIndex) const
 {
 
