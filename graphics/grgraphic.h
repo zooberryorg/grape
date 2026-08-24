@@ -25,7 +25,7 @@ private slots:
     void handlePaletteChanged();
 
 private:
-    void decodeFrames();
+    void decode();
 
     std::shared_ptr<ZtaData> m_data;
     GrPalette* m_palette;
