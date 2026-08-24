@@ -47,7 +47,24 @@ bool GrGraphic::save(const QString &path, const QString &projectRoot, const QStr
 
 QImage GrGraphic::compositeFrame(int frameIndex) const
 {
+    if (frameIndex < 0 || frameIndex >= m_indexImages.size())
+        return QImage();
 
+    QImage result = m_indexImages[frameIndex].convertToFormat(QImage::Format_ARGB32);
+    // applies the eraser mask wherever mask is 0, forces alpha to 0
+    const QImage& mask = m_alphaMasks[frameIndex];
+
+    for (int y = 0; y < result.height(); ++y) {
+        QRgb* line = reinterpret_cast<QRgb*>(result.scanLine(y));
+        const uchar* maskLine = mask.scanLine(y);
+
+        for (int x = 0; x < result.width(); ++x) {
+            if (maskLine[x] == 0)
+                line[x] = qRgba(0, 0, 0, 0);
+        }
+    }
+
+    return result;
 }
 
 void GrGraphic::eraseAt(int frameIndex, int x, int y)
@@ -64,7 +81,9 @@ void GrGraphic::eraseAt(int frameIndex, int x, int y)
 
 QPoint GrGraphic::frameOffset(int frameIndex) const
 {
-
+    if (frameIndex < 0 || frameIndex >= m_data->frames.size())
+        return QPoint();
+    return QPoint(m_data->frames[frameIndex].x, m_data->frames[frameIndex].y);
 }
 
 void GrGraphic::handlePaletteChanged()
