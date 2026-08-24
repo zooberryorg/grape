@@ -60,7 +60,9 @@ QColor GrPalette::color(int index) const
     return QColor(c.r, c.g, c.b, c.a);
 }
 
-GrPalette *GrPalette::load(std::shared_ptr<PalF> existing, QObject *parent)
+GrPalette *GrPalette::load(std::shared_ptr<PalF> pal, QObject *parent)
 {
-
+    GrPalette* palette = new GrPalette(parent);
+    palette->m_pal = std::move(pal);
+    return palette;
 }
