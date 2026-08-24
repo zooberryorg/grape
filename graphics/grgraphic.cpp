@@ -4,10 +4,13 @@
 
 #include <QImage>
 
-GrGraphic::GrGraphic(std::shared_ptr<ZtaData> data, GrPalette *palette, QObject *parent)
+GrGraphic::GrGraphic(QObject *parent)
+    : QObject(parent),
+      m_ztaF(std::make_unique<ZtaF>()),
+      m_palette(nullptr)
 {
     connect(m_palette, &GrPalette::paletteChanged, this, &GrGraphic::handlePaletteChanged);
-    decodeFrames();
+    decode();
 }
 
 QImage GrGraphic::compositeFrame(int frameIndex) const
