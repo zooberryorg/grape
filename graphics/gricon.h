@@ -1,7 +1,7 @@
 #ifndef GRICON_H
 #define GRICON_H
 
-#include "grtexture.h"
+#include "grgraphic.h"
 
 class GrIcon
 {

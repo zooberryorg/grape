@@ -1,3 +1,3 @@
-#include "grtexture.h"
+#include "grgraphic.h"
 
 GrTexture::GrTexture() {}
