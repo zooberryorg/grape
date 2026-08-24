@@ -21,6 +21,7 @@ public:
 
 signals:
     void paletteChanged();
+    void paletteLoaded();
 
 private:
     friend class GrGraphic;

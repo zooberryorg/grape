@@ -4,19 +4,19 @@
 
 GrPalette::GrPalette(QObject *parent)
     : QObject(parent),
-      m_pal(std::move(source))
-{
-
-}
-
-GrPalette::GrPalette(QObject *parent)
+      m_pal(std::make_shared<PalF>())
 {
 
 }
 
 bool GrPalette::load(const QString &path)
 {
+    if (m_pal->load(path.toStdString()) != 1)
+        return false;
 
+    emit paletteLoaded();
+    emit paletteChanged();
+    return true;
 }
 
 bool GrPalette::save(const QString &path) const
