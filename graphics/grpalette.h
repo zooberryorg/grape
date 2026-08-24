@@ -10,18 +10,21 @@ class GrPalette : public QObject
 {
     Q_OBJECT
 public:
-    explicit GrPalette(std::shared_ptr<PalF> source, QObject* parent = nullptr);
+    explicit GrPalette(QObject* parent = nullptr);
+
+    bool load(const QString& path);
+    bool save(const QString& path) const;
 
     QVector<QRgb> palette() const;
     void setColor(int index, const QColor& color);
     QColor color(int index) const;
 
-    bool save(const QString& path);
-
 signals:
     void paletteChanged();
 
 private:
+    friend class GrGraphic;
+    static GrPalette* load(std::shared_ptr<PalF> existing, QObject* parent = nullptr);
     std::shared_ptr<PalF> m_pal;
 };
 

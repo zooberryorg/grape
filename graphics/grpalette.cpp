@@ -2,9 +2,24 @@
 
 #include <QColor>
 
-GrPalette::GrPalette(std::shared_ptr<PalF> source, QObject *parent)
+GrPalette::GrPalette(QObject *parent)
     : QObject(parent),
       m_pal(std::move(source))
+{
+
+}
+
+GrPalette::GrPalette(QObject *parent)
+{
+
+}
+
+bool GrPalette::load(const QString &path)
+{
+
+}
+
+bool GrPalette::save(const QString &path) const
 {
 
 }
@@ -42,6 +57,11 @@ QColor GrPalette::color(int index) const
 {
     const PalF::Color c = const_cast<PalF*>(m_pal.get())->getColor(index);
     return QColor(c.r, c.g, c.b, c.a);
+}
+
+GrPalette *GrPalette::load(std::shared_ptr<PalF> existing, QObject *parent)
+{
+
 }
 
 bool GrPalette::save(const QString &path)
