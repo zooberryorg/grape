@@ -31,8 +31,8 @@ public:
     ~GrapeW();
 
 private slots:
-    void handleOpenProject();
-
+    void handleImportProjectFromDisk();
+    void handleImportProjectFromZTD();
 private:
     // main containers
     QStackedWidget* central; // bg container
@@ -40,5 +40,6 @@ private:
     // views
     GrWorkspace* workspaceScreen;
     GrWelcomeScreen* welcomeScreen;
+
 };
 #endif // GRAPEW_H

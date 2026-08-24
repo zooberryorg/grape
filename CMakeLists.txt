@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(grape VERSION 0.1 LANGUAGES CXX)
+project(grape VERSION 0.1 LANGUAGES CXX C)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -19,6 +19,7 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(LIEF)
 add_subdirectory(libs/simpleini)
+add_subdirectory(libs/miniz)
 
 set(TS_FILES lang/grape_en_US.ts)
 
@@ -63,9 +64,10 @@ set(PROJECT_SOURCES
         common/grshared.h
         common/grtreenode.h common/grtreenode.cpp
         common/grini.h common/grini.cpp
-        common/grslots.h common/grslots.cpp
+
         common/grgfx.h common/grgfx.cpp
         common/grpe.h common/grpe.cpp
+        common/grzip.h common/grzip.cpp
         resources.qrc
         # models
         models/grprojecttreemodel.h models/grprojecttreemodel.cpp
@@ -117,6 +119,7 @@ target_link_libraries(grape PRIVATE
     SimpleIni::SimpleIni
     Qt6::Svg
     LIEF::LIEF
+    miniz
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

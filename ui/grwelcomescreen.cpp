@@ -49,10 +49,10 @@ GrWelcomeScreen::GrWelcomeScreen()
 
     QPushButton* newProject = new QPushButton("New Project", this);
     newProject->setFont(robotoButton);
-    QPushButton* openProject = new QPushButton("Open", this);
-    openProject->setFont(robotoButton);
-    QPushButton* importProject = new QPushButton("Import", this);
-    importProject->setFont(robotoButton);
+    QPushButton* importFromDiskButton = new QPushButton("Open", this);
+    importFromDiskButton->setFont(robotoButton);
+    QPushButton* importFromZtdButton = new QPushButton("Import from ZTD", this);
+    importFromZtdButton->setFont(robotoButton);
     QPushButton* exitApp = new QPushButton("Exit", this);
     exitApp->setFont(robotoButton);
 
@@ -65,8 +65,8 @@ GrWelcomeScreen::GrWelcomeScreen()
     leftColumn->addStretch();
 
     leftColumn->addWidget(newProject);
-    leftColumn->addWidget(openProject);
-    leftColumn->addWidget(importProject);
+    leftColumn->addWidget(importFromDiskButton);
+    leftColumn->addWidget(importFromZtdButton);
     leftColumn->addStretch();
     leftColumn->addWidget(exitApp);
 
@@ -99,5 +99,7 @@ GrWelcomeScreen::GrWelcomeScreen()
     columnsLayout->addLayout(rightColumn);
 
     // forward signals
-    connect(openProject, &QPushButton::clicked, this, &GrWelcomeScreen::openProjectRequested);
+    connect(importFromDiskButton, &QPushButton::clicked, this, &GrWelcomeScreen::importProjectRequested);
+    connect(importFromZtdButton, &QPushButton::clicked, this, &GrWelcomeScreen::importProjectFromZTDRequested);
+
 }
