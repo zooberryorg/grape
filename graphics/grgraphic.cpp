@@ -27,7 +27,10 @@ QPoint GrGraphic::frameOffset(int frameIndex) const
 
 void GrGraphic::handlePaletteChanged()
 {
-
+    const QVector<QRgb> palette = m_palette->palette();
+    for (QImage& img : m_indexImages) {
+        img.setColorTable(palette);
+    }
 }
 
 void GrGraphic::decode()
