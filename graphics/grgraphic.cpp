@@ -2,3 +2,33 @@
 #include "ztalib/ZtaF.h"
 
 GrTexture::GrTexture() {}
+
+GrGraphic::GrGraphic(std::shared_ptr<ZtaData> data, GrPalette *palette, QObject *parent)
+{
+
+}
+
+QImage GrGraphic::compositeFrame(int frameIndex) const
+{
+
+}
+
+void GrGraphic::eraseAt(int frameIndex, int x, int y)
+{
+
+}
+
+QPoint GrGraphic::frameOffset(int frameIndex) const
+{
+
+}
+
+void GrGraphic::handlePaletteChanged()
+{
+
+}
+
+void GrGraphic::decodeFrames()
+{
+
+}
