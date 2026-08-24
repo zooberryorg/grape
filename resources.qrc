@@ -40,6 +40,6 @@
         <file alias="adjustments.svg">assets/icons/adjustments.svg</file>
     </qresource>
     <qresource prefix="/styles">
-        <file alias="grape.qss">assets/styles/grape.qss</file>
+        <file alias="grape.qss">assets/styles/ape.qss</file>
     </qresource>
 </RCC>

@@ -99,5 +99,5 @@ GrWelcomeScreen::GrWelcomeScreen()
     columnsLayout->addLayout(rightColumn);
 
     // forward signals
-    connect(openProject, &QPushButton::clicked, this, &GrWelcomeScreen::openProjectRequested);
+    connect(openProject, &QPushButton::clicked, this, &GrWelcomeScreen::importProjectRequested);
 }

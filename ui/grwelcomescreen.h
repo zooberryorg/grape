@@ -16,7 +16,8 @@ class GrWelcomeScreen : public QWidget
 public:
     GrWelcomeScreen();
 signals:
-    void openProjectRequested();
+    void importProjectRequested();
+    void importProjectFromZTDRequested();
 };
 
 #endif // GRWELCOMESCREEN_H

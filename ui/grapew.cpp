@@ -27,6 +27,7 @@ GrapeW::GrapeW(QWidget *parent)
     QAction* exitAction = fileMenu->addAction("&Exit...");
 
     menuBar()->setHidden(true);
+    menuBar()->setNativeMenuBar(false);
 
     central = new QStackedWidget(this);
     central->setObjectName("centralWindow");
@@ -39,9 +40,10 @@ GrapeW::GrapeW(QWidget *parent)
     setMinimumSize(640, 320);
     setWindowTitle("APE Studio");
 
-    connect(openAction, &QAction::triggered, this, &GrapeW::handleOpenProject);
-    connect(fromZtdAction, &QAction::triggered, this, &GrapeW::handleImportFromZTD);
-    connect(welcomeScreen, &GrWelcomeScreen::openProjectRequested, this, &GrapeW::handleOpenProject);
+    connect(openAction, &QAction::triggered, this, &GrapeW::handleImportProjectFromDisk);
+    connect(fromZtdAction, &QAction::triggered, this, &GrapeW::handleImportProjectFromZTD);
+    connect(welcomeScreen, &GrWelcomeScreen::importProjectRequested, this, &GrapeW::handleImportProjectFromDisk);
+    connect(welcomeScreen, &GrWelcomeScreen::importProjectFromZTDRequested, this, &GrapeW::handleImportProjectFromZTD);
 }
 
 GrapeW::~GrapeW()
@@ -49,7 +51,12 @@ GrapeW::~GrapeW()
     delete central;
 }
 
-void GrapeW::handleOpenProject()
+void GrapeW::handleImportProjectFromDisk()
+{
+    GrSlots::handleProjectOpen(this, central, new GrWorkspace, menuBar());
+}
+
+void GrapeW::handleImportProjectFromZTD()
 {
     GrSlots::handleProjectOpen(this, central, new GrWorkspace, menuBar());
 }
