@@ -47,7 +47,7 @@ set(PROJECT_SOURCES
         ui/grwelcomescreen.h ui/grwelcomescreen.cpp
         ui/grworkspace.h ui/grworkspace.cpp
         # graphics (texture maps)
-        graphics/gricon.h graphics/gricon.cpp
+
         graphics/grgraphic.h graphics/grgraphic.cpp
         graphics/grpalette.h graphics/grpalette.cpp
         # scanner files (data)
