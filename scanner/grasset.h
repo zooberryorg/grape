@@ -53,9 +53,9 @@ protected:
     QString filterSounds = "FilterSounds";
 
     // texture rgba data
-    QVector<GrTexture> m_mFrames; // main sprite frames
-    QVector<GrTexture> m_sFrames; // shadow frames
-    GrTexture m_bgFrame; // bg frame
+    QVector<GrGraphic> m_mFrames; // main sprite frames
+    QVector<GrGraphic> m_sFrames; // shadow frames
+    GrGraphic m_bgFrame; // bg frame
 
     // animation
     qint16 m_framems;

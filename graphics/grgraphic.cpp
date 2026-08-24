@@ -42,7 +42,7 @@ bool GrGraphic::load(const QString &path, GrPalette *palette, const QString &pal
 
 bool GrGraphic::save(const QString &path, const QString &projectRoot, const QString &palettePath)
 {
-
+    return true;
 }
 
 QImage GrGraphic::compositeFrame(int frameIndex) const
