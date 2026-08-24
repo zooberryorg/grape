@@ -2,6 +2,8 @@
 #include "grworkspace.h"
 #include "grwelcomescreen.h"
 #include <QFileDialog>
+#include "grzip.h"
+#include <QDir>
 
 GrapeW::GrapeW(QWidget *parent)
     : QMainWindow(parent)
@@ -50,6 +52,8 @@ GrapeW::~GrapeW()
     delete central;
 }
 
+void create
+
 void GrapeW::handleImportProjectFromDisk()
 {
     QString directory = QFileDialog::getExistingDirectory(
@@ -91,5 +95,35 @@ void GrapeW::handleImportProjectFromZTD()
         QFileDialog::tr("ZTD Files (*.ztd)")
     );
 
+    QString tempPath = QDir::tempPath();
 
+    for ( const QString& path : ztdFiles ) {
+        GrZIP zip(path);
+
+        if ( !zip.extractAllTo(tempPath) ) {
+            // handle failure to extract here
+        } else {
+            GrWorkspace* workspace = new GrWorkspace;
+
+            // TODO: handle case when dir not found here
+
+            if ( !tempPath.isEmpty() && central->count() < 2 ) {
+
+                workspace = new GrWorkspace();
+                workspace->addProject(tempPath);
+
+                central->addWidget(workspace);
+                central->setCurrentIndex(1);
+
+                menuBar()->setHidden(false);
+
+                this->setMinimumSize(1024, 764);
+
+            } else if ( !tempPath.isEmpty() && central->count() > 1 ) {
+
+                workspace->addProject(tempPath);
+
+            }
+        }
+    }
 }
