@@ -11,7 +11,10 @@ class GrGraphic : public QObject
 {
     Q_OBJECT
 public:
-    GrGraphic(std::shared_ptr<ZtaData> data, GrPalette* palette, QObject* parent = nullptr);
+    GrGraphic(QObject* parent = nullptr);
+
+    bool load(const QString& path, GrPalette* palette = nullptr, const QString& paletteOverridePath = "");
+    bool save(const QString& path, const QString& projectRoot, const QString& palettePath);
 
     int frameCount() const { return m_indexImages.size(); }
     QImage compositeFrame(int frameIndex) const;
@@ -20,6 +23,11 @@ public:
 
     QPoint frameOffset(int frameIndex) const;
     uint32_t speed() const { return m_data->info.speed; }
+    GrPalette* palette() const { return m_palette; }
+
+signals:
+    void loaded();
+    void frameEdited(int frameIndex);
 
 private slots:
     void handlePaletteChanged();
@@ -27,6 +35,7 @@ private slots:
 private:
     void decode();
 
+    std::unique_ptr<ZtaF> m_ztaF;
     std::shared_ptr<ZtaData> m_data;
     GrPalette* m_palette;
 
