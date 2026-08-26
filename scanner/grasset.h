@@ -35,6 +35,7 @@ public:
     QHash<QString, Value> getAnimationPaths() { return m_animations[animations]; };
     QStringList graphicsPathBuilder();
     void graphicsLoader( const QString& rootPath );
+    QHash<QString, GrGraphic*> getGraphics() { return m_frames; };
 
 protected:
     // constants
@@ -56,7 +57,7 @@ protected:
     QString filterSounds = "FilterSounds";
 
     // texture rgba data
-    QHash<QString, GrGraphic> m_frames; // main sprite frames
+    QHash<QString, GrGraphic*> m_frames; // main sprite frames
     GrGraphic m_bgFrame; // bg frame
 
     // animation

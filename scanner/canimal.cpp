@@ -11,8 +11,6 @@ CAnimal::CAnimal(QString path)
     initMembers();
     initDefaultLcid();
     init1033();
-
-    graphicsLoader();
 }
 
 void CAnimal::load() {

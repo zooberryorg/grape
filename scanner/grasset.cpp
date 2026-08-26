@@ -69,6 +69,6 @@ void GrAsset::graphicsLoader( const QString& rootPath )
         const QString& graphicPath = rootPath + "/" + path;
         GrGraphic* graphic = new GrGraphic;
         graphic->load(graphicPath);
-        m_frames.insert(animationName.dirName(), graphic);
+        m_frames.insert(animationName.dirName(), std::move(graphic));
     }
 }

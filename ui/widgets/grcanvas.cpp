@@ -40,14 +40,10 @@ void GrCanvas::setFrameIndex(int index)
 
 void GrCanvas::loadAsset(GrAsset *asset)
 {
-    QStringList animationPaths = asset->getAnimationPaths();
-    if (animationPaths.isEmpty())
-        return;
-
-    const QString firstKey = animationPaths.keys().constFirst();
-    GrGraphic* graphic = new GrGraphic(this);
-    if (!graphic->load(animationPaths.value(firstKey).v)) {
-        qWarning() << "Failed to load graphic:" << animationPaths.value(firstKey).v;
+    const QString animationName = asset->getGraphics().keys().constFirst();
+    GrGraphic* graphic = asset->getGraphics().value(animationName);
+    if (!graphic) {
+        qWarning() << "Failed to load graphic:" << animationName;
         graphic->deleteLater();
         return;
     }
