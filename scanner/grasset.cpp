@@ -37,7 +37,8 @@ QStringList GrAsset::graphicsPathBuilder()
     if (animationPaths.isEmpty())
         return {};
 
-    for (const QString& folderName : animationPaths.keys() ) {
+    for (const QString& animationName : animationPaths.keys() ) {
+        QString folderName = animationPaths.value(animationName).v;
         switch (m_type) {
             case (AssetType::Building):
             case (AssetType::Fence):
@@ -48,16 +49,16 @@ QStringList GrAsset::graphicsPathBuilder()
             case (AssetType::Rubble):
             case (AssetType::TankFilter):
             case (AssetType::TankWall):
-                graphicPaths.append( "objects/" + m_projectid + "/" + folderName);
+                graphicPaths.append( "objects/" + m_projectid + "/" + folderName );
                 break;
             case (AssetType::Animal): {
-                graphicPaths.append( "animals/" + m_projectid + "/m" + folderName);
-                graphicPaths.append( "animals/" + m_projectid + "/f" + folderName);
-                graphicPaths.append( "animals/" + m_projectid + "/y" + folderName);
+                graphicPaths.append( "animals/" + m_projectid + "/m" + folderName );
+                graphicPaths.append( "animals/" + m_projectid + "/f" + folderName );
+                graphicPaths.append( "animals/" + m_projectid + "/y" + folderName );
                 break;
             }
             default:
-                graphicPaths.append( "");
+                graphicPaths.append( "" );
                 break;
         }
     }
