@@ -7,6 +7,7 @@ CScenery::CScenery(QString path)
     m_type = AssetType::Scenery;
     initProjectName();
     initGlobals();
+    initAnimations();
     initIcon();
     initMembers();
     initCharInts();
@@ -25,7 +26,7 @@ void CScenery::load()
     GrINI::loadConfig( ini,
         {
             &m_intchars,
-            &m_animpaths,
+            &m_animations,
             &m_globals,
             &m_defaultlcid,
             &m_1033

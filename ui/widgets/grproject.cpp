@@ -33,6 +33,7 @@ GrProject::GrProject(QWidget *parent)
 
 void GrProject::showAsset(GrAsset* asset) {
     panelMgr->loadAsset(asset);
+    canvasArea->loadAsset(asset);
 }
 
 void GrProject::setLangBrowserSource(GrLangTableBrowser *source)
