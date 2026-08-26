@@ -26,19 +26,6 @@ QHash<QString, QString> GrINI::getKeyValuesInSection(const CSimpleIniA& ini, QSt
     return pairs;
 }
 
-void GrINI::assignNewValuesToKeys(QHash<QString, QHash<QString, Value>>& target, const QHash<QString, QString>& input) {
-    if ( target.isEmpty() ) {
-        // TODO: handle error
-        return;
-    }
-    QString section = target.begin().key();
-    for (const auto& key : input.keys()) {
-        if ( target[section].contains(key) ) {
-            target[section][key].v = input.value(key);
-        }
-    }
-}
-
 QStringList GrINI::getFlagsInSection(const QString& path, const QString& section)
 {
     QStringList flags;
@@ -97,17 +84,31 @@ bool GrINI::doesKeyInSectionExist(const CSimpleIniA& ini, const QString& section
     return false;
 }
 
-void GrINI::loadConfig(const CSimpleIniA& ini, GrShared::Config sections)
-{
-    for (auto* s : sections )
-    {
-        if ( s->isEmpty() ) continue;
+void GrINI::assignNewValuesToKeys(QHash<QString, GrShared::Section>& target, const QHash<QString, QString>& input) {
+    if ( target.isEmpty() ) {
+        // TODO: handle error
+        return;
+    }
+    QString section = target.begin().key();
+    for (const auto& key : input.keys()) {
+        if ( target[section].contains(key) ) {
+            target[section][key].v = input.value(key);
+        }
+    }
+}
 
-        QString sectionName = s->begin().key();
-        GrINI::assignNewValuesToKeys(
-            *s,
-            GrINI::getKeyValuesInSection(ini, sectionName)
-        );
+void GrINI::loadConfig(const CSimpleIniA& ini, QHash<QString, GrShared::Section> config)
+{
+    for (const auto& subtype : config )
+    {
+        QString subTypeName = subtype.begin().key();
+        for (const auto& section : subtype) {
+            QString sectionName = section.begin().key();
+            GrINI::assignNewValuesToKeys(
+                config,
+                GrINI::getKeyValuesInSection(ini, sectionName)
+            );
+        }
     }
 }
 
