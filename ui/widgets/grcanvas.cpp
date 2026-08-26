@@ -40,7 +40,7 @@ void GrCanvas::setFrameIndex(int index)
 
 void GrCanvas::loadAsset(GrAsset *asset)
 {
-    QHash<QString, Value> animationPaths = asset->getAnimationPaths();
+    QStringList animationPaths = asset->getAnimationPaths();
     if (animationPaths.isEmpty())
         return;
 

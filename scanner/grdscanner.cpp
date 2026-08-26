@@ -189,26 +189,44 @@ void GrDScanner::loadAssets() {
         AssetType type = determineTypeFromFile( path );
 
         switch (type) {
-        case AssetType::Animal:
-            m_assets.push_back( std::make_unique<CAnimal>( path ) );
-            break;
-        case AssetType::Scenery:
-            m_assets.push_back( std::make_unique<CScenery>( path ) );
-            break;
-        case AssetType::Building:
-            m_assets.push_back( std::make_unique<CBuilding>( path ) );
-            break;
-        case AssetType::Fence:
-            m_assets.push_back( std::make_unique<CFence>( path ) );
-            break;
-        case AssetType::Path:
-            m_assets.push_back( std::make_unique<CPath>( path ) );
-            break;
-        case AssetType::TankFilter:
-            m_assets.push_back( std::make_unique<CTankFilter>( path ) );
-            break;
-        default:
-            break;
+            case AssetType::Animal: {
+                std::unique_ptr<CAnimal> animal = std::make_unique<CAnimal>( path );
+                animal->graphicsLoader( rootDir );
+                m_assets.push_back( std::move(animal) );
+                break;
+            }
+            case AssetType::Scenery: {
+                std::unique_ptr<CScenery> scenery = std::make_unique<CScenery>( path );
+                scenery->graphicsLoader( rootDir );
+                m_assets.push_back( std::move(scenery) );
+                break;
+            }
+            case AssetType::Building: {
+                std::unique_ptr<CBuilding> building = std::make_unique<CBuilding>( path );
+                building->graphicsLoader( rootDir );
+                m_assets.push_back( std::move(building) );
+                break;
+            }
+            case AssetType::Fence: {
+                std::unique_ptr<CFence> fence = std::make_unique<CFence>( path );
+                fence->graphicsLoader( rootDir );
+                m_assets.push_back( std::move(fence) );
+                break;
+            }
+            case AssetType::Path: {
+                std::unique_ptr<CPath> pathAsset = std::make_unique<CPath>( path );
+                pathAsset->graphicsLoader( rootDir );
+                m_assets.push_back( std::move(pathAsset) );
+                break;
+            }
+            case AssetType::TankFilter: {
+                std::unique_ptr<CTankFilter> tankFilter = std::make_unique<CTankFilter>( path );
+                tankFilter->graphicsLoader( rootDir );
+                m_assets.push_back( std::move(tankFilter) );
+                break;
+            }
+            default:
+                break;
         }
     }
 }

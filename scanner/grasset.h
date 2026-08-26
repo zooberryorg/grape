@@ -33,7 +33,8 @@ public:
     void setProjectName(const QString& name ) { m_projectname = name; };
     QList<GrShared::Section*> allSections();
     QHash<QString, Value> getAnimationPaths() { return m_animations[animations]; };
-    QStringList graphicPathBuilder();
+    QStringList graphicsPathBuilder();
+    void graphicsLoader( const QString& rootPath );
 
 protected:
     // constants
@@ -55,8 +56,7 @@ protected:
     QString filterSounds = "FilterSounds";
 
     // texture rgba data
-    QVector<GrGraphic> m_mFrames; // main sprite frames
-    QVector<GrGraphic> m_sFrames; // shadow frames
+    QHash<QString, GrGraphic> m_frames; // main sprite frames
     GrGraphic m_bgFrame; // bg frame
 
     // animation

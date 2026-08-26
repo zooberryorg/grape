@@ -30,7 +30,7 @@ QList<GrShared::Section *> GrAsset::allSections()
     };
 }
 
-QStringList GrAsset::graphicPathBuilder()
+QStringList GrAsset::graphicsPathBuilder()
 {
     QHash<QString, Value> animationPaths = getAnimationPaths();
     QStringList graphicPaths;
@@ -60,4 +60,11 @@ QStringList GrAsset::graphicPathBuilder()
     }
 
     return graphicPaths;
+}
+
+void GrAsset::graphicsLoader()
+{
+    for ( const QString& path : graphicsPathBuilder() ) {
+        m_
+    }
 }
