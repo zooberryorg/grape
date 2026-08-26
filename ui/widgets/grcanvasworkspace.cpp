@@ -3,8 +3,11 @@
 #include <QFrame>
 #include <QVBoxLayout>
 
-GrCanvasWorkspace::GrCanvasWorkspace(QWidget* parent)
-    :QWidget(parent)
+#include "grasset.h"
+
+GrCanvasWorkspace::GrCanvasWorkspace(QWidget* parent, GrAsset* asset)
+    :QWidget(parent),
+    m_asset(asset)
 {
     QVBoxLayout* workspaceLayout = new QVBoxLayout(this);
     workspaceLayout->setContentsMargins( 0, 0, 0, 0 );
