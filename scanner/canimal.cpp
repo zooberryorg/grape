@@ -130,7 +130,7 @@ void CAnimal::initCharInts() {
         }
     };
 
-    GrINI::registeSubtypes(m_intchars, tmpl, subtypes());
+    GrINI::registerSubtypes(m_intchars, tmpl, subtypes());
 
     // cPrey support elsewhere
 }
@@ -153,6 +153,8 @@ void CAnimal::initIcon() {
             { "Icon", { "", Group::ID, Widget::Integer } }
         }
     };
+
+    GrINI::registerSubtypes(m_icon, tmpl, subtypes());
 }
 
 void CAnimal::initMembers() {
@@ -166,6 +168,7 @@ void CAnimal::initDefaultLcid() {
             { "LCID", { "", Group::ID, Widget::Integer } }
         }
     };
+    GrINI::registerSubtypes(m_lcid, tmpl, subtypes());
 }
 
 void CAnimal::init1033() {
@@ -178,6 +181,7 @@ void CAnimal::init1033() {
             { "cTheString", { "", Group::ID, Widget::LineText } }
         }
     };
+    GrINI::registerSubtypes(m_1033, tmpl, subtypes());
 }
 
 GrShared::SubtypeList CAnimal::subtypes() const

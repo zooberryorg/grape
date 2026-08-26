@@ -54,5 +54,5 @@ void CBuilding::initCharInts() {
         }
     };
 
-    GrINI::registeSubtypes(m_intchars, tmpl, subtypes());
+    GrINI::registerSubtypes(m_intchars, tmpl, subtypes());
 }
