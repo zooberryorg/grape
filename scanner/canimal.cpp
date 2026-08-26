@@ -170,7 +170,7 @@ void CAnimal::initDefaultLcid() {
 
 void CAnimal::init1033() {
     GrINI::SectionTemplate tmpl {
-        "Characteristics/Integers",
+        "1033",
         {
             { "cGeneralInfoFileName", { "", Group::ID, Widget::LineText } },
             { "cLongHelp", { "", Group::ID, Widget::LineText } },
