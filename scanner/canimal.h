@@ -21,6 +21,8 @@ public:
     void initSuitableObjects();
     void initDefaultLcid();
     void init1033();
+
+    GrShared::SubtypeList subtypes() const override;
 };
 
 #endif // CANIMAL_H

@@ -152,3 +152,12 @@ void CAnimal::init1033() {
     m_1033[_1033]["cTheString"] = { "", Group::ID, Widget::LineText };
 }
 
+GrShared::SubtypeList CAnimal::subtypes() const
+{
+    return {
+        {"m", "Male"},
+        {"f", "Female"},
+        {"y", "Young"}
+    };
+}
+
