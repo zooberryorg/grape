@@ -39,14 +39,21 @@ void CTankFilter::initMembers()
 
 void CTankFilter::initCharInts()
 {
-    m_intchars[charInts]["cStartingHealth"] = { "", Group::Traits, Widget::Integer };
-    m_intchars[charInts]["cDecayedHealth"] = { "", Group::Traits, Widget::Integer };
-    m_intchars[charInts]["cDecayTime"] = { "", Group::Traits, Widget::Integer };
-    m_intchars[charInts]["cFilterDelay"] = { "", Group::Traits, Widget::Integer };
-    m_intchars[charInts]["cFilterUpkeep"] = { "", Group::Traits, Widget::Integer };
-    m_intchars[charInts]["cFilterCleanAmount"] = { "", Group::Traits, Widget::Integer };
-    m_intchars[charInts]["cFilterDecayedCleanAmount"] = { "", Group::Traits, Widget::Integer };
-    m_intchars[charInts]["cPriceFactor"] = { "", Group::Commerce, Widget::Integer };
+    GrINI::SectionTemplate tmpl {
+        "Characteristics/Integers",
+        {
+            { "cStartingHealth", { "", Group::Traits, Widget::Integer } },
+            { "cDecayedHealth", { "", Group::Traits, Widget::Integer } },
+            { "cDecayTime", { "", Group::Traits, Widget::Integer } },
+            { "cFilterDelay", { "", Group::Traits, Widget::Integer } },
+            { "cFilterUpkeep", { "", Group::Traits, Widget::Integer } },
+            { "cFilterCleanAmount", { "", Group::Traits, Widget::Integer } },
+            { "cFilterDecayedCleanAmount", { "", Group::Traits, Widget::Integer } },
+            { "cPriceFactor", { "", Group::Commerce, Widget::Integer } }
+        }
+    };
+
+    GrINI::registerSubtypes(m_intchars, tmpl, subtypes());
 }
 
 void CTankFilter::initIcon()
@@ -57,14 +64,26 @@ void CTankFilter::initIcon()
 
 void CTankFilter::initCharStrings()
 {
-    m_strchars[charStrings]["cInfoImageName"] = { "", Group::Graphics, Widget::LineText };
+    GrINI::SectionTemplate tmpl {
+        "Characteristics/Strings",
+        {
+            { "cInfoImageName", { "", Group::Graphics, Widget::LineText } }
+        }
+    };
+    GrINI::registerSubtypes(m_strchars, tmpl, subtypes());
 }
 
 void CTankFilter::initFilterSounds()
 {
-    m_filtersounds[filterSounds]["cHealthySounds"] = { "", Group::Sounds, Widget::LineText };
-    m_filtersounds[filterSounds]["cHealthyAtten"] = { "", Group::Sounds, Widget::Integer };
-    m_filtersounds[filterSounds]["cDecayedSound"] = { "", Group::Sounds, Widget::LineText };
-    m_filtersounds[filterSounds]["cDecayedAtten"] = { "", Group::Sounds, Widget::LineText };
-
+    GrINI::SectionTemplate tmpl {
+        "FilterSounds",
+        {
+            { "cHealthySounds", { "", Group::Sounds, Widget::LineText } },
+            { "cHealthyAtten", { "", Group::Sounds, Widget::Integer } },
+            { "cDecayedSound", { "", Group::Sounds, Widget::LineText } },
+            { "cDecayedAtten", { "", Group::Sounds, Widget::LineText } }
+        }
+    };
+    GrINI::registerSubtypes(m_filtersounds, tmpl, subtypes());
+}
 }

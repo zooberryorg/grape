@@ -9,6 +9,7 @@
 #include "grgfx.h"
 #include "grshared.h"
 #include "SimpleIni.h"
+#include "grini.h"
 
 using AssetType = GrShared::AssetTypes;
 using Widget = GrShared::WidgetType;
