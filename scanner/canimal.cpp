@@ -36,105 +36,121 @@ void CAnimal::save() {
 }
 
 void CAnimal::initCharInts() {
-    m_intchars[charInts]["cBoxFootprintX"] = { "", Group::ID, Widget::Integer };
-    m_intchars[charInts]["cBoxFootprintY"] = { "", Group::ID, Widget::Integer };
-    m_intchars[charInts]["cBoxFootprintZ"] = { "", Group::ID, Widget::Integer };
-    m_intchars[charInts]["cFamily"] = { "", Group::ID, Widget::IdPicker };
-    m_intchars[charInts]["cGenus"] = { "", Group::ID, Widget::IdPicker };
-    m_intchars[charInts]["cHabitat"] = { "", Group::ID, Widget::IdPicker };
-    m_intchars[charInts]["cLocation"] = { "", Group::ID, Widget::IdPicker };
-    m_intchars[charInts]["cEra"] = { "", Group::ID, Widget::IdPicker };
-    m_intchars[charInts]["cBreathThreshold"] = { "", Group::Traits, Widget::Integer };
-    m_intchars[charInts]["cBreathIncrement"] = { "", Group::Traits, Widget::Integer };
-    m_intchars[charInts]["cHungerThreshold"] = { "", Group::Needs, Widget::Integer };
-    m_intchars[charInts]["cHungryHealthChange"] = { "", Group::Needs, Widget::Integer };
-    m_intchars[charInts]["cHungerIncrement"] = { "", Group::Needs, Widget::Integer };
-    m_intchars[charInts]["cFoodUnitValue"] = { "", Group::Needs, Widget::Integer }; // not in game files
-    m_intchars[charInts]["cKeeperFoodUnitsEaten"] = { "", Group::Needs, Widget::Integer };
-    m_intchars[charInts]["cNeededFood"] = { "", Group::Needs, Widget::Integer };
-    m_intchars[charInts]["cNoFoodChange"] = { "", Group::Needs, Widget::Integer };
-    m_intchars[charInts]["cInitialHappiness"] = { "", Group::Needs, Widget::Integer };
-    m_intchars[charInts]["cMaxHits"] = { "", Group::Traits, Widget::Integer };
-    m_intchars[charInts]["cPctHits"] = { "", Group::Traits, Widget::Integer };
-    m_intchars[charInts]["cMaxEnergy"] = { "", Group::Needs, Widget::Integer };
-    m_intchars[charInts]["cMaxDirty"] = { "", Group::Needs, Widget::Integer }; // not in game files
-    m_intchars[charInts]["cMinDirty"] = { "", Group::Needs, Widget::Integer }; // not in game files
-    m_intchars[charInts]["cSickChange"] = { "", Group::Needs, Widget::Integer };
-    m_intchars[charInts]["cOtherAnimalSickChange"] = { "", Group::Needs, Widget::Integer };
-    m_intchars[charInts]["cSickChance"] = { "", Group::Needs, Widget::Integer };
-    m_intchars[charInts]["cSickRandomChance"] = { "", Group::Needs, Widget::Integer }; // not in game files
-    m_intchars[charInts]["cCrowd"] = { "", Group::Guests, Widget::Integer };
-    m_intchars[charInts]["cCrowdHappinessChange"] = { "", Group::Guests, Widget::Integer };
-    m_intchars[charInts]["cZapHappinessChange"] = { "", Group::Keepers, Widget::Integer };
-    m_intchars[charInts]["cCaptivity"] = { "", Group::Keepers, Widget::Integer }; // also cCaptivityCheck?
-    m_intchars[charInts]["cReproductionChance"] = { "", Group::Social, Widget::Integer };
-    m_intchars[charInts]["cReproductionInterval"] = { "", Group::Social, Widget::Integer };
-    m_intchars[charInts]["cMatingType"] = { "", Group::Social, Widget::Integer };
-    m_intchars[charInts]["cOffspring"] = { "", Group::Social, Widget::Integer };
-    m_intchars[charInts]["cKeeperFrequency"] = { "", Group::Keepers, Widget::Integer };
-    m_intchars[charInts]["cNotEnoughKeepersChange"] = { "", Group::Keepers, Widget::Integer };
-    m_intchars[charInts]["cSocial"] = { "", Group::Social, Widget::Integer };
-    m_intchars[charInts]["cHabitatSize"] = { "", Group::Exhibit, Widget::Integer }; // also cSocialCheck?
-    m_intchars[charInts]["cNumberAnimalsMin"] = { "", Group::Exhibit, Widget::Integer };
-    m_intchars[charInts]["cNumberAnimalsMax"] = { "", Group::Exhibit, Widget::Integer };
-    m_intchars[charInts]["cNumberMinChange"] = { "", Group::Exhibit, Widget::Integer };
-    m_intchars[charInts]["cNumberMaxChange"] = { "", Group::Exhibit, Widget::Integer };
-    m_intchars[charInts]["cHabitatPreference"] = { "", Group::Exhibit, Widget::Integer };
-    m_intchars[charInts]["cBabyBornChange"] = { "", Group::Social, Widget::Integer };
-    m_intchars[charInts]["cEnergyIncrement"] = { "", Group::Needs, Widget::Integer };
-    m_intchars[charInts]["cEnergyThreshold"] = { "", Group::Needs, Widget::Integer };
-    m_intchars[charInts]["cDirtyIncrement"] = { "", Group::Needs, Widget::Integer };
-    m_intchars[charInts]["cDirtyThreshold"] = { "", Group::Needs, Widget::Integer };
-    m_intchars[charInts]["cSickTime"] = { "", Group::Needs, Widget::Integer };
-    m_intchars[charInts]["cBabyToAdult"] = { "", Group::Social, Widget::Integer };
-    m_intchars[charInts]["cOtherFood"] = { "", Group::Needs, Widget::Integer };
-    m_intchars[charInts]["cTreePref"] = { "", Group::Exhibit, Widget::Integer };
-    m_intchars[charInts]["cRockPref"] = { "", Group::Exhibit, Widget::Integer };
-    m_intchars[charInts]["cSpacePref"] = { "", Group::Exhibit, Widget::Integer };
-    m_intchars[charInts]["cElevationPref"] = { "", Group::Exhibit, Widget::Integer };
-    m_intchars[charInts]["cDepthMin"] = { "", Group::Exhibit, Widget::Integer };
-    m_intchars[charInts]["cDepthMax"] = { "", Group::Exhibit, Widget::Integer };
-    m_intchars[charInts]["cDepthChange"] = { "", Group::Exhibit, Widget::Integer };
-    m_intchars[charInts]["cSalinityChange"] = { "", Group::Exhibit, Widget::Integer };
-    m_intchars[charInts]["cSalinityHealthChange"] = { "", Group::Exhibit, Widget::Integer };
-    m_intchars[charInts]["cHappyReproduceThreshold"] = { "", Group::Social, Widget::Integer };
-    m_intchars[charInts]["cBuildingUseChance"] = { "", Group::Exhibit, Widget::Integer };
-    m_intchars[charInts]["cNoMateChange"] = { "", Group::Social, Widget::Integer };
-    m_intchars[charInts]["cTimeDeath"] = { "", Group::Traits, Widget::Integer };
-    m_intchars[charInts]["cDeathChance"] = { "", Group::Traits, Widget::Integer };
-    m_intchars[charInts]["cWaterNeeded"] = { "", Group::Exhibit, Widget::Integer };
-    m_intchars[charInts]["cUnderwater"] = { "", Group::Exhibit, Widget::Integer };
-    m_intchars[charInts]["cLandNeeded"] = { "", Group::Exhibit, Widget::Integer };
-    m_intchars[charInts]["cEnterWaterChance"] = { "", Group::Exhibit, Widget::Integer };
-    m_intchars[charInts]["cEnterTankChance"] = { "", Group::Exhibit, Widget::Integer };
-    m_intchars[charInts]["cEnterLandChance"] = { "", Group::Exhibit, Widget::Integer };
-    m_intchars[charInts]["cDrinkWaterChance"] = { "", Group::Exhibit, Widget::Integer };
-    m_intchars[charInts]["cChaseAnimalChance"] = { "", Group::Social, Widget::Integer };
-    m_intchars[charInts]["cClimbsCliffs"] = { "", Group::Traits, Widget::Integer };
-    m_intchars[charInts]["cBashStrength"] = { "", Group::Traits, Widget::Integer };
-    m_intchars[charInts]["cAttractiveness"] = { "", Group::Social, Widget::Integer };
-    m_intchars[charInts]["cKeeperFoodType"] = { "", Group::Keepers, Widget::Integer };
-    m_intchars[charInts]["cIsClimber"] = { "", Group::Traits, Widget::Integer };
-    m_intchars[charInts]["cIsJumper"] = { "", Group::Traits, Widget::Integer };
-    m_intchars[charInts]["cSmallZoodoo"] = { "", Group::Traits, Widget::Integer };
-    m_intchars[charInts]["cDinoZoodoo"] = { "", Group::Traits, Widget::Integer };
-    m_intchars[charInts]["cGiantZoodoo"] = { "", Group::Traits, Widget::Integer };
-    m_intchars[charInts]["cIsSpecialAnimal"] = { "", Group::Traits, Widget::Integer };
-    m_intchars[charInts]["cNeedShelter"] = { "", Group::Exhibit, Widget::Integer };
-    m_intchars[charInts]["cNeedToys"] = { "", Group::Exhibit, Widget::Integer };
-    m_intchars[charInts]["cBabiesAttack"] = { "", Group::Social, Widget::Integer };
+
+    GrINI::SectionTemplate tmpl {
+        "Characteristics/Integers",
+        {
+            { "cBoxFootprintX", { "", Group::ID, Widget::Integer } },
+            { "cBoxFootprintY", { "", Group::ID, Widget::Integer } },
+            { "cBoxFootprintZ", { "", Group::ID, Widget::Integer } },
+            { "cFamily", { "", Group::ID, Widget::IdPicker } },
+            { "cGenus", { "", Group::ID, Widget::IdPicker } },
+            { "cHabitat", { "", Group::ID, Widget::IdPicker } },
+            { "cLocation", { "", Group::ID, Widget::IdPicker } },
+            { "cEra", { "", Group::ID, Widget::IdPicker } },
+            { "cBreathThreshold", { "", Group::Traits, Widget::Integer } },
+            { "cBreathIncrement", { "", Group::Traits, Widget::Integer } },
+            { "cHungerThreshold", { "", Group::Needs, Widget::Integer } },
+            { "cHungryHealthChange", { "", Group::Needs, Widget::Integer } },
+            { "cHungerIncrement", { "", Group::Needs, Widget::Integer } },
+            { "cFoodUnitValue", { "", Group::Needs, Widget::Integer } }, // not in game files
+            { "cKeeperFoodUnitsEaten", { "", Group::Needs, Widget::Integer } },
+            { "cNeededFood", { "", Group::Needs, Widget::Integer } },
+            { "cNoFoodChange", { "", Group::Needs, Widget::Integer } },
+            { "cInitialHappiness", { "", Group::Needs, Widget::Integer } },
+            { "cMaxHits", { "", Group::Traits, Widget::Integer }  },
+            { "cPctHits", { "", Group::Traits, Widget::Integer }  },
+            { "cMaxEnergy", { "", Group::Needs, Widget::Integer }  },
+            { "cMaxDirty", { "", Group::Needs, Widget::Integer }  }, // not in game files
+            { "cMinDirty", { "", Group::Needs, Widget::Integer }  }, // not in game files
+            { "cSickChange", { "", Group::Needs, Widget::Integer }  },
+            { "cOtherAnimalSickChange", { "", Group::Needs, Widget::Integer }  },
+            { "cSickChance", { "", Group::Needs, Widget::Integer }  },
+            { "cSickRandomChance", { "", Group::Needs, Widget::Integer }  }, // not in game files
+            { "cCrowd", { "", Group::Guests, Widget::Integer }  },
+            { "cCrowdHappinessChange", { "", Group::Guests, Widget::Integer }  },
+            { "cZapHappinessChange", { "", Group::Keepers, Widget::Integer }  },
+            { "cCaptivity", { "", Group::Keepers, Widget::Integer }  }, // also cCaptivityCheck?
+            { "cReproductionChance", { "", Group::Social, Widget::Integer } },
+            { "cReproductionInterval", { "", Group::Social, Widget::Integer } },
+            { "cMatingType", { "", Group::Social, Widget::Integer } },
+            { "cOffspring", { "", Group::Social, Widget::Integer } },
+            { "cKeeperFrequency", { "", Group::Keepers, Widget::Integer } },
+            { "cNotEnoughKeepersChange", { "", Group::Keepers, Widget::Integer } },
+            { "cSocial", { "", Group::Social, Widget::Integer } },
+            { "cHabitatSize", { "", Group::Exhibit, Widget::Integer } }, // also cSocialCheck?
+            { "cNumberAnimalsMin", { "", Group::Exhibit, Widget::Integer } },
+            { "cNumberAnimalsMax", { "", Group::Exhibit, Widget::Integer } },
+            { "cNumberMinChange", { "", Group::Exhibit, Widget::Integer } },
+            { "cNumberMaxChange", { "", Group::Exhibit, Widget::Integer } },
+            { "cHabitatPreference", { "", Group::Exhibit, Widget::Integer } },
+            { "cBabyBornChange", { "", Group::Social, Widget::Integer } },
+            { "cEnergyIncrement", { "", Group::Needs, Widget::Integer } },
+            { "cEnergyThreshold", { "", Group::Needs, Widget::Integer } },
+            { "cDirtyIncrement", { "", Group::Needs, Widget::Integer } },
+            { "cDirtyThreshold", { "", Group::Needs, Widget::Integer } },
+            { "cSickTime", { "", Group::Needs, Widget::Integer } },
+            { "cBabyToAdult", { "", Group::Social, Widget::Integer } },
+            { "cOtherFood", { "", Group::Needs, Widget::Integer } },
+            { "cTreePref", { "", Group::Exhibit, Widget::Integer } },
+            { "cRockPref", { "", Group::Exhibit, Widget::Integer } },
+            { "cSpacePref", { "", Group::Exhibit, Widget::Integer } },
+            { "cElevationPref", { "", Group::Exhibit, Widget::Integer } },
+            { "cDepthMin", { "", Group::Exhibit, Widget::Integer } },
+            { "cDepthMax", { "", Group::Exhibit, Widget::Integer } },
+            { "cDepthChange", { "", Group::Exhibit, Widget::Integer } },
+            { "cSalinityChange", { "", Group::Exhibit, Widget::Integer } },
+            { "cSalinityHealthChange", { "", Group::Exhibit, Widget::Integer } },
+            { "cHappyReproduceThreshold", { "", Group::Social, Widget::Integer } },
+            { "cBuildingUseChance", { "", Group::Exhibit, Widget::Integer } },
+            { "cNoMateChange", { "", Group::Social, Widget::Integer } },
+            { "cTimeDeath", { "", Group::Traits, Widget::Integer } },
+            { "cDeathChance", { "", Group::Traits, Widget::Integer } },
+            { "cWaterNeeded", { "", Group::Exhibit, Widget::Integer } },
+            { "cUnderwater", { "", Group::Exhibit, Widget::Integer } },
+            { "cLandNeeded", { "", Group::Exhibit, Widget::Integer } },
+            { "cEnterWaterChance", { "", Group::Exhibit, Widget::Integer } },
+            { "cEnterTankChance", { "", Group::Exhibit, Widget::Integer } },
+            { "cEnterLandChance", { "", Group::Exhibit, Widget::Integer } },
+            { "cDrinkWaterChance", { "", Group::Exhibit, Widget::Integer } },
+            { "cChaseAnimalChance", { "", Group::Social, Widget::Integer } },
+            { "cClimbsCliffs", { "", Group::Traits, Widget::Integer } },
+            { "cBashStrength", { "", Group::Traits, Widget::Integer } },
+            { "cAttractiveness", { "", Group::Social, Widget::Integer } },
+            { "cKeeperFoodType", { "", Group::Keepers, Widget::Integer } },
+            { "cIsClimber", { "", Group::Traits, Widget::Integer } },
+            { "cIsJumper", { "", Group::Traits, Widget::Integer } },
+            { "cSmallZoodoo", { "", Group::Traits, Widget::Integer } },
+            { "cDinoZoodoo", { "", Group::Traits, Widget::Integer } },
+            { "cGiantZoodoo", { "", Group::Traits, Widget::Integer } },
+            { "cIsSpecialAnimal", { "", Group::Traits, Widget::Integer } },
+            { "cNeedShelter", { "", Group::Exhibit, Widget::Integer } },
+            { "cNeedToys", { "", Group::Exhibit, Widget::Integer } },
+            { "cBabiesAttack", { "", Group::Social, Widget::Integer } }
+        }
+    };
 
     // cPrey support elsewhere
 }
 
 void CAnimal::initAnimPaths() {
-    m_animpaths[animPaths]["f"] = { "", Group::ID, Widget::Integer };
-    m_animpaths[animPaths]["m"] = { "", Group::ID, Widget::Integer };
-    m_animpaths[animPaths]["y"] = { "", Group::ID, Widget::Integer };
+    GrINI::SectionTemplate tmpl {
+        "AnimPaths ",
+        {
+            { "f", { "", Group::ID, Widget::Integer } },
+            { "m", { "", Group::ID, Widget::Integer } },
+            { "y", { "", Group::ID, Widget::Integer } }
+        }
+    };
 }
 
 void CAnimal::initIcon() {
-    m_icon["Icon"]["Icon"] = { "", Group::ID, Widget::Integer };
+    GrINI::SectionTemplate tmpl {
+        "Icon",
+        {
+            { "Icon", { "", Group::ID, Widget::Integer } }
+        }
+    };
 }
 
 void CAnimal::initMembers() {
@@ -142,14 +158,24 @@ void CAnimal::initMembers() {
 }
 
 void CAnimal::initDefaultLcid() {
-    m_defaultlcid[defaultLcid]["LCID"] = { "", Group::ID, Widget::Integer };
+    GrINI::SectionTemplate tmpl {
+        "LCID",
+        {
+            { "LCID", { "", Group::ID, Widget::Integer } }
+        }
+    };
 }
 
 void CAnimal::init1033() {
-    m_1033[_1033]["cGeneralInfoFileName"] = { "", Group::ID, Widget::LineText };
-    m_1033[_1033]["cLongHelp"] = { "", Group::ID, Widget::LineText };
-    m_1033[_1033]["cName"] = { "", Group::ID, Widget::LineText };
-    m_1033[_1033]["cTheString"] = { "", Group::ID, Widget::LineText };
+    GrINI::SectionTemplate tmpl {
+        "Characteristics/Integers",
+        {
+            { "cGeneralInfoFileName", { "", Group::ID, Widget::LineText } },
+            { "cLongHelp", { "", Group::ID, Widget::LineText } },
+            { "cName", { "", Group::ID, Widget::LineText } },
+            { "cTheString", { "", Group::ID, Widget::LineText } }
+        }
+    };
 }
 
 GrShared::SubtypeList CAnimal::subtypes() const
