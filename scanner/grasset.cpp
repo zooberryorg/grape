@@ -50,9 +50,12 @@ QStringList GrAsset::graphicsPathBuilder()
             case (AssetType::TankWall):
                 graphicPaths.append( "objects/" + m_projectid + "/" + folderName);
                 break;
-            case (AssetType::Animal):
-                graphicPaths.append( "animals/" + m_projectid + "/" + folderName);
+            case (AssetType::Animal): {
+                graphicPaths.append( "animals/" + m_projectid + "/m" + folderName);
+                graphicPaths.append( "animals/" + m_projectid + "/f" + folderName);
+                graphicPaths.append( "animals/" + m_projectid + "/y" + folderName);
                 break;
+            }
             default:
                 graphicPaths.append( "");
                 break;
@@ -64,7 +67,8 @@ QStringList GrAsset::graphicsPathBuilder()
 
 void GrAsset::graphicsLoader( const QString& rootPath )
 {
-    for ( const QString& path : graphicsPathBuilder() ) {
+    QStringList graphicsPaths = graphicsPathBuilder();
+    for ( const QString& path : graphicsPaths ) {
         QDir animationName(path);
         const QString& graphicPath = rootPath + "/" + path;
         GrGraphic* graphic = new GrGraphic;
