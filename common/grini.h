@@ -13,6 +13,10 @@ using Value = GrShared::Value;
 class GrINI
 {
 public:
+    struct SectionTemplate {
+        QString sectionName;
+        QHash<QString, GrShared::Value> properties;
+    };
     static QHash<QString, QString> getKeyValuesInSection(const CSimpleIniA& ini, QString section);
     static void assignNewValuesToKeys(QHash<QString, QHash<QString, Value>>&, const QHash<QString, QString>&);
     static QStringList getFlagsInSection(const QString& path, const QString& section);
