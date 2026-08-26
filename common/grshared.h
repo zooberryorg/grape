@@ -5,6 +5,13 @@
 
 namespace GrShared {
 
+struct SubtypeDef {
+    QString prefix;
+    QString label;
+};
+
+using SubtypeList = QVector<SubtypeDef>;
+
 enum PropertyGroup {
     ID, // name, era, helpid, project name
     Prey, // cPrey list
