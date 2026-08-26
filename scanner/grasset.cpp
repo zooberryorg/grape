@@ -29,3 +29,35 @@ QList<GrShared::Section *> GrAsset::allSections()
         &m_filtersounds
     };
 }
+
+QStringList GrAsset::graphicPathBuilder()
+{
+    QHash<QString, Value> animationPaths = getAnimationPaths();
+    QStringList graphicPaths;
+    if (animationPaths.isEmpty())
+        return {};
+
+    for (const QString& folderName : animationPaths.keys() ) {
+        switch (m_type) {
+            case (AssetType::Building):
+            case (AssetType::Fence):
+            case (AssetType::Foliage):
+            case (AssetType::Food):
+            case (AssetType::Path):
+            case (AssetType::Scenery):
+            case (AssetType::Rubble):
+            case (AssetType::TankFilter):
+            case (AssetType::TankWall):
+                graphicPaths.append( "objects/" + m_projectid + "/" + folderName);
+                break;
+            case (AssetType::Animal):
+                graphicPaths.append( "animals/" + m_projectid + "/" + folderName);
+                break;
+            default:
+                graphicPaths.append( "");
+                break;
+        }
+    }
+
+    return graphicPaths;
+}
