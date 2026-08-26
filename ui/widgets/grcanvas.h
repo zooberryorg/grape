@@ -20,6 +20,10 @@ protected:
 private:
     GrGraphic* m_graphic;
     int m_currentFrame = 0;
+
+private slots:
+    void handleFrameEdited();
+    void handleGraphicLoaded(int currentFrameId);
 };
 
 #endif // GRCANVAS_H

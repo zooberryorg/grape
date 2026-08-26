@@ -35,3 +35,14 @@ void GrCanvas::paintEvent(QPaintEvent *event)
 {
 
 }
+
+void GrCanvas::handleFrameEdited()
+{
+    update();
+}
+
+void GrCanvas::handleGraphicLoaded(int currentFrameId)
+{
+    if (currentFrameId == m_currentFrame)
+        update();
+}
