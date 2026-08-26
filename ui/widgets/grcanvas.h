@@ -24,8 +24,8 @@ private:
     int m_currentFrame = 0;
 
 private slots:
-    void handleFrameEdited();
-    void handleGraphicLoaded(int currentFrameId);
+    void handleFrameEdited(int currentFrameId);
+    void handleGraphicLoaded();
 };
 
 #endif // GRCANVAS_H
