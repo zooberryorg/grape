@@ -62,9 +62,13 @@ QStringList GrAsset::graphicsPathBuilder()
     return graphicPaths;
 }
 
-void GrAsset::graphicsLoader()
+void GrAsset::graphicsLoader( const QString& rootPath )
 {
     for ( const QString& path : graphicsPathBuilder() ) {
-        m_
+        QDir animationName(path);
+        const QString& graphicPath = rootPath + "/" + path;
+        GrGraphic* graphic = new GrGraphic;
+        graphic->load(graphicPath);
+        m_frames.insert(animationName.dirName(), graphic);
     }
 }
