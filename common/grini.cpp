@@ -3,6 +3,15 @@
 #include <QTextStream>
 #include <QVariant>
 
+QString GrINI::buildSectionName(const QString &prefix, const QString &sectionName)
+{
+    if ( prefix.isEmpty() ) {
+        return sectionName;
+    } else {
+        return prefix + '/' + sectionName;
+    }
+}
+
 QHash<QString, QString> GrINI::getKeyValuesInSection(const CSimpleIniA& ini, QString section)
 {
     CSimpleIniA::TNamesDepend memberKeys;

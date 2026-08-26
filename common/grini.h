@@ -17,6 +17,7 @@ public:
         QString sectionName;
         QHash<QString, GrShared::Value> properties;
     };
+    static QString buildSectionName(const QString& prefix, const QString& sectionName);
     static QHash<QString, QString> getKeyValuesInSection(const CSimpleIniA& ini, QString section);
     static void assignNewValuesToKeys(QHash<QString, QHash<QString, Value>>&, const QHash<QString, QString>&);
     static QStringList getFlagsInSection(const QString& path, const QString& section);
