@@ -36,3 +36,11 @@ void CFence::initIcon() {
     m_icon.clear();
     m_icon["Icon"]["Icon"] = { "", Group::Graphics, Widget::LineText };
 }
+
+GrShared::SubtypeList CFence::subtypes() const
+{
+    return {
+        { "f", "Fence" },
+        { "g", "Gate" }
+    };
+}

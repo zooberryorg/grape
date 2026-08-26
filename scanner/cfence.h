@@ -10,6 +10,7 @@ public:
     void initMembers();
     void initCharInts();
     void initIcon();
+    GrShared::SubtypeList subtypes() const override;
 };
 
 #endif // CFENCE_H
