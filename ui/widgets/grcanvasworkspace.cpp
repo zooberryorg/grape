@@ -5,14 +5,13 @@
 #include "grcanvas.h"
 #include "grasset.h"
 
-GrCanvasWorkspace::GrCanvasWorkspace(QWidget* parent, GrAsset* asset)
-    :QWidget(parent),
-    m_asset(asset)
+GrCanvasWorkspace::GrCanvasWorkspace(QWidget* parent)
+    :QWidget(parent)
 {
     QVBoxLayout* workspaceLayout = new QVBoxLayout(this);
     workspaceLayout->setContentsMargins( 0, 0, 0, 0 );
 
-    canvasArea = new GrCanvas;
+    canvasArea = new GrCanvas(this);
 
     fgLayers = new QFrame;
     fgLayers->setObjectName("canvasArea");
@@ -33,4 +32,10 @@ GrCanvasWorkspace::GrCanvasWorkspace(QWidget* parent, GrAsset* asset)
     workspaceLayout->addWidget(fgLayers);
     workspaceLayout->addWidget(bgLayer);
     workspaceLayout->addWidget(shadowLayers);
+}
+
+void GrCanvasWorkspace::loadAsset(GrAsset *asset)
+{
+    m_asset = asset;
+    canvasArea->loadAsset(asset);
 }

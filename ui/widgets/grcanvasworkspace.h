@@ -11,8 +11,8 @@ class GrCanvasWorkspace : public QWidget
 {
     Q_OBJECT
 public:
-    explicit GrCanvasWorkspace(QWidget* parent = nullptr, GrAsset* asset = nullptr);
-    void loadAsset(GrAsset* asset) { m_asset = asset; };
+    explicit GrCanvasWorkspace(QWidget* parent = nullptr);
+    void loadAsset(GrAsset* asset);
 private:
     GrCanvas *canvasArea;
     QFrame *fgLayers;
