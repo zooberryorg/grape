@@ -9,8 +9,6 @@ GrGraphic::GrGraphic(QObject *parent)
       m_ztaF(std::make_unique<ZtaF>()),
       m_palette(nullptr)
 {
-    connect(m_palette, &GrPalette::paletteChanged, this, &GrGraphic::handlePaletteChanged);
-    decode();
 }
 
 bool GrGraphic::load(const QString &path, GrPalette *palette, const QString &paletteOverridePath)
@@ -26,10 +24,13 @@ bool GrGraphic::load(const QString &path, GrPalette *palette, const QString &pal
     if (m_palette)
         disconnect(m_palette, &GrPalette::paletteChanged, this, &GrGraphic::handlePaletteChanged);
 
+    // if palette provided, set as shared palette
+    // todo: instead, create a parameter where the user can choose to make a shared palette or generate
+    // one per graphic
     if (palette) {
         m_data->palette = palette->shared_palette();
         m_palette = palette;
-    } else {
+    } else { // else, load the palette loaded by ZtaF
         m_palette = GrPalette::load(m_data->palette, this);
     }
 
