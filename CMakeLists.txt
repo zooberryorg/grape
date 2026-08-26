@@ -47,8 +47,9 @@ set(PROJECT_SOURCES
         ui/grwelcomescreen.h ui/grwelcomescreen.cpp
         ui/grworkspace.h ui/grworkspace.cpp
         # graphics (texture maps)
-        graphics/gricon.h graphics/gricon.cpp
+
         graphics/grgraphic.h graphics/grgraphic.cpp
+        graphics/grpalette.h graphics/grpalette.cpp
         # scanner files (data)
         scanner/grasset.h scanner/grasset.cpp
         scanner/centity.h scanner/centity.cpp
@@ -65,7 +66,6 @@ set(PROJECT_SOURCES
         common/grshared.h
         common/grtreenode.h common/grtreenode.cpp
         common/grini.h common/grini.cpp
-
         common/grgfx.h common/grgfx.cpp
         common/grpe.h common/grpe.cpp
         common/grzip.h common/grzip.cpp
