@@ -25,6 +25,7 @@ public:
     static bool doesKeyInSectionExist(const CSimpleIniA&, const QString&, const QString&);
     static void loadConfig(const CSimpleIniA&, GrShared::Config);
     static QVariant stringToBool(const QString& b);
+    static void registerSubtypes(QHash<QString, GrShared::Section>& target, const SectionTemplate& tmpl, const GrShared::SubtypeList& subtypes);
 };
 
 #endif // GRINI_H

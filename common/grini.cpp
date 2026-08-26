@@ -122,3 +122,16 @@ QVariant GrINI::stringToBool(const QString &b)
 
     return QVariant();
 }
+
+// takes all pre-registered INI sections and adds any subtypes that exist
+void GrINI::registerSubtypes(QHash<QString, GrShared::Section>& target, const SectionTemplate& tmpl, const GrShared::SubtypeList& subtypes)
+{
+    for (const auto& sub : subtypes) {
+
+        const QString sectionName = buildSectionName(sub.prefix, tmpl.sectionName);
+
+        for (auto it = tmpl.properties.constBegin(); it != tmpl.properties.constEnd(); ++it) {
+            target[sub.prefix][sectionName][it.key()] = it.value();
+        }
+    }
+}
