@@ -42,6 +42,7 @@ set(PROJECT_SOURCES
         ui/widgets/grfiltermenu.h ui/widgets/grfiltermenu.cpp
         ui/widgets/gridselector.h ui/widgets/gridselector.cpp
         ui/widgets/gridselectorpopup.h ui/widgets/gridselectorpopup.cpp
+        ui/widgets/grcanvas.h ui/widgets/grcanvas.cpp
         # views (pages)
         ui/grapew.h ui/grapew.cpp ui/grapew.ui
         ui/grwelcomescreen.h ui/grwelcomescreen.cpp
