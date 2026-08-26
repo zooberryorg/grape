@@ -2,7 +2,7 @@
 
 #include <QFrame>
 #include <QVBoxLayout>
-
+#include "grcanvas.h"
 #include "grasset.h"
 
 GrCanvasWorkspace::GrCanvasWorkspace(QWidget* parent, GrAsset* asset)
@@ -12,9 +12,8 @@ GrCanvasWorkspace::GrCanvasWorkspace(QWidget* parent, GrAsset* asset)
     QVBoxLayout* workspaceLayout = new QVBoxLayout(this);
     workspaceLayout->setContentsMargins( 0, 0, 0, 0 );
 
-    canvasArea = new QFrame;
-    canvasArea->setObjectName("canvasArea");
-    canvasArea->setFrameShape(QFrame::Box);
+    canvasArea = new GrCanvas;
+    canvasArea->loadAsset(m_asset);
 
     fgLayers = new QFrame;
     fgLayers->setObjectName("canvasArea");

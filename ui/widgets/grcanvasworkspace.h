@@ -4,7 +4,7 @@
 #include <QWidget>
 
 class GrAsset;
-class GrCanvasWorkspace;
+class GrCanvas;
 class QFrame;
 
 class GrCanvasWorkspace : public QWidget
@@ -13,7 +13,7 @@ class GrCanvasWorkspace : public QWidget
 public:
     explicit GrCanvasWorkspace(QWidget* parent = nullptr, GrAsset* asset = nullptr);
 private:
-    GrCanvasWorkspace *canvasArea;
+    GrCanvas *canvasArea;
     QFrame *fgLayers;
     QFrame *bgLayer;
     QFrame *shadowLayers;
