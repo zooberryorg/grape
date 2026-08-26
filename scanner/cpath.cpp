@@ -17,10 +17,24 @@ void CPath::initMembers()
 
 void CPath::initCharInts()
 {
-    m_intchars[charInts]["cMaterial"] = { "", Group::Traits, Widget::Switch };
+    GrINI::SectionTemplate tmpl {
+        "Characteristics/Integers",
+        {
+            { "cMaterial", { "", Group::Traits, Widget::Switch } }
+        }
+    };
+
+    GrINI::registerSubtypes(m_intchars, tmpl, subtypes());
 }
 
 void CPath::initIcon() {
     m_icon.clear();
-    m_icon["Icon"]["Icon"] = { "", Group::Graphics, Widget::LineText };
+
+    GrINI::SectionTemplate tmpl {
+        "Icon",
+        {
+            { "Icon", { "", Group::Graphics, Widget::LineText } }
+        }
+    };
+    GrINI::registerSubtypes(m_icon, tmpl, subtypes());
 }
