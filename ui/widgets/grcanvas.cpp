@@ -1,6 +1,7 @@
 #include "grcanvas.h"
 
 #include "grgraphic.h"
+#include "grasset.h"
 
 GrCanvas::GrCanvas(QWidget *parent)
     : QWidget{parent},
@@ -33,6 +34,16 @@ void GrCanvas::setFrameIndex(int index)
 
     m_currentFrame = index;
     update();
+}
+
+void GrCanvas::loadAsset(GrAsset *asset)
+{
+    QHash<QString, Value> animationPaths = asset->getAnimationPaths();
+    for ( const GrShared::Value& path : animationPaths ) {
+        GrGraphic* graphic = new GrGraphic;
+        graphic->load(path.v);
+        setGraphic(graphic);
+    }
 }
 
 void GrCanvas::paintEvent(QPaintEvent *event)

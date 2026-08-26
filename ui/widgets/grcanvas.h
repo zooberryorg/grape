@@ -4,6 +4,7 @@
 #include <QWidget>
 
 class GrGraphic;
+class GrAsset;
 
 class GrCanvas : public QWidget
 {
@@ -13,6 +14,7 @@ public:
 
     void setGraphic(GrGraphic* graphic);
     void setFrameIndex(int index);
+    void loadAsset(GrAsset* asset);
 
 protected:
     void paintEvent(QPaintEvent* event) override;

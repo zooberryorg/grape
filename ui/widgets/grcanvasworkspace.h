@@ -3,6 +3,9 @@
 
 #include <QWidget>
 
+class GrAsset;
+class GrCanvasWorkspace;
+
 class QFrame;
 
 class GrCanvasWorkspace : public QWidget
@@ -11,10 +14,12 @@ class GrCanvasWorkspace : public QWidget
 public:
     explicit GrCanvasWorkspace(QWidget* parent = nullptr);
 private:
-    QFrame *canvasArea;
+    GrCanvasWorkspace *canvasArea;
     QFrame *fgLayers;
     QFrame *bgLayer;
     QFrame *shadowLayers;
+
+    GrAsset* asset;
 };
 
 #endif // GRCANVASWORKSPACE_H

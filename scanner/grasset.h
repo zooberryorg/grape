@@ -32,6 +32,7 @@ public:
     QString getProjectName() { return m_projectname; };
     void setProjectName(const QString& name ) { m_projectname = name; };
     QList<GrShared::Section*> allSections();
+    QHash<QString, Value> getAnimationPaths() { return m_animations[animations]; };
 
 protected:
     // constants
