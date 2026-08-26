@@ -130,6 +130,8 @@ void CAnimal::initCharInts() {
         }
     };
 
+    GrINI::registeSubtypes(m_intchars, tmpl, subtypes());
+
     // cPrey support elsewhere
 }
 
