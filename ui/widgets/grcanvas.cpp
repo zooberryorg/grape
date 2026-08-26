@@ -28,7 +28,11 @@ void GrCanvas::setGraphic(GrGraphic *graphic)
 
 void GrCanvas::setFrameIndex(int index)
 {
+    if (!m_graphic || index < 0 || index >= m_graphic->frameCount())
+        return;
 
+    m_currentFrame = index;
+    update();
 }
 
 void GrCanvas::paintEvent(QPaintEvent *event)
