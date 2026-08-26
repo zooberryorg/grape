@@ -13,7 +13,6 @@ GrCanvasWorkspace::GrCanvasWorkspace(QWidget* parent, GrAsset* asset)
     workspaceLayout->setContentsMargins( 0, 0, 0, 0 );
 
     canvasArea = new GrCanvas;
-    canvasArea->loadAsset(m_asset);
 
     fgLayers = new QFrame;
     fgLayers->setObjectName("canvasArea");
