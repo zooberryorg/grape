@@ -30,37 +30,54 @@ QList<QHash<QString, GrShared::Section> *> GrAsset::allSections()
     };
 }
 
+QHash<QString, Value> GrAsset::getAnimationPaths(const QString& subtypePrefix) const
+{
+    const QString sectionName = GrINI::buildSectionName(subtypePrefix, "Animations");
+    return m_animations.value(subtypePrefix).value(sectionName);
+}
+
 QStringList GrAsset::graphicsPathBuilder()
 {
-    QHash<QString, Value> animationPaths = getAnimationPaths();
     QStringList graphicPaths;
-    if (animationPaths.isEmpty())
-        return {};
 
-    for (const QString& animationName : animationPaths.keys() ) {
-        QString folderName = animationPaths.value(animationName).v;
-        switch (m_type) {
-            case (AssetType::Building):
-            case (AssetType::Fence):
-            case (AssetType::Foliage):
-            case (AssetType::Food):
-            case (AssetType::Path):
-            case (AssetType::Scenery):
-            case (AssetType::Rubble):
-            case (AssetType::TankFilter):
-            case (AssetType::TankWall):
+    switch (m_type) {
+        case (AssetType::Building):
+        case (AssetType::Fence):
+        case (AssetType::Foliage):
+        case (AssetType::Food):
+        case (AssetType::Path):
+        case (AssetType::Scenery):
+        case (AssetType::Rubble):
+        case (AssetType::TankFilter):
+        case (AssetType::TankWall): {
+            const QHash<QString, Value> animationPaths = getAnimationPaths("");
+            for (const QString& animationName : animationPaths.keys()) {
+                const QString folderName = animationPaths.value(animationName).v;
                 graphicPaths.append( "objects/" + m_projectid + "/" + folderName );
-                break;
-            case (AssetType::Animal): {
-                graphicPaths.append( "animals/" + m_projectid + "/m" + folderName );
-                graphicPaths.append( "animals/" + m_projectid + "/f" + folderName );
-                graphicPaths.append( "animals/" + m_projectid + "/y" + folderName );
-                break;
             }
-            default:
-                graphicPaths.append( "" );
-                break;
+            break;
         }
+        case (AssetType::Animal): {
+            const QHash<QString, Value> maleAnims = getAnimationPaths("m");
+            for (const QString& animationName : maleAnims.keys()) {
+                const QString folderName = maleAnims.value(animationName).v;
+                graphicPaths.append( "animals/" + m_projectid + "/m" + folderName );
+            }
+            const QHash<QString, Value> femaleAnims = getAnimationPaths("f");
+            for (const QString& animationName : femaleAnims.keys()) {
+                const QString folderName = femaleAnims.value(animationName).v;
+                graphicPaths.append( "animals/" + m_projectid + "/f" + folderName );
+            }
+            const QHash<QString, Value> youngAnims = getAnimationPaths("y");
+            for (const QString& animationName : youngAnims.keys()) {
+                const QString folderName = youngAnims.value(animationName).v;
+                graphicPaths.append( "animals/" + m_projectid + "/y" + folderName );
+            }
+            break;
+        }
+        default:
+            graphicPaths.append( "" );
+            break;
     }
 
     return graphicPaths;

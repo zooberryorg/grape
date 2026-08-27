@@ -36,16 +36,16 @@ void CScenery::load()
     QHash<QString, QString> foundIcons = GrINI::getKeyValuesInSection(ini, icons);
     for ( const QString& value : foundIcons ) {
         if ( value.contains("SE") ) {
-            m_icon[icons]["IconSE"].v = value;
+            m_icon[""][icons]["IconSE"].v = value;
         }
         else if ( value.contains("SW") ) {
-            m_icon[icons]["IconSW"].v = value;
+            m_icon[""][icons]["IconSW"].v = value;
         }
         else if ( value.contains("NE") ) {
-            m_icon[icons]["IconNE"].v = value;
+            m_icon[""][icons]["IconNE"].v = value;
         }
         else if ( value.contains("NW") ) {
-            m_icon[icons]["IconNW"].v = value;
+            m_icon[""][icons]["IconNW"].v = value;
         }
     }
 }

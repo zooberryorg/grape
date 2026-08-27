@@ -59,7 +59,14 @@ void CTankFilter::initCharInts()
 void CTankFilter::initIcon()
 {
     m_icon.clear();
-    m_icon[icons]["Icon"] = { "", Group::Graphics, Widget::LineText };
+    GrINI::SectionTemplate tmpl {
+        "Icon",
+        {
+            { "Icon", { "", Group::ID, Widget::Integer } }
+        }
+    };
+
+    GrINI::registerSubtypes(m_icon, tmpl, subtypes());
 }
 
 void CTankFilter::initCharStrings()
@@ -85,5 +92,4 @@ void CTankFilter::initFilterSounds()
         }
     };
     GrINI::registerSubtypes(m_filtersounds, tmpl, subtypes());
-}
 }

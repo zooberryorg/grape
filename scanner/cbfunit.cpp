@@ -11,7 +11,7 @@ CBFUnit::CBFUnit(QString path)
             { "cFastRate", { "", Group::Graphics, Widget::Integer } },
             { "cSlowAnimSpeed", { "", Group::Graphics, Widget::Integer } },
             { "cMediumAnimSpeed", { "", Group::Graphics, Widget::Integer } },
-            { "cFastAnimSpeed", { "", Group::Graphics, Widget::Integer } }
+            { "cFastAnimSpeed", { "", Group::Graphics, Widget::Integer } },
             { "cMinHeight", { "", Group::Traits, Widget::Integer } },
             { "cMaxHeight", { "", Group::Traits, Widget::Integer } }
         }

@@ -33,11 +33,12 @@ public:
     QString getProjectName() { return m_projectname; };
     void setProjectName(const QString& name ) { m_projectname = name; };
     QList<QHash<QString, GrShared::Section>*> allSections();
-    QHash<QString, Value> getAnimationPaths() { return m_animations[animations]; };
+    QHash<QString, Value> getAnimationPaths();
     QStringList graphicsPathBuilder();
     void graphicsLoader( const QString& rootPath );
     QHash<QString, GrGraphic*> getGraphics() { return m_frames; };
 
+    QHash<QString, Value> getAnimationPaths(const QString &subtypePrefix) const;
 protected:
     // constants
     QString charInts = "Characteristics/Integers";

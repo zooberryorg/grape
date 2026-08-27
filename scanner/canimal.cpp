@@ -168,7 +168,7 @@ void CAnimal::initDefaultLcid() {
             { "LCID", { "", Group::ID, Widget::Integer } }
         }
     };
-    GrINI::registerSubtypes(m_lcid, tmpl, subtypes());
+    GrINI::registerSubtypes(m_defaultlcid, tmpl, subtypes());
 }
 
 void CAnimal::init1033() {
