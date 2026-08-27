@@ -6,6 +6,7 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QCheckBox>
+#include <QTabWidget>
 
 #include "grshared.h"
 #include "grini.h"
@@ -64,6 +65,26 @@ void GrPropertyPanel::loadAsset(GrAsset* asset, const QString& subtype)
             }
         }
     }
+}
+
+GrPropertyPanel* GrPropertyPanel::buildPanelForAsset(GrAsset* asset, GrShared::PropertyGroup group, QWidget* parent)
+{
+    GrPropertyPanel* container = new GrPropertyPanel(parent, group);
+    const auto subs = asset->subtypes();
+
+    if (subs.size() == 1 && subs.first().prefix.isEmpty()) {
+        container->loadAsset(asset, "");
+    } else {
+        QTabWidget* tabs = new QTabWidget(container);
+        for (const auto& sub : subs) {
+            GrPropertyPanel* tabPanel = new GrPropertyPanel(tabs, group);
+            tabPanel->loadAsset(asset, sub.prefix);
+            tabs->addTab(tabPanel, sub.label);
+        }
+        container->setTabWidget(tabs);
+    }
+
+    return container;
 }
 
 void GrPropertyPanel::applyToAsset()

@@ -24,6 +24,7 @@ public:
     virtual ~GrAsset() = default;
     virtual void load() = 0;
     virtual void save() = 0;
+    virtual GrShared::SubtypeList subtypes() const { return { { "", "" } }; };
     QString name() { return m_projectname; };
     void loadLayers();
     void initProjectName();

@@ -9,7 +9,6 @@ class CEntity : public GrAsset
 {
 public:
     CEntity(QString);
-    virtual GrShared::SubtypeList subtypes() const { return { { "", "" } }; };
 };
 
 #endif // CENTITY_H
