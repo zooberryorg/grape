@@ -28,7 +28,6 @@ GrPropertyPanel::GrPropertyPanel(QWidget *parent, GrShared::PropertyGroup groupT
     m_layout = new QVBoxLayout(this);
     m_layout->addStretch();
     m_layout->setContentsMargins( 16, 16, 16, 16 );
-    m_layout->setAlignment(Qt::AlignCenter);
 }
 
 void GrPropertyPanel::loadAsset(GrAsset* asset, const QString& subtype)
@@ -172,5 +171,8 @@ void GrPropertyPanel::setTabWidget(QTabWidget* tabs)
     m_fields.clear();
 
     m_tabs = tabs;
+    m_layout->setAlignment(Qt::Alignment());
+    m_tabs->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     m_layout->insertWidget(m_layout->count() - 1, m_tabs);
+    m_layout->setStretchFactor(m_tabs, 1);
 }
