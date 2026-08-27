@@ -30,7 +30,7 @@ GrPropertyPanel::GrPropertyPanel(QWidget *parent, GrShared::PropertyGroup groupT
     m_layout->setAlignment(Qt::AlignCenter);
 }
 
-void GrPropertyPanel::loadAsset(GrAsset* asset)
+void GrPropertyPanel::loadAsset(GrAsset* asset, const QString& subtype)
 {
     m_assignedAsset = asset;
     m_fields.clear();
@@ -42,28 +42,25 @@ void GrPropertyPanel::loadAsset(GrAsset* asset)
     }
 
     for ( GrShared::SubtypeSections* subtypeSections : asset->allSections() ) {
-        for ( const GrShared::Section& section : *subtypeSections ) {
-            for ( auto sIt = section.constBegin(); sIt != section.constEnd(); ++sIt ) {
-                const QString& sectionName = sIt.key();
-                const GrShared::Key& key = sIt.value();
+        const GrShared::Section& section = subtypeSections->value(subtype);
 
-                for ( auto kIt = key.constBegin(); kIt != key.constEnd(); ++kIt ) {
-                    const GrShared::Value& value = kIt.value();
+        for ( auto sIt = section.constBegin(); sIt != section.constEnd(); ++sIt ) {
+            const QString& sectionName = sIt.key();
+            const GrShared::Key& key = sIt.value();
 
-                    if ( value.group != m_group )
-                        continue;
-                    if ( value.v.isEmpty() )
-                        continue;
+            for ( auto kIt = key.constBegin(); kIt != key.constEnd(); ++kIt ) {
+                const GrShared::Value& value = kIt.value();
+                if ( value.group != m_group ) continue;
+                if ( value.v.isEmpty() ) continue;
 
-                    QWidget* field = createField( this, sectionName, kIt.key(), value );
-                    m_layout->insertWidget(m_layout->count() - 1, field);
-                    m_fields[sectionName][kIt.key()] = { sectionName, kIt.key(), field,
-                        [field, type = value.widgetType]() ->
-                            QVariant {
-                                return QVariant();
-                        }
-                    };
-                }
+                QWidget* field = createField( this, sectionName, kIt.key(), value );
+                m_layout->insertWidget(m_layout->count() - 1, field);
+                m_fields[sectionName][kIt.key()] = { sectionName, kIt.key(), field,
+                    [field, type = value.widgetType]() ->
+                        QVariant {
+                            return QVariant();
+                    }
+                };
             }
         }
     }

@@ -14,7 +14,7 @@ class GrPropertyPanel : public QWidget
     Q_OBJECT
 public:
     explicit GrPropertyPanel(QWidget *parent = nullptr, GrShared::PropertyGroup = GrShared::PropertyGroup::Misc);
-    void loadAsset(GrAsset* asset);
+    void loadAsset(GrAsset* asset, const QString& subtype = "");
     void applyToAsset();
     QWidget* createField(QWidget* parent, const QString& section, const QString& key, const GrShared::Value& value);
     GrShared::PropertyGroup group() { return m_group; };
