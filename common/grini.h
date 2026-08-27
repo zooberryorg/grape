@@ -19,7 +19,7 @@ public:
     };
     static QString buildSectionName(const QString& prefix, const QString& sectionName);
     static QHash<QString, QString> getKeyValuesInSection(const CSimpleIniA& ini, QString section);
-    static void assignNewValuesToKeys(QHash<QString, GrShared::Section>&, const QHash<QString, QString>&);
+    static void assignNewValuesToKeys(GrShared::Key& target, const QHash<QString, QString>& input);
     static QStringList getFlagsInSection(const QString& path, const QString& section);
     static bool doesSectionExist(const CSimpleIniA&, const QString&);
     static bool doesKeyInSectionExist(const CSimpleIniA&, const QString&, const QString&);

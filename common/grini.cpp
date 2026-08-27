@@ -84,15 +84,14 @@ bool GrINI::doesKeyInSectionExist(const CSimpleIniA& ini, const QString& section
     return false;
 }
 
-void GrINI::assignNewValuesToKeys(QHash<QString, GrShared::Section>& target, const QHash<QString, QString>& input) {
-    if ( target.isEmpty() ) {
-        // TODO: handle error
+void GrINI::assignNewValuesToKeys(GrShared::Key& target, const QHash<QString, QString>& input)
+{
+    if (target.isEmpty())
         return;
-    }
-    QString section = target.begin().key();
-    for (const auto& key : input.keys()) {
-        if ( target[section].contains(key) ) {
-            target[section][key].v = input.value(key);
+
+    for (auto it = input.constBegin(); it != input.constEnd(); ++it) {
+        if (target.contains(it.key())) {
+            target[it.key()].v = it.value();
         }
     }
 }
