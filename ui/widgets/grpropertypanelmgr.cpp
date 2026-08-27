@@ -87,7 +87,7 @@ void GrPropertyPanelMgr::loadAsset(GrAsset *asset)
     }
 
     for ( GrShared::PropertyGroup g : populatedGroups ) {
-        GrPropertyPanel* panel = buildPanelForAsset(asset, g, m_panelStack);
+        GrPropertyPanel* panel = GrPropertyPanel::buildPanelForAsset(asset, g, m_panelStack);
 
         if ( m_langBrowserSource ) {
             panel->setLangBrowserSource(m_langBrowserSource);

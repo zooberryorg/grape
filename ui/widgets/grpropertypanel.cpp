@@ -52,7 +52,6 @@ void GrPropertyPanel::loadAsset(GrAsset* asset, const QString& subtype)
             for ( auto kIt = key.constBegin(); kIt != key.constEnd(); ++kIt ) {
                 const GrShared::Value& value = kIt.value();
                 if ( value.group != m_group ) continue;
-                if ( value.v.isEmpty() ) continue;
 
                 QWidget* field = createField( this, sectionName, kIt.key(), value );
                 m_layout->insertWidget(m_layout->count() - 1, field);

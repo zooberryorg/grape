@@ -21,7 +21,7 @@ public:
     GrShared::PropertyGroup group() { return m_group; };
     void setLangBrowserSource(GrLangTableBrowser* source) { m_langBrowserSource = source; };
     void setTabWidget(QTabWidget *);
-    GrPropertyPanel* buildPanelForAsset(GrAsset *asset, GrShared::PropertyGroup group, QWidget *parent = nullptr);
+    static GrPropertyPanel* buildPanelForAsset(GrAsset* asset, GrShared::PropertyGroup group, QWidget* parent = nullptr);
 private:
     struct Field {
         QString section;
