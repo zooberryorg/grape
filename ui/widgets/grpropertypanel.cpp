@@ -41,27 +41,29 @@ void GrPropertyPanel::loadAsset(GrAsset* asset)
         delete item;
     }
 
-    for ( GrShared::Section* section : asset->allSections() ) {
-        for ( auto sIt = section->constBegin(); sIt != section->constEnd(); ++sIt ) {
-            const QString& sectionName = sIt.key();
-            const GrShared::Key& key = sIt.value();
+    for ( GrShared::SubtypeSections* subtypeSections : asset->allSections() ) {
+        for ( const GrShared::Section& section : *subtypeSections ) {
+            for ( auto sIt = section.constBegin(); sIt != section.constEnd(); ++sIt ) {
+                const QString& sectionName = sIt.key();
+                const GrShared::Key& key = sIt.value();
 
-            for ( auto kIt = key.constBegin(); kIt != key.constEnd(); ++kIt ) {
-                const GrShared::Value& value = kIt.value();
+                for ( auto kIt = key.constBegin(); kIt != key.constEnd(); ++kIt ) {
+                    const GrShared::Value& value = kIt.value();
 
-                if ( value.group != m_group )
-                    continue;
-                if ( value.v.isEmpty() )
-                    continue;
+                    if ( value.group != m_group )
+                        continue;
+                    if ( value.v.isEmpty() )
+                        continue;
 
-                QWidget* field = createField( this, sectionName, kIt.key(), value );
-                m_layout->insertWidget(m_layout->count() - 1, field);
-                m_fields[sectionName][kIt.key()] = { sectionName, kIt.key(), field,
-                    [field, type = value.widgetType]() ->
-                        QVariant {
-                            return QVariant();
-                    }
-                };
+                    QWidget* field = createField( this, sectionName, kIt.key(), value );
+                    m_layout->insertWidget(m_layout->count() - 1, field);
+                    m_fields[sectionName][kIt.key()] = { sectionName, kIt.key(), field,
+                        [field, type = value.widgetType]() ->
+                            QVariant {
+                                return QVariant();
+                        }
+                    };
+                }
             }
         }
     }
