@@ -142,3 +142,16 @@ QWidget* GrPropertyPanel::createField(QWidget* parent, const QString& section, c
     layout->addWidget(field);
     return fieldCtr;
 }
+
+void GrPropertyPanel::setTabWidget(QTabWidget* tabs)
+{
+    QLayoutItem* item;
+    while ( m_layout->count() > 1 && ( item = m_layout->takeAt(0) ) ) {
+        delete item->widget();
+        delete item;
+    }
+    m_fields.clear();
+
+    m_tabs = tabs;
+    m_layout->insertWidget(m_layout->count() - 1, m_tabs);
+}
