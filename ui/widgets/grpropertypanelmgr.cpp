@@ -65,15 +65,14 @@ GrPropertyPanelMgr::GrPropertyPanelMgr(QWidget *parent)
 
 void GrPropertyPanelMgr::loadAsset(GrAsset *asset)
 {
-    // reset anything inside of the panel
+    // reset anything inside the panel
     qDeleteAll(m_panels);
     qDeleteAll(m_buttons);
     qDeleteAll(m_actions);
     m_panels.clear();
     m_actions.clear();
-    m_buttons.clear();
 
-    // only get groups with something loaded
+    // only groups with something loaded
     QSet<GrShared::PropertyGroup> populatedGroups;
     for ( GrShared::SubtypeSections* subtypeSections : asset->allSections() ) {
         for ( const GrShared::Section& section : *subtypeSections ) {
@@ -88,12 +87,12 @@ void GrPropertyPanelMgr::loadAsset(GrAsset *asset)
     }
 
     for ( GrShared::PropertyGroup g : populatedGroups ) {
-        GrPropertyPanel* panel = new GrPropertyPanel(m_panelStack, g);
-        // if dll files were loaded, ensure source is installed in every panel
+        GrPropertyPanel* panel = buildPanelForAsset(asset, g, m_panelStack);
+
         if ( m_langBrowserSource ) {
             panel->setLangBrowserSource(m_langBrowserSource);
         }
-        panel->loadAsset(asset);
+
         m_panelStack->addWidget(panel);
         m_panels.insert(g, panel);
 
