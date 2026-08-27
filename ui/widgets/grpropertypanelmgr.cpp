@@ -71,14 +71,17 @@ void GrPropertyPanelMgr::loadAsset(GrAsset *asset)
     qDeleteAll(m_actions);
     m_panels.clear();
     m_actions.clear();
+    m_buttons.clear();
 
     // only get groups with something loaded
     QSet<GrShared::PropertyGroup> populatedGroups;
-    for ( GrShared::Section* section : asset->allSections() ){
-        for ( const auto& key : *section ) {
-            for ( const auto& value : key ) {
-                if ( !value.v.isEmpty() ) {
-                    populatedGroups.insert(value.group);
+    for ( GrShared::SubtypeSections* subtypeSections : asset->allSections() ) {
+        for ( const GrShared::Section& section : *subtypeSections ) {
+            for ( const auto& key : section ) {
+                for ( const auto& value : key ) {
+                    if ( !value.v.isEmpty() ) {
+                        populatedGroups.insert(value.group);
+                    }
                 }
             }
         }
