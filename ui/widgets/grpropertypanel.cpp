@@ -70,19 +70,39 @@ GrPropertyPanel* GrPropertyPanel::buildPanelForAsset(GrAsset* asset, GrShared::P
 {
     GrPropertyPanel* container = new GrPropertyPanel(parent, group);
     const auto subs = asset->subtypes();
+    const bool isSingleUnprefixedType = (subs.size() == 1 && subs.first().prefix.isEmpty());
 
-    if (subs.size() == 1 && subs.first().prefix.isEmpty()) {
+    if (isSingleUnprefixedType) {
         container->loadAsset(asset, "");
-    } else {
-        QTabWidget* tabs = new QTabWidget(container);
-        for (const auto& sub : subs) {
-            GrPropertyPanel* tabPanel = new GrPropertyPanel(tabs, group);
-            tabPanel->loadAsset(asset, sub.prefix);
-            tabs->addTab(tabPanel, sub.label);
-        }
-        container->setTabWidget(tabs);
+        return container;
     }
 
+    bool hasCommonFields = false;
+    for (GrShared::SubtypeSections* subtypeSections : asset->allSections()) {
+        for (const GrShared::Key& key : subtypeSections->value("")) {
+            for (const auto& value : key) {
+                if (value.group == group) { hasCommonFields = true; break; }
+            }
+            if (hasCommonFields) break;
+        }
+        if (hasCommonFields) break;
+    }
+
+    QTabWidget* tabs = new QTabWidget(container);
+
+    if (hasCommonFields) {
+        GrPropertyPanel* allPanel = new GrPropertyPanel(tabs, group);
+        allPanel->loadAsset(asset, "");
+        tabs->addTab(allPanel, "All");
+    }
+
+    for (const auto& sub : subs) {
+        GrPropertyPanel* tabPanel = new GrPropertyPanel(tabs, group);
+        tabPanel->loadAsset(asset, sub.prefix);
+        tabs->addTab(tabPanel, sub.label);
+    }
+
+    container->setTabWidget(tabs);
     return container;
 }
 
