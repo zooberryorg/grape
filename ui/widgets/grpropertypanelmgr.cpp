@@ -65,14 +65,12 @@ GrPropertyPanelMgr::GrPropertyPanelMgr(QWidget *parent)
 
 void GrPropertyPanelMgr::loadAsset(GrAsset *asset)
 {
-    // reset anything inside the panel
     qDeleteAll(m_panels);
     qDeleteAll(m_buttons);
     qDeleteAll(m_actions);
     m_panels.clear();
     m_actions.clear();
 
-    // only groups with something loaded
     QSet<GrShared::PropertyGroup> populatedGroups;
     for ( GrShared::SubtypeSections* subtypeSections : asset->allSections() ) {
         for ( const GrShared::Section& section : *subtypeSections ) {
@@ -86,16 +84,9 @@ void GrPropertyPanelMgr::loadAsset(GrAsset *asset)
         }
     }
 
+    m_currentAsset = asset;
+
     for ( GrShared::PropertyGroup g : populatedGroups ) {
-        GrPropertyPanel* panel = GrPropertyPanel::buildPanelForAsset(asset, g, m_panelStack);
-
-        if ( m_langBrowserSource ) {
-            panel->setLangBrowserSource(m_langBrowserSource);
-        }
-
-        m_panelStack->addWidget(panel);
-        m_panels.insert(g, panel);
-
         QIcon icon = groupIcons.contains(g)
             ? GrGfx::setSvgColor(groupIcons[g], QColor("#c2c6c0"), 50, 50)
             : QIcon();
@@ -105,7 +96,6 @@ void GrPropertyPanelMgr::loadAsset(GrAsset *asset)
         m_group->addAction(action);
         m_actions.insert(g, action);
 
-        // make the buttons
         QToolButton* button = new QToolButton(m_toolbar);
         button->setDefaultAction(action);
         button->setToolButtonStyle(Qt::ToolButtonIconOnly);
@@ -114,11 +104,24 @@ void GrPropertyPanelMgr::loadAsset(GrAsset *asset)
         m_toolbarLayout->insertWidget(m_toolbarLayout->count() - 1, button);
         m_buttons.insert(g, button);
 
-        connect(action, &QAction::triggered, this, [this, panel]{ m_panelStack->setCurrentWidget(panel); });
+        connect(action, &QAction::triggered, this, [this, g]{ showGroup(g); });
     }
 
     if ( !m_actions.isEmpty() ) {
         m_actions.begin().value()->setChecked(true);
-        m_panelStack->setCurrentWidget(m_panels.begin().value());
+        showGroup(m_actions.begin().key());
     }
+}
+
+void GrPropertyPanelMgr::showGroup(GrShared::PropertyGroup group)
+{
+    if (!m_panels.contains(group)) {
+        GrPropertyPanel* panel = GrPropertyPanel::buildPanelForAsset(m_currentAsset, group, m_panelStack);
+        if ( m_langBrowserSource ) {
+            panel->setLangBrowserSource(m_langBrowserSource);
+        }
+        m_panelStack->addWidget(panel);
+        m_panels.insert(group, panel);
+    }
+    m_panelStack->setCurrentWidget(m_panels.value(group));
 }

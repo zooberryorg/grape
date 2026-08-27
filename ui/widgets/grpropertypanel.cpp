@@ -8,6 +8,7 @@
 #include <QCheckBox>
 #include <QTabWidget>
 #include <QScrollArea>
+#include <QScrollBar>
 
 #include "grshared.h"
 #include "grini.h"
@@ -44,6 +45,7 @@ void GrPropertyPanel::loadAsset(GrAsset* asset, const QString& subtype)
         m_scrollArea->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Ignored);
         m_scrollArea->setObjectName("propertyPanelScroll");
         m_scrollArea->viewport()->setObjectName("propertyPanelViewport");
+        m_scrollArea->verticalScrollBar()->setSingleStep(20);
 
         m_scrollContent = new QWidget(m_scrollArea);
         m_scrollContent->setObjectName("propertyPanelContent");

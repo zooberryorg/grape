@@ -29,6 +29,8 @@ private:
     QHash<GrShared::PropertyGroup, QToolButton*> m_buttons;
     GrLangTableBrowser* m_langBrowserSource;
 
+    GrAsset *m_currentAsset;
+    void showGroup(GrShared::PropertyGroup group);
 };
 
 #endif // GRPROPERTYPANELMGR_H
