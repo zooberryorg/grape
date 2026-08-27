@@ -12,7 +12,7 @@ void GrAsset::initProjectName() {
     m_projectid = file.baseName();
 }
 
-QList<QHash<QString, GrShared::Section> *> GrAsset::allSections()
+GrShared::Config GrAsset::allSections()
 {
     return {
         &m_intchars,

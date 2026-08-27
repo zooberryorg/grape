@@ -32,7 +32,7 @@ public:
     void setProjectId(const QString& id) { m_projectid = id; };
     QString getProjectName() { return m_projectname; };
     void setProjectName(const QString& name ) { m_projectname = name; };
-    QList<QHash<QString, GrShared::Section>*> allSections();
+    GrShared::Config allSections();
     QHash<QString, Value> getAnimationPaths();
     QStringList graphicsPathBuilder();
     void graphicsLoader( const QString& rootPath );
