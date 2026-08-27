@@ -415,3 +415,35 @@ QMenu::right-arrow {
     height: 10px;
     margin-right: 8px;
 }
+
+QTabWidget::pane {
+    background-color: #263621;
+    border: 1px solid #395132;
+    border-radius: 6px;
+    top: -1px;
+}
+
+QTabBar::tab {
+    background-color: #1e2b1a;
+    color: #8fa384;
+    border: 1px solid #395132;
+    border-bottom: none;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 6px 16px;
+    margin-right: 2px;
+    font-size: 11px;
+    font-weight: 600;
+}
+QTabBar::tab:hover {
+    background-color: #2e4226;
+    color: #c9c9c9;
+}
+QTabBar::tab:selected {
+    background-color: #263621;
+    color: #d5ac50;
+    border-color: #395132;
+}
+QTabBar::tab:!selected {
+    margin-top: 3px;
+}
