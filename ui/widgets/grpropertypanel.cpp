@@ -7,6 +7,7 @@
 #include <QLabel>
 #include <QCheckBox>
 #include <QTabWidget>
+#include <QScrollArea>
 
 #include "grshared.h"
 #include "grini.h"
@@ -26,8 +27,7 @@ GrPropertyPanel::GrPropertyPanel(QWidget *parent, GrShared::PropertyGroup groupT
     setObjectName("propertyPanel");
     setAttribute(Qt::WA_StyledBackground, true);
     m_layout = new QVBoxLayout(this);
-    m_layout->addStretch();
-    m_layout->setContentsMargins( 16, 16, 16, 16 );
+    m_layout->setContentsMargins(16, 16, 16, 16);
 }
 
 void GrPropertyPanel::loadAsset(GrAsset* asset, const QString& subtype)
@@ -35,10 +35,32 @@ void GrPropertyPanel::loadAsset(GrAsset* asset, const QString& subtype)
     m_assignedAsset = asset;
     m_fields.clear();
 
-    QLayoutItem* item;
-    while ( m_layout->count() > 1 && ( item = m_layout->takeAt(0) ) ) {
-        delete item->widget();
-        delete item;
+    QVBoxLayout* contentLayout;
+
+    if (!m_scrollArea) {
+        m_scrollArea = new QScrollArea(this);
+        m_scrollArea->setWidgetResizable(true);
+        m_scrollArea->setFrameShape(QFrame::NoFrame);
+        m_scrollArea->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Ignored);
+        m_scrollArea->setObjectName("propertyPanelScroll");
+        m_scrollArea->viewport()->setObjectName("propertyPanelViewport");
+
+        m_scrollContent = new QWidget(m_scrollArea);
+        m_scrollContent->setObjectName("propertyPanelContent");
+        contentLayout = new QVBoxLayout(m_scrollContent);
+        contentLayout->addStretch();
+        contentLayout->setContentsMargins( 16, 16, 16, 16 );
+        contentLayout->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
+
+        m_scrollArea->setWidget(m_scrollContent);
+        m_layout->addWidget(m_scrollArea);
+    } else {
+        contentLayout = qobject_cast<QVBoxLayout*>(m_scrollContent->layout());
+        QLayoutItem* item;
+        while ( contentLayout->count() > 1 && ( item = contentLayout->takeAt(0) ) ) {
+            delete item->widget();
+            delete item;
+        }
     }
 
     for ( GrShared::SubtypeSections* subtypeSections : asset->allSections() ) {
@@ -52,8 +74,8 @@ void GrPropertyPanel::loadAsset(GrAsset* asset, const QString& subtype)
                 const GrShared::Value& value = kIt.value();
                 if ( value.group != m_group ) continue;
 
-                QWidget* field = createField( this, sectionName, kIt.key(), value );
-                m_layout->insertWidget(m_layout->count() - 1, field);
+                QWidget* field = createField( m_scrollContent, sectionName, kIt.key(), value );
+                contentLayout->insertWidget(contentLayout->count() - 1, field);
                 m_fields[sectionName][kIt.key()] = { sectionName, kIt.key(), field,
                     [field, type = value.widgetType]() ->
                         QVariant {
@@ -171,8 +193,6 @@ void GrPropertyPanel::setTabWidget(QTabWidget* tabs)
     m_fields.clear();
 
     m_tabs = tabs;
-    m_layout->setAlignment(Qt::Alignment());
-    m_tabs->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    m_tabs->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Ignored);
     m_layout->insertWidget(m_layout->count() - 1, m_tabs);
-    m_layout->setStretchFactor(m_tabs, 1);
 }

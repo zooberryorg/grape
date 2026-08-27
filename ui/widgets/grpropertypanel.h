@@ -9,6 +9,7 @@ class GrAsset;
 class QVBoxLayout;
 class GrLangTableBrowser;
 class QTabWidget;
+class QScrollArea;
 
 class GrPropertyPanel : public QWidget
 {
@@ -35,6 +36,8 @@ private:
     GrShared::PropertyGroup m_group;
     GrLangTableBrowser* m_langBrowserSource;
     QTabWidget* m_tabs = nullptr;
+    QScrollArea* m_scrollArea = nullptr;
+    QWidget* m_scrollContent = nullptr;
 };
 
 #endif // GRPROPERTYPANEL_H
