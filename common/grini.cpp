@@ -96,17 +96,21 @@ void GrINI::assignNewValuesToKeys(GrShared::Key& target, const QHash<QString, QS
     }
 }
 
-void GrINI::loadConfig(const CSimpleIniA& ini, QHash<QString, GrShared::Section> config)
+void GrINI::loadConfig(const CSimpleIniA& ini, GrShared::Config config)
 {
-    for (const auto& subtype : config )
-    {
-        QString subTypeName = subtype.begin().key();
-        for (const auto& section : subtype) {
-            QString sectionName = section.begin().key();
-            GrINI::assignNewValuesToKeys(
-                config,
-                GrINI::getKeyValuesInSection(ini, sectionName)
-            );
+    for (GrShared::SubtypeSections* field : config) {
+        if (!field)
+            continue;
+
+        for (auto subtypeIt = field->begin(); subtypeIt != field->end(); ++subtypeIt) {
+            GrShared::Section& section = subtypeIt.value();
+
+            for (auto sectionIt = section.begin(); sectionIt != section.end(); ++sectionIt) {
+                const QString& sectionName = sectionIt.key();
+                GrShared::Key& keyMap = sectionIt.value();
+
+                assignNewValuesToKeys(keyMap, getKeyValuesInSection(ini, sectionName));
+            }
         }
     }
 }

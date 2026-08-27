@@ -23,7 +23,7 @@ public:
     static QStringList getFlagsInSection(const QString& path, const QString& section);
     static bool doesSectionExist(const CSimpleIniA&, const QString&);
     static bool doesKeyInSectionExist(const CSimpleIniA&, const QString&, const QString&);
-    static void loadConfig(const CSimpleIniA&, QHash<QString, GrShared::Section> config);
+    static void loadConfig(const CSimpleIniA& ini, GrShared::Config config);
     static QVariant stringToBool(const QString& b);
     static void registerSubtypes(QHash<QString, GrShared::Section>& target, const SectionTemplate& tmpl, const GrShared::SubtypeList& subtypes);
 };
