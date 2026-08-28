@@ -7,13 +7,8 @@ CBuilding::CBuilding(QString path)
     m_type = AssetType::Building;
     initMembers();
     initCharInts();
+    initCharFloats();
 }
-
-void CBuilding::initCharFloats()
-{
-
-}
-
 
 void CBuilding::initMembers () {
     m_members.clear();
@@ -26,6 +21,7 @@ GrShared::Config CBuilding::allSections()
         &m_icon,
         &m_intchars,
         &m_floatchars,
+        &m_animations,
 
         &m_globals,
         &m_animpaths,
@@ -34,7 +30,6 @@ GrShared::Config CBuilding::allSections()
         &m_ambientanims,
         &m_defaultlcid,
         &m_1033,
-        &m_animations,
         &m_filtersounds
     };
 }
@@ -74,4 +69,18 @@ void CBuilding::initCharInts() {
     };
 
     GrINI::registerSubtypes(m_intchars, tmpl, subtypes());
+}
+
+void CBuilding::initCharFloats() {
+    GrINI::SectionTemplate tmpl {
+        "Characteristics/Floats",
+        {
+            { "cDefaultCost", { "", Group::Commerce, Widget::Float } },
+            { "cLowCost", { "", Group::Commerce, Widget::Float } },
+            { "cMedCost", { "", Group::Commerce, Widget::Float } },
+            { "cHighCost", { "", Group::Commerce, Widget::Float } },
+            { "cPriceFactor", { "", Group::Commerce, Widget::Float } },
+            { "cUpkeep", { "", Group::Commerce, Widget::Float } }
+        }
+    };
 }
