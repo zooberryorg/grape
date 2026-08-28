@@ -1,5 +1,5 @@
-#ifndef GRAPEW_H
-#define GRAPEW_H
+#ifndef APEW_H
+#define APEW_H
 
 #include <QMenuBar>
 #include <QMenu>
@@ -18,17 +18,17 @@ class GrWelcomeScreen;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
-class GrapeW;
+class ApeW;
 }
 QT_END_NAMESPACE
 
-class GrapeW : public QMainWindow
+class ApeW : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    GrapeW(QWidget *parent = nullptr);
-    ~GrapeW();
+    ApeW(QWidget *parent = nullptr);
+    ~ApeW();
 
 private slots:
     void handleImportProjectFromDisk();
@@ -42,4 +42,4 @@ private:
     GrWelcomeScreen* welcomeScreen;
 
 };
-#endif // GRAPEW_H
+#endif // APEW_H

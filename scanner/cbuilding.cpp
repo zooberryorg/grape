@@ -15,6 +15,26 @@ void CBuilding::initMembers () {
     m_members.append("structures");
 }
 
+GrShared::Config CBuilding::allSections()
+{
+    return {
+        &m_icon,
+        &m_intchars,
+        &m_floatchars,
+
+        &m_globals,
+        &m_animpaths,
+        &m_suitableobjects,
+        &m_behaviorsets,
+        &m_ambientanims,
+        &m_defaultlcid,
+        &m_1033,
+        &m_animations,
+        &m_filtersounds
+    };
+}
+
+
 void CBuilding::initCharInts() {
     GrINI::SectionTemplate tmpl {
         "Characteristics/Integers",

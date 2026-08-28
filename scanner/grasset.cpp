@@ -12,24 +12,6 @@ void GrAsset::initProjectName() {
     m_projectid = file.baseName();
 }
 
-GrShared::Config GrAsset::allSections()
-{
-    return {
-        &m_intchars,
-        &m_globals,
-        &m_animpaths,
-        &m_icon,
-        &m_strchars,
-        &m_suitableobjects,
-        &m_behaviorsets,
-        &m_ambientanims,
-        &m_defaultlcid,
-        &m_1033,
-        &m_animations,
-        &m_filtersounds
-    };
-}
-
 QHash<QString, Value> GrAsset::getAnimationPaths(const QString& subtypePrefix) const
 {
     const QString sectionName = GrINI::buildSectionName(subtypePrefix, "Animations");

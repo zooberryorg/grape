@@ -9,6 +9,7 @@ public:
     CBuilding(QString);
     void initMembers();
     void initCharInts();
+    GrShared::Config allSections() override;
 };
 
 #endif // CBUILDING_H

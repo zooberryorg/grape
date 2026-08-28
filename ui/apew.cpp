@@ -1,4 +1,4 @@
-#include "grapew.h"
+#include "apew.h"
 #include "grworkspace.h"
 #include "grwelcomescreen.h"
 #include <QFileDialog>
@@ -6,7 +6,7 @@
 #include <QDir>
 #include <QTemporaryDir>
 
-GrapeW::GrapeW(QWidget *parent)
+ApeW::ApeW(QWidget *parent)
     : QMainWindow(parent)
 {
     QMenu* fileMenu = menuBar()->addMenu("&File");
@@ -42,18 +42,18 @@ GrapeW::GrapeW(QWidget *parent)
     setMinimumSize(640, 320);
     setWindowTitle("APE Studio");
 
-    connect(openAction, &QAction::triggered, this, &GrapeW::handleImportProjectFromDisk);
-    connect(fromZtdAction, &QAction::triggered, this, &GrapeW::handleImportProjectFromZTD);
-    connect(welcomeScreen, &GrWelcomeScreen::importProjectRequested, this, &GrapeW::handleImportProjectFromDisk);
-    connect(welcomeScreen, &GrWelcomeScreen::importProjectFromZTDRequested, this, &GrapeW::handleImportProjectFromZTD);
+    connect(openAction, &QAction::triggered, this, &ApeW::handleImportProjectFromDisk);
+    connect(fromZtdAction, &QAction::triggered, this, &ApeW::handleImportProjectFromZTD);
+    connect(welcomeScreen, &GrWelcomeScreen::importProjectRequested, this, &ApeW::handleImportProjectFromDisk);
+    connect(welcomeScreen, &GrWelcomeScreen::importProjectFromZTDRequested, this, &ApeW::handleImportProjectFromZTD);
 }
 
-GrapeW::~GrapeW()
+ApeW::~ApeW()
 {
     delete central;
 }
 
-void GrapeW::handleImportProjectFromDisk()
+void ApeW::handleImportProjectFromDisk()
 {
     QString directory = QFileDialog::getExistingDirectory(
         this,
@@ -85,7 +85,7 @@ void GrapeW::handleImportProjectFromDisk()
     }
 }
 
-void GrapeW::handleImportProjectFromZTD()
+void ApeW::handleImportProjectFromZTD()
 {
     QStringList ztdFiles = QFileDialog::getOpenFileNames(
         this,

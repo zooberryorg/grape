@@ -25,6 +25,7 @@ public:
     virtual void load() = 0;
     virtual void save() = 0;
     virtual GrShared::SubtypeList subtypes() const { return { { "", "" } }; };
+    virtual GrShared::Config allSections() = 0;;
     QString name() { return m_projectname; };
     void loadLayers();
     void initProjectName();
@@ -33,7 +34,6 @@ public:
     void setProjectId(const QString& id) { m_projectid = id; };
     QString getProjectName() { return m_projectname; };
     void setProjectName(const QString& name ) { m_projectname = name; };
-    GrShared::Config allSections();
     QHash<QString, Value> getAnimationPaths();
     QStringList graphicsPathBuilder();
     void graphicsLoader( const QString& rootPath );
@@ -81,6 +81,7 @@ protected:
     QHash<QString, GrShared::Section> m_1033;
     QHash<QString, GrShared::Section> m_animations;
     QHash<QString, GrShared::Section> m_filtersounds;
+    QHash<QString, GrShared::Section> m_floatchars;
 
     QHash<QString, QStringList> m_unlock;
     // for every key in allKeys, return its value (<key, value>, <key, value>, ..., n>)

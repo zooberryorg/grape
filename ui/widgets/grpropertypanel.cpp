@@ -100,6 +100,16 @@ GrPropertyPanel* GrPropertyPanel::buildPanelForAsset(GrAsset* asset, GrShared::P
         return container;
     }
 
+    bool hasCommonSection = false;
+    for (GrShared::SubtypeSections* subtypeSections : asset->allSections()) {
+        if (!subtypeSections->contains("")) continue;
+        for (const GrShared::Key& key : subtypeSections->value("")) {
+            if (key.isEmpty()) continue;
+            if (key.constBegin().value().group == group) { hasCommonSection = true; break; }
+        }
+        if (hasCommonSection) break;
+    }
+
     bool hasCommonFields = false;
     for (GrShared::SubtypeSections* subtypeSections : asset->allSections()) {
         for (const GrShared::Key& key : subtypeSections->value("")) {

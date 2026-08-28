@@ -44,7 +44,7 @@ set(PROJECT_SOURCES
         ui/widgets/gridselectorpopup.h ui/widgets/gridselectorpopup.cpp
         ui/widgets/grcanvas.h ui/widgets/grcanvas.cpp
         # views (pages)
-        ui/grapew.h ui/grapew.cpp ui/grapew.ui
+        ui/apew.h ui/apew.cpp ui/apew.ui
         ui/grwelcomescreen.h ui/grwelcomescreen.cpp
         ui/grworkspace.h ui/grworkspace.cpp
         # graphics (texture maps)
