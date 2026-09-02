@@ -13,6 +13,22 @@ CAnimal::CAnimal(QString path)
     init1033();
 }
 
+
+GrShared::Config CAnimal::allSections()
+{
+    return {
+        &m_globals,
+        &m_animpaths,
+        &m_icon,
+        &m_strchars,
+        &m_intchars,
+        &m_suitableobjects,
+        &m_behaviorsets,
+        &m_ambientanims,
+        &m_1033,
+    };
+}
+
 void CAnimal::load() {
     CSimpleIniA ini;
     int rc = ini.LoadFile(m_cpath.toStdString().c_str());

@@ -18,19 +18,11 @@ void CBuilding::initMembers () {
 GrShared::Config CBuilding::allSections()
 {
     return {
+        &m_globals,
         &m_icon,
         &m_intchars,
         &m_floatchars,
         &m_animations,
-
-        &m_globals,
-        &m_animpaths,
-        &m_suitableobjects,
-        &m_behaviorsets,
-        &m_ambientanims,
-        &m_defaultlcid,
-        &m_1033,
-        &m_filtersounds
     };
 }
 

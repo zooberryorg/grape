@@ -104,7 +104,7 @@ void CScenery::initCharInts()
             { "cFoliage", { "", Group::Traits, Widget::Switch } },
             { "cAutoRotate", { "", Group::UI, Widget::Switch } },
             { "cLand", { "", Group::Traits, Widget::Switch } },
-            { "cSwims", { "", Group::Traits, Widget::Switch } }, // not in game files
+            { "cSwims", { "", Group::Traits, Widget::Switch } },
             { "cUnderwater", { "", Group::Traits, Widget::Switch } },
             { "cSurface", { "", Group::Traits, Widget::Switch } },
             { "cSubmerge", { "", Group::Traits, Widget::Switch } },
@@ -112,8 +112,8 @@ void CScenery::initCharInts()
             { "cNeedsConfirm", { "", Group::UI, Widget::Switch } },
             { "cGawkOnlyFromFront", { "", Group::Slots, Widget::Switch } },
             { "cDeadOnLand", { "", Group::Traits, Widget::Switch } },
-            { "cDeadOnFlatWater", { "", Group::Traits, Widget::Switch } }, // not in game files
-            { "cDeadUnderwater", { "", Group::Traits, Widget::Switch } }, // not in game files
+            { "cDeadOnFlatWater", { "", Group::Traits, Widget::Switch } },
+            { "cDeadUnderwater", { "", Group::Traits, Widget::Switch } },
             { "cUsesTreeRubble", { "", Group::Traits, Widget::Switch } },
             { "cForcesSceneryRubble", { "", Group::Traits, Widget::Switch } },
             { "cBlocksLos", { "", Group::Traits, Widget::Switch } }
@@ -160,4 +160,15 @@ void CScenery::initAnimations()
     };
 
     GrINI::registerSubtypes(m_animations, tmpl, subtypes());
+}
+
+GrShared::Config CScenery::allSections()
+{
+    return {
+        &m_icon,
+        &m_intchars,
+        &m_animations,
+        &m_globals,
+        &m_1033,
+    };
 }

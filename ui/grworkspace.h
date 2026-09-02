@@ -38,10 +38,10 @@ private:
     QHash<QString, GrProject*> m_projects;
 
     QVBoxLayout* workspaceVLayout;
-    QSplitter *vSplitter;
+    QSplitter* vSplitter;
     GrStatusBar* statusBar;
-    QVBoxLayout *leftSidebarLayout;
-    GrLangTableBrowser *langBrowser;
+    QVBoxLayout* leftSidebarLayout;
+    GrLangTableBrowser* langBrowser;
 private slots:
     void handleAssetSelected(GrAsset* asset);
 

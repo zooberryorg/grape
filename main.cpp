@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
         }
     }
 
-    GrapeW w;
+    ApeW w;
     w.show();
     return a.exec();
 }

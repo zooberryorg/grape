@@ -17,6 +17,8 @@ public:
     void initDefaultLcid();
     void init1033();
     void initAnimations();
+
+    GrShared::Config allSections() override;
 };
 
 #endif // CSCENERY_H
